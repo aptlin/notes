@@ -1,0 +1,164 @@
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+%-----------------------------------------------------------
+\usepackage{fullpage}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{color}
+
+\definecolor{mygrey}{gray}{0.90}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+\usepackage{amsthm, amsmath, amssymb}
+\usepackage{chngcntr}
+
+
+% Adjust margins to 0.5in on all sides
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1.0in}
+\addtolength{\topmargin}{-0.5in}
+\addtolength{\textheight}{1.0in}
+% ----------------------------------------------------------------------
+% Custom definitions
+\def\Re{\mathbb{R}}
+\def\P{\mathbb{P}}
+\def\F{\mathbb{F}}
+\def\defi{Definition of }
+\def\mclo{Multiplicative Closure of }
+\def\aclo{Additive Closure of }
+\def\dist{Distributive Law}
+\def\ainv{Existence of an Additive Inverse }
+\def\minv{Existence of a Multiplicative Inverse }
+\def\uainv{Uniqueness of an Additive Inverse }
+\def\uminv{Uniqueness of a Multiplicative Inverse }
+\def\comm{Commutative Law }
+\def\tric{Trichotomy Law }
+\def\assoc{Associative Law }
+\def\aid{Existence of an Additive Identity }
+\def\mid{Existence of a Multiplicative Identity }
+\def\canc{Cancellation Property }
+\def\die{Distinctness of an Additive Identity and Multiplicative Identity}
+
+\def\ra{\Rightarrow}
+\def\equ{\Leftrightarrow}
+\def\v{\vspace{0.1in}}
+\def\s{\\\v}
+% -----------------------------------------------------------
+%Custom commands
+\newcommand{\resitem}[1]{\item #1 \vspace{-2pt}}
+\newcommand{\resheading}[1]{{\large \colorbox{mygrey}{\begin{minipage}{\textwidth}{\textbf{#1 \vphantom{p\^{E}}}}\end{minipage}}}}
+\newcommand{\ressubheading}[4]{
+\begin{tabular*}{7.0in}{l@{\extracolsep{\fill}}r}
+                \textbf{#1} & #2 \\
+                \textit{#3} & \textit{#4} \\
+\end{tabular*}\vspace{-6pt}}
+
+
+\newcommand*{\LongestName}{$\Rightarrow\ (-a)(x-y)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi - and \dist }%
+
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][l]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{subtheorem}{Lemma}[theorem]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+% -----------------------------------------------------------
+
+\pagenumbering{gobble}
+
+\counterwithin*{equation}{theorem}
+\counterwithin*{equation}{corollary}
+\counterwithin*{equation}{subtheorem}
+\begin{document}
+
+Let $\F$ be any field.
+
+\begin{lemma}
+  $\forall a \in \mathbb{F}: a\cdot0=0$
+  \label{eq:zero}
+\end{lemma}
+
+\begin{proof}
+\begin{align}
+  \mbn{0+0}\ & \mbv{=0} & \mbt{\aid}\\
+  \mbn{\Rightarrow a\cdot(0+0)}\ & \mbv{=a\cdot 0 + a \cdot 0} & \mbt{\dist}\\
+  \mbn{}\ & \mbv{=a \cdot 0} & \mbt{\defi =}\\
+  \mbn{(a\cdot 0 + a \cdot 0)-(a\cdot 0)}\ & \mbv{=a \cdot 0 -(a \cdot 0)} & \mbt{\defi =}\\
+  \mbn{\Rightarrow a\cdot0 +(a\cdot0-a\cdot0)}\ & \mbv{=0} & \mbt{\assoc}\\
+  \mbn{}\ & \mbv{} & \mbt{and \ainv}\nonumber\\
+  \mbn{\Rightarrow a\cdot0 +0}\ & \mbv{=0} & \mbt{\ainv}\\
+  \mbn{\Rightarrow a\cdot0}\ & \mbv{=0} & \mbt{\aid}\nonumber
+\end{align}
+\end{proof}
+
+
+  \begin{lemma}
+  \label{eq:zerzer}
+  $\forall a,b \in \F: ab=0 \equ a=0 \vee b=0$
+\end{lemma}
+\begin{proof}
+  \vspace{0.1in}
+  By \comm and Lemma \ref{eq:zero}, $a=0 \ra ab=ba=b\cdot 0=0$.\\
+  \vspace{0.1in}
+  Similarly, $b=0 \ra ab=a\cdot 0=0$.
+  \vspace{0.1in}
+  If $ab=0$ and $b\neq 0$, $\exists\ b^{-1}: abb^{-1}=0\cdot b^{-1}$,
+  hence by \comm and \minv $a\cdot 1=b^{-1}\cdot 0$, then by \mid
+  and Lemma \ref{eq:zero} $a=0$.\\
+  \vspace{0.1in}
+  If $ab=0$ and $a\neq 0$, $\exists\ a^{-1}: a^{-1}ab=a^{-1}\cdot 0$,
+  hence by \comm and Lemma \ref{eq:zero} $aa^{-1}b=0$, then by \minv
+  $1\cdot b=0$, and by \comm and \mid $b\cdot 1=b=0$.\\
+  \vspace{0.1in}
+  If $a=0 \wedge b=0$, then by Lemma \ref{eq:zero} $ab=0\cdot0=0$
+\end{proof}
+
+
+\section*{}
+\begin{theorem}
+  $1+1+1+1=0 \in \F \ra 1+1=0$
+\end{theorem}
+\begin{proof}
+  Consider $(1+1)\cdot(1+1)$.
+  \begin{align}
+    \mbn{(1+1)(1+1)}\ & \mbv{=(1+1) \cdot 1 + (1+1) \cdot 1} & \mbt{\dist} \\
+    \mbn{1\cdot(1+1)+1\cdot(1+1)}\ & \mbv{=1+1+1+1} & \mbt{\dist\ and \comm}
+  \end{align}
+
+  Therefore, $1+1+1+1=(1+1)(1+1)=0$ by assumption.\s
+
+
+
+Now, since $(1+1)(1+1)=0$ and $1+1=1+1$, by Lemma \ref{eq:zerzer}
+$1+1=0$ as required.
+\end{proof}
+
+
+\end{document}

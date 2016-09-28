@@ -1,0 +1,112 @@
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+%-----------------------------------------------------------
+\usepackage{fullpage}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{color}
+
+\definecolor{mygrey}{gray}{0.90}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+\usepackage{amsthm, amsmath, amssymb}
+\usepackage{chngcntr}
+
+
+% Adjust margins to 0.5in on all sides
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1.0in}
+\addtolength{\topmargin}{-0.5in}
+\addtolength{\textheight}{1.0in}
+% ----------------------------------------------------------------------
+% Custom definitions
+\def\Re{\mathbb{R}}
+\def\P{\mathbb{P}}
+\def\F{\mathbb{F}}
+\def\defi{Definition of }
+\def\mclo{Multiplicative Closure of }
+\def\aclo{Additive Closure of }
+\def\dist{Distributive Law}
+\def\ainv{Existence of an Additive Inverse }
+\def\minv{Existence of a Multiplicative Inverse }
+\def\uainv{Uniqueness of an Additive Inverse }
+\def\uminv{Uniqueness of a Multiplicative Inverse }
+\def\comm{Commutative Law }
+\def\tric{Trichotomy Law }
+\def\assoc{Associative Law }
+\def\aid{Existence of an Additive Identity }
+\def\mid{Existence of a Multiplicative Identity }
+\def\canc{Cancellation Property }
+\def\die{Distinctness of an Additive Identity and Multiplicative Identity}
+
+\def\ra{\Rightarrow}
+\def\equ{\Leftrightarrow}
+\def\v{\vspace{0.1in}}
+\def\s{\\\v}
+\newcommand{\eq}[2]{\equiv #1 \pmod #2}
+% -----------------------------------------------------------
+%Custom commands
+\newcommand{\resitem}[1]{\item #1 \vspace{-2pt}}
+\newcommand{\resheading}[1]{{\large \colorbox{mygrey}{\begin{minipage}{\textwidth}{\textbf{#1 \vphantom{p\^{E}}}}\end{minipage}}}}
+\newcommand{\ressubheading}[4]{
+\begin{tabular*}{7.0in}{l@{\extracolsep{\fill}}r}
+                \textbf{#1} & #2 \\
+                \textit{#3} & \textit{#4} \\
+\end{tabular*}\vspace{-6pt}}
+
+
+\newcommand*{\LongestName}{$\Rightarrow\ (-a)(x-y)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi - and \dist }%
+
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][l]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{subtheorem}{Lemma}[theorem]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+% -----------------------------------------------------------
+
+\pagenumbering{gobble}
+
+\counterwithin*{equation}{theorem}
+\counterwithin*{equation}{corollary}
+\counterwithin*{equation}{subtheorem}
+\begin{document}
+
+\begin{align}
+  \mbn{7^{7\times7\times7}}\ & \mbv{\eq{(-3)^{7\times7\times7}}{{10}}} & \mbt{} \\
+  \mbn{}\ & \mbv{\eq{9^{7\times7\times7-2}}{{10}}} & \mbt{} \\
+  \mbn{}\ & \mbv{\eq{(-1)^{7\times7\times7-2}}{{10}}} & \mbt{} \\
+  \mbn{}\ & \mbv{\eq{-1}{{10}}} & \mbt{since $7\times7\times7$ is odd ($\because 7$ is odd)} \\
+  \mbn{}\ & \mbv{} & \mbt{and hence in the form $2k+1\ \exists\ k\in\mathbb{Z}$.} \\
+  \mbn{}\ & \mbv{} & \mbt{Thus, $7\times7\times7-2$ is also odd,} \\
+  \mbn{}\ & \mbv{} & \mbt{since $2k+1-2=2(k-1)+1$ is odd.} \\
+  \mbn{}\ & \mbv{\eq{9}{{10}}} & \mbt{}
+\end{align}
+\end{document}

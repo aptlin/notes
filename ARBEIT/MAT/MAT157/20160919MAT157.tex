@@ -1,0 +1,543 @@
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+%-----------------------------------------------------------
+\usepackage{fullpage}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{color}
+
+\definecolor{mygrey}{gray}{0.90}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+\usepackage{amsthm, amsmath, amssymb}
+\usepackage{chngcntr}
+
+
+% Adjust margins to 0.5in on all sides
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1.0in}
+\addtolength{\topmargin}{-0.5in}
+\addtolength{\textheight}{1.0in}
+% ----------------------------------------------------------------------
+% Custom definitions
+\def\Re{\mathbb{R}}
+\def\P{\mathbb{P}}
+\def\defi{Definition of }
+\def\mclo{Multiplicative Closure of }
+\def\aclo{Additive Closure of }
+\def\dist{Distributive Law}
+\def\ainv{Existence of an Additive Inverse }
+\def\minv{Existence of a Multiplicative Inverse }
+\def\comm{Commutative Law }
+\def\tric{Trichotomy Law }
+\def\assoc{Associative Law }
+\def\aid{Existence of an Additive Identity }
+\def\mid{Existence of a Multiplicative Identity }
+\def\canc{Cancellation Property }
+\def\ra{\Rightarrow}
+\def\equ{\Leftrightarrow}
+% -----------------------------------------------------------
+%Custom commands
+\newcommand{\resitem}[1]{\item #1 \vspace{-2pt}}
+\newcommand{\resheading}[1]{{\large \colorbox{mygrey}{\begin{minipage}{\textwidth}{\textbf{#1 \vphantom{p\^{E}}}}\end{minipage}}}}
+\newcommand{\ressubheading}[4]{
+\begin{tabular*}{7.0in}{l@{\extracolsep{\fill}}r}
+                \textbf{#1} & #2 \\
+                \textit{#3} & \textit{#4} \\
+\end{tabular*}\vspace{-6pt}}
+
+
+\newcommand*{\LongestName}{$\Rightarrow\ (-a)(x-y)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi - and \dist }%
+
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][l]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{subtheorem}{Lemma}[theorem]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+% -----------------------------------------------------------
+
+\pagenumbering{gobble}
+\counterwithin*{equation}{theorem}
+\counterwithin*{equation}{corollary}
+\counterwithin*{equation}{subtheorem}
+\begin{document}
+
+
+
+\begin{tabular*}{7.5in}{l@{\extracolsep{\fill}}r}
+\textbf{\large Alexander Illarionov}\\
+\end{tabular*}
+\textcolor{mygrey}{\noindent\makebox[\linewidth]{\rule{7.5in}{1pt}}}\\
+\vspace{0.1in}
+
+\begin{tabular*}{7.5in}{l@{\extracolsep{\fill}}r}
+  \textbf{MAT 157 Problem Set I} & 02016/09/19
+\end{tabular*}
+\textcolor{mygrey}{\noindent\makebox[\linewidth]{\rule{7.5in}{1pt}}}\\
+\vspace{0.1in}
+
+Let $a,b,x,y \in \Re$.\\
+Let $\mathbb{F}$ be a field.
+\begin{lemma}{Cancellation Property}
+  \begin{align}
+    \mbn{\forall a,b,c \in \mathbb{F}: a+c=b+c}\ & \mbv{\Leftrightarrow a=b} & \mbt{}\\
+    \mbn{\forall a,b,c \in \mathbb{F}, c\neq0: ac=bc}\ & \mbv{\Leftrightarrow a=b} & \mbt{}
+  \end{align}
+\end{lemma}
+\begin{proof}
+  Suppose $a+c=b+c$.
+  \begin{align}
+    \mbn{\exists\ (-c): c + (-c)}\ & \mbv{=0} & \mbt{\ainv}\\
+    \mbn{\Rightarrow\ (a+c)+(-c)}\ & \mbv{=(b+c)+(-c)} & \mbt{\defi =}\\
+    \mbn{\Rightarrow\ a+(c+(-c))}\ & \mbv{=b+(c+(-c))} & \mbt{\assoc}\\
+    \mbn{\Rightarrow\ a+0}\ & \mbv{=b+0} & \mbt{\ainv}\\
+    \mbn{\Rightarrow\ a}\ & \mbv{=b} & \mbt{\aid}\\
+  \end{align}
+  Suppose now $ac=bc$.
+  \begin{align}
+    \mbn{\exists\ c^{-1}: c  c^{-1}}\ & \mbv{=1} & \mbt{\ainv}\\
+    \mbn{\Rightarrow\ (ac)c^{-1}}\ & \mbv{=(bc)c^{-1}} & \mbt{\defi =}\\
+    \mbn{\Rightarrow\ a(cc^{-1})}\ & \mbv{=b(cc^{-1})} & \mbt{\assoc}\\
+    \mbn{\Rightarrow\ a\times1}\ & \mbv{=b\times1} & \mbt{\minv}\\
+    \mbn{\Rightarrow\ a}\ & \mbv{=b} & \mbt{\aid}
+  \end{align}
+\end{proof}
+
+
+\begin{lemma}
+  $\forall a \in \mathbb{F}: a\times0=0$
+  \label{eq:zero}
+\end{lemma}
+
+\begin{proof}
+\begin{align}
+  \mbn{0+0}\ & \mbv{=0} & \mbt{\aid}\\
+  \mbn{\Rightarrow a\times(0+0)}\ & \mbv{=a\times 0 + a \times 0} & \mbt{\dist}\\
+  \mbn{}\ & \mbv{=a \times 0} & \mbt{\defi =}\\
+  \mbn{(a\times 0 + a \times 0)-(a\times 0)}\ & \mbv{=a \times 0 -(a \times 0)} & \mbt{\defi =}\\
+  \mbn{\Rightarrow a\times0 +(a\times0-a\times0)}\ & \mbv{=0} & \mbt{\assoc}\\
+  \mbn{}\ & \mbv{} & \mbt{and \ainv}\nonumber\\
+  \mbn{\Rightarrow a\times0 +0}\ & \mbv{=0} & \mbt{\ainv}\\
+  \mbn{\Rightarrow a\times0}\ & \mbv{=0} & \mbt{\aid}\nonumber
+\end{align}
+\end{proof}
+
+\begin{lemma}
+  \label{eq:negp}
+  $\forall a,b \in \Re : (-a)b=-ab$
+\end{lemma}
+\begin{proof}
+
+  \begin{align}
+    \mbn{a+(-a)}\ & \mbv{=0} & \mbt{\ainv}\\
+    \mbn{\Rightarrow ab+(-a)b}\ & \mbv{=ba+b(-a)} & \mbt{\comm}\\
+    \mbn{\Rightarrow b(a+(-a))}\ & \mbv{=b\times0} & \mbt{\dist}\\
+    \mbn{}\ & \mbv{} & \mbt{and \ainv}\\
+    \mbn{}\ & \mbv{=0} & \mbt{Lemma \ref{eq:zero}}\\
+    \mbn{\Rightarrow ab+(-a)b}\ & \mbv{=0} & \mbt{\defi =}\\
+    \mbn{\Rightarrow(-a)b+ab}\ & \mbv{=0} & \mbt{\comm}\\
+    \mbn{(-a)b+ab-ab}\ & \mbv{=0-ab} & \mbt{\defi =}\\
+    \mbn{\Rightarrow(-a)b+0}\ & \mbv{=-ab} & \mbt{\ainv}\\
+    \mbn{}\ & \mbv{} & \mbt{and \aid}\nonumber\\
+    \mbn{}\ & \mbv{=(-a)b} & \mbt{\aid}
+  \end{align}
+\end{proof}
+\begin{corollary}
+\label{eq:negm}
+  $\forall a \in \Re: -b=(-1)b$
+\end{corollary}
+\begin{proof}
+  From Lemma \ref{eq:negp}, if $a=1$, then $(-1)b=-1 \times b$
+  \begin{align}
+    \mbn{-1\times b}\ & \mbv{=-b\times1} & \mbt{\comm}\\
+    \mbn{\ra (-1)b}\ & \mbv{=-b} & \mbt{\defi =}\\
+    \mbn{}\ & \mbv{} & \mbt{and \mid}\nonumber
+  \end{align}
+\end{proof}
+\begin{lemma}
+  \label{eq:negneg}
+  $-(-a)=a$
+\end{lemma}
+\begin{proof}
+  \begin{align}
+    \mbn{a+(-a)}\ & \mbv{=0} & \mbt{\ainv}\\
+    \mbn{(-1)(a+(-a))}\ & \mbv{=(-1)0} & \mbt{\defi =}\\
+    \mbn{(-1)a+(-1)(-a)}\ & \mbv{=0} & \mbt{\dist}\\
+    \mbn{}\ & \mbv{} & \mbt{and Lemma \ref{eq:zero}}\nonumber\\
+    \mbn{\equ -a-(-a)}\ & \mbv{=0} & \mbt{Corollary \ref{eq:negm}}\\
+    \mbn{a+(-a-(-a))}\ & \mbv{=a+0} & \mbt{\defi =}\\
+    \mbn{(a-a)-(-a))}\ & \mbv{=a} & \mbt{\assoc}\\
+    \mbn{}\ & \mbv{} & \mbt{and \aid}\\
+    \mbn{0-(-a)}\ & \mbv{=a} & \mbt{\ainv}\\
+    \mbn{-(-a)}\ & \mbv{=a} & \mbt{\aid}
+  \end{align}
+\end{proof}
+\section{}
+\begin{theorem}
+  $ a > 0 \wedge x > y \Rightarrow  ax > ay$
+\end{theorem}
+\begin{proof}
+  \begin{align}
+    \mbn{x > y}\ & \mbv{\Leftrightarrow x-y \in \P} & \mbt{\defi $\P$ and $>$}\\
+    \mbn{a \in \P}\ & \mbv{\Rightarrow a(x-y)\in\P} & \mbt{\mclo $\P$ }\\
+    \mbn{a(x-y)=ax-ay \in\P}\ & \mbv{\Rightarrow ax-ay > 0} & \mbt{\dist}\\
+    \mbn{}\ & \mbv{\Leftrightarrow ax>ay} & \mbt{\defi $>$}
+  \end{align}
+\end{proof}
+\begin{theorem}
+  $a < 0 \wedge x > y \Rightarrow ax < ay$
+\end{theorem}
+\begin{proof}
+  \begin{align}
+    \mbn{a < 0}\ &\mbv{\Rightarrow -a \in \P} & \mbt{\tric} \\
+    \mbn{x > y}\ &\mbv{\Leftrightarrow x-y \in \P} & \mbt{\defi $\P$ and $>$}\\
+    \mbn{\Rightarrow\ (-a)(x-y)}\ &\mbv{=(-a)x +(-a)(-y) \in \P} & \mbt{\dist, \defi $-$}\\
+    \mbn{}\ & \mbv{} & \mbt{and \mclo $\P$}\nonumber\\
+    \mbn{}\ & \mbv{=-ax-a(-y)} & \mbt{Lemma \ref{eq:negp}}\\
+    \mbn{-ax-a(-y)}\ & \mbv{=-ax-(-y)a} & \mbt{\comm}\\
+    \mbn{-ax-(-y)a}\ & \mbv{=-ax+ya} & \mbt{Lemma \ref{eq:negneg}}\\
+    \mbn{\ra -ax+ay}\ & \mbv{=ay-ax} & \mbt{\comm}\\
+    \mbn{}\ & \mbv{\ra ay-ax \in \P} & \mbt{\mclo $\P$}\\
+    \mbn{}\ & \mbv{\ra ay>ax} & \mbt{\defi $>$}\\
+    \mbn{}\ & \mbv{\equ ax<ay} & \mbt{\defi $<$}
+  \end{align}
+\end{proof}
+
+\begin{theorem}
+$-0=(-1)0$
+\end{theorem}
+\begin{proof}
+From Corollary \ref{eq:negm}, if $a=0$, by \ainv $\exists -0: -0=(-1)0$.
+\end{proof}
+
+\begin{theorem}
+$\forall x,y \in \Re: x,y > 0 \wedge \frac{1}{x} < \frac{1}{y} \ra x >y$
+\end{theorem}
+\begin{proof}
+  \begin{align}
+    \mbn{x,y > 0}\ & \mbv{\ra x,y \in \P} & \mbt{\defi $>$}\\
+    \mbn{}\ & \mbv{\ra xy \in \P} & \mbt{\mclo $\P$}\\
+    \mbn{\frac{1}{x}<\frac{1}{y}}\ & \mbv{\ra \frac{1}{y} - \frac{1}{x} \in \P} & \mbt{\defi $<$}\\
+    \mbn{}\ & \mbv{\ra xy(\frac{1}{y} - \frac{1}{x}) \in \P} & \mbt{\mclo $\P$}\\
+    \mbn{}\ & \mbv{\ra(xy)\frac{1}{y} - (xy)\frac{1}{x} \in \P} & \mbt{\dist}\\
+    \mbn{}\ & \mbv{\ra(xy)\frac{1}{y}-(yx)\frac{1}{x} \in \P} & \mbt{\comm}\\
+    \mbn{}\ & \mbv{\ra x(y\times\frac{1}{y})-y(x\times\frac{1}{x}) \in \P} & \mbt{\assoc}\\
+    \mbn{}\ & \mbv{\ra x \times 1 - y \times 1 \in \P} & \mbt{\ainv}\\
+    \mbn{}\ & \mbv{\ra x - y \in \P} & \mbt{\mid}\\
+    \mbn{}\ & \mbv{\ra x>y} & \mbt{\defi $>$}
+\end{align}
+\end{proof}
+
+\begin{theorem}
+\label{eq:sqsq}
+  $x^2=y^2 \equ x=y \vee x=-y$
+\end{theorem}
+\begin{subtheorem}
+    $x=y \vee x=-y \ra x^2=y^2$
+\end{subtheorem}
+\begin{proof}
+  Suppose $x=y$.
+  \begin{align}
+    \mbn{x \times x}\ & \mbv{=x \times y} & \mbt{\defi =} \\
+    \mbn{y \times y}\ & \mbv{=x \times y} & \mbt{\defi =} \\
+    \mbn{\ra x^2}\ & \mbv{=y^2} & \mbt{Transitive Law}
+  \end{align}
+  Suppose $x=-y$.
+  \begin{align}
+    \mbn{x \times x}\ & \mbv{=x\times(-y)} & \mbt{\defi =} \\
+    \mbn{(-y)(-y)}\ & \mbv{=x \times (-y)} & \mbt{\defi =} \\
+    \mbn{(-y)(-1)y}\ & \mbv{=(-1)(-y)y} & \mbt{Corollary \ref{eq:negm} and \comm} \\
+    \mbn{}\ & \mbv{=-(-y)y} & \mbt{Corollary \ref{eq:negm}} \\
+    \mbn{}\ & \mbv{=y^2} & \mbt{Lemma \ref{eq:negneg}} \\
+    \mbn{\ra x^2}\ & \mbv{=y^2} & \mbt{Transitive Law}
+  \end{align}
+\begin{subtheorem}
+  \label{eq:zerzer}
+  $\forall a,b \in \Re: ab=0 \equ a=0 \vee b=0$
+\end{subtheorem}
+\begin{proof}
+  \vspace{0.1in}
+  By \comm and Lemma \ref{eq:zero}, $a=0 \ra ab=ba=b\times 0=0$.\\
+  \vspace{0.1in}
+  Similarly, $b=0 \ra ab=a\times 0=0$.
+  \vspace{0.1in}
+  If $ab=0$ and $b\neq 0$, $\exists\ b^{-1}: abb^{-1}=0\times b^{-1}$,
+  hence by \comm and \minv $a\times 1=b^{-1}\times 0$, then by \mid
+  and Lemma \ref{eq:zero} $a=0$.\\
+  \vspace{0.1in}
+  If $ab=0$ and $a\neq 0$, $\exists\ a^{-1}: a^{-1}ab=a^{-1}\times 0$,
+  hence by \comm and Lemma \ref{eq:zero} $aa^{-1}b=0$, then by \minv
+  $1\times b=0$, and by \comm and \mid $b\times 1=b=0$.\\
+  \vspace{0.1in}
+  If $a=0 \wedge b=0$, then by Lemma \ref{eq:zero} $ab=0\times0=0$
+\end{proof}
+\begin{subtheorem}
+  \label{eq:diffsq}
+  $\forall a,b \in \mathbb{F}: (a+b)(a-b)=a^2-b^2 $
+\end{subtheorem}
+\begin{proof}
+\begin{align}
+  \mbn{(a+b)(a-b)}\ & \mbv{=(a+b)a+(a+b)(-b)} & \mbt{\dist} \\
+  \mbn{}\ & \mbv{=(a(a+b))-(b(a+b))} & \mbt{\comm} \\
+  \mbn{}\ & \mbv{=(a^2+ab)-(ba-b^2)} & \mbt{\dist} \\
+  \mbn{}\ & \mbv{=a^2+(ab-(ba-b^2))} & \mbt{\assoc} \\
+  \mbn{}\ & \mbv{=a^2+((ab-ba)-b^2)} & \mbt{\assoc} \\
+  \mbn{}\ & \mbv{=a^2+((ab-ab)-b^2)} & \mbt{\comm} \\
+  \mbn{}\ & \mbv{=a^2+(0-b^2)} & \mbt{\ainv} \\
+  \mbn{}\ & \mbv{=a^2-b^2} & \mbt{\aid}
+\end{align}
+\end{proof}
+\vspace{0.3in}
+If $x^2=y^2$, by \canc and Lemma \ref{eq:diffsq} $(x-y)(x+y)=0$.\\
+\vspace{0.1in}
+Therefore, by Lemma \ref{eq:zerzer} and \canc $x=y \vee x=-y$
+\end{proof}
+
+\begin{theorem}
+  $x^3=y^3 \equ x=y$
+\end{theorem}
+\begin{proof}
+  By \ref{eq:sqsq}, if $x=y$, then $x^2=y^2$.
+  \begin{align}
+    \mbn{x^2=y^2}\ & \mbv{\ra x^3=xy^2} & \mbt{\defi =} \\
+    \mbn{y^2=x^2}\ & \mbv{\ra y^3=xy^2} & \mbt{\defi =} \\
+    \mbn{}\ & \mbv{\ra x^3=y^3} & \mbt{Transitive Law} \\
+  \end{align}
+  \begin{subtheorem}
+    \label{eq:cub}
+    $x^3-y^3=(x-y)(x^2+xy+y^3)$
+  \end{subtheorem}
+  \begin{proof}
+    \begin{align}
+      \mbn{(x-y)(x^2+xy+y^2)}\ & \mbv{=x^3+x^2y+} & \mbt{\dist}\\
+      \mbn{}\ & \mbv{+xy^2-yx^2-yxy-y^3} & \mbt{}\nonumber \\
+      \mbn{}\ & \mbv{=x^3+x^2y+xy^2-} & \mbt{\comm} \\
+      \mbn{}\ & \mbv{-x^2y-xy^2-y^3} & \mbt{}\nonumber \\
+      \mbn{}\ & \mbv{=x^3+(x^2y-x^2y)+} & \mbt{\comm} \\
+      \mbn{}\ & \mbv{+(xy^2-xy^2)-y^3} & \mbt{}\nonumber \\
+      \mbn{}\ & \mbv{=x^3+0+0-y^3} & \mbt{\ainv} \\
+      \mbn{}\ & \mbv{=x^3-y^3} & \mbt{\aid}
+    \end{align}
+  \end{proof}
+
+\begin{definition}
+  A number $x \in \Re$ is called a \textit{postive square root} of a number
+  $a\in\Re$ if $x \in \P$ and $x^2=a$. $x$ is denoted as $\sqrt{a}$.
+\end{definition}
+Suppose now that there is an equation $ax^2+bx+c$ with
+$a,b,c,x\in\Re \wedge a\neq0$.
+\begin{definition}
+  A \textit{discriminant $\Delta$ of a quadratic} is defined as
+  $\Delta=\sqrt{b^2-4ac}.$
+\end{definition}
+\begin{definition}
+A number $x\in\Re$ such that $ax^2+bx+c=0$ is called the real root of the equation.
+\end{definition}
+
+\begin{remark}
+For a real root of the equation to exist, $\Delta$ must be an element in $\P$.
+\end{remark}
+
+\vspace{0.3in}
+
+If $x^3=y^3$, by Lemma \ref{eq:cub}, \canc and Lemma \ref{eq:zerzer}
+$x=y \vee x^2+xy+y=0$.\\
+Consider the case when $x^2+xy+y=0$. Note that it is an equation in
+the form $ax^2+bx+c$, hence, by the remark above,
+$\Delta=\sqrt{-3}\not\in\Re$. Therefore, the real root of this
+equation does not exist. Hence, $x=y$ is the only case satisfying
+the conditions.
+
+\end{proof}
+
+\begin{lemma}
+  \label{eq:psq}
+  $\forall a\in\Re:a^2\geq 0$
+\end{lemma}
+\begin{proof}
+  Suppose that $a>0$. Therefore, $a\in\P$ by \defi $\P$. Hence,
+  $a^2\in\P$ by \mclo $\P$.\\
+  Suppose now that $a<0$. Therefore, $-a\in\P$ by \tric. Hence,
+  $(-a)(-a)\in\P$ by \mclo $\P$. But by \comm, Lemma \ref{eq:negp}
+  and Lemma \ref{eq:negneg}, $(-a)(-a)=a^2$. Thus, $\forall a\in\Re,a<0:a^2>0$.\\
+  Suppose now that $a=0$. Thus, by Lemma \ref{eq:zero} $aa=0\times0=0$.
+
+\end{proof}
+\begin{lemma}
+  \label{eq:pinv}
+  $\forall a\in\P:a^{-1}\in\P$
+\end{lemma}
+\begin{proof}
+  Suppose it is not the case, i.e. $\exists\ a^{-1} < 0$. Therefore,
+  $-a^{-1}\in\P$ by \tric. But by Lemma \ref{eq:negp}, \comm and \ainv
+  $a(-a^{-1})=-1 \not\in\P$, which contradicts \mclo $\P$. Thus, $a^{-1}\in\P$
+\end{proof}
+
+\begin{theorem}{AM-GM Inequality\\\vspace{0.2in}}
+\begin{equation*}\forall a,b \in R, a\geq0,b\geq0: \sqrt{ab}\leq\frac{a+b}{2}\end{equation*}
+\end{theorem}
+\begin{proof}
+  \begin{subtheorem}
+    \label{eq:dsq}
+    $(a-b)^2=a^2-2ab+b^2$
+  \end{subtheorem}
+  \begin{proof}
+    \begin{align}
+      \mbn{}\ & \mbv{=(a-b)a-(a-b)b} & \mbt{\dist} \\
+      \mbn{}\ & \mbv{} & \mbt{\comm , Lemma \ref{eq:negm}} \\
+      \mbn{}\ & \mbv{=a(a-b)-b(a-b)} & \mbt{\comm} \\
+      \mbn{}\ & \mbv{=a^2-ab-ba+b^2} & \mbt{\dist} \\
+      \mbn{}\ & \mbv{} & \mbt{Lemma \ref{eq:negp}, Lemma \ref{eq:negneg}} \\
+      \mbn{}\ & \mbv{=a^2-ab-ab+b^2} & \mbt{\comm} \\
+      \mbn{}\ & \mbv{=a^2-2ab+b^2} & \mbt{\defi =}
+    \end{align}
+  \end{proof}
+  \begin{subtheorem}
+    \label{eq:diff}
+    $4ab\leq(a+b)^2$
+  \end{subtheorem}
+  \begin{proof}
+  \begin{align}
+    \mbn{(a+b)^2}\ & \mbv{\in\P} & \mbt{Lemma \ref{eq:psq}} \\
+    \mbn{}\ & \mbv{=(a+b)a+(a+b)b} & \mbt{\dist} \\
+    \mbn{}\ & \mbv{=a(a+b)+b(a+b)} & \mbt{\comm} \\
+    \mbn{}\ & \mbv{=a^2+ab+ba+b^2} & \mbt{\dist} \\
+    \mbn{}\ & \mbv{=a^2+ab+ab+b^2} & \mbt{\comm} \\
+    \mbn{}\ & \mbv{=a^2+2ab+b^2} & \mbt{\defi = }\\
+    \mbn{\ra (a+b)^2-4ab}\ & \mbv{=a^2-2ab+b^2} & \mbt{\comm} \\
+    \mbn{}\ & \mbv{=(a-b)^2\geq0} & \mbt{Lemma \ref{eq:dsq}, Lemma \ref{eq:psq}}\\
+    \mbn{}\ & \mbv{\equ (a+b)^2-4ab\geq0} & \mbt{\defi =} \\
+    \mbn{}\ & \mbv{\equ (a+b)^2\geq 4ab} & \mbt{\ainv} \\
+    \mbn{}\ & \mbv{} & \mbt{\aid}\nonumber \\
+    \mbn{}\ & \mbv{} & \mbt{\aclo $\P$}\nonumber
+  \end{align}
+  \end{proof}
+  \begin{subtheorem}
+    \label{eq:equiv}
+    $\forall a,b \in R, a\geq0,b\geq0: 4ab\leq(a+b)^2 \ra \sqrt{ab}\leq\frac{a+b}{2}$
+  \end{subtheorem}
+  \begin{proof}
+    If $a=0 \vee b=0$, LHS $\equ 0\leq b^2 \vee 0\leq a^2$, RHS
+    $\equ 0 \leq \frac{b}{2} \vee 0 \leq \frac{a}{2}$, which are both
+    trivially true from the condition that $a,b\geq0$.
+    \\\vspace{0.1in} Suppose now that
+    $a>0 \wedge b>0$.\\\vspace{0.1in}
+    $(a+b)^2-4ab=(a+b-2\sqrt{ab})(a+b+2\sqrt{ab}) \in P$.
+    \vspace{0.1in} Since $a,b\in\P$, by Lemma \ref{eq:pinv}
+    $(a+b+2\sqrt{ab})^{-1}\in\P$ and hence by \mclo $\P$
+    $a+b-2\sqrt{ab} \in \P$. Thus, $\frac{a+b}{2}\geq\sqrt{ab}$ is
+    implied by $4ab\leq(a+b)^2$
+
+  \end{proof}
+  \vspace{0.1in}
+  Therefore, from Lemma \ref{eq:diff} and Lemma \ref{eq:equiv},
+  \begin{equation*}\forall a,b \in R, a\geq0,b\geq0: \sqrt{ab}\leq\frac{a+b}{2}\end{equation*}
+
+\end{proof}
+\section{}
+\subsection{}
+If $x=-2\wedge y=1$, $x^2>y^2$ but $x<y$.
+\subsection{}
+$\sqrt{12}=2\sqrt{3}$.  \\Suppose that $\sqrt{3}$ is rational,
+i.e. $\exists\ a,b \in \mathbb{Z}, (a,b)=1: \sqrt{3}=
+\frac{a}{b}$.\\
+Therefore, $a^2=3b^2$. Hence, $3|a^2$. But then $3|a$, and thus
+$9|a^2$. Assume $\exists k\in\mathbb{Z}: a^2=9k$. So $b^2=3k$, and,
+similarly, $3|b$. Therefore $(a,b)$ is at least $3$, which is a
+contradiction. Since there are no $a, b$ satisfying the conditions,
+there are no $2a, b$ such that $2\sqrt{3}\in\mathbb{Q}$. Ergo,
+$\sqrt{12}$ is irrational.
+\subsection{}
+If $a=0 \wedge  b=\sqrt{3}$, $a+b=\sqrt{3}$, which is irrational, but
+$0 \in \mathbb{Q}$.
+\subsection{}
+If $a=1 \wedge b=-1$, min$(|a|,|b|)=1$, while $|1-1|=0$, which is a
+contradiction.
+\section{}
+Suppose $\exists\ a,b \in \mathbb{Z}, (a,b)=1: \sqrt{3}+\sqrt{5}=\frac{a}{b}$.\\
+Therefore, $5=\frac{a^2}{b^2}-2\times\sqrt{3}\times\frac{a}{b}+3$, or
+$2=\frac{a^2}{b^2}-2\times\sqrt{3}\times\frac{a}{b}$. Hence,
+$\frac{1}{2\times\frac{a}{b}}(\frac{a^2}{b^2}-2)=\sqrt{3}$. LHS
+implies that $\sqrt{3}$ is rational, which is a contradiction. Thus,
+$\sqrt{3}+\sqrt{5}$ is irrational.
+\section{}
+\subsection{}
+$=2-\sqrt{3}$, since $4>3$
+\subsection{}
+$(\sqrt{5}+\sqrt{3})^2-25=8+2\sqrt{15}-25=2\sqrt{15}-7=\sqrt{60}-\sqrt{49}>0$\\
+Hence, $=\sqrt{5}+\sqrt{3}-5$
+\subsection{}
+Since $17>12$, $\sqrt{17}-\sqrt{12}>0$, and the dominator becomes
+$\sqrt{12}+1-\sqrt{17}$.\\
+$1+12+2\sqrt{12}-17=4\sqrt{3}-4=4(\sqrt{3}-\sqrt{1})>0$.\\
+$10-(\sqrt{5}+1)^2=10-(6+2\sqrt5)=4-2\sqrt{5}=2(\sqrt{4}-\sqrt{5})<0$.\\
+Therefore, $=\frac{\sqrt{5}+1-\sqrt{10}}{1+\sqrt{12}-\sqrt{17}}$.
+\subsection{}
+$3-\frac{6^5}{5^5}=3-\frac{36\times36\times6}{625\times5}=
+3(1-\frac{12\times36\times6}{625\times5})=3(\frac{3125-432\times6}{3125})=
+3(\frac{3125-2592}{3125})>0$\\
+Therefore, $=3^{\frac{1}{5}}-\frac{6}{5}$
+\section{}
+\begin{theorem}
+$\forall n \in \mathbb{N}: \sum_{i=1}^{n} i^3=\frac{n^2(n+1)^2}{4}$
+\end{theorem}
+\begin{proof}
+\begin{align}
+  \mbn{1^3}\ & \mbv{=\frac{1^2(1+1)^2}{4}} & \mbt{Base Case} \\
+  \mbt{\text{Assume that: }}\ & \mbv{} & \mbt{}\nonumber \\
+  \mbn{\exists k \in \mathbb{N}: \sum_{i=1}^{k} i^3}\ & \mbv{=\frac{k^2(k+1)^2}{4} } & \mbt{Inductive Step} \\
+  \mbt{\text{Consider the case n=k+1: }}\ & \mbv{} & \mbt{}\nonumber \\
+  \mbn{\sum_{i=1}^{k} i^3 + (k+1)^3}\ & \mbv{=\frac{k^2(k+1)^2}{4}+(k+1)^3} & \mbt{Inductive Hypothesis} \\
+  \mbn{\equ (k+1)^2\frac{k^2+4k+4}{4}}\ & \mbv{=\frac{(k+1)^2(k+2)^2}{4}} & \mbt{Rearrangement} \\
+  \mbt{which is exactly the hypothesis in case $n=k+1$.}\ & \mbv{} & \mbt{}\nonumber
+\end{align}
+Therefore, if the hypothesis is true in case $n=k$, it is true for
+$n=k+1$.\\
+But the hypothesis holds in case $n=1$, hence
+\begin{equation*}\forall n\in\mathbb{N}:\sum_{i=1}^{n} i^3=\frac{n^2(n+1)^2}{4}\end{equation*}.
+\end{proof}
+\section{}
+\subsection{}
+Consider the trivial case of two professors, Prof Y and Prof Z. After
+the statement of Professor X, Prof Y thinks that Prof Z must resign,
+while at the same time Prof Z knows that Prof Y should leave his
+place. Since both of them are not aware of their own mistakes, they
+would not resign in the first meeting. In the second meeting, however,
+they can infer the existence of their own mistakes, and hence both
+must resign.\\
+\vspace{0.1in} In general case, the reasoning is similar. We are given
+that any Professor knows about 16 mistakes which are not their
+own. Hence, during the first 16 meetings no one would resign, but when
+the meeting finishes, everyone must go.
+
+\subsection{}
+The statement of Professor X has given more information to each
+individual about how much the others know about his own possible
+mistakes, of which he was not aware before the statement.
+\end{document}

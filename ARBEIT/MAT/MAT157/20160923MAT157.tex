@@ -1,0 +1,332 @@
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+%-----------------------------------------------------------
+\usepackage{fullpage}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{color}
+
+\definecolor{mygrey}{gray}{0.90}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+\usepackage{amsthm, amsmath, amssymb}
+\usepackage{chngcntr}
+
+
+% Adjust margins to 0.5in on all sides
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1.0in}
+\addtolength{\topmargin}{-0.5in}
+\addtolength{\textheight}{1.0in}
+% ----------------------------------------------------------------------
+% Custom definitions
+\def\Re{\mathbb{R}}
+\def\P{\mathbb{P}}
+\def\F{\mathbb{F}}
+\def\Q{\mathbb{Q}}
+\def\defi{Definition of }
+\def\mclo{Multiplicative Closure of }
+\def\aclo{Additive Closure of }
+\def\dist{Distributive Law}
+\def\ainv{Existence of an Additive Inverse }
+\def\minv{Existence of a Multiplicative Inverse }
+\def\uainv{Uniqueness of an Additive Inverse }
+\def\uminv{Uniqueness of a Multiplicative Inverse }
+\def\comm{Commutative Law }
+\def\tric{Trichotomy Law }
+\def\assoc{Associative Law }
+\def\aid{Existence of an Additive Identity }
+\def\mid{Existence of a Multiplicative Identity }
+\def\canc{Cancellation Property }
+\def\die{Distinctness of an Additive Identity and Multiplicative Identity}
+\def\arc{Archimedean Property of Rational Numbers}
+\def\bc{\because}
+\def\ra{\Rightarrow}
+\def\equ{\Leftrightarrow}
+\def\v{\\ \vspace{0.1in}}
+\def\*{\cdot}
+\def\x{\overline{x}}
+\def\ss{\subset}
+\def\N{\mathbb{N}}
+\def\Z{\mathbb{Z}}
+\def\ir{\Re\backslash\Q}
+\def\rt{\frac{\sqrt{2}}{2}}
+\def\es{\emptyset}
+% -----------------------------------------------------------
+%Custom commands
+\newcommand{\resitem}[1]{\item #1 \vspace{-2pt}}
+\newcommand{\resheading}[1]{{\large \colorbox{mygrey}{\begin{minipage}{\textwidth}{\textbf{#1 \vphantom{p\^{E}}}}\end{minipage}}}}
+\newcommand{\ressubheading}[4]{
+\begin{tabular*}{7.0in}{l@{\extracolsep{\fill}}r}
+                \textbf{#1} & #2 \\
+                \textit{#3} & \textit{#4} \\
+\end{tabular*}\vspace{-6pt}}
+
+
+\newcommand*{\LongestName}{$\Rightarrow\ (-a)(x-y)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi - and \dist }%
+
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][l]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{subtheorem}{Lemma}[theorem]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\theoremstyle{remark}
+
+
+\newtheorem*{remark}{Remark}
+% -----------------------------------------------------------
+
+\pagenumbering{gobble}
+
+\counterwithin*{equation}{theorem}
+\counterwithin*{equation}{corollary}
+\counterwithin*{equation}{subtheorem}
+\begin{document}
+
+\begin{tabular*}{7.5in}{l@{\extracolsep{\fill}}r}
+\textbf{\large Alexander Illarionov}\\
+
+  TUT0101 & sasha.illarionov@mail.utoronto.ca  \\
+\end{tabular*}
+\textcolor{mygrey}{\noindent\makebox[\linewidth]{\rule{7.5in}{1pt}}}\\
+\vspace{0.1in}
+
+\begin{tabular*}{7.5in}{l@{\extracolsep{\fill}}r}
+  \textbf{MAT 157 Problem Set II} & 02016/09/23
+\end{tabular*}
+\textcolor{mygrey}{\noindent\makebox[\linewidth]{\rule{7.5in}{1pt}}}\\
+\vspace{0.1in}
+
+\section{}
+
+\begin{definition}
+$\forall x\in \Q: \overline{x}=\{y \in \Q : y < x\}$
+\end{definition}
+
+
+\begin{theorem}
+
+  $\forall \alpha \in \Re: \alpha=\{x \in \Q: \overline{x}<\alpha\} $
+
+\end{theorem}
+
+\begin{proof}
+  Consider the set $\alpha=\{x \in \Q: \overline{x}<\alpha\}$.
+  \begin{enumerate}
+  \item Let $x\in \overline{x}$. Therefore, $\exists y\in \overline{x}$ such
+    that $y<x$ ($\bc \overline{x} \in \Re$). Since $\x < \alpha$,
+    $\x \ss \alpha$, from $y \in \x $ it follows that $y \in \alpha$.
+  \item Since $\x\neq\emptyset$ and $\overline{x} \in \alpha$, then $\alpha\neq\emptyset$.
+  \item Since $\x \neq \Q$, $\forall (\x \ss \alpha)\ \exists\ (y\not\in \x) \ra \alpha \neq \Q$.
+  \item Since $\x \in \Re$, $\forall (x\in\x)\ \exists\ y: y>x$. Since
+    $\x\ss\alpha$, $y\in\alpha$. Therefore, there is no greatest element in $\alpha$.
+  \end{enumerate}
+  Thus, $\alpha\in\Re$. Moreover, since each q such that
+  $\forall q\in\Q: q<x$ is in $\x$ by definition, and since
+  $\x\ss\alpha$ then $\exists y\in\alpha:y\not\in\x$, therefore for
+  some element $u$ in $\alpha$ all the elements in $\x$ are less than
+  $u$. Therefore, the \textit{usual} definition is equivalent to the aforementioned.
+\end{proof}
+\section{}
+\begin{definition}
+The least element in the set $A$ is denoted as $\min(A)$.
+\end{definition}
+
+\begin{lemma}
+  \label{lem:arch}
+  Suppose $\alpha\in\Re,z\in\Q, z>0$. Then $\exists x\in\alpha, y\in\Q
+  \backslash \alpha: y-x=z \wedge y \not\in \min(\Q\backslash \alpha)$.
+\end{lemma}
+\begin{proof}
+See notes of Professor Repka's lecture on September 22, 2016.
+\end{proof}
+\begin{lemma}
+  \label{sum}
+  If $\alpha \in \Re \wedge \beta \in \Re \ra \alpha+\beta\in\Re.$
+\end{lemma}
+\begin{lemma}
+  \label{neg}
+  $\forall \alpha \in \Re: -\alpha \in \Re$.
+\end{lemma}
+
+
+
+\begin{theorem}
+  \label{exra}
+  $\alpha\neq\beta, \alpha < \beta \ra \exists x\in\Q: \alpha<\x<\beta$
+\end{theorem}
+\begin{proof}
+  By Lemma \ref{sum} and \ref{neg}, $\delta\in\Re$. \v
+
+  Since $\alpha\ss\beta$, then $\exists y\in\beta:
+  y\not\in\alpha$. Hence, suppose $y\in\beta,x\in\alpha$ are such that
+  $y-x>0$. Since $y,x\in\Q$, then $\exists n\in\N: y-x>\frac{1}{n}$\v
+
+  Suppose that there is no rational number between $\alpha$ and $\beta$.\v
+
+  Therefore, by Archimedean Property of Rational Numbers,
+  \begin{equation}
+    \exists\ k\in\N\ \forall (z_{\alpha}\in\alpha \wedge z_{\beta}\in\beta): (\frac{k-1}{n}) < z_{\alpha} \wedge \frac{k}{n} >
+    z_{\beta}
+  \end{equation}
+
+  But $\frac{k}{n}-\frac{k-1}{n}=\frac{1}{n}<y-x$, hence there is
+  $y>x+\frac{1}{n}>x$, which is contradictory.
+
+\end{proof}
+
+\section{}
+\begin{lemma}
+  \label{eqir}
+$\sqrt{2}$ is irrational.
+\end{lemma}
+\begin{theorem}
+If $\alpha\neq\beta, \alpha\in\Re, \beta\in\Re$, then $\exists \gamma\in(\Re\backslash\Q): \alpha<\gamma<\beta$
+\end{theorem}
+
+\begin{proof}
+  $\sqrt{2}\in\Re\backslash\Q \ra \frac{\sqrt{2}}{2} \in\ir
+  $. Moreover, by definition, $0<\sqrt{2}<2$, hence $0<\rt < 1$.\v
+
+  Suppose $y\in\beta,x\in\alpha$ are such that $y-x>0$.\v
+
+  By \arc, $\exists n \in \N:n(y-x)>1$. \v
+
+  Choose such $n$ such that $(n-1)(y-x)<1$ and $n(y-x)\geq1$.\v
+
+  Since $\overline{0} < \rt < \overline{1} \ra \overline{0} < \rt < \overline{n(y-x)}$.\v
+
+  Hence, $\overline{y}-\x>\frac{\sqrt{2}}{2n}$. Thus,
+  $\overline{x}<\x+\frac{\sqrt{2}}{2n}<y$. Therefore,
+  $\alpha \ss \frac{\sqrt{2}}{2n} \ss \beta$, as required.
+\end{proof}
+\section{}
+\begin{theorem}
+
+  If $\alpha\neq\beta, \alpha\in\Re, \beta\in\Re$, then there are
+  infinitely many rational numbers x so that
+  \begin{equation*}
+    \alpha<\x<\beta.
+  \end{equation*}
+\end{theorem}
+\begin{proof}
+  Suppose that the set $T=\{x\in\Q:\alpha<\x<\beta\}$ is finite. By
+  Theorem \ref{exra}, $T\neq\emptyset$.\v
+
+  Let $\overline{m}$ be the element in $T$ such that
+  $\forall x \not\in \overline{m}: \overline{m}\leq\x$. By definition,
+  $\overline{m}\in\Re$. But also $\alpha \in \Re$, hence by Theorem
+  \ref{exra} there exists $\overline{m'}$ such as
+  $\alpha < \overline{m'} < \overline{m}<\beta$.\v
+
+  Since $\forall x\in\overline{m'}:x\in\Q$ by definition,
+  $\overline{m'}$ must be in $T$, which is a contradicton to the
+  assumption that $\overline{m}$ is the least element. Then, there $T$ is
+  not bounded below.\v
+
+  Similar argument is applied to the case when the assumed greatest
+  element $\overline{n}$ in $T$ is considered for
+  $\overline{n}< \overline{n'} <\beta$. Since
+  $\forall x\in\overline{n'}:x\in\Q$ by definition, $\overline{n'}$
+  must be in $T$, which is a contradicton to the assumption that
+  $\overline{n}$ is the greatest element. Therefore, $T$ is not bounded above.
+
+
+
+\end{proof}
+\section{}
+
+\begin{theorem}
+  $\forall x \in \Q: \x=\{\bigcup\limits_{\alpha\in\Re} \alpha: (\forall a\in\alpha:a<x) \wedge
+  LUB(\alpha)\in\Q\}$
+\end{theorem}
+\begin{proof}
+\begin{enumerate}
+\item Suppose there are $x \in \x$ and $y\in\Q$ such that $y<x$. Since
+  $\alpha\in\Re \neq \es$, such $x,y$ exist. By definition of $\x$,
+  $\exists y \in\alpha:y<x$. Since $y\in\alpha$ and $\alpha \ss \x$ by
+  definition, $y<x$ and $y\in\x$.
+\item Since some $\alpha\ss\x$ and $\alpha\in\Re$, then
+  $\alpha\neq\es$. Therefore, $\x\neq\es$.
+\item Since $\forall \alpha\ss\x: \alpha \in \Re$ and
+  $\forall a \in \alpha, x\in\x:a<x$, then any
+  $\alpha\neq\Q$ and by \arc\ $\exists y > x:( y\not\in \x)$ so that $\x\neq\Q$.
+\item Since $\forall \alpha \ss\x\ \exists\ y\in\alpha: y>x$, then
+  $y\in\x$ and hence there is no greatest element in $\x$. Therefore, $\x$ is real.
+\end{enumerate}
+
+Suppose now that the opposite is true and the rational numbers are
+precisely those real numbers $\alpha$ such that their $LUB$ is irrational.\v
+
+Since
+$\forall\ p,q \in \Q\ \exists\ \gamma \in (\Re-\Q):
+\overline{p}<\gamma<\overline{q}$, if $LUB(\alpha)=\gamma$, then there
+is always some rational $p$ such that $p<\gamma$. Therefore, there is
+no one-to-one correspondence between the set of rational numbers $x$
+and the set of $\x$, and several rational numbers correspond to one
+definition of a rational number. Since rational numbers are unique, this is a
+contradiction. Hence, $LUB(\alpha)$ is rational.
+\end{proof}
+
+
+\section{}
+
+\begin{enumerate}
+\item Consider $r=\{\frac{1}{x}: x\in\Q, 0<x<1\}$. \v
+
+  Then the claim is that there is no upper bound for $r$.\v
+
+  Suppose first there is an upper bound $r'$ such that $\forall f\in r: r'\geq f.$\v
+
+  Consider
+  $r''=\frac{1}{\frac{1}{r'}-\epsilon}=\frac{r'}{1-\epsilon\* r'}$
+  such that $0 < \epsilon < \frac{1}{r'}$. Then $r''>r'$, since
+  $r'(\frac{1}{1-\epsilon\* r'}-1)=r'(\frac{\epsilon\*
+    r'}{1-\epsilon\* r'})$ and from $0 < \epsilon < \frac{1}{r'}$,
+  $0<\epsilon\* r'<1$. Thus, $\frac{\epsilon\*
+    r'}{1-\epsilon\* r'}>0$ and hence $r''>r'$, which is a contradiction.
+\item Consider $s=\{1,2,3,4,6\}$. Then $\forall x \in s: x\leq
+  6$. Therefore, $v=6$ is an upper bound of $s$ by definition. Suppose
+  now that there exists an upper bound $u$ of $s$ such that $u<v$. But
+  then $u<6$, which is a contradiction, hence $6$ is $LUB(s)$.
+\item Consider $z=\{\frac{1}{n}: n\in\Z, n\neq0\}$. Then the claim is
+  that $1=LUB(z)$. First of all, $s=1$ is an upper bound for $z$,
+  since $\forall n\in\Z: 0<1\leq n \equ 0<\frac{1}{n}\leq 1$. Suppose
+  there is another upper bound $s'<s$ of $z$. But then $s'<1 \in z$,
+  which is a contradiction. $\ra s=LUB(z)$
+\item Consider $d=\{1-\frac{1}{n+1}: n\in\N\}$. Then the claim is that
+  there is no upper bound of $d$ and hence no $LUB$. First, suppose
+  there is some upper bound $t\in d$ such that
+  $\forall x\in d: t\geq x$. Therefore, $t$ can be written in the form
+  $\exists k\in\N: t=1-\frac{1}{k}$. Consider
+  $t'=1-\frac{1}{k+1}$. Since $k+1>k$, $\frac{1}{k}>\frac{1}{k+1}$,
+  and $-\frac{1}{k}< -\frac{1}{k+1}$. Therefore, $t'\in d$,but $t'>t$,
+  which is a contradiction. Hence, there is no such $t \in d$.
+\end{enumerate}
+\end{document}
