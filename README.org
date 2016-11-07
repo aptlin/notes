@@ -1,0 +1,22 @@
+---------------------------------------------
+* ARBEIT
+
+Archive of the coursework
+
+---------------------------------------------
+* Lecture Notes
+
+** BIO
+** CHM
+** CSC
+** MAT
+** PHY
+---------------------------------------------
+
+* MIKVEH
+Archive of the notes from seminars
+
+---------------------------------------------
+* TMP
+
+Unsorted files
