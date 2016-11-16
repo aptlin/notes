@@ -1,0 +1,332 @@
+% Intended LaTeX compiler: pdflatex
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[beaue, nofancy]{sdll}
+\author{aleph}
+\date{\today}
+\title{}
+\hypersetup{
+ pdfauthor={aleph},
+ pdftitle={},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 24.4.1 (Org mode 9.0)}, 
+ pdflang={English}}
+\begin{document}
+
+\tableofcontents
+
+\section{Preliminaries}
+\label{sec:org37e08a1}
+
+\subsection{Set Theory}
+\label{sec:org88f89af}
+
+\begin{itemize}
+\item \(\NN\), \(\QQ\)
+\item Operations:
+\begin{itemize}
+\item union
+\item intersection
+\item symmetric difference
+\item difference
+\end{itemize}
+\item \href{https://ocw.mit.edu/courses/mathematics/18-703-modern-algebra-spring-2013/lecture-notes/MIT18_703S13_pra_l_3.pdf}{Equivalence relations and equivalence classes}
+\end{itemize}
+
+\subsection{Logic}
+\label{sec:org03f9ff7}
+
+\begin{itemize}
+\item Quantifiers
+
+\begin{itemize}
+\item presentation style: quantifiers first and assertions last
+\item quantifier order is crucial
+\end{itemize}
+
+\item Operators
+
+\begin{itemize}
+\item inclusivity of $\cor$
+\end{itemize}
+\end{itemize}
+
+\subsection{Cuts}
+\label{sec:org8a10d3a}
+\begin{theorem}
+\(\sqrt 2\) is irrational.
+\end{theorem}
+\begin{definition}
+  A \textbf{cut} in $\QQ$ is a pair of subsets of $A, B$ of $\QQ$ such
+  that:
+  \begin{enumerate}[label=(\alph*)]
+  \item
+    $A\cup B = \QQ, A \neq \emptyset, B \neq \emptyset, A\cap B =
+    \emptyset$.
+  \item If $a\in A$ and $b\in B$, then $a<b$.
+  \item $A$ contains no largest element.
+  \end{enumerate}
+\end{definition}
+\begin{definition}
+  A \textbf{real number} is a cut in $\QQ$.
+\end{definition}
+
+\begin{definition}
+  The cut $x=A\vert B$ is \textbf{less than or equal} to the cut
+  $y=C\vert D$, if $A\su C$.
+\end{definition}
+\begin{definition}
+  $M\in \RR$ is an \textbf{upper bound} for a set $S\su \RR$ if each
+  $s\in S$ satisfies $s\leq M$. Thus, we say the set $S$ is
+  \textbf{bounded above} by $M$.\vs
+
+  An upper bound for $S$ that is less than all other upper bounds for
+  S is a \textbf{least upper bound} for $S$.
+\end{definition}
+\begin{theorem}
+  The set $\RR$, constructed by the means of Dedekind cuts, is \textbf{complete}:
+
+  \begin{center}
+    If $S$ is a non-empty subset of $\RR$ and is bounded above, then in
+    $\RR$ there exists a least upper bound for $S$.
+  \end{center}
+\end{theorem}
+\begin{theorem}
+  The set $\RR$ of all cuts in $\QQ$ is a complete ordered field that
+  contains $\QQ$ as an ordered subfield.
+\end{theorem}
+\begin{theorem}[Triangle Inequality]
+  $\forall(x,y\in\RR): |a+b| \leq |a| + |b|$
+\end{theorem}
+
+\begin{definition}
+  Let $a_1, a_2, a_3, \dots = (a_n)$, $n\in\NN$, be a sequence of real numbers.\vs
+
+  The sequence $(a_n)$ \textbf{converges to a limit} $b\in\RR$ as
+  $n\to\infty$ provided that for each $\epsilon > 0$ there exists
+  $N\in \NN$ such that for all $n\geq N$:
+  \[|a_n-b| < \epsilon \]
+\end{definition}
+
+\begin{definition}[Cauchy Condition]
+  $\forall(\epsilon<0)\exists(N\in\NN): n,m \geq N \ra |a_n-a_m|<\epsilon $.
+\end{definition}
+\begin{theorem}
+  $\RR$ is \textbf{complete} with respect to Cauchy sequences in the
+  sense that if $(a_n)$ is a sequence of real numbers obeying a Cauchy
+  condition, then it converges to a limit in $\RR$.
+\end{theorem}
+\begin{theorem}[Cauchy Convergence Criterion for sequences]
+  A sequence $(a_n)$ in $\RR$ converges if and only if
+  \[ \forall(\epsilon > 0)\exists(N\in\NN): n,m \geq N \ra |a_n-a_m|<\epsilon \]
+\end{theorem}
+\begin{definition}
+  Let $a<b$ be given in $\RR$. Define the \textbf{intervals} $(a,b)$
+  and $[a,b]$ as follows:
+
+  \begin{align}
+    (a,b) &= \{x\in\RR: a<x<b \}\\
+    [a,b] &= \{x\in\RR: a\leq x\leq b \}
+  \end{align}
+\end{definition}
+
+\begin{theorem}
+Every interval $(a,b)$ contains both rational and irrational numbers.
+\end{theorem}
+\begin{lemma}
+  $\RR$ has the \textbf{Archimedean property}: for each $x\in \RR$
+  there is an integer $n$ that is greater than $x$.
+\end{lemma}
+\begin{theorem}[$\epsilon$-principle]
+  If $a,b$ are real numbers and if, for each $\epsilon > 0$,
+  $a \leq b + \epsilon$, then $a\leq b$.\\ If $x, y$ are real numbers and, for each $\epsilon>0$,
+  $|x-y|\leq \epsilon$, then $x=y$.
+\end{theorem}
+
+
+
+\subsection{Euclidean Space}
+\label{subsec:eusp}
+\begin{definition}
+  Given sets $A$ and $B$, the \textbf{Cartesian product} of $A$ and
+  $B$ is the set $A\times B$ of all ordered pairs $(a,b)$ such that
+  $a\in A$ and $b\in B$.\\
+  The Cartesian product of $\RR$ with itself $m$ times is denoted as
+  $\RR^m$.
+\end{definition}
+\begin{definition}
+  The \textbf{dot product} of $x = (x_1,x_2,\dots, x_m),y=(y_1,y_2,\dots, y_m) \in \RR^m$ is defined as
+  \[ \inp{x}{y} = \sum_{i=1}^mx_iy_i  \]
+\end{definition}
+\begin{lemma}
+  The dot product operation is bilinear, symmetric, and positive
+  definite, i.e., for any $x,y,z\in\RR^m$ and any $c\in\RR$,
+  \begin{align}
+    \inp{x}{y+cz} &= \inp{x}{y} + c \inp{x}{z}\\
+    \inp{x}{y} &= \inp{y}{x}\\
+    \inp{x}{x} \geq 0, &\text{\ and\ }\inp{x}{x} = 0 \lra x=\bm{0}
+  \end{align}
+\end{lemma}
+\begin{definition}
+
+  The \textbf{length} or \textbf{magnitude} of a vector $x\in\RR^m$ is
+  defined to be
+  \[ \abs{x} = \sqrt{\inp{x}{x}}  \]
+\end{definition}
+\begin{theorem}[Cauchy-Schwarz Inequality]
+For all $x,y\in \RR^m, \inp{x}{y} \leq \abs{x}|y|$.
+\end{theorem}
+\begin{corollary}
+  For all $x,y\in\RR^m$,
+  \[ |x+y| \leq \abs{x} + |y| \]
+\end{corollary}
+\begin{definition}
+  The \textbf{Euclidean distance} between $x,y\in\RR^m$ is defined as
+  the length of their difference.
+  \[ |x-y| = \sqrt{\inp{x-y}{x-y}} \]
+\end{definition}
+\begin{definition}
+  The $j$th coordinate of the point $(x_1,\dots, x_m)$ is the number
+  $x_j$ appearing in the $j$th position.
+\end{definition}
+
+\begin{definition}
+  The $j$th coordinate axis is the set of $x\in\RR^m$ which $k$th
+  coordinates are zero for all $k\neq j$.
+\end{definition}
+
+\begin{definition}
+  The \textbf{integer lattice} is the set $\ZZ^m \su \RR^m$ of ordered
+  $m$-tuples of integers.
+\end{definition}
+
+
+\begin{definition}
+  The \textbf{first orthant} of $\RR^m$ is the set of points
+  $x\in \RR^m$ all of which coordinates are nonnegative.
+\end{definition}
+
+\begin{definition}
+  A \textbf{box} is a Cartesian product of intervals in $\RR^m$
+  \[ [a_1,b_1]\times\dots\times[a_m,b_m]\]
+\end{definition}
+\begin{definition}
+  The \textbf{unit cube} in $\RR^m$ is the box
+  $[0,1]^m = [0,1]\times\dots\times[0,1]$.
+\end{definition}
+
+\begin{definition}
+  The \textbf{unit ball} in $\RR^m$ is the set
+  \[ B^m = \set{ x\in\RR^m ; \abs{x} \leq 1 }. \]
+\end{definition}
+\begin{definition}
+  The \textbf{unit sphere} in $\RR^m$ is the set
+  \[ S^{m-1} = \set{ x\in\RR^m ; \abs{x} = 1 }. \]
+\end{definition}
+
+\section{Continuity}
+\label{sec:continuity}
+\begin{definition}
+  The function \(f:[a,b]\to\RR\) is \textbf{continuous} if for each
+  \(\epsilon > 0\) and each \(x\in[a,b]\) there is a \(\delta>0\) such that
+  \[t\in [a,b] \text{\ and\ } |t-x|< \delta \ra \abs{f (t) -f(x)}<\epsilon\]
+\end{definition}
+
+\subsection{Three Hard Theorems}
+\label{subsec:tht}
+\begin{theorem}
+  \label{thm:bounded}
+  If \(f\) is a continuous function on \([a,b]\) and \(f(a)<0<f(b)\), then its
+  values form a bounded subset of \(\RR\). Thus, there exist
+  \(m,M\in\RR\) such that for all \(x\in[a,b]\), \(m\leq f(x)\leq M\).
+\end{theorem}
+\begin{proof}
+  For \(x \in [a,b]\), let
+  \[V_{x}=\set{y\in\RR ; \exists (t\in[a,x]):y = f(t)}.\]
+
+  Set \[X=\set{x\in[a,b];V_{x}\text{\ is a bounded set of\ }\RR }.\]
+
+  We prove now that \(b\) is in \(X\).\vs
+
+  Since \(a\in X\), \(X\) is not empty. Note also that \(b\) is an
+  upper bound for \(X\).
+
+  Thus, there exists in \(\RR\) a least upper bound \(c \leq b\) for
+  \(X\). \vs
+
+  Since \(f\) is continuous, consder the neighbourhood of \(c\) for
+  \(\epsilon = 1\). By definition of continuity, there exists a
+  \(\delta > 0\) such that \(\abs{x-c}<\delta\) implies
+  \(\abs{f(x) - f(c)}<1\) Since \(c\) is the least upper bound for
+  \(X\), there is some \(x\in X\) in the interval \([c-\delta, c]\)
+  (otherwise \(c-\delta\) is a smaller upper bound for \(X\)). \vs
+
+  With \(t\) varying from \(a\) to \(c\), \(t\) is first mapped to
+  \(f(t)\in V_{x}\), and then \(f(t)\) varies in the bounded set
+  \(J = (f(c)-1, f(c)+1)\). \vs
+
+  The union of two bounded set is a bounded set, and thus \(V_{c}\)
+  is bounded. Therefore, \(c\in X\). \vs
+
+  If \(c<b\), then by continuity, for some \(t>c\), \(f(t)\) still
+  varies in the bounded set \(J\), which contradicts the fact that
+  that \(c\) is an upper bound for \(X\). Thus, \(c=b\), \(b \in X\),
+  and the values of \(f\) form a bounded subset of \(\RR\).
+\end{proof}
+\begin{theorem}
+  If \(f\) is a continuous function on \([a,b]\), then there exist
+  some numbers \(x_{0}, x_{1}\) in \([a,b]\) such that
+  \(f(x_{0})\leq f(x)\leq f(x_{1})\) for all \(x\) in \([a,b]\).
+\end{theorem}
+\begin{proof}
+  Let \(M=\sup \set{f(t); t\in[a,b]}\). By theorem \ref{thm:bounded},
+  \(M\) exists. \vs
+
+  Let \(X=\set{x\in[a,b];\sup\{V_{x}\} < M}\), where
+  \[V_{x}=\set{y\in\RR ; \exists (t\in[a,x]):y = f(t)}.\]
+  We first prove that \(f\) achieves a maximum on \([a,b]\)].
+  \begin{case*}[\textbf{1}]
+    \(f(a) = M\)
+  \end{case*}
+  Thus, \(f\) takes on a maximum at \(a\).
+  \begin{case*}[2]
+    \(f(a)< M\)
+  \end{case*}
+  Thus, \(X\) is not empty and \(\sup\{X\}\) exists. Suppose  \(\sup\{X\}=c\). \vs
+
+  If \(f(c)<M\), choose \(\epsilon >0\) such that \(\epsilon < M-f(c)\). By continuity,
+  there exists a \(\delta>0\) such that \(\abs{t-c}<\delta\) implies
+  \(\abs{f(t)-f(c)}<\epsilon\). Thus, \(\sup\{V_{c}\}<M\). \vs
+
+  If \(c<b\), then there exists a point \(t>c)\) at which
+  \(\sup\{(V_{c}\} < M\), which contradicts the fact that \(c\) is an
+  upper bound of such points. \vs
+
+  Thus, \(c=b\), and hence \(M<M\), which is a
+  contradiction. Therefore, \(f(c) = M\), so \(f\) achieves a maximum
+  at \(c\).
+
+  
+
+  
+\end{proof}
+\begin{theorem}
+  A continuous function defined on an interval \([a,b]\) achieves all
+  intermediate values: if \(f(a)=\alpha, f(b)=\beta \), and \(\gamma\)
+  is given such that \(\alpha \leq \gamma \leq \beta\) or
+  \(\beta \leq \gamma \leq \alpha\) , then there exists some
+  \(c\in[a,b]\) such that \(f(c) = \gamma\).
+\end{theorem}
+
+
+
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

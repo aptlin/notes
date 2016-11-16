@@ -1,0 +1,26 @@
+* Preliminaries
+
+** Set Theory
+
+- $\NN$, $\QQ$
+- Operations:
+  + union
+  + intersection
+  + symmetric difference
+  + difference
+- [[https://ocw.mit.edu/courses/mathematics/18-703-modern-algebra-spring-2013/lecture-notes/MIT18_703S13_pra_l_3.pdf][Equivalence relations and equivalence classes]]
+
+** Logic
+
+- Quantifiers
+
+  + presentation style: quantifiers first and assertions last
+  + quantifier order is crucial
+
+- Operators
+
+  + inclusivity of ~or~
+
+** Cuts
+
+$\sqrt 2$ is irrational.
