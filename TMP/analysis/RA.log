@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2016.8.29)  14 NOV 2016 07:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2016.8.29)  24 NOV 2016 22:25
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -2062,194 +2062,206 @@ l.75   A
          \textbf{real number} is a cut in $\QQ$.]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 91.
+(mdframed)              on input line 90.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 99.
+(mdframed)              on input line 135.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 102.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 119.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 123.
+(mdframed)              on input line 138.
  [2pdfTeX warning (ext4): destination with the same identifier (name{definition
 .1.3}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.130 
+l.144 
       pdfTeX warning (ext4): destination with the same identifier (name{definit
 ion.1.4}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.130 
+l.144 
       pdfTeX warning (ext4): destination with the same identifier (name{definit
 ion.1.5}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.130 
-      pdfTeX warning (ext4): destination with the same identifier (name{definit
-ion.1.9}) has been already used, duplicate ignored
+l.144 
+      ]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 155.
+ [3pdfTeX warning (ext4): destination with the same identifier (name{definition
+.1.9}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.130 
+l.210 
       pdfTeX warning (ext4): destination with the same identifier (name{definit
 ion.1.10}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.130 
+l.210 
       ]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 138.
+(mdframed)              on input line 218.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 141.
+(mdframed)              on input line 233.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 236.
 Package hyperref Info: bookmark level for unknown lemma defaults to 0 on input 
-line 141.
+line 236.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 144.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 166.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 180.
- [3pdfTeX warning (ext4): destination with the same identifier (name{definition
+(mdframed)              on input line 239.
+ [4pdfTeX warning (ext4): destination with the same identifier (name{definition
 .1.13}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.182 \end{theorem}
-                   pdfTeX warning (ext4): destination with the same identifier 
-(name{lemma.1.15}) has been already used, duplicate ignored
+l.258   \[ \inp{x}{y} = \sum_{i=1}^mx_iy_i  \]
+                                              pdfTeX warning (ext4): destinatio
+n with the same identifier (name{lemma.1.15}) has been already used, duplicate 
+ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.182 \end{theorem}
-                   pdfTeX warning (ext4): destination with the same identifier 
-(name{definition.1.17}) has been already used, duplicate ignored
+l.258   \[ \inp{x}{y} = \sum_{i=1}^mx_iy_i  \]
+                                              pdfTeX warning (ext4): destinatio
+n with the same identifier (name{definition.1.17}) has been already used, dupli
+cate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.182 \end{theorem}
-                   pdfTeX warning (ext4): destination with the same identifier 
-(name{definition.1.18}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.182 \end{theorem}
-                   pdfTeX warning (ext4): destination with the same identifier 
-(name{lemma.1.19}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.182 \end{theorem}
-                   pdfTeX warning (ext4): destination with the same identifier 
-(name{definition.1.20}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.182 \end{theorem}
-                   ]
+l.258   \[ \inp{x}{y} = \sum_{i=1}^mx_iy_i  \]
+                                              ]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 184.
+(mdframed)              on input line 261.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 275.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 279.
 Package hyperref Info: bookmark level for unknown corollary defaults to 0 on in
-put line 184.
+put line 279.
+ [5pdfTeX warning (ext4): destination with the same identifier (name{definition
+.1.18}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.319 ... = \set{ x\in\RR^m ; \abs{x} \leq 1 }. \]
+                                                  pdfTeX warning (ext4): destin
+ation with the same identifier (name{lemma.1.19}) has been already used, duplic
+ate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.319 ... = \set{ x\in\RR^m ; \abs{x} \leq 1 }. \]
+                                                  pdfTeX warning (ext4): destin
+ation with the same identifier (name{definition.1.20}) has been already used, d
+uplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.319 ... = \set{ x\in\RR^m ; \abs{x} \leq 1 }. \]
+                                                  pdfTeX warning (ext4): destin
+ation with the same identifier (name{corollary.1.22}) has been already used, du
+plicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.319 ... = \set{ x\in\RR^m ; \abs{x} \leq 1 }. \]
+                                                  pdfTeX warning (ext4): destin
+ation with the same identifier (name{definition.1.23}) has been already used, d
+uplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.319 ... = \set{ x\in\RR^m ; \abs{x} \leq 1 }. \]
+                                                  pdfTeX warning (ext4): destin
+ation with the same identifier (name{definition.1.24}) has been already used, d
+uplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.319 ... = \set{ x\in\RR^m ; \abs{x} \leq 1 }. \]
+                                                  pdfTeX warning (ext4): destin
+ation with the same identifier (name{definition.1.25}) has been already used, d
+uplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.319 ... = \set{ x\in\RR^m ; \abs{x} \leq 1 }. \]
+                                                  pdfTeX warning (ext4): destin
+ation with the same identifier (name{definition.1.26}) has been already used, d
+uplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.319 ... = \set{ x\in\RR^m ; \abs{x} \leq 1 }. \]
+                                                  pdfTeX warning (ext4): destin
+ation with the same identifier (name{definition.1.27}) has been already used, d
+uplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.319 ... = \set{ x\in\RR^m ; \abs{x} \leq 1 }. \]
+                                                  pdfTeX warning (ext4): destin
+ation with the same identifier (name{definition.1.28}) has been already used, d
+uplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.319 ... = \set{ x\in\RR^m ; \abs{x} \leq 1 }. \]
+                                                  ]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 242.
- [4pdfTeX warning (ext4): destination with the same identifier (name{corollary.
-1.22}) has been already used, duplicate ignored
+(mdframed)              on input line 337.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 376.
+ [6pdfTeX warning (ext4): destination with the same identifier (name{definition
+.1.29}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.246 \end{theorem}
-                   pdfTeX warning (ext4): destination with the same identifier 
-(name{definition.1.23}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.246 \end{theorem}
-                   pdfTeX warning (ext4): destination with the same identifier 
-(name{definition.1.24}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.246 \end{theorem}
-                   pdfTeX warning (ext4): destination with the same identifier 
-(name{definition.1.25}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.246 \end{theorem}
-                   pdfTeX warning (ext4): destination with the same identifier 
-(name{definition.1.26}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.246 \end{theorem}
-                   pdfTeX warning (ext4): destination with the same identifier 
-(name{definition.1.27}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.246 \end{theorem}
-                   pdfTeX warning (ext4): destination with the same identifier 
-(name{definition.1.28}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.246 \end{theorem}
-                   pdfTeX warning (ext4): destination with the same identifier 
-(name{definition.1.29}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.246 \end{theorem}
+l.379 \end{theorem}
                    pdfTeX warning (ext4): destination with the same identifier 
 (name{definition.1.30}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.246 \end{theorem}
+l.379 \end{theorem}
                    pdfTeX warning (ext4): destination with the same identifier 
 (name{definition.1.31}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.246 \end{theorem}
+l.379 \end{theorem}
                    pdfTeX warning (ext4): destination with the same identifier 
 (name{definition.2.1}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.246 \end{theorem}
+l.379 \end{theorem}
                    ]
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 281.
 Package hyperref Info: bookmark level for unknown case* defaults to 0 on input 
-line 292.
- [5]
+line 387.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 318.
- [6]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 328.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 328.
+(mdframed)              on input line 413.
+ [7]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 423.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 423.
  (./RA.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 328.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 328.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 423.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 423.
 Package rerunfilecheck Info: File `RA.out' has not changed.
 (rerunfilecheck)             Checksum: 4191E86DBFDD070F17A338931873852A;391.
 Package logreq Info: Writing requests to 'RA.run.xml'.
@@ -2258,11 +2270,11 @@ Package logreq Info: Writing requests to 'RA.run.xml'.
  )
 (\end occurred when \iftrue on line 304 was incomplete) 
 Here is how much of TeX's memory you used:
- 41603 strings out of 495020
- 801364 string characters out of 6181324
- 1224837 words of memory out of 5000000
- 44085 multiletter control sequences out of 15000+600000
- 15386 words of font info for 69 fonts, out of 8000000 for 9000
+ 41641 strings out of 495020
+ 801920 string characters out of 6181324
+ 1223838 words of memory out of 5000000
+ 44109 multiletter control sequences out of 15000+600000
+ 17630 words of font info for 79 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  87i,11n,114p,10390b,1016s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/aleph/.texmf-var
@@ -2271,17 +2283,19 @@ s/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type
 1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
 ic/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
 fonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></
-usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/
-texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf
--dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on RA.pdf (6 pages, 152808 bytes).
+m/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/public/rsfs/rsfs10.pfb>
+Output written on RA.pdf (7 pages, 169796 bytes).
 PDF statistics:
- 253 PDF objects out of 1000 (max. 8388607)
- 213 compressed objects within 3 object streams
- 95 named destinations out of 1000 (max. 500000)
- 13477 words of extra memory for PDF output out of 14400 (max. 10000000)
+ 275 PDF objects out of 1000 (max. 8388607)
+ 232 compressed objects within 3 object streams
+ 102 named destinations out of 1000 (max. 500000)
+ 15525 words of extra memory for PDF output out of 17280 (max. 10000000)
 

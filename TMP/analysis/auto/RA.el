@@ -15,9 +15,12 @@
     "sec:org88f89af"
     "sec:org03f9ff7"
     "sec:org8a10d3a"
+    "eq:1"
     "subsec:eusp"
     "sec:continuity"
     "subsec:tht"
-    "thm:bounded"))
+    "thm:bounded")
+   (LaTeX-add-environments
+    '("subproof" LaTeX-env-args ["argument"] 0)))
  :latex)
 

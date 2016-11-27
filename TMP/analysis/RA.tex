@@ -82,19 +82,55 @@
 \begin{definition}
   $M\in \RR$ is an \textbf{upper bound} for a set $S\su \RR$ if each
   $s\in S$ satisfies $s\leq M$. Thus, we say the set $S$ is
-  \textbf{bounded above} by $M$.\vs
+  \textbf{bounded above} by $M$.\vv
 
   An upper bound for $S$ that is less than all other upper bounds for
   S is a \textbf{least upper bound} for $S$.
 \end{definition}
-\begin{theorem}
+\begin{theorem}[\textbf{Least Upper Bound Property}]
   The set $\RR$, constructed by the means of Dedekind cuts, is \textbf{complete}:
 
   \begin{center}
-    If $S$ is a non-empty subset of $\RR$ and is bounded above, then in
-    $\RR$ there exists a least upper bound for $S$.
+    If $S$ is a non-empty subset of $\RR$ and is bounded above,
+
+    then in $\RR$ there exists a least upper bound for $S$.
   \end{center}
 \end{theorem}
+
+\begin{proof}
+  Let \(\SC\in\RR\) be any non-empty collection of cuts. Suppose
+  \(\SC\) is bounded above by some \(X|Y\).\vv
+
+  Define two sets as follows:
+
+  \begin{align}
+    C  &= \set{a\in\QQ; \exists(A|B\in\SC):a\in A}\\
+    C' &= \QQ\setminus C
+  \end{align}
+
+  We claim that \(C|C'\) is a cut, checking three conditions.\vv
+
+  \begin{enumerate}[label=(\alph*)]
+  \item $C\cup C' = \QQ$, \(C \neq \emptyset\), since \(\SC\) is not
+    empty by definition, \( C' \neq \emptyset\), since \(\SC\) is
+    bounded above, and \(C\cap C' = \emptyset\) by definition of \(C\)
+    and \(C'\).
+  \item If $c\in C$ and $c'\in C'$, then $c<c'$, since, for all
+    \(d\in C'\), \(d\not\in C\).
+  \item $C$ contains no largest element, since any \(A\) in
+    \(A|B\) of \(\SC\) contains no greatest element.
+  \end{enumerate}
+
+  Note that, for all \(A\) in \(A|B\) of \(\SC\), \(A\su C\), and
+  hence \(C|C'\) is an upper bound for \(\SC\).
+
+  Let \(D|D'\) be any upper bound for \(\SC\). Therefore, for all
+  \(A|B \in \SC\), \(A\su D\), and hence \(C\su D\), giving
+  \(C|C'\leq D|D'\). Thus, of all upper bounds for \(\SC\), \(C|C'\)
+  is the least.
+  
+\end{proof}
+
 \begin{theorem}
   The set $\RR$ of all cuts in $\QQ$ is a complete ordered field that
   contains $\QQ$ as an ordered subfield.
@@ -104,7 +140,7 @@
 \end{theorem}
 
 \begin{definition}
-  Let $a_1, a_2, a_3, \dots = (a_n)$, $n\in\NN$, be a sequence of real numbers.\vs
+  Let $a_1, a_2, a_3, \dots = (a_n)$, $n\in\NN$, be a sequence of real numbers.\vv
 
   The sequence $(a_n)$ \textbf{converges to a limit} $b\in\RR$ as
   $n\to\infty$ provided that for each $\epsilon > 0$ there exists
@@ -116,10 +152,69 @@
   $\forall(\epsilon<0)\exists(N\in\NN): n,m \geq N \ra |a_n-a_m|<\epsilon $.
 \end{definition}
 \begin{theorem}
-  $\RR$ is \textbf{complete} with respect to Cauchy sequences in the
-  sense that if $(a_n)$ is a sequence of real numbers obeying a Cauchy
+  $\RR$ is \textbf{complete} with respect to Cauchy sequences, that
+  is, if $(a_n)$ is a sequence of real numbers obeying a Cauchy
   condition, then it converges to a limit in $\RR$.
 \end{theorem}
+
+\begin{proof}
+  Let \(A\) be the set of real numbers comprising the sequence \((a_{n})\),
+
+  \[A = \set{x\in \RR; \exists n\in \NN: a_{n} = x}.   \]
+
+  Since \(A\) obeys the Cauchy condition, then for \(\epsilon = 1\)
+  there exists an integer \(N_{1}\) such that for all
+  \(n,m\geq N_{1}\), \(\abs{a_{n}-a_{m}}<1\). Then, for each \(n\geq N_{1}\),
+  
+  \begin{equation}
+    \label{eq:1}
+    \abs{a_{n}-  a_{N_{1}}}<1.
+  \end{equation}
+ 
+  Therefore, for \(n\geq N_{1}\), \(a_{n}\in(a_{N_{1}}-1, a_{N_{1}}+1)\).\vv
+
+  For the finite set \(B=\set{a_{1},a_{2},\dots,a_{N_{1}}+1}\) choose
+  \(M=\max\{\abs{\min B}, \abs{\max B}\}\).\vv
+
+  By definition of \(M\) and from the equation \ref{eq:1} it follows
+  that all the elements of \(A\) are in \([-M,M]\), and so \(A\) is
+  bounded.
+
+  Consider now the set
+
+  \[S = \set{s\in [-M, M]: \exists{\text{\ infinitely many
+          \(n\in\NN\), for which \(a_{n} \geq s \)\ }}}\].
+
+  Since \(-M\) is in \(S\), \(S\) is not empty. Moreover, \(S\) is
+  bounded above by \(M\). Therefore, by the Least Upper Bound property
+  for \(\RR\), there exists \(b\in\RR\) such that \(b=\sup S\). We
+  claim that the sequence \(a_{n}\) converges to \(b\).\vv
+
+  Suppose some \(\epsilon>0\) is given. Since \((a_{n})\) satisfies
+  the Cauchy condition,
+
+  \[\exists N_{2}: m,n \geq N_{2} \ra \abs{a_{m}-a_{n}}<\frac{\epsilon}{2}\]
+
+  Since \(b\) is the least upper bound, \(b+\frac{\epsilon}{2}\) is
+  not in \(S\). Thus, terms in \((a_{n})\) are greater or equal to
+  \(b+\frac{\epsilon}{2}\) only finitely many times. Therefore, there
+  exists \(N_{3}\) such that
+
+  \[n\geq N_{3} \ra a_{n}\leq b + \frac{\epsilon}{2}.\]  \vv
+
+  Since \(b\) is the least upper bound, note also that
+  \(b-\frac{\epsilon}{2}\) is not an upper upper bound. Since real
+  numbers are dense, there exists \(s\in S\) such that
+  \(s> b- \frac{\epsilon}{2}\), which implies that there exists
+  \(N\geq N_{3}\) such that \(a_{N}>b-\frac{\epsilon}{2}\).
+
+  Since \(N\geq N_{3}\),
+
+  \[a_{N}\in(b-\frac{\epsilon}{2}, b+\frac{\epsilon}{2}].\]
+
+  
+  
+\end{proof}
 \begin{theorem}[Cauchy Convergence Criterion for sequences]
   A sequence $(a_n)$ in $\RR$ converges if and only if
   \[ \forall(\epsilon > 0)\exists(N\in\NN): n,m \geq N \ra |a_n-a_m|<\epsilon \]
@@ -250,27 +345,27 @@ For all $x,y\in \RR^m, \inp{x}{y} \leq \abs{x}|y|$.
 
   Set \[X=\set{x\in[a,b];V_{x}\text{\ is a bounded set of\ }\RR }.\]
 
-  We prove now that \(b\) is in \(X\).\vs
+  We prove now that \(b\) is in \(X\).\vv
 
   Since \(a\in X\), \(X\) is not empty. Note also that \(b\) is an
   upper bound for \(X\).
 
   Thus, there exists in \(\RR\) a least upper bound \(c \leq b\) for
-  \(X\). \vs
+  \(X\). \vv
 
   Since \(f\) is continuous, consder the neighbourhood of \(c\) for
   \(\epsilon = 1\). By definition of continuity, there exists a
   \(\delta > 0\) such that \(\abs{x-c}<\delta\) implies
   \(\abs{f(x) - f(c)}<1\) Since \(c\) is the least upper bound for
   \(X\), there is some \(x\in X\) in the interval \([c-\delta, c]\)
-  (otherwise \(c-\delta\) is a smaller upper bound for \(X\)). \vs
+  (otherwise \(c-\delta\) is a smaller upper bound for \(X\)). \vv
 
   With \(t\) varying from \(a\) to \(c\), \(t\) is first mapped to
   \(f(t)\in V_{x}\), and then \(f(t)\) varies in the bounded set
-  \(J = (f(c)-1, f(c)+1)\). \vs
+  \(J = (f(c)-1, f(c)+1)\). \vv
 
   The union of two bounded set is a bounded set, and thus \(V_{c}\)
-  is bounded. Therefore, \(c\in X\). \vs
+  is bounded. Therefore, \(c\in X\). \vv
 
   If \(c<b\), then by continuity, for some \(t>c\), \(f(t)\) still
   varies in the bounded set \(J\), which contradicts the fact that
@@ -284,7 +379,7 @@ For all $x,y\in \RR^m, \inp{x}{y} \leq \abs{x}|y|$.
 \end{theorem}
 \begin{proof}
   Let \(M=\sup \set{f(t); t\in[a,b]}\). By theorem \ref{thm:bounded},
-  \(M\) exists. \vs
+  \(M\) exists. \vv
 
   Let \(X=\set{x\in[a,b];\sup\{V_{x}\} < M}\), where
   \[V_{x}=\set{y\in\RR ; \exists (t\in[a,x]):y = f(t)}.\]
@@ -296,15 +391,15 @@ For all $x,y\in \RR^m, \inp{x}{y} \leq \abs{x}|y|$.
   \begin{case*}[2]
     \(f(a)< M\)
   \end{case*}
-  Thus, \(X\) is not empty and \(\sup\{X\}\) exists. Suppose  \(\sup\{X\}=c\). \vs
+  Thus, \(X\) is not empty and \(\sup\{X\}\) exists. Suppose  \(\sup\{X\}=c\). \vv
 
   If \(f(c)<M\), choose \(\epsilon >0\) such that \(\epsilon < M-f(c)\). By continuity,
   there exists a \(\delta>0\) such that \(\abs{t-c}<\delta\) implies
-  \(\abs{f(t)-f(c)}<\epsilon\). Thus, \(\sup\{V_{c}\}<M\). \vs
+  \(\abs{f(t)-f(c)}<\epsilon\). Thus, \(\sup\{V_{c}\}<M\). \vv
 
   If \(c<b\), then there exists a point \(t>c)\) at which
   \(\sup\{(V_{c}\} < M\), which contradicts the fact that \(c\) is an
-  upper bound of such points. \vs
+  upper bound of such points. \vv
 
   Thus, \(c=b\), and hence \(M<M\), which is a
   contradiction. Therefore, \(f(c) = M\), so \(f\) achieves a maximum
