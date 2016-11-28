@@ -19,8 +19,6 @@
     "subsec:eusp"
     "sec:continuity"
     "subsec:tht"
-    "thm:bounded")
-   (LaTeX-add-environments
-    '("subproof" LaTeX-env-args ["argument"] 0)))
+    "thm:bounded"))
  :latex)
 
