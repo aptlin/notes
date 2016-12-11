@@ -1,0 +1,87 @@
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[customauthor]{sdll}
+\date{}
+\title{Notes on Algebra}
+\begin{document}
+
+\maketitle
+
+\section{Foundations}
+\subsection{Groups}
+
+\begin{enumerate}
+\item \textbf{Associativity}
+
+\(\forall a,b,c \in \RR: a+(b+c)=(a+b)+c\)
+
+\emph{Exercise 1}:
+
+Prove that the sums of an arbitrary number of equivalent variables in an immutable sequence are equal up to the placement of parentheses.
+
+\emph{Exercise 2}:
+
+Let the immutable sequence written in such a form that there are no two elements not parenthesised be called a \emph{nested} sequence.
+
+For example, \(((a+b)+c)+d\) and \((a+b)+(c+d)\) are both nested sequences.
+
+How many different nested sequences can be written from a sequence of n letters?
+
+\item \textbf{Commutativity of Addition}
+
+\(\forall \ a, b \in \RR: a+b=b+a\)
+
+\item \textbf{Commutativity of Multiplication}
+
+\(\forall \ a, b \in \RR: a \times b=b \times a\)
+
+\item \textbf{Existence of an Additive Identity}
+
+\(\exists \ 0\in \RR\ \forall a \in \RR: a+0=a\)
+
+\item \textbf{Existence of a Multiplicative Identity}
+
+\(\exists \ 1\in\RR\ \forall a \in \RR: a\times 1=a\)
+
+\item \textbf{Existence of an Additive Inverse}
+
+\(\forall \ a\in\RR\ \exists -a: a+(-a)=0\)
+
+\item \textbf{Existence of a Multiplicative Inverse}
+
+\(\forall \ a\in\RR\ \exists\ a^{-1}: a\times a^{-1}=1\)
+
+\item \textbf{Distributivity}
+
+\(\forall \ a,b,c \in \RR: a\times(b+c)=a\times b+a\times c\)
+\end{enumerate}
+\item \textbf{Real Numbers as an Ordered Field}
+\label{sec:orgd6ca6e2}
+
+Let \(P\) be the set of positive numbers.
+
+Let the binary operator \(>\) be defined so that \(\forall \ a,b \in \RR: a > b \iff a-b\in P\).
+
+Similarly,  \(\forall \ a,b \in \RR: a < b \iff b-a\in P\).
+
+\begin{enumerate}
+\setcounter{enumi}{8}
+\item \textbf{Trichotomy Law}
+
+\(\forall \ a \in \RR\) one and only one of the following holds:
+
+\begin{itemize}
+\item \(a=0\)
+
+\item \(a \in P\)
+
+\item \(a \not\in P\)
+\end{itemize}
+
+\item 
+\end{enumerate}
+\end{enumerate}
+\end{document}
