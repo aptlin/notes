@@ -1,0 +1,309 @@
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+\documentclass[11pt]{scrartcl}
+\usepackage[beaue, pset, anon]{sdll}
+\pSet{\nt{MAT247}{I}{Introduction}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+Course Webpage:
+
+Agenda: Chapter 5-7 in Friedberg et al
+
+Marking Scheme: HW, Term Test (Thu, Feb 16), Final (13.3/26.7/60 OR
+20/40/40)
+
+Office Hours: Florian Herzig, Wednesday 3-4 pm (BA6186)
+
+\section{Review of Determinants}
+\label{sec:det}
+
+Let \(F\) be a field.
+
+Let \(A\in M_{n\times n}(F) \to \det(A) \in F\).
+
+Note that for \(n=1\), \(\det(a) = a\).
+
+If \(n=2\), \(\det(\begin{pmatrix}
+                     a & b\\
+                     c & d
+                   \end{pmatrix}) = ad-bc
+                   \)
+
+In general, compute the determinant by expanding along a row/column.
+
+For example, expansion along row:
+
+\[
+  \det A = \sum_{j=1} ^{n} (-1)^{i+j}A_{ij} \det(\tilde{A_{ij}})
+\]
+
+For example,
+
+\[
+  \det(\begin{bmatrix}
+    0 & 1 & 0 & 2\\
+    3 & 0 & 1 & 0\\
+    1 & 0 & 2 & 3\\
+    -1 & 2 & 3 & 4
+  \end{bmatrix}) = -1 \* \det(\begin{bmatrix}
+    3 & 1 & 0\\
+    1 & 2 & 3\\
+    -1 & 3 &4
+  \end{bmatrix}) + 2 \det(\begin{bmatrix}
+    0 & 0 & 2\\
+    3 & 1 & 0\\
+    1 & 2 & 3
+  \end{bmatrix})
+\]
+
+Other properties:
+\begin{itemize}
+\item \(\det A\) is zero if two rows are linearly dependent \(\leftrightarrow \rank A < n\)
+\item if rows are interchanged, then \(\det\) changes sign
+\item if a row is multiplied by \(k\), then \(\det\) is scaled by \(k\)
+\item if a multiple of a row \(i\) is added to row \(j\), then \(\det\) is unchanged
+\item \(\det\) is linear along each row and column
+\item \(\det(AB) = \det(A) \* \det(B)\)
+\item \(\det(\begin{bmatrix}
+    A' & *\\
+    0 & A''
+  \end{bmatrix}) = \det(A') \det (A'')\) -- a simiar result holds for any number of \emph{blocks}
+\item \(\det(A^{t}) = \det(A)\)
+\item \(A\) is invertible \(\lra\) \(\det A \neq 0\)
+\item If \(A\) is invertible, then \(\det(A^{-1}) = (\det A)^{-1}\)
+\item If \(A, B\) are similar, then \(\det(A) = \det(B)\).
+  \begin{note}
+    \(A, B\) are similar iff there exists an invertible \(Q\)such that \(A = Q^{-1} B Q\)
+  \end{note}
+\item if A is invertible, then
+  \[
+    A^{-1} = \frac{1}{\det A} (
+    \begin{bmatrix}
+      \det(\wt{A_{11}}) & -\det(\wt{A_{21}}) & \dots\\
+      - \det(\wt{A_{12}}) & \dots & \\
+      \det(\wt{A_{13}}) & \dots
+    \end{bmatrix})
+  \]
+\end{itemize}
+\section{Diagonalization}
+\label{sec:diag}
+\subsection{Eigenvalues, Eigenvectors}
+\label{subsec:eig}
+
+Motivation: simplification of the matrix form, decomposition of automorphisms (eg computation of \(A^{100}\))
+
+Recall that \(A\) is diagonal if \(A = \begin{bmatrix}
+  A_{11} & 0 & 0 & \dots\\
+  0 & A_{22} & 0 & \dots\\
+  \vdots & &\ddots & \vdots\\
+  0& \dots & &  A_{nn}
+\end{bmatrix}\)
+
+\begin{definition}
+  For \(V\) a finite dimensional vector space, \(T: V\to V\) a linear
+  transformation, \(T\) is diagonalisable if there exists an ordered
+  basis \(\beta\) such that \([T]_{\beta}\) is diagonal.
+
+  If \(A\in M_{n\times n}(F)\), then A is diagonalisable if
+  \(L_{A}: F^{n} \to F^{n}\) is diagonalisable. Equivalently, \(A\) is
+  similar to a diagonal matrix.
+\end{definition}
+
+If \(T\)is diagonalisable and \([T]_{\beta} = \begin{bmatrix}
+  D_{11} & 0 & \dots \\
+  & \ddots & \\
+  0 & \dots & D_{nn}
+\end{bmatrix}\), where \(\beta = (v_{1}, v_{2}, \dots, v_{n})\), then
+\(Tv_{1} = D_{11}v_{1}, \dots,Tv_{n} =D_{nn}v_{n}\).
+
+\begin{definition}
+  \(Tv = \lambda v\) with \(v\neq 0, \lambda \in F\), then \(v\) is an
+  \textbf{eigenvector of \(T\)} with corresponding \textbf{eigenvalue}
+  \(\lambda\).
+
+  Similarly, an eigenvalue of \(A\) is an eigenvalue of \(L_{A}\).
+\end{definition}
+
+\begin{example}
+  If \(T=\lambda I_{v}\) (ie \(T(v) = \lambda v \forall v \in V\)),
+  then any nonzero \(v\in V\) is an eigenvector of \(T\).
+\end{example}
+\begin{example}
+  If \(A = \begin{bmatrix}
+    1 & 0 & 0\\
+    0 & 2 & 0\\
+    0 & 0 & 3
+  \end{bmatrix}\), then \(e_{1}, e_{2},e_{3}\) are eigenvectors with
+eigenvalues \(1, 2, 3\).
+\end{example}
+
+\begin{example}
+  If \(T\) is arbitrary, then eigenvectors with eigenvalue 0 are the nonzero elements of \(\ker(T)\).
+\end{example}
+\begin{example}
+  If \(T: \RR^{2} \to \RR^{2}\) is a rotation by angle
+  \(\alpha\in (0, \pi)\), thne there are no eigenvectors \(\ra T\) is
+  not diagonalisable.
+\end{example}
+\begin{example}
+  If \(A = \begin{bmatrix}
+    4 & 3\\
+    -2 & -1
+  \end{bmatrix}\), then \(v=\cv{1; -1}\) is an eigenvector with eigenvalue 1.
+\end{example}
+
+From above, if \(T\) is diagonalisable, then \(V\) has a basis consisting of eigenvectors of \(T\).
+
+Conversely, if \(\beta = (v_{1}, v_{2}, v_{3}, \dots)\) i sa basis of
+eigenvectors
+\(T(v_{1}) = \lambda v_{1}, \dots, T(v_{2}) = \lambda v_{2}\), then
+\(T\) is diagonalisable.
+
+\subsection{Finding Eigenvectors and Eigenvalues}
+\label{subsec:eigf}
+
+If \(T(v)= \lambda v, v\neq 0\), then
+\(0 = T(v) - \lambda v = T(v) - \lambda I_{v}(v) = (T-\lambda
+I_{v})(v) = 0 \lra v\in \ker(T-\lambda I_{v})\).
+
+Thus, \(T\) has an eigenvalue \(\lambda \lra\)
+\(\ker(T-\lambda I_{v}) \neq 0 \lra T-\lambda I_{v}\) is not injective
+\(\lra T- \lambda I_{v}\) is not invertible.
+
+In that case, the eigenvectors of an eigenvalue \(\lambda\) are the
+non-zero elements of \(\ker(T-\lambda I_{v})\).
+
+Similarly for \(A\in M_{n\times n}(F)\).
+
+\begin{example}
+  Let \(A = \begin{bmatrix}
+    4 & 3\\
+    -2 & -1
+  \end{bmatrix}\), \(\lambda \in F\).
+
+  Then
+  \(\det(A-\lambda I) = (4 - \lambda)(-1-\lambda) + 6 =
+  (\lambda-1)(\lambda - 2)\).
+
+  Thus \(\lambda_{1} = 1, \lambda_{2} = 2\).
+
+  Find the corresponding eigenvectors to obtain \(\cv{1, -1}\)
+  corresponding to \(\lambda = 1\) and \(\cv{3, -2}\) corresponding to
+  \(\lambda = 2\).
+
+  Since they span \(F^{2}\), \(A\) is diagonalisable.
+\end{example}
+
+\begin{definition}
+  The \textbf{characteristic polynomial} of \(A\) is the polynomial
+  \(f(\lambda) = \det(A-\lambda I)\).
+\end{definition}
+\begin{example}
+  If \(A = \begin{bmatrix}
+    a & b\\
+    c & d
+  \end{bmatrix}\), then \(f(\lambda) = \lambda^{2} -(a+d)\lambda + (ad - bc)\).
+\end{example}
+
+\begin{remark}
+  If \(A, B\) are similar, they have the same characteristic
+  ploynomial. Hence if \(T\in \Hom\), then the characteristic
+  polynomial can be defined for \(T\) as the characteristic polynomial
+  of \([T]_{\beta}\) for any \(\beta\).
+\end{remark}
+
+\begin{theorem}
+  For \(A\in M_{n\times n}(F)\),
+  \begin{enumerate}
+  \item The characteristic polynomial of \(A\) has degree \(n\), with the leading coefficient \((-1)^{n}\).
+  \item The number of eigenvalues  is less than or equal to \(n\).
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+\begin{enumerate}
+\item
+  \begin{claim*}
+    For \(B\in M_{n\times n}(F)\), with entries that are linear
+    functions in \(\lambda\), then \(\det B\) is a polynomial in
+    \(\lambda\) of degree at most \(n\).
+  \end{claim*}
+\begin{proof}
+  If \(n=1\), the claim follows from the fact that \(\det (a) = a \)
+  for any \(a \in F\).
+  Suppose the claim is true for some \(n = k-1\in \NN\).
+
+  Note that
+  \(\det(B) = \sum_{j=1}^{n} (-1)^{i+j} B_{ij}\det(\wt{B_{ij}})\ra
+  \deg(\det(B)) \leq k\) by induction, since \(\deg(\det(\wt{B_{ij}})) \leq k-1\) by inductive hypothesis.
+\end{proof}
+
+To prove \emph{(a)}, we use induction on n again.
+
+The claim is true for \(n = 1\).
+
+Suppose the claim is true for \(n-1\). Then
+
+\[
+  f(\lambda) = \det(A-\lambda I) = (A_{11}-\lambda)\det(\begin{bmatrix}
+    a_{22} - \lambda & A_{23} & \dots\\
+    \vdots & & \vdots\\
+    A_{n2} & \dots & A_{nn} - \lambda
+  \end{bmatrix}) - A_{12} \det(\begin{bmatrix}
+    A_{21} & A_{23} & \dots\\
+    \vdots & A_{33} - \lambda & \dots\\
+    & \ddots &
+  \end{bmatrix}) % ±
+\]
+\item eigenvalues are the roots of \(f(\lambda)\),
+
+  See App E, Cor 2
+  Ex 5.1/21
+\end{enumerate}
+\end{proof}
+
+\end{document}

@@ -1,0 +1,116 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{sdll}
+\pSet{\nt{MAT157}{Lecture II.1}{Intro to Integral Calculus}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section*{Integral Calculus}
+\label{sec:intcalc}
+
+Motivation: finding areas
+
+Although triangulation provides a viable approach to compute areas of
+geometric shapes, it is not obvious that the non-unique partitions add
+up to the same area.
+
+Problems also arise in the calculation of the area of a circle. What's
+\(\pi\)?
+
+We introduce the notion of the \emph{area under the graph between
+  \(a\) and \(b\)}, corresponding to the signed area under the graph
+of \(y = f(x)\) above the \(x\)-axis and between the lines \(x=a\) and
+\(x=b\).
+
+This area can be approximated by computing \(f\) on a \emph{partition} \(P\)
+of \([a, b]\), a set of points
+\(a = t_{0} < t_{1} < t_{2} < \dots < t_{n} = b\).
+
+For each \(i = 1, \dots , n\) define
+\(m_{i} = \inf \set{f(x); t_{i-1} \leq x \leq t_{i}}\),
+\(M_{i} = \sup\set{f(x); t_{i-1} \leq x \leq t_{i}}\).
+
+\begin{note*}
+  Since \(f\) is not assumed to be continuous, note that \(\inf\) and
+  \(\sup\) are used instead of \(\min\) and \(\max\).
+\end{note*}
+
+Assume \(f\) is bounded, so that \(m_{i}\) and \(M_{i}\) exist.
+
+Define the \emph{lower sum} \(L(f, P)\) of the partition as follows:
+
+\begin{equation*}
+  L(f, P) = \sum_{i=1}^{n}m_{i}(t_{i} - t_{i-1})
+\end{equation*}
+
+Define the \emph{upper sum} similarly:
+
+\begin{equation*}
+  U(f, P) = \sum_{i=1}^{n}M_{i}(t_{i} - t_{i-1})
+\end{equation*}
+
+\begin{description}
+
+\item[e.g.] for a constant function \(f(x) = c > 0\),
+  \(U(f, P) = L(f, P)\) for any partition \(P\).
+
+\end{description}
+
+\begin{note*}
+
+For a partition P,
+
+  \begin{equation*}
+    L(f, P) = \sum_{i=1}^{n}m_{i}(t_{i} - t_{i-1}) \leq \sum_{i=1}^{n}M_{i}(t_{i} - t_{i-1}) = U(f, P),
+  \end{equation*}
+
+  since \(m_{i} \leq M_{i}\) for all \(i\) by definition.
+\end{note*}
+
+\end{document}

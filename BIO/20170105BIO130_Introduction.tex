@@ -1,0 +1,156 @@
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{sdll}
+\pSet{\nt{BIO130}{I}{Introduction}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+% ----------------------------------------------------------------------
+% Body
+% ----------------------------------------------------------------------
+
+\section{Introduction to Cells, Diversity and Nucleic Acids}
+\label{sec:intro}
+
+\subsection{Prokaryotic and Eukariotic Cells}
+\label{subsec:preu}
+\subsubsection{Prokaryotic Cells}
+\begin{definition*}
+  Prokaryotic cells:
+  \begin{itemize}
+  \item No Nuclei
+  \item Single-celled (mostly)
+  \end{itemize}
+\end{definition*}
+\begin{description}
+
+\item[e.g.] eubacteria (inc. bacteria), archaea (more extreme environments)
+
+\end{description}
+
+\begin{description}
+
+\item[Capsule:]  a polysacchiride layer for protection from engulfment by
+  eukariotic cells (optional)
+
+\item[Cell wall:] tough protective outer coat (optional)
+
+\item[DNA in a nucleoid:] compact structure of DNA and proteins
+
+\item[Ribosome:]  making protein
+
+\item[Bacterial flagellum:] locomotion (optional)
+
+\item[Pilus:] sexual conjugation, locomotion (optional)
+
+\item[Cytoplasm:] fluid inside the cell
+
+\end{description}
+
+\subsubsection{Eukariotic Cells}
+\begin{definition*}
+  Eukariotic cells:
+  \begin{itemize}
+  \item Nuclei
+  \item Single-celled or multicellular
+  \end{itemize}  
+  
+\end{definition*}
+\begin{description}
+
+\item[e.g.] plants, fungi, animals
+
+\end{description}
+
+Typically 1000 times larger in volume \(\ra\) have cytoskeleton
+\begin{description}
+
+\item[Mitochondria:] power cell (produces ATP)
+
+\begin{ques*}
+
+  What is the difference between nucleoid and nucleus?
+
+\end{ques*}
+
+  When comparing plants to animal cells, plants have a cell wall
+  (animals don't), chloroplasts (animals don't), vacuoles (animals don't).
+
+\item[Cell wall:] tough protective coat
+
+\item[Chloroplasts:] photosynthesis
+
+\item[Vacuoles:] Type I -- storage, Type II -- animal lysosome in degradation
+
+\item[Endosymbiotic Theory:] Did eukariotes evolve from prokaryotes?
+
+\end{description}
+
+
+\subsection{Origins of Eukaryotes}
+\label{subsec:euk}
+
+Not all prokaryotes have non-enclosed internal membranes (some do),
+but most eukaryotes do, most of them enclosed.
+
+Prokaryotes originally could not use oxygen (did not have mitochondria).
+
+Prokaryotes with internal membrane could engulf particles.
+
+Ancient symbiosis was formed: ATP from mitochondria (free living
+aerobic prokaryotes able to use oxygen to generate ATP) for protection
+from prokaryotes.
+
+Chloroplasts are also thought to evolve the same way.
+
+Mitochondria and chloroplasts have their own DNA, RNA, ribosomes and
+proteins. In addition, they would have a double membrane (two
+phospholipid biolayers). Even today there are carnivorous
+single-celled eukaryotes (eg Didinium, Neutrophils).
+
+\end{document}
