@@ -44,10 +44,10 @@
   <internal package="biblatex" priority="9" active="0">
     <generic>latex</generic>
     <provides type="dynamic">
-      <file>20170105BIO130_Introduction.bcf</file>
+      <file>20170105BIO130_Intro+to+Cells,+Diversity+and+Nucleic+Acids.bcf</file>
     </provides>
     <requires type="dynamic">
-      <file>20170105BIO130_Introduction.bbl</file>
+      <file>20170105BIO130_Intro+to+Cells,+Diversity+and+Nucleic+Acids.bbl</file>
     </requires>
     <requires type="static">
       <file>blx-dm.def</file>
@@ -64,19 +64,19 @@
     <generic>biber</generic>
     <cmdline>
       <binary>biber</binary>
-      <infile>20170105BIO130_Introduction</infile>
+      <infile>20170105BIO130_Intro+to+Cells,+Diversity+and+Nucleic+Acids</infile>
     </cmdline>
     <input>
-      <file>20170105BIO130_Introduction.bcf</file>
+      <file>20170105BIO130_Intro+to+Cells,+Diversity+and+Nucleic+Acids.bcf</file>
     </input>
     <output>
-      <file>20170105BIO130_Introduction.bbl</file>
+      <file>20170105BIO130_Intro+to+Cells,+Diversity+and+Nucleic+Acids.bbl</file>
     </output>
     <provides type="dynamic">
-      <file>20170105BIO130_Introduction.bbl</file>
+      <file>20170105BIO130_Intro+to+Cells,+Diversity+and+Nucleic+Acids.bbl</file>
     </provides>
     <requires type="dynamic">
-      <file>20170105BIO130_Introduction.bcf</file>
+      <file>20170105BIO130_Intro+to+Cells,+Diversity+and+Nucleic+Acids.bcf</file>
     </requires>
   </external>
 </requests>
