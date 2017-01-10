@@ -1,0 +1,201 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{sdll}
+\pSet{\nt{MAT157}{II.2}{Intro to Integral Calculus II}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\begin{lemma*}
+  For partitions \(Q, P\) such that \(P \su Q\)
+
+  \begin{align*}
+    L(f, P) &\leq L(f, Q)\\
+    U(f, P) &\geq U(f, Q)
+  \end{align*}
+
+\end{lemma*}
+
+\begin{proof}
+
+  Consider a special case when \(Q\) have just one extra point \(u\)
+  in addition to all the points in \(P\)
+  (\(t_{0} < t_{1} < \dots < t_{k-1} < u < t_{k} < \dots < t_{n} \)).
+
+  \begin{note*}
+    The \(\inf\) on \([t_{k}, u]\) and \([u, t_{k+1}]\) may be larger than the \(\inf\) on \([t_{k},t_{k+1}]\).\\
+    The \(\sup\) on \([t_{k}, u]\) and \([u, t_{k+1}]\) may be less than the \(\sup\) on \([t_{k},t_{k+1}]\).
+  \end{note*}
+\begin{align}
+  L(f, P) &= \sum_{i=1}^{n}m_{i}(t_{i} - t_{i-1})\\
+  L(f, Q)  &= \sum_{i=1}^{k-1}m_{i}(t_{i} - t_{i-1}) + m'(u-t_{k-1}) + m''(t_{k} - u) +  \sum_{i=k+1}^{n}m_{i}(t_{i} - t_{i-1}),
+\end{align}
+where \(m' = \inf\set{f(x); t_{k-1} \leq x \leq u}\) and \(m'' = \inf\set{f(x); u \leq x \leq t_{k}}\).
+
+By the remark given above, \(m_{k} \leq m'\) and \(m_{k} \leq m''\), and thus
+
+
+\begin{equation*}
+m_{k}(t_{k} - t_{k-1}) = m_{k}(t_{k} - u) + m_{k}(u - t_{k-1}) \leq m'(t_{k} - u) + m''(u-t_{k-1}),
+\end{equation*}
+which shows that \(L(f, P) \leq L(f, Q)\).
+
+The argument for \(U(f, P) \geq U(f, Q)\) is similar.
+
+The general case is deduced by considering a sequence of partitions
+differing only by one point:
+
+
+\begin{equation*}
+P=P_{1}, P_{2}, \dots, P_{\alpha} = Q
+\end{equation*}
+
+Then by the lemma
+\(L(f, P_{1}) \leq L(f, P_{2}) \leq \dots \leq L(f, P_{\alpha}) = L(f,
+Q)\) and
+\(U(f, P_{1}) \geq U(f, P_{2}) \geq \dots \geq U(f, P_{\alpha}) = U(f, Q)\).
+\end{proof}
+\begin{theorem}
+  \label{sec:1}
+  Let \(P_{1}\) and \(P_{2}\) be partitions of \([a, b]\), and let the
+  function \(f\) be bounded on \([a, b]\). Then
+
+
+  \begin{equation*}
+    L(f, P_{1}) \leq U(f, P_{2})
+  \end{equation*}
+
+\end{theorem}
+
+\begin{proof}
+  Consider a partition \(P\) which contains points both in \(P_{1}\)
+  and \(P_{2}\). By the lemma above it follows that
+
+
+  \begin{equation*}
+    L(f, P_{1}) \leq L(f, P) \leq U(f, P) \leq U(f, P_{2}).
+  \end{equation*}
+\end{proof}
+
+From Theorem \ref{sec:1} it follows that
+\(\sup \set{L(f, P)} \leq \inf\set{U(f, P)}\).
+
+\begin{example}
+  Let's find an example such that \(\sup \set{L(f, P)} < \inf\set{U(f, P)}\).
+  Consider the following function:
+
+\[f(x) = \begin{cases}
+    0,\text{ x irrational}\\
+    1,\text{ x rational}
+  \end{cases}\]
+
+For any partition \(P = [t_{0}, t_{1}, \dots, t_{n}]\), \(m_{i} = 0\),
+since the irrational numbers are dense, and \(M_{i} = 1\), since the
+rational numbers are dense.
+
+Therefore,
+
+\begin{align}
+  L(f, P) &= \sum_{i=1}^{n}0(t_{i} - t_{i-1}) = 0\\
+  U(f, P) &= \sum_{i=1}^{n}1(t_{i} - t_{i-1}) = b - a
+\end{align}
+\end{example}
+
+We now can define the area \(R(f, a, b)\) formally.
+
+\begin{definition}
+  A function \(f\) which is bounded on \([a, b]\) is called
+  \textbf{integrable} on \([a, b]\) if
+  \(\sup \set{L(f, P): \text{ P is a partition of \([a,b]\)}} =
+  \inf\set{U(f, P): \text{ P is a partition of \([a,b]\)}}\).
+
+  In this case, the unique number
+  \(\sup \set{L(f, P)} = \inf\set{U(f, P)}\) is denoted as
+  \(\int_{a}^{b}f\).
+
+\end{definition}
+
+\begin{theorem}
+  If \(f\) is bounded on \([a, b]\), then \(f\) is also integrable on
+  \([a,b]\) if and only if for all \( \epsilon > 0\) there exists a
+  partition \(P\) of \([a, b]\) such that
+
+  \begin{equation*}
+    U(f, P) - L(f, P) < \epsilon
+  \end{equation*}
+
+\end{theorem}
+
+This restatement is convenient, as shown by the following example.
+\begin{example}
+
+  Consider \(f\) defined on \([0, 2]\) by
+  \begin{equation*}
+    f = \begin{cases}
+      0, x \neq 1\\
+      1, x = 1
+    \end{cases}
+  \end{equation*}
+
+  Consider a partition \(P= [t_{0}, t_{1}, \dots, t_{n}]\) such that
+  \(t_{k-1} < 1 < t_{k}\).
+
+  Note that \(m_{i}\) and \(M_{i}\) are both zero for all intervals in
+  \(P\) but for \([t_{k-1}, t_{k}]\), for which \(m_{k} = 0\) and
+  \(M_{k} = 1\).
+
+  Therefore, \(U(f, P) - L(f, P) = t_{k} - t_{k-1}\). Since a partition
+  can be chosen such that \(t_{k} - t_{k-1}\) is arbitrarily small and
+  positive, it follows that \(f\) is integrable.
+
+  Since \(L(f, P) \leq 0 \leq U(f, P)\) and the integral is unique, it
+  is equal to zero.
+
+
+\end{example}
+\end{document}

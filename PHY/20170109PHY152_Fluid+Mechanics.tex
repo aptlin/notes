@@ -1,0 +1,118 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{sdll}
+\pSet{\nt{PHY152}{II}{Fluid Mechanics}}
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+09 - 16 Jan Office Hours： Mon \& Fri 2-3pm
+
+\section{Fluid Mechanics}
+\label{sec:fmech}
+
+Motivation: applications in astrophysics, atmospheric physics,
+geophysics, oceanography, chemical and mechanical engineering, etc.
+
+\begin{note*}
+  Macroscopic properties are used in describing fluids. How can we
+  make a leap from describing points to describing fields?
+\end{note*}
+
+\begin{example}
+
+  UV light frow white dwarves causes gases to flow -- fluid mechanics
+  allows us to model their movement.
+
+\end{example}
+
+\begin{definition}
+  \textbf{Fluids} -- liquids or gases (with pressure and density as
+  main descriptive parameters)
+
+  \begin{itemize}
+  \item flow when acted upon by external force
+  \item liquid \begin{itemize}
+    \item almost incompressible
+    \item packed -- both order and movement are present
+    \end{itemize} 
+  \item gas \begin{itemize}
+    \item compressible
+    \item disordered -- random motion dominates
+    \end{itemize}
+  \end{itemize}
+\end{definition}
+\begin{note*}
+More interesting definitions exist -- cf. nonlinear fluid dynamics
+\end{note*}
+
+\begin{example}[Liquid Behaviour in Zero Gravity]
+
+Scott Kelly has shown that you can play ping pong in space.
+
+\end{example}
+
+For static fluids, the following formulas apply:
+\begin{description}
+
+\item[density] \(\rho = \frac{\text{mass}}{\text{volume}}\) unit: \(\frac{kg}{m^{3}}\)
+  
+\item[pressure] \(P = \frac{\text{force}}{\text{area}}\) unit: \(Pa = \frac{N}{m^{2}}\)
+  \begin{itemize}
+  \item pressure acts normally
+  \end{itemize}
+
+\end{description}
+
+\begin{example}
+
+  approximately every \(16\ km\) up the atmospheric pressure goes down
+  by an order of magnitude. 
+
+\end{example}
+\begin{ques*}
+  How do we check that \(P\) varies continuously with height?
+\end{ques*}
+
+\begin{answer*}
+
+  Determine a unit volume small enough for \(P\) to be constant and
+  large enough to behave as a fluid. In this way,
+
+  \[\rho = \lim_{\Delta V \to 0}\frac{\Delta m}{\Delta V}\]
+
+\end{answer*}
+
+Consider pressure of a fluid at rest.
+
+Note that since the fluid is at rest, all force components acting on a
+parallellopiped cancel each other out.
+
+Thus,
+
+\begin{align}
+  \rho_{l}A' &= \rho_{r}A'\\
+  \rho_{f}A' &= \rho_{n}A'\\
+  \rho_{t}A + mg &= \rho_{b}A\\
+  \ra P_{b} &= P_{t} + \frac{mg}{A}\\
+  m = \rho_{f}Ad &\ra P(d) = P(t) + \rho_{f}gd
+\end{align}
+
+\subsection{Measurement Methods}
+\label{subsec:meas}
+
+\begin{itemize}
+\item gauge pressure = absolute pressure - atmospheric pressure
+\item used for tires, sports equipment
+\end{itemize}
+\end{document}
