@@ -1,0 +1,138 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{sdll}
+\pSet{\nt{MAT157}{II.3}{Integrability Condition}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Integrability Condition}
+\label{sec:alg}
+
+\subsection{Review}
+\label{subsec:rev}
+
+
+\begin{theorem}
+  If \(f\) is bounded on \([a, b]\), then \(f\) is also integrable on
+  \([a,b]\) if and only if for all \( \epsilon > 0\) there exists a
+  partition \(P\) of \([a, b]\) such that
+
+  \begin{equation*}
+    U(f, P) - L(f, P) < \epsilon
+  \end{equation*}
+
+\end{theorem}
+
+
+\begin{proof}
+
+
+  Assume that \(f\) is given such that \(f\) is bounded.
+
+  Suppose the condition \(  U(f, P) - L(f, P) < \epsilon\) is true for any \(P\).
+
+  Since
+  \(L(f, P) \leq \sup \set{L(f, P')} \leq \inf\set{U(f, P')}\leq U(f,
+  P)\), it follows that
+  \(\inf\set{U(f, P')} - \sup\set{L(f, P')} < \epsilon\).
+
+  Since this is true for all \(\epsilon>0\),
+  \(\inf\set{U(f, P')} = \sup\set{L(f, P')}\). Thus, \(f\) is
+  integrable.
+
+  Conversely, suppose that \(f\) is integrable. Thus,
+  \(\inf\set{U(f, P)} = \sup\set{L(f, P)}\) for any \(P\).
+
+  Therefore, there exist partitions \(P', P''\) for any \(\epsilon>0\)
+  such that \(\inf\set{U(f, P'')} - \sup\set{L(f, P')} < \epsilon\).
+
+  Let \(P\) be the partition which contains both \(P',\ P''\). According to the lemma,
+
+  \(L(f, P') \leq L(f, P)\) and \(U(f, P) \leq U(f, P'')\). Therefore,
+  \(U(f, P) - L(f, P) < \epsilon\), as required.
+
+  For any \(P\), \(\)
+\end{proof}
+
+\subsection{Continuity and Integrability}
+\label{subsec:cont}
+
+\begin{theorem}
+  If \(f\) is continuous on \([a, b]\), then \(f\) is integrable on
+  \([a, b]\).
+\end{theorem}
+\begin{proof}
+
+Since \(f\) is continuous on \([a, b]\), it is also bounded on
+\([a,b]\).
+
+It has been shown that \(f\) is uniformly continuous on \([a,
+b]\). Thus, there is some \(\delta > 0\) for all \(x\) and \(y\) in
+\([a,b]\) such that if \(\abs{x-y}<\delta\), then
+\(\abs{f(x) - f(y)} < \frac{\epsilon}{2(b-a)}\).
+
+Choose a partition \(P=\set{t_{0}, t_{1}, \dots, t_{n}}\) such that
+\(\abs{t_{i} - t_{i-1}} < \delta\). Then for each \(i\) we obtain
+
+\begin{equation*}
+  \abs{f(x) - f(y)} < \epsilon\text{ for all \(x, y\) in \([t_{i-1}, t_{i}]\)}.
+\end{equation*}
+
+Therefore,
+\(M_{i} - m_{i} \leq \frac{\epsilon}{2(b-a)} < \frac{\epsilon}{b-a}\).
+
+This holds for any \(i\), and thus
+
+
+\begin{equation*}
+  U(f, P) - L(f, P) = \sum_{i=1}^{n} (M_{i} - m_{i})(t_{i} - t_{i-1}) < \frac{\epsilon}{b-a}\sum_{i=1}^{n}(t_{i} - t_{i-1}) = \epsilon
+\end{equation*}
+\end{proof}
+
+\end{document}

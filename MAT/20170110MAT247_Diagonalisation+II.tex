@@ -1,0 +1,251 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{sdll}
+\pSet{\nt{MAT247}{II}{Diagonalisation II}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\begin{remark*}
+  \(T\) is diagonalisable if \([T]_{\beta}\) is diagonal for some
+  ordered basis \(\beta\).
+
+  Matrix \(A\) is diagonalisable if \(L_{A}\) is diagonalisable
+  (i.e. \(A\) is similar to a diagonal matrix).
+
+  \(v\) is an eigenvector of \(T\) with an eigenvalue \(\lambda\) if
+  \(T(v) = \lambda v\).
+
+  If \(v\) is an eigenvector of \(T\) with an eigenvalue \(\lambda\),
+  \(v\in \ker(T - \lambda I_{v})\). So \(\lambda\) is an eigenvalue of
+  \(T\) if and only if \(\ker(T- \lambda I_{v})\neq 0\), or,
+  equivalently, \(\det(T-\lambda I_{v}) = 0\), which is called a
+  characteristic polynomial \(f(\lambda)\):
+
+  \begin{equation*}
+    f(\lambda) = (-1)^{n}\lambda^{n} + \cdots |\  n=\dim V
+  \end{equation*}
+
+\end{remark*}
+
+\begin{note*}
+  For \(T\in\Hom(V,V)\) and ordered basis \(\beta\), \(v\) is an
+  eigenvector of \(T\) if and only if \([v]_{\beta}\) is an
+  eigenvector of \([T]_{\beta}\).
+
+  Reason: \((\ra) [T]_{\beta}[v]_{\beta} = [Tv]_{\beta} = [\lambda v]_{\beta} = \lambda[v]_{\beta}\).
+\end{note*}
+
+\begin{example}
+
+  Let \(V = \SP_{1}(\RR), T(p(x)) = p'(x)\). Compute eigenvectors/eigenvalues.
+
+  \begin{soln}
+    Consider the basis \(\beta = (1, x)\).
+    \begin{align}
+      T(1) &= 0\\
+      T(x) &= 1\\
+      [T]_{\beta} &= \begin{pmatrix}
+        0 & 1\\
+        0 & 0
+      \end{pmatrix}
+    \end{align}
+    The characteristic polynomial is \(f(t) = \det([T]_{\beta} - tI) = \det(\begin{pmatrix}
+      -t & 1\\
+      0 & -t
+    \end{pmatrix}) = t^{2} \ra\) the only eigenvalue is \(0\).
+
+    \(\ker(T) = \) all constant polynomials (1-dim)
+    \(\ra \nexists\) basis of eigenvectors, so \(T\) is not
+    diagonalisable.
+  \end{soln}
+\end{example}
+\begin{example}
+
+
+  \(A = \begin{pmatrix}
+    2 & -2\\
+    1 & 0
+  \end{pmatrix}, F = \RR\).
+
+  The characteristic polynomial is \(f(t) = \det(\begin{pmatrix}
+    2-t & -2\\
+    1 & -t
+  \end{pmatrix}) = t^{2} -2t +2 = (t-1)^{2}+1 \ra \) no
+  eigenvectors/eigenvalues (no roots) \(\ra\) A is not diagonalisable
+  (however, it \emph{is} if \(F=\CC\)).
+\end{example}
+
+\section{Diagonalisability}
+\label{sec:dia}
+
+\subsection{Tests for Diagonalisability}
+\label{subsec:tests}
+
+\begin{itemize}
+\item If T has \(n = \dim V\) distinct eigenvalues in \(F\), then \(T\) is diagonalisable.
+
+  To see this is true, consider the following.
+  \begin{theorem}
+    \label{sec:tests-diag}
+    If \(v_{1}, \dots, v_{r}\) are eigenvectors of \(T\) with distinct
+    eigenvalues \(\lambda_{1}, \dots, \lambda_{r}\), then
+    \(v_{1}, \dots, v_{r}\) are linearly independent.
+  \end{theorem}
+
+  \begin{proof}
+    We are using induction on \(r\).
+
+    If \(n=1\), since \(v_{1}\neq 0\), the claim holds.
+
+    Suppose the claim holds for \(r-1\).
+
+    Suppose also \(a_{1}v_{1} + a_{2}v_{2}+\dots+a_{r}v_{r} = 0\).
+
+    Applying \(T\) on both sides, we obtain
+
+    \[a_{1}\lambda_{1}v_{1} + a_{2}\lambda_{2}v_{2} + \cdots + a_{r}\lambda_{r} v_{r} = 0.\]
+
+    From the equation above,
+    \(a_{1}\lambda_{r}v_{1} +
+    a_{2}\lambda_{r}v_{2}+\dots+a_{r}\lambda_{r}v_{r} = 0\), and thus
+
+    \[
+      a_{1}(\lambda_{1} - \lambda_{r})v_{1} + \cdots + a_{r-1}(\lambda_{r-1} - \lambda_{r})v_{r-1} = 0
+    \]
+
+    By inductive hypothesis, \(v_{1}, \dots, v_{r-1}\) are linearly
+    independent, and since \(\lambda_{i}\) are distinct,
+    \(a_{i} = 0\). Since \(v_{r} \neq 0\), then \(a_{r} = 0\).
+  \end{proof}
+
+  \begin{corollary}
+    The test works.
+  \end{corollary}
+
+  \begin{proof}
+    Take \(v_{1}, \dots, v_{n}\) eigenvectors corresponding to the
+    \(n\) distinct eigenvalues
+    \(\lambda_{1}, \dots, \lambda_{n} \ra \) by the theorem
+    \ref{sec:tests-diag}, they form a basis of eigenvectors.
+  \end{proof}
+
+  \begin{remark}
+    \(T\) can be diagonalisable with fewer than \(n\) distinct eigenvalues.
+  \end{remark}
+  \begin{example}
+
+    Take \(T\) with the matrix \(\begin{pmatrix}
+      \lambda_{1} & \cdots & 0\\
+      \vdots & \ddots & \vdots\\
+      0& \cdots & \lambda_{n}
+    \end{pmatrix}\)
+
+    Then eigenvalues are \(\lambda_{1}, \dots, \lambda_{n}\), since the
+    characteristic polynomial is
+    \(f(t) = (\lambda_{1} - t)\cdots(\lambda_{n} - t)\) -- they are
+    not necessarily distinct.
+  \end{example}
+\item We need a better test.
+  \begin{definition}
+    If \(\lambda\) is an eigenvalue of \(T\), the
+    \(\lambda\)-eigenspace of \(T\) is
+    \(\ker(T-\lambda I_{v}) = \set{v\in V; T(v) = \lambda v} = E_{\lambda}\).
+  \end{definition}
+
+  \begin{definition}
+    If \(\lambda\) is an eigenvalue of \(T\) (or \(A\)), the algebraic
+    multiplicity of \(\lambda\) is the multiplicity \(m\) with which
+    \(\lambda\) is a root of the characteristic polynomial \(f(t)\),
+    i.e. \(m\) is the largest integer such that \((t-\lambda)^{m}\)
+    divides \(f(t)\). Note that \(1\leq m \leq n\).
+
+    The multiplicity is sometimes denoted by \(m_{\lambda}\).
+  \end{definition}
+
+  \begin{theorem}
+    If \(\lambda\) is an eigenvalue of \(T\), then \(1\leq \dim(E_{\lambda})\leq m\).
+  \end{theorem}
+
+  \begin{proof}
+    Let \(d = \dim(E_{\lambda})\). Pick the basis
+    \(v_{1}, \dots, v_{d}\) of \(E_{\lambda}\) and extend it to the
+    basis \(\beta=\set{v_{1}, v_{2}, \dots, v_{n}}\) of \(V\).
+
+    Then
+\[
+  [T]_{\beta} = \begin{pmatrix}
+    \lambda &\cdots & 0 & *\\
+    \vdots &\ddots & \vdots & \\
+    0&\dots&\lambda & \\
+    0 &\cdots&0& \\
+    \vdots &\ddots &0 & A\\
+    0 & \cdots & 0 &
+  \end{pmatrix} \ra \det([T]_{\beta} - tI) = \det \begin{pmatrix}
+    \lambda-t &\cdots & 0 & *\\
+    \vdots &\ddots & \vdots & \\
+    0&\dots&\lambda-t & \\
+    0 &\cdots&0& \\
+    \vdots &\ddots &0 & A-tI_{A}\\
+    0 & \cdots & 0 &
+  \end{pmatrix},    \]
+
+which simplifies to
+
+\[ \det([T]_{\beta} - tI) = \det \begin{pmatrix}
+  \lambda-t &\cdots & 0 & *\\
+  \vdots &\ddots & \vdots & \\
+  0&\dots&\lambda-t & \\
+  0 &\cdots&0& \\
+  \vdots &\ddots &0 & A-tI_{A}\\
+  0 & \cdots & 0 &
+\end{pmatrix} = (\lambda-t)^{d}\det(A-tI_{A})    \]
+  \end{proof}
+
+\end{itemize}
+\end{document}

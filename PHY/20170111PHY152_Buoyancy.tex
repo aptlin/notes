@@ -1,0 +1,81 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{sdll}
+\pSet{\nt{PHY152}{III}{Buoyancy}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section*{Buoyancy}
+\label{sec:buoy}
+
+
+Suppose a solid object is immersed in a fluid, with the height \(d_{t}\) to
+the top of the object and \(d_{b}\) to the bottom.
+
+There are two forces resulting from the atmospheric pressure and
+pressure of the column of water acting on the solid.
+
+Note that \(P_{b} > P_{t}\) and thus \((P_{b} - P_{t})A > 0\). Why? Ask Archimedes!
+
+Consider the following, where \(A\) is the cross-section area of the solid:
+
+\[(P_{b} - P_{t})A  = (P_{atm} + \rho_{f}gd_{b})A - (P_{atm} + \rho_{f}gd_{t})A= \rho_{f}g(d_{b}-d_{t})A > 0\]
+
+Note that \(\rho_{f}g(d_{b}-d_{t})A = \rho_{f}g V_{\text{solid}}\), and
+thus \(\textbf{F} = \rho_{f}V_{\text{solid}}\textbf{g}\)
+
+The magnitude of the buoyant force, acting upwards on the floating
+object, determines whether it sinks, floats or goes up. However, the
+buyoancy force acts does not act on the centre of mass but on the
+\textbf{centre of buoyancy}, so for the stable equilibrium of a
+floating object to occur, the centre of buyoancy must be above the
+centre of mass. Mind the torque otherwise!
+
+
+\end{document}
