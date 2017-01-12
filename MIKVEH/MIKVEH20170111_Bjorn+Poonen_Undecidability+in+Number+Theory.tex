@@ -1,0 +1,122 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{sdll}
+\pSet{\nt{Bjorn Poonen}{}{Undecidability in Number Theory}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+% ----------------------------------------------------------------------
+% Body
+% ----------------------------------------------------------------------
+
+\begin{itemize}
+\item Diophantine sets (eg \(\NN\), cf. Lagrange's Theorem)
+\item Listable sets (eg the set of integers expressible as a sum of
+  three cubes) -- the source of undecidability
+
+  Diophantine sets are also listable -- same approach with boxes!
+  Even more, the converse is true: Davis-Putnam-Robinson-Matiyasevich
+  proved that diophantine \(\lra\) listable. Thus, the theory of
+  diophantine equations is rich enough to simulate any computer.
+
+  The unsolvability of the Halting Problem provides a listable set for
+  which no algorithm can decide membership.
+
+  Thus, there exists a diophantine set for which no algorithm can
+  decide membership -- Hilbert 10th problem has a negative answer.
+
+\item Beyond H10, there are applications of diophantine \(\lra\)
+  listable to the search of prime-producing polynomials and
+  investigation of diophantine statement of the Riemann Hypothesis.
+
+\item There is a trick allowing to reduce any diophantine equation to
+  one of degree 4 at most.
+
+\item Jones - Sato - Wada - Wiens: the set of primes equals the set of
+  positive values assumed by the 26-variable polynomial.
+
+\item The DPRM theorem gives an explicit polynomial equation that has
+  a solution if and only if the Riemann Hypothesis is false.
+
+  A computer program can be written such that, if left running
+  forever, it will output a counterexample to the Riemann hypothesis
+  if one exists -- this program can be simulated by a diophantine equation!
+
+  \begin{ques*}
+
+    What is the complexity of conversion between a computer program
+    and a diophantine equation?
+
+  \end{ques*}
+
+\item Ring of integers of a number field \(k\):
+  \(\OO_{k} = \set{\alpha\in k; f(\alpha) = 0 \text{ for some monic
+      \(f\in\ZZ[x]\)}}\)
+\item Conjecture: H10/\(\OO_k\) has a negative answer for every number field \(k\).
+
+\item What about H10 over \(\QQ\)? The answer is not known! If \(\ZZ\)
+  is diophantine over \(\QQ\), then the negative answer for \(\ZZ\)
+  implies a negative answer for \(\QQ\). However, there is a
+  conjecture (cf. Mazur 1992) that implies that \(\ZZ\) is not
+  diophantine over \(\QQ\). There was no progress on the conjecture
+  for the varieties beyond the dimension 1.
+
+\item H10 is also about the truth of \textbf{positive existential sentences}:
+
+  \begin{equation*}
+    (\exists x_{1} \exists x_{2} \cdots \exists x_{n}) p(x_{1}, x_{2}, \dots, x_{n})
+  \end{equation*}
+
+\item Robinson, Poonen, Koenigsmann \(\ra\) Robinson: There is no
+  algorithm to decide the truth of a first-order sentence over \(\QQ\).
+\item Koenigsmann 2016: \(\QQ \setminus \ZZ\) is diophantine over \(\QQ\).
+
+
+\end{itemize}
+\end{document}

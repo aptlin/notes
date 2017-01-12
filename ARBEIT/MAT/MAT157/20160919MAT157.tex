@@ -12,8 +12,6 @@
 \usepackage{color}
 
 \definecolor{mygrey}{gray}{0.90}
-\raggedbottom
-\raggedright
 \setlength{\tabcolsep}{0in}
 
 \usepackage{amsthm, amsmath, amssymb}
@@ -137,14 +135,14 @@ Let $\mathbb{F}$ be a field.
 
 \begin{proof}
 \begin{align}
-  \mbn{0+0}\ & \mbv{=0} & \mbt{\aid}\\
-  \mbn{\Rightarrow a\times(0+0)}\ & \mbv{=a\times 0 + a \times 0} & \mbt{\dist}\\
-  \mbn{}\ & \mbv{=a \times 0} & \mbt{\defi =}\\
-  \mbn{(a\times 0 + a \times 0)-(a\times 0)}\ & \mbv{=a \times 0 -(a \times 0)} & \mbt{\defi =}\\
-  \mbn{\Rightarrow a\times0 +(a\times0-a\times0)}\ & \mbv{=0} & \mbt{\assoc}\\
-  \mbn{}\ & \mbv{} & \mbt{and \ainv}\nonumber\\
-  \mbn{\Rightarrow a\times0 +0}\ & \mbv{=0} & \mbt{\ainv}\\
-  \mbn{\Rightarrow a\times0}\ & \mbv{=0} & \mbt{\aid}\nonumber
+  \mbn{0+0}\                                       & \mbv{=0}                        & \mbt{\aid}               \\
+  \mbn{\Rightarrow a\times(0+0)}\                  & \mbv{=a\times 0 + a \times 0}   & \mbt{\dist}              \\
+  \mbn{}\                                          & \mbv{=a \times 0}               & \mbt{\defi =}            \\
+  \mbn{(a\times 0 + a \times 0)-(a\times 0)}\      & \mbv{=a \times 0 -(a \times 0)} & \mbt{\defi =}            \\
+  \mbn{\Rightarrow a\times0 +(a\times0-a\times0)}\ & \mbv{=0}                        & \mbt{\assoc}             \\
+  \mbn{}\                                          & \mbv{}                          & \mbt{and \ainv}\nonumber \\
+  \mbn{\Rightarrow a\times0 +0}\                   & \mbv{=0}                        & \mbt{\ainv}              \\
+  \mbn{\Rightarrow a\times0}\                      & \mbv{=0}                        & \mbt{\aid}\nonumber
 \end{align}
 \end{proof}
 
@@ -155,17 +153,17 @@ Let $\mathbb{F}$ be a field.
 \begin{proof}
 
   \begin{align}
-    \mbn{a+(-a)}\ & \mbv{=0} & \mbt{\ainv}\\
-    \mbn{\Rightarrow ab+(-a)b}\ & \mbv{=ba+b(-a)} & \mbt{\comm}\\
-    \mbn{\Rightarrow b(a+(-a))}\ & \mbv{=b\times0} & \mbt{\dist}\\
-    \mbn{}\ & \mbv{} & \mbt{and \ainv}\\
-    \mbn{}\ & \mbv{=0} & \mbt{Lemma \ref{eq:zero}}\\
-    \mbn{\Rightarrow ab+(-a)b}\ & \mbv{=0} & \mbt{\defi =}\\
-    \mbn{\Rightarrow(-a)b+ab}\ & \mbv{=0} & \mbt{\comm}\\
-    \mbn{(-a)b+ab-ab}\ & \mbv{=0-ab} & \mbt{\defi =}\\
-    \mbn{\Rightarrow(-a)b+0}\ & \mbv{=-ab} & \mbt{\ainv}\\
-    \mbn{}\ & \mbv{} & \mbt{and \aid}\nonumber\\
-    \mbn{}\ & \mbv{=(-a)b} & \mbt{\aid}
+    \mbn{a+(-a)}\                & \mbv{=0}                         & \mbt{\ainv}                            \\
+    \mbn{\Rightarrow ab+(-a)b}\  & \mbv{=ba+b(-a)}                  & \mbt{\comm}                            \\
+    \mbn{\Rightarrow b(a+(-a))}\ & \mbv{=b\times0}                  & \mbt{\dist}                            \\
+    \mbn{}\                      & \mbv{}                           & \mbt{and \ainv}                        \\
+    \mbn{}\                      & \mbv{=0}                         & \mbt{Lemma \ref{eq:zero}}              \\
+    \mbn{\Rightarrow ab+(-a)b}\  & \mbv{=0}                         & \mbt{\defi =}                          \\
+    \mbn{\Rightarrow(-a)b+ab}\   & \mbv{=0}                         & \mbt{\comm}                            \\
+    \mbn{(-a)b+ab-ab}\           & \mbv{=0-ab}                      & \mbt{\defi =}                          \\
+    \mbn{\Rightarrow(-a)b+0}\    & \mbv{=-ab}                       & \mbt{\ainv}                            \\
+    \mbn{}\                      & \mbv{}                           & \mbt{and \aid}\nonumber                \\
+    \mbn{}\                      & \mbv{=(-a)b}                     & \mbt{\aid}
   \end{align}
 \end{proof}
 \begin{corollary}
@@ -175,9 +173,9 @@ Let $\mathbb{F}$ be a field.
 \begin{proof}
   From Lemma \ref{eq:negp}, if $a=1$, then $(-1)b=-1 \times b$
   \begin{align}
-    \mbn{-1\times b}\ & \mbv{=-b\times1} & \mbt{\comm}\\
-    \mbn{\ra (-1)b}\ & \mbv{=-b} & \mbt{\defi =}\\
-    \mbn{}\ & \mbv{} & \mbt{and \mid}\nonumber
+    \mbn{-1\times b}\             & \mbv{=-b\times1}                 & \mbt{\comm}                            \\
+    \mbn{\ra (-1)b}\              & \mbv{=-b}                        & \mbt{\defi =}                          \\
+    \mbn{}\                       & \mbv{}                           & \mbt{and \mid}\nonumber
   \end{align}
 \end{proof}
 \begin{lemma}
@@ -186,16 +184,16 @@ Let $\mathbb{F}$ be a field.
 \end{lemma}
 \begin{proof}
   \begin{align}
-    \mbn{a+(-a)}\ & \mbv{=0} & \mbt{\ainv}\\
-    \mbn{(-1)(a+(-a))}\ & \mbv{=(-1)0} & \mbt{\defi =}\\
-    \mbn{(-1)a+(-1)(-a)}\ & \mbv{=0} & \mbt{\dist}\\
-    \mbn{}\ & \mbv{} & \mbt{and Lemma \ref{eq:zero}}\nonumber\\
-    \mbn{\equ -a-(-a)}\ & \mbv{=0} & \mbt{Corollary \ref{eq:negm}}\\
-    \mbn{a+(-a-(-a))}\ & \mbv{=a+0} & \mbt{\defi =}\\
-    \mbn{(a-a)-(-a))}\ & \mbv{=a} & \mbt{\assoc}\\
-    \mbn{}\ & \mbv{} & \mbt{and \aid}\\
-    \mbn{0-(-a)}\ & \mbv{=a} & \mbt{\ainv}\\
-    \mbn{-(-a)}\ & \mbv{=a} & \mbt{\aid}
+    \mbn{a+(-a)}\                 & \mbv{=0}                         & \mbt{\ainv}                            \\
+    \mbn{(-1)(a+(-a))}\           & \mbv{=(-1)0}                     & \mbt{\defi =}                          \\
+    \mbn{(-1)a+(-1)(-a)}\         & \mbv{=0}                         & \mbt{\dist}                            \\
+    \mbn{}\                       & \mbv{}                           & \mbt{and Lemma \ref{eq:zero}}\nonumber \\
+    \mbn{\equ -a-(-a)}\           & \mbv{=0}                         & \mbt{Corollary \ref{eq:negm}}          \\
+    \mbn{a+(-a-(-a))}\            & \mbv{=a+0}                       & \mbt{\defi =}                          \\
+    \mbn{(a-a)-(-a))}\            & \mbv{=a}                         & \mbt{\assoc}                           \\
+    \mbn{}\                       & \mbv{}                           & \mbt{and \aid}                         \\
+    \mbn{0-(-a)}\                 & \mbv{=a}                         & \mbt{\ainv}                            \\
+    \mbn{-(-a)}\                  & \mbv{=a}                         & \mbt{\aid}
   \end{align}
 \end{proof}
 \section{}
@@ -204,10 +202,10 @@ Let $\mathbb{F}$ be a field.
 \end{theorem}
 \begin{proof}
   \begin{align}
-    \mbn{x > y}\ & \mbv{\Leftrightarrow x-y \in \P} & \mbt{\defi $\P$ and $>$}\\
-    \mbn{a \in \P}\ & \mbv{\Rightarrow a(x-y)\in\P} & \mbt{\mclo $\P$ }\\
-    \mbn{a(x-y)=ax-ay \in\P}\ & \mbv{\Rightarrow ax-ay > 0} & \mbt{\dist}\\
-    \mbn{}\ & \mbv{\Leftrightarrow ax>ay} & \mbt{\defi $>$}
+    \mbn{x > y}\                  & \mbv{\Leftrightarrow x-y \in \P} & \mbt{\defi $\P$ and $>$}               \\
+    \mbn{a \in \P}\               & \mbv{\Rightarrow a(x-y)\in\P}    & \mbt{\mclo $\P$ }                      \\
+    \mbn{a(x-y)=ax-ay \in\P}\     & \mbv{\Rightarrow ax-ay > 0}      & \mbt{\dist}                            \\
+    \mbn{}\                       & \mbv{\Leftrightarrow ax>ay}      & \mbt{\defi $>$}
   \end{align}
 \end{proof}
 \begin{theorem}
@@ -215,17 +213,17 @@ Let $\mathbb{F}$ be a field.
 \end{theorem}
 \begin{proof}
   \begin{align}
-    \mbn{a < 0}\ &\mbv{\Rightarrow -a \in \P} & \mbt{\tric} \\
-    \mbn{x > y}\ &\mbv{\Leftrightarrow x-y \in \P} & \mbt{\defi $\P$ and $>$}\\
-    \mbn{\Rightarrow\ (-a)(x-y)}\ &\mbv{=(-a)x +(-a)(-y) \in \P} & \mbt{\dist, \defi $-$}\\
-    \mbn{}\ & \mbv{} & \mbt{and \mclo $\P$}\nonumber\\
-    \mbn{}\ & \mbv{=-ax-a(-y)} & \mbt{Lemma \ref{eq:negp}}\\
-    \mbn{-ax-a(-y)}\ & \mbv{=-ax-(-y)a} & \mbt{\comm}\\
-    \mbn{-ax-(-y)a}\ & \mbv{=-ax+ya} & \mbt{Lemma \ref{eq:negneg}}\\
-    \mbn{\ra -ax+ay}\ & \mbv{=ay-ax} & \mbt{\comm}\\
-    \mbn{}\ & \mbv{\ra ay-ax \in \P} & \mbt{\mclo $\P$}\\
-    \mbn{}\ & \mbv{\ra ay>ax} & \mbt{\defi $>$}\\
-    \mbn{}\ & \mbv{\equ ax<ay} & \mbt{\defi $<$}
+    \mbn{a < 0}\                  & \mbv{\Rightarrow -a \in \P}      & \mbt{\tric}                            \\
+    \mbn{x > y}\                  & \mbv{\Leftrightarrow x-y \in \P} & \mbt{\defi $\P$ and $>$}               \\
+    \mbn{\Rightarrow\ (-a)(x-y)}\ & \mbv{=(-a)x +(-a)(-y) \in \P}    & \mbt{\dist, \defi $-$}                 \\
+    \mbn{}\                       & \mbv{}                           & \mbt{and \mclo $\P$}\nonumber          \\
+    \mbn{}\                       & \mbv{=-ax-a(-y)}                 & \mbt{Lemma \ref{eq:negp}}              \\
+    \mbn{-ax-a(-y)}\              & \mbv{=-ax-(-y)a}                 & \mbt{\comm}                            \\
+    \mbn{-ax-(-y)a}\              & \mbv{=-ax+ya}                    & \mbt{Lemma \ref{eq:negneg}}            \\
+    \mbn{\ra -ax+ay}\             & \mbv{=ay-ax}                     & \mbt{\comm}                            \\
+    \mbn{}\                       & \mbv{\ra ay-ax \in \P}           & \mbt{\mclo $\P$}                       \\
+    \mbn{}\                       & \mbv{\ra ay>ax}                  & \mbt{\defi $>$}                        \\
+    \mbn{}\                       & \mbv{\equ ax<ay}                 & \mbt{\defi $<$}
   \end{align}
 \end{proof}
 
