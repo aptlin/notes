@@ -1,0 +1,138 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{sdll}
+\pSet{\nt{MAT157}{II.4}{Algebra of Integrals}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\begin{theorem}
+  Let $a < c < b$. If $f$ is integrable on $[a, b]$, then for any
+  $c\in[a, b]$ $f$ is integrable on $[a,c]$ and $[c, b]$. Conversely,
+  if $f$ is integrable on $[a, c]$ and $[c, b]$, then $f$ is also
+  integrable on $[a,b]$. Therefore, if $f$ is integrable on $[a,b]$,
+
+
+  \begin{equation*}
+    \int _{a}^{c}f+\int_{c}^{b}f = \int_{a}^{b}f
+  \end{equation*}
+
+\end{theorem}
+
+\begin{proof}
+  Suppose that $f$ is integrable on $[a,b]$.
+
+  Since $f$ is integrable, there exists a partition such that
+
+  \begin{equation*}
+    U(f, P) - L(f, P) < \epsilon
+  \end{equation*}
+
+  Consider such a partition $P = \set{t_0, t_1, \dots, t_{n}}$ of
+  $[a,b]$.
+
+  Suppose first that $c$ is not of $t_{j}$. Then construct another
+  partition $Q$ such that $P\su Q$ to obtain
+  $U(f, Q) - L(f, Q) \leq U(f, P) - L(f, P) < \epsilon$. Thus, we may assume
+  that $c$ is equal to one of $t_{j}$.
+
+  Consider partitions $P' = [t_0, t_1, \dots, t_j]$ of $[a,c]$ and
+  $P'' = [t_{j+1}, \dots, t_n]$ of $[c,b]$. Then by definition of
+  $L(\cdot, \cdot)$ it follows that
+  \begin{align}
+    L(f, P) &= L(f, P') + L(f, P'')\\
+    U(f, P) &= U(f, P') + U(f, P'')
+  \end{align}
+
+  Therefore,
+  $[U(f, P'')-L(f, P'')] + [U(f, P') - L(f, P')] = U(f, P) - L(f, P) <
+  \epsilon$.
+
+  Since each term on LHS is nonnegative, it follows that $f$ is
+  integrable on $[a, c]$ and $[c, b]$. Note also that
+  \begin{align}
+    L(f, P') &\leq \int_{a}^{c}f \leq U(f, P')\\
+    L(f, P'') &\leq \int_c^bf \leq U(f, P''),
+  \end{align}
+
+  and thus $L(f, P) \leq \int_a^cf + \int_c^bf\leq U(f, P)$. Since $P$ was
+  chosen arbitrarily, $\int_a^cf + \int_c^bf = \int_a^bf$.
+
+  Conversely, if $f$ is integrable on $[a, c]$ and $[c, b]$, it follows that
+
+  \begin{align}
+    U(f, P') - L(f, P') &< \frac{\epsilon}{2}\\
+    U(f, P'') - L(f, P'') &< \frac{\epsilon}{2}
+  \end{align}
+
+  Construct a partition $P$ containing both $P'$ and $P''$.  Then
+  $L(f, P) = L(f, P') + L(f, P'')$ and
+  $U(f, P) = U(f, P') + U(f, P'')$.
+
+  Therefore, from inequalities above, $U(f, P) - L(f, P) < \epsilon$,
+  and thus $f$ is integrable on $[a,b]$.
+
+\end{proof}
+
+\begin{definition}
+  \begin{align}
+    \int_a^af  &= 0\\
+    \int_b^{a} &= - \int_{a}^bf\\
+  \end{align}
+\end{definition}
+
+\begin{definition}
+  Suppose $f(x)$ is integrable on $[a, b]$. Pick $x\in[a,b]$, and
+  define the \textbf{indefinite integral} of $f$:
+  \begin{equation*}
+    F(x) = \int_{a}^{x}f(t)dt
+  \end{equation*}
+\end{definition}
+
+
+\end{document}

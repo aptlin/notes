@@ -1,0 +1,119 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{sdll}
+\pSet{\nt{MAT157}{V}{Applications of the Fundamental Theorem of Calculus}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Applications of the Fundamental Theorem of Calculus}
+
+\begin{corollary}
+  If $f$ is continuous on $[a, b]$ and $f = g'$ for some function $g$, then
+  \begin{equation*}
+    \int_{a}^bf = g(b) - g(a).
+  \end{equation*}
+\end{corollary}
+
+\begin{proof}
+  Let $F(x) = \int_a^xf$. Then $F' = f = g'$ on $[a, b]$. Thus, there
+  is a number $c\in \RR$ such that
+  \begin{equation*}
+    F = g + c
+  \end{equation*}
+
+  Note that $F(a) = g(a) + c = 0$ by definition of $F$, and thus
+  $c = -g(a)$, which means that $F(x) = g(x) - g(a)$. In particular,
+  this holds for $x=b$, which gives $F(b) = \int_a^bf = g(b) - g(a)$.
+\end{proof}
+
+\begin{theorem}[The Second Fundamental Theorem of Calculus]
+  If $f$ is integrable on $[a,b]$ and $f = g'$ for some function $g$, then
+
+  \begin{equation*}
+\int_a^bf = g(b) - g(a).
+  \end{equation*}
+
+\end{theorem}
+\begin{proof}
+  Let $P = \set{t_0, t_1, \dots, t_n}$ be any partition of $[a,b]$.
+
+  By the Mean Value Theorem, there is a point $x_i$ in
+  $[t_{i-1}, t_i]$ such that
+  \begin{equation*}
+    g(t_i) - g(t_{i-1}) = g'(x_i)(t_i-t_{i-1}) = f(x_i)(t_i-t_{i-1})
+  \end{equation*}
+
+  If $m_i= \inf\set{f(x);t_{i-1}\leq x_i\leq t_i}$ and
+  $M_i= \sup\set{f(x);t_{i-1}\leq x_i\leq t_i}$, then
+
+  \begin{equation*}
+    m_i(t_i-t_{i-1})\leq f(x_i)(t_{i} - t_{i-1}) \leq M_{i}(t_{i} - t_{i-1}),
+  \end{equation*}
+
+  and thus
+  \begin{equation*}
+    m_i(t_i-t_{i-1})\leq g(t_{i-1})-g(t_i) \leq M_{i}(t_{i} - t_{i-1}),
+  \end{equation*}
+  giving
+
+  \begin{equation*}
+    \sum_{i=1}^nm_{i}(t_{i} - t_{i-1}) \leq g(b) - g(a) \leq    \sum_{i=1}^nM_{i}(t_{i} - t_{i-1}).
+  \end{equation*}
+
+  Therefore, $L(f, P) \leq g(b) - g(a) \leq U(f, P)$ for every partition $P$, which means that
+
+
+  \begin{equation*}
+    \int_a^bf = g(b) - g(a)
+  \end{equation*}
+
+
+\end{proof}
+
+\end{document}

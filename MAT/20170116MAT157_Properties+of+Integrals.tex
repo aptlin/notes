@@ -1,0 +1,205 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{sdll}
+\pSet{\nt{MAT157}{II.4}{Properties of Integrals}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\begin{theorem}
+  \label{sec:1}
+  Suppose $f$ is integrable and $m\leq f(x) \leq M$ for all $x$ in $[a, b]$.
+  Then, $m(b-a)\leq \int_a^b f \leq M(b-a)$.
+\end{theorem}
+
+\begin{proof}
+  Note that $m(b-a) \leq L(f, P)$ and $U(f, P) \leq M(b-a)$ for any
+  partition $P$. Then
+  $m(b-a) \leq L(f, P) \leq \int_a^b f \leq U(f, P) \leq M(b-a)$.
+\end{proof}
+\section{Fundamental Theorem of Calculus}
+\begin{theorem}
+  Let $f$ be integrable on $[a, b]$ and define $F$ on $[a, b]$ by
+  $F(x) = \int_a^xf $.
+
+  Then $F$ is continuous on $[a, b]$.
+\end{theorem}
+
+\begin{proof}
+  Take $c$ in $[a, b]$. Since $f$ is integrable on $[a, b]$, it is
+  bounded. Define $M$ as a number such that $\abs{f(x)} \leq M$ for
+  all $x\in[a, b]$. If $h > 0$, then
+
+  \begin{equation*}
+    F(c+h) - F(c) = \int_{a}^{c+h}f - \int_{a}^{c}f = \int_{c}^{c+h} f.
+  \end{equation*}
+
+  Since $-M \leq f(x) \leq M $ for all $x$, it follows from Theorem \ref{sec:1} that
+
+  \begin{equation*}
+    -M\* h \leq \int_c^{c+h} f \leq M\*h
+  \end{equation*}
+
+  Thus,
+  \begin{equation*}
+    -M\* h \leq F(c+h) - F(h) \leq M\*h
+  \end{equation*}
+
+  If $h < 0$, a similar inequalitiy can be derived, since
+  $F(c+h) - f(h) = - \int^c_{c+h}f$. Therefore, for $[c+h, c]$,
+
+  \begin{equation*}
+    Mh \leq \int_{c+h}^cf \leq - Mh,
+  \end{equation*}
+
+  which gives
+
+
+  \begin{equation*}
+    M\* h \leq F(c+h) - F(h) \leq -M\*h
+  \end{equation*}
+
+  Thus,
+
+
+  \begin{equation*}
+    \abs{F(c+h) - F(h)} \leq M\abs{h}
+  \end{equation*}
+
+  Therefore, for any $\epsilon>0$, if $\abs{h} < \frac{\epsilon}{M}$,
+
+  \begin{equation*}
+    \abs{F(c+h) - F(h)} < \epsilon
+  \end{equation*}
+\end{proof}
+
+\begin{theorem}
+  Let $f$ be integrable on $[a, b]$ and define $F$ on $[a, b]$ by
+  $F(x) = \int_a^xf $.
+
+  If $f$ is continuous at $c$ in $[a,b]$, then $F$ is differentiable
+  at $c$, and $F'(c) = f(c)$.
+\end{theorem}
+
+\begin{proof}
+  Suppose first that $c$ is in $(a, b)$. By definition,
+  \begin{equation*}
+    F'(c) = \lim_{h\to 0}\frac{F(c+h) - F(c)}{h}.
+  \end{equation*}
+
+  For each $h$, define $m_h$ and $M_{h}$ as follows:
+
+  \begin{align}
+    m_h &= \inf \set{f(x); c \leq x \leq c+h}\\
+    M_{h} &= \sup \set{f(x); c \leq x \leq c+h}
+  \end{align}
+
+  From Theorem \ref{sec:1},
+
+
+  \begin{equation*}
+    m_h\* h \leq \int_c^{c+h} f \leq M_h\*h,
+  \end{equation*}
+
+  and thus
+
+  \begin{equation*}
+    m_h\leq \frac{F(c+h) - F(c)}{h}\leq M_h
+  \end{equation*}
+
+  If $h\leq 0$, then
+
+  \begin{align}
+    m_h &= \inf \set{f(x); c+h \leq x \leq c}\\
+    M_{h} &= \sup \set{f(x); c+h \leq x \leq c}
+  \end{align}
+
+  From Theorem \ref{sec:1},
+
+
+  \begin{equation*}
+    m_h\* (-h) \leq \int_{c+h}^c f \leq M_h\*(-h),
+  \end{equation*}
+
+  and thus
+
+  \begin{equation*}
+    m_h\* (-h) \geq F(c+h) - F(c) \geq M_h\*(-h).
+  \end{equation*}
+
+  For $h<0$,
+
+  \begin{equation*}
+    m_h\leq \frac{F(c+h) - F(c)}{h}\leq M_h.
+  \end{equation*}
+
+  This inequality holds for any integrable function. However, since $f$
+  is continuous,
+
+
+  \begin{equation*}
+    \lim_{h\to 0}m_{h} = \lim_{h\to 0} M_{h} = f(c)
+  \end{equation*}
+
+  and thus
+
+  $F'(c)= \lim_{h\to 0}\frac{F(c+h) - F(c)}{h} = f(c)$.
+\end{proof}
+
+\begin{note*}
+  If $G$ is defined by $G(x) = \int_{x}^bf$, then
+  $G(x) = \int_a^b f - \int_a^x f$. Therefore,
+
+
+  \begin{equation*}
+    G'(c)  = - f(c)
+  \end{equation*}
+
+\end{note*}
+
+\end{document}

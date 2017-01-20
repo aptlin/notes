@@ -1,0 +1,353 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{sdll}
+\pSet{\nt{MAT247}{Lecture III}{Tests for Diagonalisability}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Review}
+
+We have seen two types of multiplicity:
+
+\begin{description}
+
+\item[algebraic] $m_{\lambda}: (t-\lambda)^{m_{\lambda}} | f(t)$,
+  $(t-\lambda)^{m_{\lambda} + 1} \not | f(t)$, where $f(t)$ is a characteristic polynomial
+\item[geometric] $\dim(E_{\lambda}) = \dim \ker(T-\lambda I_{v})$
+\end{description}
+
+We have also proved that $1\leq \text{ geom } \leq \text{ alg}$
+
+\begin{example}
+
+For $A = \begin{pmatrix}
+  1 & 0\\
+  0 & 1
+\end{pmatrix}$, $m_{1} = 2$ and $\dim(E_{1} = 2$
+
+For $B = \begin{pmatrix}
+1 & 1\\
+0 & 1
+\end{pmatrix}$, $m_{1} = 2$ and $\dim E_{1} = 1$.
+\end{example}
+\section{Further Tests of Diagonalisability}
+\begin{definition}
+  A polynomial $f(t) \in \SP(F)$ splits over $F$ if $f(t)$ is a
+  product of linear factors in $\SP(F)$, i.e. $f(t) = c(t-a_1)\cdots(t-a_{n}), c, a_i \in F$
+\end{definition}
+
+\begin{example}
+
+  $t^{2} + 1$ does not split over $\RR$, but it splits over $\CC$ (any
+  polynomial over $\CC$ splits)
+
+\end{example}
+
+\begin{claim}
+\label{sec:furth-tests-diag}
+  $T$ is diagonalisable $\lra$ the characteristic polynomial splits
+  over $F$ and $\dim E_{\lambda} = m_{\lambda}$ for all eigenvalues
+  $\lambda$.
+\end{claim}
+
+We now prove $\ra$.
+\begin{theorem}
+If $T$ is diagonalisable, then the characteristic polynomial splits over $F$.
+\end{theorem}
+
+\begin{proof}
+Take an ordered basis $\beta$ such that $[T]_{\beta} = \begin{pmatrix}
+a_{1} & \cdots & 0\\
+0 & \ddots & 0\\
+0 & \cdots & a_{n}
+\end{pmatrix}$. Then the characteristic polynomial is $f(t) = (a_{1} - t)\cdots(a_n-t)$.
+\end{proof}
+
+\begin{theorem}
+  If $T$ is diagonalisable, then $\dim(E_{\lambda}) = m_{\lambda}$ for
+  all eigenvalues $\lambda$.
+\end{theorem}
+
+\begin{proof}
+  $T$ is diagonalisable $\ra$ there exists an ordered basis
+  $\beta = (v_{1}, \dots, v_n)$ of eigenvectors.
+
+  Consider $\lambda_{1}, \dots, \lambda_n$, the distinct eigenvalues of $T$.
+
+  Suppose $d_{i}$ is the number of basis elements with the eigenvalue
+  $\lambda_{i}$.
+
+  $d_{i} \leq \dim (E_{\lambda_{i}}) \leq m_{\lambda_1}$, since we have
+  $d_{i}$ linearly independent vectors in $E_{\lambda_{i}}$.
+
+  Note that $\sum_{i=1}^nd_i\leq \sum_{i=1}^n\dim(E_{\lambda_i})\leq \sum_{i=1}^nm_i \leq n$. Therefore,
+
+  $\dim E_{\lambda_i}=m_{\lambda_i}$
+\end{proof}
+
+Now we prove $\Leftarrow$ of the claim.
+
+\begin{lemma}
+  Let $\lambda_{1}, \dots, \lambda_{k}$ be distinct eigenvalues of $T$.
+
+  If $v_i\in E_{\lambda_i}$ and $\sum_iv_i = 0$, then $v_{i} = 0$.
+\end{lemma}
+\begin{proof}
+  Suppose not.  Renumber these vectors in such a way that
+  $v_1,\dots,v_s$ are nonzero and $v_{s+1}=\dots=v_k=0$. By assumpton,
+  $\sum_{i=1}^sv_{i}=0$, which is a contradiction, since
+  $v_{1}, \dots, v_{s}$ must be linearly independent.
+\end{proof}
+
+\begin{theorem}
+  If the characteristic polynomial splits over $F$ and
+  $\dim E_{\lambda} = m_{\lambda}$ for all eigenvalues, then $T$ is
+  diagonalisable.
+\end{theorem}
+
+\begin{proof}
+  The characteristic polynomial $f(t)$ splits, so
+
+  \[f(t) = c(t-\lambda_1)^{m_1}\cdots(t-\lambda_k)^{m_k} = c(t-a_1)\cdots(t-a_{n}),\]
+
+  where $\lambda_i\in F$ are distinct and $m_i\geq 1$.
+\end{proof}
+
+Therefore, $T$ has eigenvalues $\lambda_{i}$ with algebraic multiplicities $m_{i}$.
+
+By assumption, $\dim(E_{\lambda_i}) = m_i$. Let
+$\beta_1\cup\dots\cup\beta_k$ is a basis of $V$.
+
+\begin{claim*}
+  $\beta_1\cup\dots\cup\beta_k$ is a basis of $V$.
+\end{claim*}
+
+\begin{proof}[Proof of the Claim]
+  Note that
+  $\sum_{i=1}^n\dim(E_{\lambda_i})=\sum_{i=1}^km_i=\deg f = n$. We
+  need to check that $\beta_1\cup\dots\cup\beta_k$ is linearly
+  independent.
+
+  Write $\beta_{i} = (v_{i, 1}, \dots, v_{i, m_{i}})$.
+
+  Suppose $\sum_{i=1}^k\sum_{j=1}^ma_{ij}v_{ij} = 0$ for $a_{ij} \in F$.
+
+  Therefore, for all $i$, $\sum_{j=1}^{m_i}a_{ij}v_{ij}=0$ by Lemma.
+
+  Hence, $a_{ij}= 0$ for all $i,j$, since $\beta_{i}$ is a basis.
+
+  Thus, $\beta_1\cup\dots\cup\beta_k$ is a basis of eigenvectors (since
+  each $v_{ij}\neq 0$), so $T$ is diagonalisable.
+\end{proof}
+
+An equivalent version of Claim \ref{sec:furth-tests-diag} can be stated:
+
+\begin{claim*}
+T is diagonalisable $\lra$ $\begin{cases}
+\dim E_{\lambda} = m_{\lambda} \text{ for all eigenvalues $\lambda$}\\
+\sum m_{\lambda} = \dim V
+\end{cases}
+$
+\end{claim*}
+\begin{proof}
+  Note that $f(t) = c\prod_{i=1}^k(t-\lambda_{i})^{m_i}g(t)$, where $g(t)$ does not have linear factors.
+
+  Thus, $f$ splits if and only if $\sum m_{i} = \dim V = n$.
+\end{proof}
+
+To find a basis of eigenvectors, the claim in the previous proof shows
+that we only need to find basis of each eigenspace and then take its union.
+
+\begin{problem*}
+  Consider $\begin{pmatrix}
+    4 & 0 & -3\\
+    0 & 1 & 0\\
+    1 & 0 & 0
+  \end{pmatrix}$, $F = \QQ$. Find a matrix $Q$ such that $Q^{-1}AQ$ is diagonal.
+\end{problem*}
+\begin{soln}
+\begin{enumerate}
+
+\item Note that $f(t) = -(t-1)^2(t-3)$, which splits over
+  $\QQ$ with $m_{1} = 2$ and $m_3 = 1$.
+\item For $\lambda=1$, $E_1 = \ker(A-I) = \spn \left( \cv{0;1;0}, \cv{1;0;1} \right)$.
+\item For $\lambda=3$, $E_{3} = \ker(A-3I) = \spn \left( \cv{3; 0; 1} \right)$.
+
+  Therefore, the basis of eigenvectors of $\QQ^{3}$ is
+  $\beta = \set{\cv{0;1;0}, \cv{1;0;1}, \cv{3; 0; 1}}$, so $[L_{A}]_{\beta} = \begin{pmatrix}
+1 & 0 & 0\\
+0 & 1 & 0\\
+0 & 0 & 3
+  \end{pmatrix}$ and $Q = \begin{pmatrix}
+0 & 1 & 3\\
+1 & 0 & 0\\
+0 & 1 & 1
+  \end{pmatrix}$
+\end{enumerate}
+\end{soln}
+
+\begin{example}
+
+Let $A = \begin{pmatrix}
+0 & 0\\
+1 & 0
+\end{pmatrix}$ for any $F$. Thus, $f(t) = t^{2}$, $m_{0} =2$,
+$\dim E_0 = 1$, and thus $A$ is not diagonalisable.
+\end{example}
+
+\begin{example}
+
+Take $A = \begin{pmatrix}
+2 & -2\\
+1 & 0
+\end{pmatrix}$, $F = \RR$.
+
+Note that $f(t) = t^2 - 2t + 2$ does not split over $\RR$, and thus
+$A$ is not diagonalisable.
+
+\end{example}
+
+\section{Direct Sums}
+
+\begin{definition}
+  If $W_1, \dots, W_k$ are subspaces of $V$, then $V$ is the direct sum
+  of $W_1, \dots, W_k$ if for every $v\in V$ there exist a unque
+  $w_i\in W_i$ for $i\in\set{1, \dots, k}$ such that $v = \sum_{i=1}^k w_{i}$.
+
+  We denote it as $V = W_1\oplus W_2 \oplus \cdots \oplus W_k$.
+\end{definition}
+
+\begin{example}
+
+  If $v_1, \dots, v_{k}$ is a basis of $V$, then
+  $V = Fv_1\oplus Fv_2 \oplus \cdots \oplus Fv_n$.
+\end{example}
+
+\begin{example}
+
+Note that $\SP_n(F) = \SP_{n-1}(F)\oplus Fx^{n}$.
+
+\end{example}
+
+\begin{definition}
+  If $W_1, \dots, W_k$ are subspaces of $V$, then the sum
+  $W_1+\dots+W_k$ is the subspace given by $\spn \bigcup_{i=1}^kW_{i}$.
+\end{definition}
+
+\begin{example}
+
+  Note that $\SP(F) = \SP_{1}(F) + \set{f\in \SP_3(F): f(0) = 0} $, but
+  it is not a direct sum.
+
+\end{example}
+
+\begin{theorem}
+\label{sec:direct-sums}
+  The following are equivalent:
+\begin{enumerate}[label=(\alph*)]
+\item $V = W_1\oplus \dots \oplus W_{k}$
+\item $V = W_{1} + \cdots + W_k $ and,  if $w_1+\cdots +w_k = 0$, where $w_i\in W_{i}$, then $v_i= 0$
+\item $V = W_{1} + \cdots + W_k $ and $W_i\cap(\sum_{j\neq i}W_{j}) = \set{0}$
+\end{enumerate}
+\end{theorem}
+\begin{remark}
+  When $k=2$, (c) says that $V = W_1+W_2$ and $W_1\cap W_2 = \set{0}$.
+\end{remark}
+
+\begin{proof}
+
+
+  We prove first that (a) implies (c).
+
+  Suppose $w_{i} \in W_i\cap (\sum_{j\neq 1}W_j)$. Then
+  $w_{i} = w_{1} + \cdots + w_{i-1} + w_{i+1} + \cdots w_{k}$, and
+  since $0$ can be represented uniquely by the definition of a direct
+  sum, then all $w_{j} = 0$ and thus $w_{i} = 0$.
+
+  If $v \in V$, then by the definition of a direct sum,
+  $v = \sum_{i=1}^{k}w_{i}$ for $w_i \in W_i$.
+
+  Thus, $V = W_1 + \cdots + W_k$.
+
+  Then we prove that (c) implies (b).
+
+  Note that $V = W_1 + \cdots + W_k$.
+
+  If $v_1+\cdots v_k = 0$ ($v_i\in V$), then
+  $v_{j} = -\sum_{i=1, i \neq j}^{k} v_{i}$. But
+  $v_i = \sum_{i=1}^kw_{i}$ for $w_{i} \in W_{i}$ and
+  $W_i\cap(\sum_{j\neq i}W_{j}) = \set{0}$, and thus $v_{i}$ for all
+  $i$ are 0.
+
+  Finally, we prove that (b) implies (a).
+
+  Any $v\in V =  W_1 + \cdots + W_k$ can be represented as $v=\sum_{i=1}^kw_i $ for $w_i \in W_i$.
+
+  We prove that this representation is unique.
+
+  Suppose that $v$ is also $v = \sum_{i=1}^k w'_{i}$. Then
+  $0 = \sum (w_{i} - w'_{i})$ and hence $w_{i} = w'_{i}$.
+\end{proof}
+
+\begin{corollary}
+  If $V = W_1 \oplus \cdots \oplus W_k$ and $\beta_{i}$ is a basis of $W_i$, then
+  $\beta = \bigcup_{i=1}^k\beta_{i}$ is a basis of $V$. In particular,
+  $\dim V = \sum_{i=1}^k \dim W_{i}$.
+\end{corollary}
+
+\begin{proof}
+  The span of $\beta$ contains each $W_{i}$, hence it also contains
+  $W_1+\cdots+W_k = V$. By (c) of Theorem \ref{sec:direct-sums},
+  $\spn \beta_i \cap \bigcup_{i\neq j} (\spn \beta_{j}) = \set{0}$,
+  and thus, since all $\beta_{i}$ are linearly independent, then the
+  union of the bases is linearly independent as well, while
+
+  $\dim V = \sum_{i=1}^k \dim W_{i}$, as required.
+\end{proof}
+\end{document}

@@ -1,0 +1,72 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{sdll}
+\pSet{\nt{Curtis McMullen}{}{A Skeptical History of Numbers}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\begin{itemize}
+\item Doyle-McMullen,  solving the quintic (2000)
+\item Representation of the proof of the fundamental theorem of
+  algebra with the syrup spreading out over the complex plane
+\item Skewes' number is the bound for when first $\pi(x) < li(x)$ $<<$
+  wowsers $<<$ Graham's number (party theorem on $n$-dim cube for 4
+  friends/enemies on a hyperplane. Note that $12 < n < G$)
+\item Busy beaver function: $B(n)=$ larget possible output of a rogue
+  but mortal computer program of length $n$
+\item Precision is required --
+  $N = [\text{the smallest positive integer not definable in fewer
+    than twelve words}]$
+\item Solutions of crises: type theory (do not define $A$ in terms of
+  $A$), intuitionism (deal with constructable things), formalism
+  (agree on axioms, and only admit conclusions from them)
+\item Edward Nelson: length of the shortest proof such that $0=1$?
+\item Radically elementary theory of probability
+\end{itemize}
+\end{document}

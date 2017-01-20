@@ -1,0 +1,173 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{sdll}
+\pSet{\nt{MAT247}{IV}{Tests for Diagonalisability}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\begin{corollary}
+  $T\in\Hom(V, V)$ is diagonalisable if and only if
+  $V = E_{\lambda_1}\oplus\cdots\oplus E_{\lambda_k}$, where
+  $\lambda_1, \dots, \lambda_k$ are the distinct eigenvalues.
+\end{corollary}
+\begin{proof}
+  If $T$ is diagonalisable, then there exists an ordered basis of
+  eigenvectors $\beta$. Note that
+  $\beta\ssq E_{\lambda_1}+\cdots+E_{\lambda_k}$, and therefore
+  $\spn{\beta} \ssq E_{\lambda_1}+\cdots+E_{\lambda_k}$, showing that
+  $V = E_{\lambda_1}+\cdots+E_{\lambda_k}$. Since eigenvectors are
+  distinct, they are linearly independent. Thus, $w_1+\cdots+w_k=0$
+  for $w_i\in E_{\lambda_i}$ implies $w_i= 0$, and hence $V = E_{\lambda_1}\oplus\cdots\oplus E_{\lambda_k}$.
+
+  Conversely, suppose
+  $V = E_{\lambda_1}\oplus\cdots\oplus E_{\lambda_k}$. Pick a basis
+  $\beta_{i}$ of $E_{\lambda_i}$ for all $i\in[1, k]\cap\NN$. Note
+  that $\beta_1\cup\cdots\cup\beta_{k}$ is a basis of $V$, which
+  implies that $T$ is diagonalisable.
+\end{proof}
+
+We can also give a better argument for the theorem from last lecture.
+
+\begin{theorem}
+  If $T$ is diagonalisable, then characteristic polynomial splits and
+  $\dim E_{\lambda} = m_{\lambda}$.
+\end{theorem}
+
+\begin{proof}
+  Suppose $\beta = \set{v_1, \dots, v_n}$ is an ordered basis of
+  eigenvectors. Suppose also $\lambda_1, \dots, \lambda_{k}$ are
+  distinct eigenvalues of $T$. Renumbering the basis if necessary, the
+  first $d_{1}$ basis elements elements have a corresponding
+  eigenvalue $\lambda_{1}$, the next $d_{2}$ basis elements have an
+  eigenvalue $\lambda_{2}$, and so on.
+
+  Therefore, since $T$ is diagonalisable,
+
+
+  \begin{equation*}
+    [T]_{\beta} = \begin{pmatrix}
+      \lambda_{1} &        &            &            &        &            &    \\
+      & \ddots &            &            &        &            &    \\
+      &        & \lambda_{1} &            &        &            &    \\
+      &        &            & \lambda_{2} &        &            &  & \\
+      &        &            &            & \ddots &            &  & \\
+      &        &            &            &        & \lambda_{2} &    \\
+      &        &            &            &        &            & \ddots
+    \end{pmatrix}
+  \end{equation*}
+  Moreover, $d_{i} = m_{\lambda_{i}}$. Note that  $d_i \leq \dim E_{\lambda_i} \leq m_{\lambda_i}$, which implies that
+
+  $\dim E_{\lambda_i} = m_{\lambda_i}$.
+\end{proof}
+
+\begin{theorem}
+  If $A\in M_{n\times n(F)}$, then $f(A) = 0$, where $f(t)$ is the
+  characteristic polynomial of $A$.
+\end{theorem}
+\begin{example}
+
+If $A = \begin{pmatrix}
+1 & 2\\
+3 & 4
+\end{pmatrix}$, then $f(t) = t^2 - 5t - 2$ and
+
+\begin{equation*}
+f(A) = f(A) = A^2-5A-2I = \begin{pmatrix}
+  7 - 5 - 2 & 10 - 10 - 0\\
+  15 -15 - 0 & 22 -20 -2
+\end{pmatrix} = \bm{0}
+\end{equation*}
+\end{example}
+
+\begin{remark}
+Note that $f(t) = g(t)h(t)$, which implies that $f(A) = g(A)h(A)$.
+\end{remark}
+\begin{remark}
+Similarly $f(T)$ can be defined, where $T$ is a linear transformation.
+\end{remark}
+\begin{example}[Wrong 'Proof']
+$f(t) = \det(A-tI) \ra f(A) = \det(A-AI) = 0$.
+\end{example}
+\begin{remark}
+If $A$ is diagonal, the proof is easy.
+\end{remark}
+\begin{definition}
+A subspace $W\ssq V$ is $T$-invariant if $T(W) \ssq W$.
+\end{definition}
+\begin{description}
+\item[e.g.] ${0}$, $V$, $\ker(T)$, $\Img(T)$, $E_{\lambda}$
+\end{description}
+
+If $W\ssq V$ is $T$-invariant, we can define
+\begin{equation*}
+T_{W}\in \Hom(W, W) \text{ by restriction $\forall x \in W: T_{W}(x) = T(x)$}
+\end{equation*}
+\begin{definition}
+  If $v\in V$, the $T$-cyclic subspace generated by $v$ is
+  $\spn\set{v, T(v), T^{2}(v), \dots}$.
+\end{definition}
+
+\begin{claim*}
+  $T$-cyclic subspace generated by $v$ is $T$-invariant.
+\end{claim*}
+\begin{proof}
+  $T(a_{0}+ a_{1}T(v_1) +\cdots + a_nT(v_n))\in\spn\set{v, T(v), T^{2}(v), \dots}$
+\end{proof}
+\begin{claim*}
+  $T$-cyclic subspace is the smallest $T$-invariant subspace containing $v$.
+\end{claim*}
+\begin{proof}
+  If $v\in W$, where $W$ is a $W$-invariant subspace, by definition of
+  of $W$,
+
+  $Tv,\ T^{2}v,\ T^3v,\ T^{n-1}v$ must also be in $W$, and thus a $T$-cyclic
+  subspace generated by $v$ is in $W$.
+\end{proof}
+
+\end{document}

@@ -1,0 +1,432 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{sdll}
+\pSet{\nt{BIO130}{III}{Study of Diversity}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Tree of Life}
+
+\begin{itemize}
+\item Prokaryotes: Eubacteria
+
+  \begin{description}
+
+  \item[e.g.] Cyanobacteria are capable of photosynthesis.
+
+  \end{description}
+
+\item Prokaryotes: Archaea
+
+  DNA replication, transcription, translation are similar to these of
+  eucarya, and hence archaea are closer to eucarya than to eubacteria.
+
+  \begin{description}
+
+  \item[e.g.] Methanococcus: predominantly live in hydrothermal vents on the bottom of the ocean
+
+  \item[e.g.] Methanobacterium: anaerobic, low pH conditions
+
+  \end{description}
+
+
+\item Eucarya
+
+  \begin{description}
+
+  \item[e.g.] animals
+
+  \end{description}
+\end{itemize}
+
+\section{Study of Diversity}
+
+\begin{enumerate}
+\item\label{item:1} XIX and early XX: use large collections and study
+  each species independently
+\item\label{item:2} Late XX and XXI: use model organisms
+\end{enumerate}
+
+\begin{definition}
+  Model organisms are species that have been studied intensively over
+  a long period of time and thus serving as models for deriving
+  fundamental biological principles.
+\end{definition}
+
+General attributes:
+
+\begin{itemize}
+\item Rapid development with short life cycles
+
+\item Small size
+
+\item Readily available
+
+\item Tractable -- easy to manipulate and modify
+
+\item Have understandable genomics
+\end{itemize}
+
+\begin{description}
+
+\item[e.g.] elephant is a horrible model organism!
+\item[e.g.] eukaryotes: zebra fish
+
+\end{description}
+
+\begin{ques*}
+
+How does the diversity can be explained?
+
+\end{ques*}
+
+\begin{answer*}
+
+  Central dogma:
+
+  DNA  $\xrightarrow{\text{transcription}}$  RNA  $\xrightarrow{\text{translation}}$  protein
+
+\end{answer*}
+\subsection{Central Dogma}
+There are different kinds of RNA:
+
+\begin{itemize}
+\item mRNA -- produces protein by translation
+\item tRNA -- transport AAs and for protein synthesis
+\item rRNA -- part of the ribosome
+\end{itemize}
+
+There are other kinds of RNAs, some have nothing to do with making
+proteins.
+
+\subsection{Elaborated Central Dogma}
+\begin{table*}[h]
+  \centering
+
+  \begin{tabulary}{1.0\textwidth}{C R C L L}
+    \multicolumn{5}{l}{  \textbf{genome}: complete set of DNA sequences in a cell or organism}\\ \cmidrule{1-5}
+    \multicolumn{5}{l}{ \textbf{transcriptome}: complete set of RNA sequences in a cell or organism}\\ \cmidrule{2-4}
+    \multicolumn{5}{l}{ \textbf{proteome}: complete set of protein sequences in a cell or organism}\\ \cmidrule{3-4}
+    &                                      &     &                                    & \\ \cmidrule{3-4}
+    DNA                                                                                                                                                                             & $\xrightarrow{\text{transcription}}$ & RNA & $\xrightarrow{\text{translation}}$ & Protein                            \\
+    \shortstack[l]{organisation                                                                                                                                      \\replication} &                                      &     &                                    & \shortstack[l]{\textbf{interactome} \\ a complete set of interactions\\ in a cell or
+                                                                                                                        organism}                                    \\
+                                                                                                                                                                                    &                                      &     &                                    & \shortstack[l]{\textbf{metabolome} \\a complete set of small\\ molecule metabolites\\
+                                                                                                                                                                                      in a cell or organism}\\
+                                                                                                                                                                                    \toprule
+                                                                                                                      \multicolumn{5}{l}{  \textbf{phenome}: a complete set of phenotypes}
+                                                                                                                    \end{tabulary}
+\end{table*}
+
+\section{Review}
+
+DNA, RNA and proteins are linear chains of
+information. The order of aminoacids contains the information.
+
+Information in nucleic acid sequence is translated into an aminoacid
+sequence via a genetic code which is essentially universal among all
+species.
+
+\subsection{Eukaryotes}
+Nuclear agenda:
+\begin{enumerate}
+\item\label{item:3} Transcription
+
+\item\label{item:4} RNA processing
+
+\item\label{item:5} Nuclear export
+
+\item\label{item:6} Translation
+
+\item\label{item:7} Protein folding and modification
+\end{enumerate}
+
+\subsection{Nucleic Acids}
+
+\begin{enumerate}
+
+\item\label{item:8} The genetic material in a cell is a blueprint for an organsim.
+
+\item\label{item:9} DNA is a deoxyribonucleic acid
+
+\item\label{item:10} Ribonucleic acid
+\end{enumerate}
+
+Three parts of a nucleic acid:
+
+\begin{enumerate}
+\item\label{item:11} Pentose sugar -- scaffold for a base
+
+\item\label{item:12} Nitrogenous base -- varies
+
+\item\label{item:13} Phosphate group -- backbone, can be 1P, 2P's or 3P's
+\end{enumerate}
+
+\subsubsection{Bases}
+
+\begin{itemize}
+\item Purines -- guanine and adenine (Al Gore stings - Pu!)
+
+\item Pyrimidines -- cytosine, thymine and uracil (U C The Pyramides)
+\end{itemize}
+
+\subsubsection{DNA vs RNA}
+
+\begin{enumerate}
+\item\label{item:14} DNA: G, C, A, T, RNA: G, C, A, U
+
+\item\label{item:15} DNA: Deoxyribose, RNA: ribose
+\end{enumerate}
+
+\subsubsection{Nucleic Acid Nomenclature}
+
+\begin{enumerate}
+\item\label{item:16} Nucleoside monophosphate: sugar + base + 1P
+
+\item\label{item:17} Nucleoside diphosphate: sugar + base + 2P
+
+
+\item\label{item:18} Nucleoside triphosphate: sugar + base + 3P
+
+  Nucleoside: base + sugar
+  Nucleotide: base + sugar + at least one P
+\end{enumerate}
+\begin{remark}\hfill\\
+  Adenoside: nucleoside\\
+  AMP: nucleotide, nucleoside monophosphate\\
+  ADP: nucleotide, nucleoside diphosphate\\
+  ATP: nucleotide, nucleoside triphosphate
+\end{remark}
+
+\section{Molecular Interactions and Introduction to Proteins}
+
+In nature, structure and function are closely intertwined.
+
+Structure of DNA makes it stable and allows it to function as a
+hereditary material.
+
+\subsection{Molecular Interactions}
+ Interactions between individual molecules usually mediateed by
+noncovalent attactions (within a molecule, covalent nature of
+interactions is prevalent, cf Karp's p.33-42)
+
+\begin{enumerate}
+\item\label{item:20} Electrostatic attractions
+
+\item\label{item:19} Hydrogen bonds
+
+\item\label{item:21} van der Waals attractions
+
+\item\label{item:22} Hydrophobic interactions the tendency of nonpolar
+  molecules to aggregate to minimize interaction with surrounding
+  polar molecules
+\end{enumerate}
+\subsection{Properties of Nucleic Acids}
+
+\begin{enumerate}
+\item\label{item:23} DNA is synthesised from deoxyribonucleoside
+  triphosphates, otherwise known as dNTPs
+
+\item\label{item:24} RNA is synthesised from ribonucleoside
+  triphosphates, also known as NTPs
+
+\item\label{item:25} Nucleotides are linked by phosphodiester bonds
+  (links 1' carbon of one nucleotide to 3' carbon of the other
+  nucleotide)
+\end{enumerate}
+
+Base pairing holds the DNA double helix together with the H-bonding:
+\begin{enumerate}
+\item\label{item:27} A - T: 2 H-bonds
+
+\item\label{item:28} G - C: 3 H-bonds
+\end{enumerate}
+
+However, H-bonds are not the only interactions holding DNA together --
+van der Waals attractions (in general, between the bases) and
+hydrophobic interactions (in general, between the bases) also play a
+role.
+
+Between two strands the interactions are noncovalent -- strictly
+speaking, DNA consists of two molecules. However, some scientists
+consider DNA as a single molecule composed of two strands. Both are
+fine.
+
+
+DNA of one complete turn have on average 10.5 base pairs.
+
+Gaps on either side are not the same -- there is a major groove on one
+side, and a minor groove on the other.
+
+5' end is close to a phosphate (-PO$_{4}$), 3' is close to OH.
+
+The strands in a double helix are antiparallel, with DNΑ backbone
+having a negative charge. Base stacking contributes significantly to
+the stability of the helix.
+
+At high enough temperatures (called melting temperature) or at high
+pH, the noncovalent bonds are broken, which denaturates DNA. If cooled
+or if pH is lowered, the bases will recombine.
+
+Covalent bonds can also be broken above $\dgc{100}$, but this situation
+is not a focus of biology.
+
+The sequence of the two strands is complementary, and the strands can
+be unzipped. This is important for DNA replication (including PCR) and
+RNΑ synthesis.
+
+G-C rich DNA is more stable at high temperatures.
+
+\subsection{Introduction to Proteins}
+
+\begin{enumerate}
+\item\label{item:29} Primary (sequence)
+  \begin{description}
+
+  \item[e.g.] AA sequence
+
+  \end{description}
+
+
+\item\label{item:30} Secondary (local folding)
+
+  \begin{description}
+
+  \item[e.g.] a helix, $\beta$ sheet
+
+  \end{description}
+
+
+\item\label{item:31} tertiary (long-range folding)
+
+  \begin{description}
+
+  \item[e.g.] 3D structure
+
+  \end{description}
+
+
+\item\label{item:32} Quaternary (multimeric organization)
+
+  \begin{description}
+
+  \item[e.g.] multiple polypeptide chains
+
+  \end{description}
+
+
+\item\label{item:33} Multiprotein complexes
+
+  \begin{description}
+
+  \item[e.g.] molecular machines
+
+  \end{description}
+\end{enumerate}
+
+\subsection{Protein Structure}
+
+Proteins are composed of amino acids.
+
+The amino acid side-chain, or $R$ group, is variable and determines
+the type of amino acid.
+
+4 main categories
+\begin{itemize}
+\item polar charged
+\item polar uncharged
+\item nonpolar
+\item those with unique properties
+\end{itemize}
+
+$\alpha$ carbon is attached to the side chain, amino and carboxyl group.
+
+Cysteine looks different in reduced conditions (found in cytosol) and
+oxidized conditions (lumen of organellesd). A disulphide bond often
+acts as a base to stabilise the protein structure.
+
+\begin{definition}
+  The \textbf{genetic code} is the set of rules specifying the
+  correspondence between nucleotide triplets (codons) in DNA or RNA
+  and amino acids in proteins.
+
+  It is degenerate (multiple options for some amino acids) and almost
+  universal.
+\end{definition}
+
+\begin{ques*}
+
+What is the minimum number of mutational steps between amino acids?
+
+\end{ques*}
+
+\begin{answer*}
+
+The number of mutations between codons for different amino acids.
+
+\end{answer*}
+
+\begin{example}
+
+How many mutational steps required to get from a codon for proline to one for cysteine, at a minimum?
+
+\end{example}
+
+\begin{answer*}
+
+Two, CCG $\to$ UGC
+
+\end{answer*}
+
+Groups of aminoacids with similar properties tend to be clustered in
+the genetic code table. Codons of aminoacids with similar properties
+tend to have fewer mutational steps between them.  One random mutation
+in a codon is less likely to result in a dramatic change in amino acid
+properties than two random mutations.
+\end{document}

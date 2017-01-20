@@ -1,0 +1,106 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{sdll}
+\pSet{\nt{Curtis McMullen}{}{Surfaces in the Space of Surfaces}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Surfaces in the Space of Surfaces}
+
+\textbf{Key words}: totally geodesic moduli space, variety,
+
+\section{Planes in Hyperbolic Manifolds}
+
+\textbf{Key words}: hyperbolic manifolds and their subspaces (line
+$\to$ geodesic), universal cover, orbit, fundamental group
+
+\textbf{Theorem}(Shah, Ratner): The closure of the image plane is a
+compact, immersed, totally geodesic k-manifold(submanifold) inside
+$n$-manifold.
+
+Picture a three hyperbolic space as an interior of a ball. A plane in
+$\HH^{3}$ corresponds to a hemisphere.
+
+\section{Moduli Space}
+
+\textbf{Key words}: moduli space; Rieman surfaces and their genus;
+complex variety; isometric holomorphic immersion, immersed hyperbolic
+plane, Teichm\"uller curve
+
+The Hilbert modular surface is not totally geodesic.
+
+\section{Totally Geodesic Subvarieties}
+
+\textbf{Key words}: curve embeddings, Fuchsian group, Klein quartic
+(see Helaman Ferguson)
+
+Almost all subvarieties in the moduli space are \textit{contracted}.
+
+\begin{itemize}
+\item Covering constructions
+\item Teichm\"uller curves
+\end{itemize}
+
+\section{Totally Geodesic Varieties in Moduli Space}
+\textbf{Key words}: \textbf{polar conic}, Hessian, flex, determinant
+of derivatives, Cayleyan, cover of a curve, bundle, fiber,
+SL$_{2}(\RR)$ orbits, holomorphic 1-forms, quotient elliptic curve,
+meromorphic quadratic differential, Coxeter diagrams, Prym variety,
+construction of infinite series of Teichm\"uller curves
+
+\textbf{Theorem}: There is a primitive, totally
+geodesic complex surface $F$ (the flex locus) properly immersed into
+the moduli space $\MM_{1, 3}$.
+
+See G. Salmon, ``Higher Plane Curves'' for precursors.
+
+
+
+
+\end{document}
