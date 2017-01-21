@@ -1,0 +1,146 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{sdll}
+\pSet{\nt{MAT157}{}{More on Integrability}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Integrability of Continuous Functions}
+
+\begin{definition}
+  Note that $L(f, P)$, $U(f, P)$ are defined for any $P$, so that
+  $L(f, P) \leq U(f, P)$. Then for any bounded $f$
+  \begin{align*}
+    &L\int_a^bf(x)dx = \sup_PL(f, P)\\
+    &U\int_a^bf(x)\dif x = \inf_PU(f, P)
+  \end{align*}
+\end{definition}
+
+\begin{lemma}
+  $L\int_a^bf(x)\dif x + L\int_c^bf(x)\dif x = L\int_a^bf(x)\dif x$
+\end{lemma}
+\begin{lemma}
+  $U\int_a^bf(x)\dif x + U\int_c^bf(x)\dif x = U\int_a^bf(x)\dif x$
+\end{lemma}
+
+If $m< f(x) < M$, then
+$m(b-a)\leq L\int_a^bf(x)\dif x \leq U\int_a^bf(x)\dif x \leq M(b-a)$.
+
+Fix $x\in(a,b)$.
+
+Define
+\begin{align*}
+ & L(x) = L\int_a^xf(x)\dif x\\
+ & U(x) = U\int_a^xf(x)\dif x.
+\end{align*}
+
+Observe that both always exist.
+
+To fund $L'(x)$, we need to find
+
+
+\begin{equation*}
+  \lim_{h\to 0 }\frac{L(x+h) - L(x)}{h} = \lim_{h\to 0 } \frac{L\int_a^{x+h}f(t)dt}{h}
+\end{equation*}
+
+If $h>0$, define
+\begin{align}
+  &m_{h} = \inf\set{f(t); x\leq t \leq x+h}\\
+  &M_{h} = \sup\set{f(t); x\leq t \leq x+h}
+\end{align}
+
+Fix some $x\in (a, b)$.
+
+Therefore,
+
+\begin{align}
+  & m_h(x+h - x) \leq L\int_x^{x+h}f(t)dt \leq U\int_x^{x+h}f(t)dt \leq M_h(x+h-x)\\
+  \lra   & m_h \leq \frac{L\int_x^{x+h}f(t)dt }{h}\leq \frac{U\int_x^{x+h}f(t)dt }{h}\leq M_h\\
+  \lra & m_h \leq \frac{L(x+h) - L(x)}{h}\leq \frac{U(x+h) - U(x) }{h}\leq M_h
+\end{align}
+
+If $h < 0$, the inequalities are similar.
+
+If $f$ is continuous at $x$, then
+
+\begin{equation*}
+\lim_{h\to 0}m_h = \lim_{h\to 0}M_h = f(x),
+\end{equation*}
+
+so $L'(x) = f(x) = U'(x)$ and thus there exists a cotstant $c\in \RR$ such that $U(x) = L(x) + c$.
+
+But $U(a) = L(a) = 0$, so $c = 0$ and hence $U(x) = L(x)$. In
+particular, $L(b) = U(b)$, so $f$ is integrable.
+
+\begin{ques*}
+
+If $f$ is integrable and $F(x) = \int_a^xf(t)dt$, then $F'(x) = f(x)$. What about $G(x) = \int_{x}^bf(t)dt$?
+
+\end{ques*}
+
+\begin{answer*}
+
+  Let $H(x) = \int_a^xf(t)dt +\int_x^bf(t)dt = \int_a^bf(t) dt$.
+
+  So $H'(x) = 0$. Therefore,
+
+
+  \begin{equation*}
+    0 = \frac{\dif}{\dif x}\int_a^x + \frac{\dif}{\dif x}\int_x^bf = f(x) + G'(x),
+  \end{equation*}
+
+  and thus $G'(x) = - f(x)$.
+\end{answer*}
+
+\begin{example}
+  \begin{align}
+    \frac{\dif }{\dif x} \int_{\cos x}^{\sin x}\frac{t}{1+t^{2}}\dif t = \cos x \sin x \left( \frac{1}{1+\cos^2x} + \frac{1}{1+\sin^2x} \right)
+  \end{align}
+\end{example}
+\end{document}
