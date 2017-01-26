@@ -105,7 +105,11 @@
   \end{claim*}
 
   \begin{proof}
-     $T(c_0v + c_1T(v)+\dots+c_{d-1}T^{d-1}(v)) = c_0Tv + c_1T^2v +\dots + c_{d-1}T^dv$
+    Suppose $w = c_0v + c_1T(v)+\dots+c_{d-1}T^{d-1}(v)$ and $T(w) = 0$.
+    
+    Then
+    $T(c_0v + c_1T(v)+\dots+c_{d-1}T^{d-1}(v)) = c_0Tv + c_1T^2v
+    +\dots + c_{d-1}T^dv = 0$
 
      Since $d$ is the largest integer such that
      $v, T(v), \dots, T^{d-1}(v)$ are linearly independent, then
@@ -113,14 +117,15 @@
   \end{proof}
 
   $U$ is $T$-invariant, and thus if $v\in U$, then $W\ssq U$, since
-  $W$ is the smallest $T-invariant$ subspace containing $v$. By
-  definition of $U$, $U \ssq W$, and thus $U = W$.
+  $W$ is the smallest $T$-invariant subspace containing $v$. By
+  definition of $U$, $U \ssq W$, and thus $U = W$. Therefore, $\dim W = d$
 
 \end{proof}
 
 \begin{theorem}
   \label{sec:cycl}
-  $T^d+a_{d-1}T^{d-1}v+\dots+a_1Tv+a_0v = 0$ and the characteristic polynomial of $T_{W}$ is
+  If $T^dv+a_{d-1}T^{d-1}v+\dots+a_1Tv+a_0v = 0$, then the
+  characteristic polynomial of $T_{W}$ is
 
   \begin{equation*}
     f_W(t) = (-1)^d(t^d+a_{d-1}t^{d-1}+\dots+a_0)
@@ -128,7 +133,7 @@
 \end{theorem}
 
 \begin{proof}
-  Let $\beta = v, T(v), \dots, T^{d-1}(v)$.
+  Let $\beta = \set{v, T(v), \dots, T^{d-1}(v)}$.
 
   Then
 

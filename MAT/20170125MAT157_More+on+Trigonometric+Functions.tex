@@ -1,0 +1,220 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{MAT157}{VIII}{More on Trigonometric Functions}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+The values of $\sin x$ and $\cos x$ not in $[0, \pi]$ can be defined
+by a two-step piecing process:
+
+\begin{enumerate}
+\item\label{item:1} If $\pi\leq x\leq 2\pi$, then
+  \begin{align}
+    \sin x &= - \sin(2\pi - x)\\
+    \cos x &= \cos(2\pi - x)
+  \end{align}
+\item If $ x = 2\pi k + x'$ for some $k\in \ZZ$ and some
+  $x'\in [0,2\pi]$, then
+
+  \begin{align}
+    \sin x &= \sin(x')\\
+    \cos x &= \cos(x')
+  \end{align}
+\end{enumerate}
+
+This extended definition is consistent with all the usual properties
+we expect from the trigonometric functions:
+
+\begin{enumerate}
+\item\label{item:2} $\sin^2x + \cos^2x  = 1$, by the geometric argument
+\item \begin{align}
+        \sin'(x) &= \cos x\\
+        \cos'(x) &= -\sin x
+      \end{align}
+
+      For example, if $\pi < x < 2\pi$, then
+      $\sin x = -\sin (2\pi - x)$, and thus \[\sin'(x) = -\sin'(2\pi - x)(-1) = \cos x.\]
+
+      If $x$ is a multiple of $\pi$, then considering the fact that
+      $\sin$ is continuous in the $\epsilon$-neighbourhood of $x$ will
+      give us a similar conclusion.
+    \end{enumerate}
+
+\begin{theorem}
+
+  If $-1<x<1$, then
+
+  \begin{align}
+    \arcsin'(x) &= \frac{1}{\sqrt{1-x^2}}\\
+    \arccos'(x) &= \frac{-1}{\sqrt{1-x^2}}
+  \end{align}
+
+  If $x \in \RR$, then
+  \begin{equation*}
+    \arctan'(x) = \frac{1}{1+x^2}
+  \end{equation*}
+\end{theorem}
+\begin{proof}
+  \begin{align}
+    \arcsin'(x) & = (f^{-1})'(x)               \\
+                & = \frac{1}{f'(f^{-1}(x))}    \\
+                & = \frac{1}{\sin'(\arcsin x)} \\
+                & = \frac{1}{\cos(\arcsin x)}
+  \end{align}
+
+  Note that $\sin^2(\arcsin x) + \cos^2(\arcsin x) = 1$, and thus
+
+  \begin{equation*}
+    \cos(\arcsin x)^2 = \sqrt{1-x^{2}}
+  \end{equation*}
+
+  The second formula can be derived from the fact that
+  \begin{equation*}
+    A(x) = \frac{x\sqrt{1-x^2}}{2} + \int_x^1\sqrt{1-t^2} \dif t.
+  \end{equation*}
+  and that $2A(\cos x) = x$.
+
+  Finally, by Pythagoras's identity,
+
+  \begin{align}
+    \arctan'(x) & = (h^{-1})'(x)               \\
+                & = \frac{1}{h'(h^{-1}(x))}    \\
+                & = \frac{1}{\tan'(\arctan x)} \\
+                & = \frac{1}{\sec^{2}(\arcsin x)}\\
+                & = \frac{1}{x^1+1}
+  \end{align}
+\end{proof}
+
+\begin{lemma}
+  Suppose $f$ has a second derivative everywhere and that the following conditions are satisfied:
+
+  \begin{align}
+    \label{eq:1}
+    f''   + f & = 0 \\
+    f(0)      & = 0 \\
+    f'(0)     & = 0
+  \end{align}
+
+  Then $f$ is a zero function.
+\end{lemma}
+
+\begin{proof}
+  From the equation (\ref{eq:1}) given we obtain that
+  
+  \begin{equation*}
+    f'f''+ff'=0.
+  \end{equation*}
+
+  Therefore, $(f')^2+f^2$ is a constant function, which by the other
+  two conditions is equal to 0. Therefore, $f(x) = 0$ for all $x$.
+
+\end{proof}
+
+\begin{lemma}
+  \label{sec:1}
+  Suppose $f$ has a second derivative everywhere and that the following conditions are satisfied:
+
+  \begin{align}
+    \label{eq:2}
+    f''   + f & = 0 \\
+    f(0)      & = a \\
+    f'(0)     & = b
+  \end{align}
+
+  Then $f$ is in the form $b\*\sin  + a \* \cos$.
+\end{lemma}
+
+\begin{proof}
+
+  We use the result given by the previous lemma.
+  
+  Let $g(x) = f(x) - b \sin x - a \cos x$.
+
+  Then
+  \begin{align}
+    & g'(x) = f'(x) - b\cos x + a \sin x\\
+    & g''(x) = f''(x) + b\sin x + a \cos x
+  \end{align}
+
+  Note that $g''+g = 0$, $g(0)= 0$, and $g'(0) = 0$,
+  which shows that $g = 0$.
+\end{proof}
+
+\begin{theorem}
+  If $x, y \in \RR$, then
+  \begin{align}
+    &\sin(x+y) = \sin x\cos x + \cos x \sin y\\
+    &\cos(x+y) = \cos x \cos y - \sin x \sin y
+  \end{align}
+\end{theorem}
+\begin{proof}
+  For any particular number $y$ we can shift $\sin$ so that
+  $f(x) = \sin(x+y)$. Then $f'(x) = \cos(x+y)$ and
+  $f''(x) = -\sin(x+y)$.
+
+  Therefore,
+  \begin{align}
+    f''   + f & = 0 \\
+    f(0)      & = \sin y \\
+    f'(0)     & = \cos y,
+  \end{align}
+
+  which by Lemma \ref{sec:1} implies that
+  
+  \begin{equation*}
+    f(x) = \sin x \cos y + \cos y \sin x,
+  \end{equation*}
+  and thus $\sin(x+y) = \sin x\cos x + \cos x \sin y$.
+
+  The second formula can be proven similarly.
+
+\end{proof}
+    
+\end{document}

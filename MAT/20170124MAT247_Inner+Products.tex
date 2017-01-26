@@ -1,0 +1,158 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{MAT247}{VII}{Inner Products}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\begin{remark}
+On a vector space $V$ there can be many inner products.
+\end{remark}
+\begin{example}
+
+\begin{itemize}
+\item if $\ipr{\*}{\*}$ is an inner product, then so is $c\ipr{\*}{\*}$ for $c>0$ in $\RR$
+\item if $\phi:V\to V$ is an isomorphism, then also $\ipr{x}{y}'=\ipr{\phi(x)}{\phi{y}}$
+\item if $V = C[a,b]$ is a vector space of continuous products
+  ($a<b$), where $\FF = \RR$). Then $\ipr{f(x)}{f(y)} = \int_a^bf(t)g(t)\dif t$ is an inner product.
+\item if $V = C[a,b]$ is a vector space of continuous products
+  ($a<b$), where $\FF = \CC$). Then
+  $\ipr{f(x)}{f(y)} = \int_a^bf(t)\ol{g(t)}\dif t$ is an inner
+  product.
+
+  Here, if $f(x) \in C[a,b]$, write $f(x) = f_1(x) + i f_2(x)$, where
+  $f_1, f_2\in \RR$. Define
+  $\int_a^bf(t)\dif t = \int_a^bf_1 \dif t i \int_a^bf_2 \dif t$. Then
+  $\ol{\int f(t) \dif t} = \int \ol{f(t) \dif t }$ and
+  $\int(f(t)+cg(t))\dif t = \int f(t)\dif t + c \int g(t) \dif t$.
+\end{itemize}
+\end{example}
+
+\begin{definition}
+  \hfill
+  \textbf{H} is the inner product space $C[0,2\pi]$, $\FF = \CC$, with
+  $\ipr{f, g} = \frac{1}{2\pi}\int_0^{2\pi}f(t)g(t)\dif t$.
+\end{definition}
+
+\begin{theorem}
+  Let $V$ be an inner product space with the inner product $\ipr{\*}{\*}$.
+
+  \begin{enumerate}[label=\alph*)]
+  \item $\ipr{x}{x} = 0 \lra x = 0$
+  \item If for all $x\in V.\ipr{x}{y} = \ipr{x}{z}$, then $y = z$
+  \end{enumerate}
+
+\end{theorem}
+\begin{proof}
+  \begin{enumerate}[label=\alph*)]
+  \item If $x = 0$, then $\ipr{x}{x} = 0$. Otherwise, $\ipr{x}{x}>0$
+  \item If $\ipr{x}{y} = \ipr{x}{z}$ for all $x\in V$, then
+    $\ipr{x}{y-z} = 0$. Therefore, taking $x = y-z$, we obtain $y - z =0$.
+  \end{enumerate}
+\end{proof}
+
+\begin{definition}
+  \hfill
+The \textbf{norm} or \textbf{length} of $x\in V$ is $\norm{\sqrt{\ipr{x}{x}}} \geq 0$
+\end{definition}
+\begin{example}
+
+  If $V = \FF^n$ with the standard inner product
+  $\ipr{a}{b} = \sum a_i\ol{b_{i}}$, then
+
+  \begin{equation*}
+    \sqrt{\abs{a_1}^2+\abs{a_2}^2+\cdots + \abs{a_n}^2}
+  \end{equation*}
+\end{example}
+
+\begin{theorem}
+  Let $V$ be an inner product space. Then the following holds:
+
+  \begin{enumerate}[label=\alph*)]
+  \item $\norm{cx} = \abs{c}\norm{x}$ for all $c \in \FF$ and $x\ in V$
+  \item $\norm{x} = 0 \lra x = 0$
+  \item $\abs{\ipr{x}{y}}\leq\norm{x}\norm{y}$ (\textit{Cauchy-Schwarz})
+  \item $\norm{x+y}\leq \norm{x} + \norm{y}$ (\textit{Triangle Inequality}
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  \begin{enumerate}[label=\alph*)]
+  \item$\norm{cx} = \sqrt{\ipr{cx}{cx}} = \sqrt{c\ol{c}\ipr{x}{x}} = \abs{c}\norm{x}$
+  \item Exercise.
+  \item Note that if $y=0$, the inequality holds. Suppose now
+    $y\neq 0$. Note the following:
+    \begin{align}
+      0\leq \ipr{x+cy}{x+cy} &= \ipr{x}{x+cy}+ c \ipr{y}{x+cy}\\
+      &= \ipr{x}{x} + \ol{c}\ipr{x}{y}+c\ipr{y}{x}+ c\ol{c}\ipr{y}{y}
+    \end{align}
+
+    Plugging in
+    $c = -\frac{\ipr{x}{y}}{\ipr{y}{y}} = -\ipr{x}{(\norm{y})^{2}}$,
+    we obtain
+    \begin{equation*}
+      0\leq \norm{x}^{2} - \frac{\abs{\ipr{x}{y}}}{\norm{y}^{2}},
+    \end{equation*}
+    and thus $\abs{\ipr{x}{y}\leq \norm{x}\norm{y}}$
+  \end{enumerate}
+\item Consider $\norm{x+y}^2 \leq (\norm{x}+\norm{y})^2$. Note that
+  $\ipr{x+y}{x+y} = \ipr{x}{x}+2\Re{\ipr{x}{y}}+\ipr{y}{y}$
+\end{proof}
+
+For the standard innerp product on $\FF^n$, from Cauchy-Schwarz it
+follows that
+$\abs{\sum_{i=1}^na_ib_i} \leq \sqrt{\sum \abs{a_i}^2}\sqrt{\sum
+  \abs{b_i}^2}$ and by Triangle Inequality$\abs{\sum_{i=1}^na_ib_i} \leq \sqrt{\sum \abs{a_i}^2}\sqrt{\sum
+  \abs{b_i}^2}$
+
+def orthogonal
+
+
+
+\end{document}

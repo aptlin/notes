@@ -1,0 +1,116 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{MAT157}{VII}{Trigonometric Functions}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+The intuitive understanding of angles can be made more precise by
+considering a unit circle.
+
+In this way, an angle $0\leq \theta \leq 2\pi$ corresponds to a unique
+point on the unit circle.
+
+Since the equation of a semicircle on the axes $xOy$ is
+$y = \sqrt{1-x^{2}}$ and the area of the unit circle is $\pi$, we thus
+define $\pi = 2\int_{-1}^1\sqrt{1-x^{2}}\dif x$. The area of the
+sector corresponding to an angle $\theta$ with $\cos \theta = x$, if
+$-1 \leq x \leq 1$, is
+
+
+\begin{equation*}
+A(x) = \frac{x\sqrt{1-x^2}}{2} + \int_x^1\sqrt{1-t^2} \dif t.
+\end{equation*}
+
+Consider now $A'(x)$:
+
+
+\begin{equation*}
+  A'(x) = \half(\sqrt{1-x^2} - \frac{x^{2}}{ \sqrt{1-x^2}}) - \sqrt{1-x^{2}} = \frac{-1}{2 \sqrt{1-x^{2}} }
+\end{equation*}
+
+Note that $A'$ is well-defined for $x \in (-1, 1)$.
+
+We also note that $A(-1) = \frac{\pi}{2}$ and $A(0) = 0$. The graph of $A$ is such that it is:
+
+\begin{itemize}
+\item decreasing (since $A' < 0$)
+\item injective
+\end{itemize}
+Therefore, it has an inverse.
+
+\begin{ques*}
+
+How to express $\cos \theta$ as a function of $2A$?
+
+\end{ques*}
+
+\begin{answer*}
+
+  Note that $\cos \theta$ is the inverse function of $2A$. Given
+  $2A$, which determines an angle $\theta$, define $\cos \theta$ to be
+  the unique $x$ such that $2A = 2A(x)$, thus
+  $\theta = 2A(cos \theta)$.
+
+\end{answer*}
+
+We define $\sin \theta = \sqrt{1-\cos^2\theta}$ and $B = 2A$. $B$ is
+the inverse of $\cos \theta$, and thus, from above,
+
+
+\begin{equation*}
+  \frac{\dif \cos \theta}{\dif \theta } = \frac{1}{B'(\cos\theta)} = - \sin \theta
+\end{equation*}
+
+Similarly,
+
+\begin{equation*}
+  \frac{\dif \sin \theta}{\dif \theta } = \frac{\dif  \sqrt{1 - \cos^{2}\theta}}{\dif \theta} = \cos \theta
+\end{equation*}
+\end{document}
