@@ -1,0 +1,348 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{MAT247}{X}{Inner Products and Minimisation}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+\section{Review: Minimisation}
+Recall that $V = W \oplus W^{\bot}$.
+
+Therefore, if $x\in V$, then $x=x_W+x_{W^{\bot}}$, where $x_W$ is the
+vector in $W$ closest to $x\in V$, the unique vector in $W$ such that
+$x-x_W\in W^{\bot}$.
+
+\section{Adjoints}
+\begin{theorem}
+      \label{6-9}
+Let $V, W$ be finite dimensional inner product spaces. Let
+$T \in \Hom(V,W)$.
+
+Then there exists a unique homomorphism $T^{*}\in \Hom(W,V)$ such that
+$\ipr{T(x)}{y}_W=\ipr{x}{T^{*}y}_{V}$ for all $x\in V$ and $y\in W$.
+    % If $V, W$ are finite dimensional vector spaces and
+    % $T \in \Hom(V,W)$, then there exists a unique $T^{*}\in \Hom(W,V)$
+    % such that $\ipr{Tx}{y}_W = \ipr{x}{T^{*}(y)}_V$ for all $x\in V$
+    % and $y\in W$.
+\end{theorem}
+
+\begin{proof}
+  Fix $y\in W$. Note that the function $f_y: W\to\FF$, where
+  $x\mapsto \ipr{x}{y}_W$ is linear.
+  \begin{lemma}
+    \label{6-8}
+  If $f \in \Hom(W,V)$, then $f = f_y$ for a unique $y\in W$,
+  i.e. $f(x) = \ipr{x}{y}_W$.
+  \end{lemma}
+    Fix $y \in W$.
+
+    Consider $f:V\to \FF$, with $x\mapsto \ipr{Tx}{y}_W$.
+
+    This is linear: $f$ is in the composition $f_y\circ T$ of two
+    linear functions.
+
+    By Lemma \ref{6-8}, there exists a unique vector $T^{*}y \in V$
+    such that $f(x) = \ipr{x}{T^{*}y}_{V}$ for all $x\in V$.  Thus, we
+    define a function $T^{*}:W\to V$ such that Theorem \ref{6-9} holds,
+    and thus $f(x) = \ipr{Tx}{y}$.
+
+    \begin{claim*}
+      $T^{*}$ is unique.
+    \end{claim*}
+
+      Fix $y\in W$. Then $T^{*}y \in V$ is unique by the uniqueness of
+      a vector given by Lemma \ref{6-8}.
+
+
+    \begin{claim*}
+      $T^{*}$ is linear.
+    \end{claim*}
+
+
+      Observe the following:
+
+      \begin{align}
+        \ipr{x}{T^{*}(cy_1+y_2)}_V & = \ipr{Tx}{cy_1+y_2}_W                      \\
+                                   & =\ol{c}\ipr{Tx}{y_1}_W+\ipr{Tx}{y_2}_W      \\
+                                   & = \ol{c}\ipr{x}{T^{*}y}_V+\ipr{x}{T^{*}y}_V \\
+                                   & =\ipr{x}{cT^{*}y_1+T^{*}y_2}
+      \end{align}
+
+      Therefore, $T^{*}(cy_1+y_2) = cT^{*}y_1 + T^{*}y_2$
+
+
+\end{proof}
+
+\begin{remark}
+  $\ipr{y}{Tx}_W=\ipr{T^{*}y}{x}_V$
+\end{remark}
+\begin{remark}
+  If $V$ is not finite-dimensional, then $T^{*}$ may not exist.
+\end{remark}
+
+\begin{theorem}
+  \label{6-10}
+
+  Let $\beta$ be an orthonormal basis of $V$, a finite-dimensional
+  vector space.
+
+  Let $\gamma$ be an orthonormal basis of $W$, a finite-dimensional
+  vector space.
+
+  Then $[T^{*}]_{\gamma}^{\beta} = ([T]^{\gamma}_{\beta})^{*}$.
+\end{theorem}
+
+\begin{proof}
+  Let $A = [T]_{\beta}^{\gamma}$ and $B= [T^{*}]_{\gamma}^{\beta}$,
+  where $\beta = (v_1, \dots, v_n)$ and $\gamma=(w_1, \dots, w_m)$.
+
+  Therefore,
+
+  \[B_{ij} = \ipr{T^{*}w_j}{v_i}_V = \ipr{w_j}{Tv_i} = \ol{\ipr{Tv_i}{w_j}} = \ol{A_{ji}}.\]
+
+  Therefore, $B = A^{*}$.
+\end{proof}
+
+\begin{theorem}
+  \label{6-11}
+  \begin{enumerate}[label=\alph*)]
+    \label{a}
+  \item If $T \in \Hom(V,W)$, $U \in \Hom(V,W)$, and $c\in\FF$, then
+    $(cT+U)^{*} = \ol{c}T^{*}+U^{*}$.
+    \label{b}
+  \item If $T:V\to W$ and $U:W\to Z$, where $V, W, Z$ are
+    finite-dimensional vector spaces, then $(UT)^{*}=T^{*}U^{*}$.
+    \label{c}
+  \item $T^{**}=T$
+    \label{d}
+  \item $I^{*}=I$, if the inner product is the same.
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  \ref{a}, \ref{c} and \ref{d} are left as exercises.
+  
+  \ref{b} can be deduced as follows, for all $x\in V$ and $y\in Z$:
+
+  \[
+    \ipr{x}{(TU)^{*}y} = \ipr{TUx}{y}_Z = \ipr{Ux}{T^{*}y}_W = \ipr{x}{U^{*}T^{*}y}_V
+  \]
+\end{proof}
+
+\begin{corollary}
+  \label{cor}
+  If $A\in M_{m\times n}(\FF)$, then $L_A:\FF^n\to \FF^m$ and
+  $(L_A)^{*} = L_{A^{*}}$, where standard inner products are used.
+
+  Moreover,
+
+  \begin{enumerate}[label=\alph*)]
+  \item $(cA+B)^{*} = \ol{c}A^{*}+B^{*}$
+  \item $(AB)^{*} = B^{*}A^{*}$
+  \item $A^{**} = A$
+  \end{enumerate}
+\end{corollary}
+\begin{proof}
+  % From Theorem \ref{6-9}, $\ipr{L_Ax}{y}_{\FF^m} = \ipr{x}{L_A^{*}}$
+
+  Let $L_A: \FF^n\to \FF^m$, and let $\beta$, $\gamma$ be standard
+  bases for $\FF^n, \FF^m$ respectively.
+
+  Therefore,
+  $[L_A^{*}]_{\gamma}^{\beta} = ([L_A]_{\beta}^{\gamma})^{*} = A^{*} =
+  [L_{A^{*}}]_{\gamma}^{\beta}$. Therefore, $L_A^{*} = L_{A^{*}}$.
+
+  Then we can deduce (a)-(d) from Theorem \ref{6-11}.
+  
+\end{proof}
+
+\section{Least Square Approximation}
+
+Let $A\in M_{m\times n}(\FF)$, $y\in\FF^m$.
+
+\begin{problem*}
+  Devise a method to find $x_0\in\FF^n$ such that
+  $\norm{Ax_0-y}\leq\norm{Ax-y}$ for all $x\in\FF^{n}$.
+\end{problem*}
+
+\begin{lemma}
+  \label{l-1}
+  $\ipr{Ax}{y}_{F^n} = \ipr{x}{A^{*}y}_{F^m}$.
+\end{lemma}
+\begin{proof}
+Apply Corollary \ref{cor}.
+\end{proof}
+
+\begin{lemma}
+  \label{l-2}
+$\rank A^{*}A = \rank A$
+\end{lemma}
+
+\begin{proof}
+  It is enough to show that $\ker A^{*}A = \ker A$.
+
+  If $Ax = 0$, then $A^{*}Ax = 0$, and hence $\ker A \suq \ker A^{*}A$.
+
+  If $A^{*}Ax = 0$, then
+  $\ipr{x}{A^{*}Ax} = \ipr{Ax}{Ax} = \norm{Ax}^2$. Therefore,
+  $Ax = 0$, and hence $\ker A^{*}A \suq A$, and thus $\ker A^{*}A = \ker A$.
+\end{proof}
+
+\begin{theorem}\hfill
+  
+  \label{6-12}
+  \begin{enumerate}[label=\alph*)]
+  \item $\exists x_0\in T^n$ such that $\norm{Ax_0-y}\leq \norm{Ax-y}$ for all $x\in \FF^n$.
+  \item $x_0$ satisfies (a) $\lra$ $A^{*}Ax_0 = A^{*}y$.
+  \item If $\rank A = n$ , then $A^{*}A$ is invertible, so there's a unique $x_0$ in (a).
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}\hfill
+  
+  \begin{enumerate}[label=\alph*)]
+  \item Let $W=\Img(A)$. We know that there exists $w_0$ in any $W$
+    such that $\norm{w_0-y}\leq \norm{w-y}$ for all $W\in W$.
+
+    Write $w_0=Ax_0$ for some $x_0$. Therefore,
+    $\norm{Ax_0-y}\leq \norm{Ax-y}$ for all $x\in\FF^n$.
+    \label{12b}
+  \item We also know that $Ax_0\in W$ is the closest vector to $y$ if and only if$y-Ax_0 \in W^{+}$.
+
+    Therefore, for any $x\in\FF^n$ we have that
+    $\ipr{Ax}{y-Ax_0}=0$. Equivalently, $\ipr{x}{A^{*}(y-Ax_0)} = 0$
+    for any $x$. Thus, $A^{*}(y-Ax_0) =0$, which means that $A^{*}y = A^{*}Ax_0$.
+  \item If $\rank A = n$, then Lemma \ref{l-2} shows that $\rank A^{*}A = n$.
+
+    Therefore, $A^{*}A$ is invertible.
+
+    Hence, $x_0 = (A^{*}A)^{-1}A^{*}y$.
+    
+  \end{enumerate}
+\end{proof}
+
+\begin{remark}
+  Note that \ref{12b} shows that $A^{*}Ax_0 = A^{*}y$ has a solution $x_0$ for any $y$.
+
+  Therefore, $\Img(A^{*}A) = \Img A^{*}$.
+\end{remark}
+
+Suppose now some data points $(t_i, y_i)$ are given for
+$i\in [1, n]\cap \NN$.
+
+Suppose also some line is drawn in the plane of the scatterplot
+representing the data.
+
+One way to measure how well the line $y = ax +b $ approximates the
+data is to compute the sum of the squares of the differences between
+the data points and the corresponding values given by drawing
+perpendiculars to the line:
+
+
+\begin{equation*}
+\delta = \sum_{i=1}^n(y_i-at_i-b)^2
+\end{equation*}
+
+This method is called the least square approximation.
+
+Let $A = 
+\begin{pmatrix}
+  t_1    & y_1    \\
+  t_2    & y_2    \\
+  \vdots & \vdots \\
+  t_n    & y_n
+\end{pmatrix} $, $x = \cv{a;b}$ and $y=\cv{y_1;\vdots;y_n}$.
+
+If $t_1, \dots, t_n$ contain at least $2$ different values,
+$\rank A \geq 2$, so Theorem \ref{6-12} implies there exists the unique best
+approximation.
+
+\section{Normal and Self-Adjoint Operators}
+
+Let $V$ be a finite-dimensional inner  product space.
+
+\begin{ques*}
+
+  When does $T \in \Hom(V,V)$ have an orthonormal basis of eigenvectors?
+
+\end{ques*}
+\begin{answer*}
+  If $V$ has such a basis $\beta$, then $[T]_{\beta} = 
+  \begin{pmatrix}
+    \lambda_1 &        & \\
+              & \ddots & \\
+              &        & \lambda_n
+            \end{pmatrix}$ for $\lambda_i\in\FF$.
+
+            By Theorem \ref{6-10},
+
+            $  \begin{pmatrix}
+    \ol{\lambda_1} &        & \\
+              & \ddots & \\
+              &        & \ol{\lambda_n}
+            \end{pmatrix}$, since $\beta$ is orthonormal.
+
+
+Therefore, $[TT^{*}]_{\beta} = [T^{*}T]_{\beta}$, and thus $TT^{*}=T^{*}T$            
+\end{answer*}
+
+\begin{definition}
+  $T \in \Hom(V,V)$ is \textbf{normal} if $TT^{*}=T^{*}T$ and
+  \textbf{self-adjoint} if $T^{*}=T$.
+
+  Similarly, $A \in M_{n\times n}(\FF)$ can be defined to be normal or self-adjoint.
+\end{definition}
+
+\begin{theorem}
+  If $\FF = \CC$, $V$ has an orthonormal basis of eigenvectors if and only if $T$ is normal.
+
+  If $\FF = \RR$, $V$ has an orthonormal basis of eigenvectors if and only if $T$ is self-adjoint.
+\end{theorem}
+
+
+\end{document}

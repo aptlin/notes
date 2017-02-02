@@ -1,0 +1,348 @@
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+\documentclass[11pt]{scrartcl}
+\usepackage[beaue, pset, anon]{masty}
+\pSet{\nt{MAT247}{VIII}{Orthogonality}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+\section{Orthogonality}
+\begin{definition}
+  Two vectors $u, v \in V$ are called \textbf{orthogonal} if $\ipr{u}{v} = 0$.
+\end{definition}
+
+\begin{definition}
+A subset $S\su V$ is called \textbf{orthogonal} if $\ipr{x}{y} = 0$ for all $x+y \in S$.
+\end{definition}
+
+\begin{definition}
+A vector $x\in V$ is called a \textbf{unit vector} if $\norm{x} = 1$.
+\end{definition}
+
+\begin{definition}
+  A subset $S\su V$ is \textbf{orthonormal} if it is an orthogonal
+  subset consisting of unit vectors. Thus, for all $x, y \in S$,
+  $\ipr{x}{y} = \delta_{xy}$.
+\end{definition}
+
+\begin{remark}
+If $x\neq 0$, then $\frac{x}{\norm{x}}$ is a unit vector.
+\end{remark}
+
+\begin{example}
+
+In $\FF^n$ with the standard inner product the standard basis is orthonormal.
+
+\end{example}
+
+\begin{example}
+  See p. 335 in Friedberg et al.
+
+  In $\HH = \SC[0,2\pi]$ with
+  $\ipr{f}{q} = \frac{1}{2\pi}\int_0^{2\pi}f(t)\ol{g(t)}\dif t$,
+  we have an orthonormal subset $\set{f_n(t) = e^{\text{int}}}$
+
+\end{example}
+
+\begin{example}
+
+  If $A\in M_{n\times n}(\FF)$, define
+  $A^{*} = \ol{A^{t}} = \ol{A}^{t}$, i.e.
+  $(A^{*})_{ij} = \ol{A}_{ji}$. Therefore,
+
+  \begin{align}
+    & (AB)^{*} = B^{*}A^{*} \\
+    & (A^{*})^{*} = A
+  \end{align}
+
+  Define the $\ipr{\*}{\*}$: $\ipr{A}{B} = \Tr(AB^{*}) = \Tr(B^{*}A)$.
+
+  Check that it is a valid inner product (the last two properties are
+  left as an exercise):
+
+  \begin{enumerate}[label=\alph*)]
+  \item \begin{align}
+          \Tr{(cA_1+A_2)B^{*}} & = \Tr{A_1B^{*}+A_2B^{*}} \\
+                               & = c \ipr{A}{B} + \ipr{A_2}{B}
+        \end{align}
+  \end{enumerate}
+
+  Note that we can see that this is a valid way to define an inner
+  product on $M_{n\times n}(\FF)$ as follows:
+
+  \begin{align}
+    \ipr{A}{B} & = \Tr{A}{B^{*}}                                                              \\
+               & = \sum_{i=1}^{n}(AB^{*})_{ii} = \sum_{i=1}^n\sum_{j=1}^{n}A_{ij}(B^{*})_{ji} \\
+               & = \sum_{i, j =1}^{n}A_{ij}\ol{B}_{ij}
+  \end{align}
+\end{example}
+\section{Gram-Schmidt and Orthogonal Complements}
+
+Let $V$ be a vector space.
+
+\begin{definition}
+An \textbf{orthogonal basis} is a basis that is also orthogonal.
+\end{definition}
+
+\begin{theorem}
+  \label{sec:gram-schm-orth}
+  If $S = \set{v_1,\dots,v_n}$ is an orthogonal subset of non-zero
+  vectors, then for any $x$ in $ \spn{S}$:
+
+  \begin{equation*}
+x = \sum_{i=1}^n \frac{\ipr{x}{v_{i}}}{\norm{v_i}^{2}}v_{i}
+  \end{equation*}
+
+  In particular, if $S$ is orthonormal, then $x = \sum_{i=1}^{n}\ipr{x}{v_i}v_i$.
+\end{theorem}
+\begin{proof}
+  If $x\in \spn S$, then $ x = \sum_{i=1}^n\lambda_iv_i $.
+
+  Take now $\ipr{\*}{y}$.
+
+  Then
+  \begin{align}
+    \ipr{x}{v_j} &= \ipr{\sum_{i=1}^{n}\lambda_iv_{i}}{v_{j}}\\
+    &=\sum_{i=1}^n\ipr{v_i}{v_j} = \lambda_{j}\ipr{v_j}{v_j} = 0,
+  \end{align}
+
+  Note that $\sum_{i=1}^n\ipr{v_i}{v_j} = 0$ for  $i \neq j$.
+
+  Therefore, $\lambda_j = \frac{\ipr{x}{v_j}}{\norm{v_{j}}}$
+\end{proof}
+
+\begin{corollary}
+If $S$ is orthogonal and $0\not\in S$, then $S$ is linearly independent.
+\end{corollary}
+
+\begin{proof}
+  If $\sum_{i=1}^n\lambda_{i}v_i = 0$ ($\lambda_i\in \FF, v_i\in S ]$,
+  then $\ipr{\sum_{i=1}^n\lambda_{i}v_i }{v_{j}} = 0$ for all
+  $j$. Since $v_j\neq 0$, then $\ipr{v_j}{v_{j}} \neq 0$, and hence
+  $\lambda_j = 0$.
+\end{proof}
+\begin{ques*}
+Why do orthogonal bases exist? How do we find them?
+\end{ques*}
+
+\begin{answer*}
+
+  An idea is to start with any basis $w_1, \dots, w_n$ of $V$.
+
+  Take $v_1=w_1$.
+
+  Try to find $c\in \FF$ such that $v_2= w_2+cv_1$ is orthogonal to $v_1$:
+
+  \begin{align}
+    0 = \ipr{v_2}{v_1} = \ipr{w_2+cv_1}{v_1} = \ipr{w_2}{v_1} + c\ipr{v_1}{v_{1}}  =  \norm{v_1}^2>0
+  \end{align}
+
+  Then $c = - \frac{\ipr{w_2}{v_1}}{\norm{v_1}^{2}}$.
+
+  Next try $v_{3} = w_3+dv_1+ev_2$, with $d, e \in F$. Solve for $d,e$
+  by using $\ipr{v_3}{v_1}+\ipr{v_3}{v_2} = 0$.
+
+\end{answer*}
+
+\begin{theorem}[Gram-Schmidt]
+  Suppose $w_1, \dots, w_k$ are linearly indepenedent in $V$.
+
+  Define
+  $v_i = w_i - \sum_{j=1}^{i-1}\frac{\ipr{w_i}{v_j}}{\norm{v_j}^2}v_j$
+  for all $i$ inductively, with $v_1=w_1$.
+
+  Then $\set{v_1, \dots, v_k}$ is an orthogonal subset and $0\not\in S$,
+  with the same span as $\set{w_1,\dots, w_{k}}$.
+\end{theorem}
+
+\begin{remark}
+  Hence if $w_1, \dots, w_{k}$ is a basis of $V$, then
+  $v_1, \dots, v_{k}$ is an orthogonal basis of $V$.
+
+  We can make it into an orthonormal basis by normalisation:
+
+  \begin{equation*}
+\frac{v_1}{\norm{v_1}}, \dots, \frac{v_k}{\norm{v_k}}
+  \end{equation*}
+\end{remark}
+
+\begin{corollary}
+  Any finite-dimensional inner product space has an orthonormal basis.
+\end{corollary}
+
+\begin{proof}
+  We use induction on $k$.
+
+  Let $k=1$. Then $v_1 = w_1$ is non-zero, and the rest follows.
+
+  If the claim is true for $k-1$, then we know that
+
+
+\begin{itemize}
+\item $\set{v_1, \dots, v_{k-1}}$ is orthogonal, $v_{i} \neq 0$ for all $i<k$.
+\item $\spn{v_1, \dots, v_{k-1}} = \spn{w_1, \dots, w_{k-1}}$.
+\end{itemize}
+
+We need to check that
+
+\begin{enumerate}
+\item\label{item:1} $\ipr{v_k}{v_i} = 0$ for all $i< k$, which means
+  that $\set{v_1,\dots, v_{k}}$ is orthogonal.
+\item\label{item:2} $v_k \neq 0$
+\item\label{item:3} $\spn{v_1, \dots, v_k} = \spn{w_1, \dots, w_{k}}$
+\end{enumerate}
+
+For (\ref{item:1}),
+
+\begin{align}
+  \ipr{v_k}{v_i} & = \ipr{w_k-\sum_{j=1}^{k-1}\frac{\ipr{w_k}{v_j}}{\norm{v_j}^2}v_j}{v_{i}}                                             \\
+                 & = \ipr{w_k}{v_i} - \sum_{j=1}^{k-1}\frac{\ipr{w_k}{v_j}}{\norm{v_j}^2}\ipr{v_j}{v_i} = 0\ \text{by (a), if $i\neq j$} \\
+                 & = \ipr{w_k}{v_i}-\frac{\ipr{w_k}{v_i}}{\norm{v_i}^2}\norm{v_i}^2
+\end{align}
+
+For (\ref{item:2}), if $v_k = 0$, then
+\[w_k = \sum_{i=1}^{k-1}(\dots)v_i\in \spn\set{v_1,\dots, v_{k-1}} =
+  \spn{w_{1}, \dots, w_{k-1}},\] which contradicts the assumption that
+$(w_i)_1^k$ are linearly independent. Therefore, $v_k\neq 0$.
+
+For (\ref{item:3}), note that
+
+\[
+  \spn{\set{v_1, \dots, v_k}} = \spn{\spn{v_1, \dots, v_{k-1}, w_{k}}} =\spn{\set{w_1, \dots, w_{k-1}, w_k}}.
+  \]
+\end{proof}
+
+\begin{example}
+
+  In $\RR^{3}$, if the basis is $w_1 = (1, 1, 1)$, $w_2 = (1, 1, 0)$,
+  $w_3 = (1, 0, 0)$, then $v_1 = w_1 = (1, 1, 1) $,
+  \[v_2 = w_2 - \frac{\ipr{w_2}{v_1}}{\norm{v_1}^2}v_1 = (\frac{1}{3}, \frac{1}{3}, \frac{1}{3}),\]
+  while
+
+  \[
+    v_3 = w_3- \frac{\ipr{w_3}{v_1}}{\norm{v_1}^2}v_1 - \frac{\ipr{w_3}{v_2}}{\norm{v_2}^2}v_2 = (\half, \half, 0)
+  \]
+
+\end{example}
+
+\begin{example}
+
+  See p. 345 in Friedberg et al.
+
+  Let $V = \SP(\RR)$ and $\ipr{f}{g} = \int_{-1}^1f(t)g(t)\dif t$.
+
+  If $w_1=1$, $w_2 = x$, $w_3 = x^3$, then we obtain the orthogonal
+  subset $v_1 = 1$, $v_2 = x$, $v_3 = x^2 - \frac{1}{3}$, and
+  $v_4 = x^3-\frac{3}{5}x, \dots$, which are called \textit{Legendre
+    polynomials}.
+\end{example}
+\begin{remark}
+  \hfill
+
+  From Theorem \ref{sec:gram-schm-orth}, if
+  $\beta = \set{v_1, \dots, v_{n}}$ is an orthonormal basis, then
+  $x = \sum_{i=1}^{n}\ipr{x}{v_i}v_i$. Moreover, $T \in \Hom(V,V)$ and
+  $\beta$ is an orthonormal basis, then $A = [T]_{\beta}$ has entries $A_{ij} = \ipr {T(v_i)}{v_i}$.
+\end{remark}
+
+\begin{definition}
+  If $S \suq V$, then let an \textbf{orthogonal complement of S} be
+  $S^{\bot} = \set{x\in V; \ipr{x}{y} = 0.\forall y\in S}$.
+\end{definition}
+\begin{remark}
+  If $S^{\bot}$ is a subspace of $V$, then $0\in S^{\bot}$. If
+  $x_1, x_2 \in S^{\bot}$, then for $y\in S$
+  \[
+    \ipr{cx_1+x_2}{y} = c\ipr{x_1}{y} + \ipr{x_{2}}{y} = 0
+  \]
+
+  Thus, $cx_1+ x_2\in S^{\bot}$.
+\end{remark}
+
+\begin{example}
+If $V = \set{0}^{\bot}$, then $V^{\bot} = \set{0}$, since $\ipr{x}{x}> 0$ for $x\neq 0$.
+\end{example}
+
+\begin{remark}
+  $S^{\bot} = \spn{S}^{\bot}$, because if $x$ is orthonormal to
+  vectors in S, then $x$ is orthonormal to any linear combination of vectors in $S$.
+\end{remark}
+
+\begin{theorem}
+  If $W\suq V$, then $V = W \oplus W^{\bot}$. Moreover, if
+  $\set{v_1,\dots, v_k}$ is an orthonormal basis of $W$ and $x = w+ z$
+  for $w\in W, z \in W^{\bot}$, then $w = \sum_{i=1}^k\ipr{x}{v_i}v_i$.
+\end{theorem}
+
+\begin{proof}
+
+  Pick an orthonormal basis $v_1, \dots, v_k$ of $W$.
+
+  Suppose $x= w+z$ with $w \in W$ and $z \in W^{\bot}$. Therefore,
+  $w = \sum_{i=1}^k\ipr{w}{v_i}v_i = \sum_{i=1}^k\ipr{x}{v_i}v_i$
+  since $z\in W^{\bot}$.
+
+  To check that $V = W \oplus W^{\bot}$, first we prove that $V = W + W^{\bot}$.
+
+  Take $x \in V$. Define $w = \sum_{i=1}^k v_i \in W$. Then $z_i = x - w$.
+
+  Note that
+
+  \begin{align}
+  \ipr{z}{v_i} = \ipr{x-w}{v_j} = \ipr{x}{v_j} &=
+    \sum_{i=1}^k\ipr{x}{v_i}\ipr{v_i}{v_j} = \delta_{ij}\\
+    &= \ipr{x}{v_j}- \ipr{x}{v_j} = 0
+  \end{align}
+  Therefore, $z\in W^{\bot}$, since  $\set{v_1, \dots, v_k}$ is a basis.
+
+  To check that $W\cap W^{\bot} = \set{0}$, suppose that
+  $x\in W\cap W^{\bot}$. Then $\ipr{x}{x}= 0$,  and hence $x= 0$.
+\end{proof}
+
+
+
+
+\end{document}

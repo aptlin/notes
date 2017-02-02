@@ -1,0 +1,186 @@
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+\documentclass[11pt]{scrartcl}
+\usepackage[beaue, pset, anon]{masty}
+\pSet{Alexander Illarionov -- 1003590937 -- CSC240 Pset III}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\textbf{Administrativia}: discussed problem 2 with Ming Feng Wan, no extra material consulted
+
+\renewcommand{\introsymb}{\textbf{}}
+
+\section*{Problem I}
+
+\begin{flagderiv}
+  \assume{arb-f}{\text{Let $f\in \SF$ and be arbitrary.}}{}
+  \assume{arb-g}{\text{Let $g\in \SF$ and be arbitrary.}}{}
+  \assume{ass}{\forall n \in\ZZ^+.(f (n) = 2^{\frac{1}{n}} \AND g(n) = 2f (n)) }{Assumption}
+  % \introduce{ass}{\log_2 f \in \Omega(\log_2 g). }{Assumption}
+  \assume{spec-def}{\text{Let $n\in\ZZ^+$ be arbitrary.}}{}
+  \assume{1-spec}{f (n) = 2^{\frac{1}{n}} \AND g(n) = 2f
+    (n))}{Specialization, \ref{ass}-\ref{spec-def}} \step{log-c-1}{f
+    (n) = 2^{\frac{1}{n}}}{Use of Conjunction, \ref{1-spec}}
+  \step{1-log}{\text{$\log_2f(n) = \frac{1}{n}$}}{Definition of
+    $\log$, \ref{log-c-1}} \step{log-c-2}{g(n) = 2f (n)}{Use of
+    Conjunction,\ref{1-spec}}
+  \step{2-log}{\text{$\log_2 g(n) = 1 + \frac{1}{n}$}}{Definition of
+    $\log$, \ref{1-log},\ref{log-c-1}} \done \done
+  \assume{arb-c}{\text{Let $c\in\RR^+$ be arbitrary.}}{}
+  \assume{arb-b}{\text{Let $b\in\ZZ^+$ be arbitrary.}}{}
+  \assume{constr}{\text{Let $m\in\ZZ^+$ be such that
+      $m \geq \max\set{\frac{1}{c}, b}$}}{}
+  \step{prop-m}{\text{$m\geq\frac{1}{c} \AND m \geq b$
+    }}{Construction, \ref{constr}}
+  \assume{conj-m}{\text{$m\geq\frac{1}{c}$}}{Use of Conjunction,
+    \ref{prop-m}}
+  \step{rear-m}{\text{$m > \frac{1-c}{c}$}}{Well-Ordering of $\RR$,
+    \ref{conj-m}}
+  \step{rear-m-2}{\text{$c > \frac{1}{m} - \frac{c}{m}
+      $}}{Multiplication by $\frac{c}{m}\in\RR^{+}$, \ref{rear-m}}
+  \step{rear-m-3}{\text{$c + \frac{c}{m} > \frac{1}{m} $}}{Addition of
+    $\frac{c}{m}\in\RR^{+}$, \ref{rear-m-2}}
+  \step{dist-m}{\text{$c(1 + \frac{1}{m}) > \frac{1}{m}
+      $}}{Distributive Law of $\RR$, \ref{rear-m-3}}
+  \step{sub-f}{\text{$\log_2f(m) = \frac{1}{m}$}}{Specialisation,
+    \ref{1-log}}
+  \step{sub-g}{\text{$\log_2g(m) = 1+\frac{1}{m}$}}{Specialisation,
+    \ref{2-log}}
+  \step{sub-fg}{\text{$\log_2 f(m) < c\*\log_2 g(m)$}}{Substitution,
+    \ref{dist-m}, \ref{sub-f}, \ref{sub-g}} \done
+  \assume{conj-b}{\text{$m\geq b$}}{Use of Conjunction, \ref{prop-m}}
+  \step{conjy-s}{\text{$m\geq b \AND \log_2 f(m) < c\*\log_2
+      g(m)$}}{Proof of Conjunction, \ref{sub-fg}, \ref{conj-b}} \done
+  \conclude{conjy-f}{\text{$\exists n\in\ZZ^+.$}\\\text{$(n\geq b \AND \log_2 
+     f(n) < c\*\log_2 g(n))$}}{Proof by Construction, \ref{constr}-\ref{conjy-s}}
+ \conclude{gen-b}{\text{$\forall b\in \ZZ^{+}.\exists n\in\ZZ^+.$}\\
+   \text{$(n\geq b \AND \log_2 f(n) < c\*\log_2 g(n))$}}{Generalisation, \ref{arb-b}, \ref{conjy-f}}
+  \conclude{gen-c}{\text{$\forall c\in\RR^{+}.\forall b\in \ZZ^{+}.\exists n\in\ZZ^+.$}\\
+    \text{$(n\geq b \AND \log_2 f(n) < c\*\log_2 g(n))$}}{Generalisation, \ref{arb-c}, \ref{gen-b}}
+  \step{predef}{\text{$\NOT[\exists c\in\RR^{+}.\exists b\in \ZZ^{+}.\forall n\in\ZZ^+.$}\\
+    \text{$(n\geq b \THEN \log_2 f(n) \geq c\*\log_2 g(n))]$}}{Tautology, \ref{gen-c}}
+  \step{def}{\text{$\log_2f \not \in \Omega(\log_2 g)$}}{Definition of $\Omega$, \ref{predef}}
+  \conclude{pregen}{[\forall n \in\ZZ^+.(f (n) = 2^{\frac{1}{n}} \AND g(n) = 2f (n))]\\ \THEN \log_2f \not \in \Omega(\log_2 g)}{Proof of Implication, \ref{ass}, \ref{def}}
+  \conclude{gen-g}{\forall g\in \SF.\big([\forall n \in\ZZ^+.(f (n) = 2^{\frac{1}{n}} \AND g(n) = 2f (n))]\\ \THEN \log_2f \not \in \Omega(\log_2 g)\big)}{Generalisation, \ref{arb-g}}
+  %   \step{con}{\text{$\exists c \in \RR^{+} .\exists b \in \ZZ^+.\forall
+%       n \in \ZZ^+.$}
+%     \text{$(n \geq b \THEN \log_2 f(n) \geq c\* \log_2 g
+%       (n))$}}{Construction, \ref{ass}}
+
+%   \step{inst}{\text{Let $m\in\RR^{*}$ and $b\in \ZZ^+$ be such that}\\
+% \forall n \in \ZZ^+.
+%     \text{$(n \geq b \THEN \log_2 f(n) \geq c\* \log_2 g (n))$}.
+%     }{Instantiation, \ref{con}}
+  \conclude[3]{conc}{
+    \forall f \in \SF.
+    \forall g \in \SF. \\$\big($
+    [\forall n \in\ZZ^+.(f (n) = 2^{\frac{1}{n}} \AND g(n) = 2f (n))]\\
+    \THEN
+    \log_2 f \not\in\Omega (\log_2 g)$\big)$}{Generalisation, \ref{arb-f}}
+
+\end{flagderiv}
+
+\section*{Problem II}
+
+\begin{flagderiv}
+  \assume{arb-f}{\text{Let $f\in \SF$ and be arbitrary.}}{}
+  \assume{arb-g}{\text{Let $g\in \SF$ and be arbitrary.}}{}
+  \assume{ass}{f \in \Omega(g) \AND \forall n \in Z^+.(f(n) \geq 2 \AND g(n) \geq 1)}{Assumption}
+  \assume{om-f}{f \in \Omega(g)}{Use of Conjunction, \ref{ass}}
+
+  \step{om-df}{\text{$\exists c\in\RR^{+}.\exists b\in \ZZ^{+}.\forall n\in\ZZ^+.$}\\
+    \text{$(n\geq b \THEN f(n) \geq c\* g(n))$}}{Definition of $\Omega$, \ref{om-f}}
+  \assume{om-sz}{\text{\shortstack[l]{Let $s\in\RR^+$ and $z\in\ZZ^+$ be such that $\forall n\in\ZZ^{+}.$\\
+        $(n\geq z \THEN  f(n) \geq s\* g(n))$  }}
+  }{Instantiation, \ref{om-df}}
+  \assume{pre-m}{\text{Let $m\in\ZZ^+$ be such that $m\geq z$.}}{}
+  \step{sz}{\text{$\forall n\in\ZZ^{+}(n\geq z \THEN  f(n) \geq s\* g(n))$}}{Construction, \ref{om-sz}}
+  \step{spec-sz}{\text{$m\geq z \THEN  f(m) \geq s\* g(m))$}}{Specialisation, \ref{pre-m}, \ref{sz}}
+  \step{mod-m}{\text{$m\geq z$}}{Construction, \ref{pre-m}}
+  \step{mod-p}{\text{$f(m) \geq s\* g(m)$}}{Modus Ponens, \ref{spec-sz}, \ref{mod-m}}
+  \step{log-fg}{\text{$\log_{2} f(m) \geq \log_2 s +\log_2 g(m)$}}{Increasing $\log$, \ref{mod-p}}
+  \assume{ass-2}{\text{$\forall n \in Z^+.(f(n) \geq 2 \AND g(n) \geq 1)$}}{Use of Conjunction, \ref{ass}}
+  \step{m-2}{\text{$f(m)\geq 2 \AND g(m) \geq 1$}}{Specialisation, \ref{pre-m}, \ref{ass-2}}
+  \step{pre-log-f}{\text{$f(m)\geq 2$}}{Use of Conjunction, \ref{m-2}}
+  \step{log-f}{\text{$\log_2 f(m) \geq 1$}}{Increasing $\log$, \ref{pre-log-f}}
+    \step{pre-log-g}{\text{$g(m)\geq 1$}}{Use of Conjunction, \ref{m-2}}
+    \step{log-g}{\text{$\log_2 g(m) \geq 0$}}{Increasing $\log$, \ref{pre-log-f}}
+    \done
+
+    \step{pre-gen-m}{\shortstack[l]{  
+\text{$m \geq z \THEN$}\\\text{$ \log_{2} f(m) \geq \log_2s +\log_2 g(m)$}}}{Proof of Implication, \ref{mod-m}, \ref{log-fg}}
+    \conclude{gen-m}{\text{\shortstack[l]{
+          $\forall n\in\ZZ^+.(n \geq z \THEN$\\$\log_{2} f(n) \geq \log_2 s +\log_2 g(n))$}}}{Generalisation, \ref{om-sz}, \ref{pre-m}, \ref{pre-gen-m}}
+    \assume{contr-a}{\shortstack[l]{\text{$\forall c\in\RR^+.\forall b\in \ZZ^+.\exists n\in\ZZ^+.$}\\\text{$(n\geq b \AND \log_2f(n) < c\log_2g(n))$}}}{Assumption}
+    \step{contr-b}{\shortstack[l]{\text{$\forall b\in \ZZ^+.\forall c\in\RR^+.\exists n\in\ZZ^+.$}\\\text{$(n\geq b \AND \log_2f(n) < c\log_2g(n))$}}}{Tautology, \ref{contr-a}}
+    % \assume{cases}{\shortstack[l]{\text{$(\forall n\in\ZZ^+.\log_2g(n) = 0)\OR$}\\
+    %     \text{$(\exists n\in\ZZ^+.\log_2g(n) > 0)$}}}{\shortstack[l]{Tautology and\\
+    %     Nonnegativity of $\log$  }}
+    \step{case-1}{\text{$\forall n\in\ZZ^+.\log_2g(n) = 0$}}{Assumption}
+    \step{contr-1}{\shortstack[l]{\text{$\forall c\in\RR^+.\forall b\in \ZZ^+.\exists n\in\ZZ^+.$}\\\text{$(n\geq b \AND \log_2f(n) < 0)$}}}{Logical Substitution,\ref{contr-a},\ref{case-1}}
+    \step{contr-conj}{\shortstack[l]{\text{$\forall c\in\RR^+.\forall b\in \ZZ^+.\exists n\in\ZZ^+.$}\\\text{$\log_2f(n) < 0$}}}{Use of Conjunction,\ref{contr-1}}
+    \step{gen-m}{\text{$\forall n\in\ZZ^+.\log_2f(n) \geq 1$}}{Generalisation, \ref{log-f}}
+    \step{non-log}{\forall \log x\in\RR. x\in\RR^{+}}{Nonnegativity of $\log$ (informal)}
+    \step{log-s}{\log_2 g(n) > 0 }{Proof by Contradiction,\ref{case-1}-\ref{non-log}}
+    \step{arch-r}{\text{$\exists r'\in\RR^+.r'\*\log_2g(n)>\log_2s$}}{Archimidean Property of $\RR$}
+    \step{def-r}{\shortstack[l]{\text{Let $r$ be a number such that}\\\text{$r\*\log_2g(n)>\log_2s$}}}{Instantiation, \ref{arch-r}}
+    \step{rect-r}{\text{$r>\frac{\log_2s}{\log_2g(n)}$}}{Algebra of $\RR$, \ref{non-log}}
+    \step{pre-inst}{\shortstack[l]{\text{$\exists n\in\ZZ^+.$}\\\text{$(n\geq z \AND \log_2f(n) < (r+1)\log_2g(n))$}}}{Specialization, \ref{contr-a}}
+    \step{rect-c}{\shortstack[l]{\text{$\exists n\in\ZZ^+.$}\\\text{$(n\geq z \AND \log_2f(n) < \log_2s + \log_2g(n))$}}}{Definition of $r$, \ref{pre-inst}, \ref{rect-r}}
+    \conclude{pr-a}{\shortstack[l]{\text{$\exists c\in\RR^+.\exists b\in \ZZ^+.\forall n\in\ZZ^+.$}\\\text{$(n\geq b \THEN \log_2f(n) \geq c\log_2g(n))$}}}{Proof by Contradiction,\ref{contr-a}-\ref{rect-c}}
+    \step{om-log}{\text{$\log_2f\in\Omega(\log_2g)$}}{Definition of $\Omega$, \ref{pr-a}}
+    \conclude[3]{}{    \big(f \in \Omega(g) \AND \forall n \in Z^+.(f(n) \geq 2 \AND g(n) \geq 1)\big)\\
+    \THEN \log_2 f \in \Omega(\log_2 g)}{Proof of Implication, \ref{ass}, \ref{om-log}}
+    % \assume{sup-t}{\text{\shortstack[l]{$(\exists U\in\RR.\forall n \in\ZZ^+.[\log_2f(n) \leq U])\OR$\\$ \NOT (\exists U\in\RR.\forall n \in\ZZ^+.[\log_2f(n) \leq U])$}}}{Tautology}
+  \conclude[3]{conc}{\forall f \in F.\forall g \in \SF. \\
+    \big(f \in \Omega(g) \AND \forall n \in Z^+.(f(n) \geq 2 \AND g(n) \geq 1)\big)\\
+    \THEN \log_2 f \in \Omega(\log_2 g)}{Generalisation, \ref{arb-f}, \ref{arb-g}}
+% \conclude{conc}{\forall f \in F.\forall g \in \SF.\\
+%   [f \in \Omega(g) \AND \forall n \in Z^+.(f(n) \geq 2 \AND g(n) \geq 1)] \THEN \log_2 f \in \Omega(\log_2 g)}{}
+\end{flagderiv}
+\end{document}

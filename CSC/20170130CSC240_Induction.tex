@@ -1,0 +1,165 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{CSC240}{VII}{Induction}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Induction}
+
+\begin{example}
+
+  Let $p:\NN\to\set{T, F}$ be a predicate.
+  $\forall n \in \NN.p(n)$.
+
+\begin{enumerate}[label=\alph*)]
+\item\label{item:1} a. $p(0)$ is base case or basis step.
+\item  Let $n\in\NN$ be arbitrary.
+\item  Assume $p(n)$.
+\item  p(n+1)
+\item  $p(n) \THEN p(n+1)$ direct proof c-d
+\item 
+    $\forall n \in \NN.(p(n) \THEN p(n+1) \text{ generalization b-e }$
+
+\item $\forall n \in \NN.(p(n) \text{ induction a-f }$
+
+\end{enumerate}
+\end{example}
+\begin{theorem}
+  Consider any square chessboard which sides have length which is a
+  power of 2. If any one square is removed, then the resulting shape
+  can be tiled using only 3-square L-shaped tiles.
+\end{theorem}
+
+\begin{proof}
+  For all $n\in\NN$, let
+
+  \[\shortstack[l]{ P(n) =\\ \ }
+    \text{\shortstack[l]{ ``any $2^n\times 2^n$ with 1 square
+        removed\\ can be tiled using 3-square L-shaped tiles. '' }}\]
+  Let $C_n$ the set of all $2^n\times 2^n$ chessboards with 1 square removed.
+
+  Let ``L-tile'' denote a 3-square L-shaped tile.
+
+  $P(n) = \text{``$\forall c\in C_n.(c$ can be tiledusing only L-tiles.$)$''}$.
+
+  $\forall n\in \NN. P(n)$.
+
+  Basis: $P(0)$ is true.
+
+  A $2^0\times 2^0$ chessboard with 1 square removed has no squares
+  and, therefore, can be tiled with 0 tiles.
+
+  Let $n\in\NN$ be arbitrary.
+
+  Suppose $P(n)$ is true.
+
+  Divide $c$ into $4$ equal $2^n\times 2^n$ chessboards. One of these has a square removed, so it is in $C_n$, and hence, by the induction hypothesis, it can be tiled with L-tiles.
+
+  Consider the other 3 chessboards.
+
+  Each has 1 square that is one of the 4 squares in the middle of $c$.
+
+  With those squares removed, the remaining three squares are also in
+  $C_n$, is the inductive hypothesis implies that they can be tiled by
+  L-tiles.
+
+  The 3 squares in the middle can be tiled with 1 L-tile.
+
+    $c$ can be tiled using L-tiles.
+  
+  $\forall c\in C_{n+1}.$ $c$ can be tiled using L-tiles.
+
+  $P(n+1)$ | generalisation
+  
+\end{proof}
+
+Another theorem can be proved using the result above:
+
+\begin{theorem}
+  All square chessboards with sides of length a power of 2 and with 1
+  square removed from the middle can be tiled using L-tiles.
+\end{theorem}
+
+\begin{theorem}
+$\forall n \in (n\geq 3 \THEN 2n+1 \leq 2^n)$.
+\end{theorem}
+
+\begin{proof}
+  For $n \in \NN$, let $q(n)=$``$2n+1 \leq 2^{n}$''.
+
+  Let $n\in \NN$ be arbitrary. Assume $q(n)$.
+  
+  Base case: Let $p(n) = q(n+3)$ for all $n\in \NN$.
+
+  Basis:
+
+  $P(0)$ is true.
+
+  Induction step:
+
+  Let $n\in \NN$ be arbitrary.
+
+  Assume $p(n)$.
+
+  $\dots$
+
+  $p(n+1)$
+
+  $p(n)\THEN p(n+1)$, direct proof
+
+  $\forall n\in \NN.(p(n)\THEN p(n+1)$, generalization
+  
+  $\forall n\in \NN. p(n)$, induction
+
+\end{proof}
+
+
+\end{document}
+

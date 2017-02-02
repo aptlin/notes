@@ -1,0 +1,188 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{MAT157}{X}{Planetary Motion}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Kepler's Laws and Planetary Motion}
+
+Achievements in observing the planetary motion was brought by:
+\begin{itemize}
+\item Ptolemy
+\item Tycho Brahe
+\item Kepler
+\end{itemize}
+
+\subsection{Kepler's Laws}
+
+\begin{enumerate}
+\item\label{item:1} Planets move in ellipses (not quite true,
+  cf. \textit{conic sections}), with the sun at a focus.
+\item Equal areas are swept in equal times.
+\item If $a$ is the length of the major axis of an ellipse and $T$ is
+  the period of one revolution of a planet around the sun, then $\frac{a^3}{T^2} = \text{const}$.
+\end{enumerate}
+
+Kepler inferred these laws from empirical data. Newton developed a
+\textit{theory of fluxes} and proved Kepler's laws formally.
+
+Consider a two-body system with one of them acting as the sun (a fixed
+point) and another acting as a planet and having a velocity which is a
+sum of two linearly independent vectors, with one of the components
+pointed to the sun, so that all the motion lies in a plane.
+
+Introduce polar coordinates with the origin at the sun and the vector
+$r(t)$ corresponding to the position of the orbiting planet at time $t$.
+
+Let's write
+
+\begin{equation*}
+c(t) = r(t)(\cos(\theta(t)), \sin(\theta(t))).
+\end{equation*}
+
+Write $e(t) = (\cos(\theta(t)), \sin(\theta(t)))$ so that
+$c(t) = r(t)e(t)$.
+
+Consider a derivative of $c(t)$:
+
+\begin{align}
+c'(t) &= (r'(t)\cos(\theta(t))-r(t)\sin(\theta(t))\theta'(t), r'(t)\sin(\theta(t)) + r(t)\cos(\theta(t))\theta'(t)).
+\end{align}
+
+If $u = (a, b)$ and $v = (c, d)$, write $\det(u, v) = \det 
+\begin{pmatrix}
+  a & b \\
+  c & d
+\end{pmatrix}$.
+
+Therefore,
+\begin{align}
+  \det(c, c') &= r^2(t)\theta'(t)\det 
+  \begin{pmatrix}
+    \cos \theta & \sin \theta\\
+    -\sin \theta & \cos \theta
+  \end{pmatrix}\\
+  &= r^2(t) \theta'(t)
+\end{align}
+
+Note that the lower sum for the section area of any curve in polar
+coordinates is
+
+\[\sum_ir_i^2(\theta_i-\theta_{i-1}),\]
+
+and the upper sum is $\sum_iR_i^2(\theta_i-\theta_{i-1})$, and thus
+$\half \int_{\theta_1}^{\theta_2} r^2(\theta(t))\theta'(t)\dif t$.
+
+By the Fundamental Theorem of Calculus,
+
+$A'(t) = \frac{1}{2}r^2(t)\theta'(t) = \half \det(c, c')$.
+
+Note that Kepler's Second Law amounts to $A'' = 0$, i.e. $A'$ is a constant.
+
+\begin{align}
+  A'' &= \half  \frac{\dif \det(c, c')}{\dif t}\\
+      &= \half(\det(c',c') + \det(c, c''))\\
+      &= \half \det(c, c'')
+\end{align}
+
+Observe that $A'' = 0$ if and only if $c''$ as a multiple of $c$, i.e. the acceleration is always $c$ and the corresponding force is along $c$, which makes it a central force.
+
+\begin{theorem}[Kepler's Second Law]
+Equal areas are swept out in equal times if and only if the force is central.
+\end{theorem}
+
+Newton hypothesized that gravity is an ``inverse-square'' force, with the strength proportional to $\frac{1}{r^2}$.
+
+This means that 
+\begin{equation*}
+c''(t) = -\frac{K}{r^2(t)}e(t).
+\end{equation*}
+
+Since we know that $r^2\theta' = H$, where $H$ is some constant, so $\frac{c''(t)}{\theta'(t)} = - \frac{K}{H}e(t)$.
+
+Note that $\frac{c''(t)}{\theta'(t)}$ is the derivative of $c'(\theta^{-1})(\theta(t))$.
+
+Write $D(\theta) = c'(\theta^{-1}(\theta))$.
+
+So $D' = - \frac{K}{H}e(\theta) = -\frac{K}{H}(\cos \theta, \sin \theta)$.
+
+We can solve the following:
+
+\begin{equation*}
+D = - \frac{K}{H}(\sin \theta +A, -\cos \theta +B)
+\end{equation*}
+
+Putting this into $\det(c, c') = r^2\theta'(t)$ and dealing with the associated algebra and geometry, it is possible to show that
+
+\begin{equation*}
+r = L(1+\epsilon \cos\theta),
+\end{equation*}
+
+which is the equation of a conic with one focus at the origin and eccentricity of $\epsilon$:
+\begin{itemize}
+\item if $0<\epsilon< 1$, then the trajectory is an ellipse
+\item if $\epsilon = 1$, then the trajectory is a parabola
+\item if $\epsilon > 1$, then the trajectory is a hyperbola
+\end{itemize}
+
+A similar argument also shows that to get orbits that are conic
+sections, a central force has to be an inverse-square force.
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

@@ -1,0 +1,147 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{MAT247}{IX}{Orthogonal Complements and Adjoints}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{More on Orthogonal Complements}
+
+\begin{remark}
+  If $x = w+ z$ ($w\in W$, $z\in W^{\bot}$, then $w$ is the
+  \textbf{orthogonal projection of $x$ on $W$}.  In fact, any
+  orthogonal projection is a linear map.
+\end{remark}
+
+\begin{corollary}
+  If $V$ is finite dimensional, then $\dim V = \dim W + \dim W^{\bot}$
+  and $(W^{\bot})^{\bot} = W$.
+\end{corollary}
+\begin{proof}
+  Since $V = W \oplus W^{\bot}$, then
+  $\dim V = \dim W + \dim W^{\bot}$.
+
+  Moreover, $\dim(W^{\bot}) = \dim V - \dim W^{\bot} = \dim W$.
+
+  We prove now that $W\su (W^{\bot})^{\bot}$.
+
+  If $x\in W$, then $\ipr{x}{y} = 0$ for all $y\in W^\bot$. Therefore,
+  $x\in (W^{\bot})^{\bot}$.
+\end{proof}
+
+\begin{corollary}
+  If $x = w+z$ for $w\in W, z \in W^{\bot}$, then $w$ is the unique vector closest to $x$ in $W$. Thus, for all $u\in W$ such that $u\neq w$:
+  
+  \begin{equation*}
+    \norm{x-u} < \norm{x-w}
+  \end{equation*}
+\end{corollary}
+\begin{proof}
+  If $a, b \in V$ and $\ipr{a}{b} = 0$, then
+  $\norm{a+b}^2 = \norm{a}^{2}+\norm{b}^{2}$.
+
+  Therefore,
+  $\norm{(w-u)+z}^2= \norm{w-u}^2 + \norm{z}^2 \geq \norm{z}^2$.
+\end{proof}
+
+\begin{theorem}
+  Let $S = \set{v_1,\dots, v_k}$ be an orthonormal subset such that $\dim V = n$:
+  \begin{enumerate}[label=\alph*)]
+  \item Then $S$ can be extended to an orthonormal basis of $V$
+  \item If $W = \spn\set{v_1, \dots, v_k}$, then $W^{\bot} = \spn\set{v_{k+1}, \dots, v_n}$.
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  \begin{enumerate}[label=\alph*)]
+  \item 
+  
+  First, extend $\set{v_1, \dots, v_k}$. Use the Gram-Schmidt procedure to make it orthonormal. Note that any orthonormal subset is linearly independent.
+
+  The first $k$ elements of the new basis are unchanged. In this way, $v_1, \dots, v_n$ is an orthonormal basis of $V$ after normalisation.
+\item If $V = \spn\set{v_k, \dots, v_n}$, then $\ipr{x}{y} = 0$ for all $x\in W$ and $g\in V$, which is logically equivalent to $V\su W^{\bot}$.
+  Since $\dim W^{\bot} = \dim U$, then $V = W^{\bot}$.
+    \end{enumerate}
+\end{proof}
+
+\section{Adjoints}
+
+If $V$ is a finite dimensional inner product space and
+$T \in \Hom(V,V)$, then there exists a unique $T^{*}\in \Hom(V,V)$,
+called an \textbf{adjoint} such that
+$\ipr{T(x)}{y} = \ipr{x}{T^{*}(y)}$ for all $x, y \in V$.
+
+Note that $[T^{*}]_{\beta} = ([T]_{\beta})^{*}$. Tho show this, note
+that if $y\in V$, the function $f_y: V\to \FF$ is linear.
+
+\begin{theorem}
+  Let $V$ be a finite dimensional vector space. If $f: V \to \FF$ is
+  linear, then there exists a unique $y\in V$ such that $f = f_y$, i.e. $f(x) = \ipr{x}{y}$ for all $x \in V$.
+\end{theorem}
+
+\begin{proof}
+  Pick an orthonormal basis $v_1,\dots, v_n$.
+
+  Suppose $f = f_y$.
+
+  Therefore, $f(v_1) = \ipr{v_1}{y}$. Hence,
+  $y = \sum_{i=1}^n \ipr{y}{v_i}v_i = \sum_{i=1}^n \ol{f(v_i)}v_{i}$.
+
+  Define $y = \sum_{i=1}^n\ol{f(v_i)}v_i$.
+
+  To prove that $y$ is unique, it's enough to show that $f(v_i) = f_y(v_i)$.
+
+  Observe that $f_y(v_i) = \ipr{v_i}{y} = \ipr{v_i}{\sum_{j=1}^n\ol{f(v_j)}v_j}$.
+
+  Therefore, $f_y(v_i) = \sum_{j=1}^nf(v_j)\ipr{v_i}{v_j} = f(v_i)$.
+\end{proof}
+
+
+
+\end{document}

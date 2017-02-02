@@ -1,0 +1,294 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{BIO130}{III}{Chromatin and DNA Replication}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Chromatin}
+
+\subsection{Heterochromatin}
+\begin{itemize}
+\item Highly condensed chromatin
+
+\begin{itemize}
+\item Meiotic and mitotic chromosomes (no tangles, no breaks)
+\item Centromeres (central portion of a chromosome) and telomeres (the
+  ends of linear chromosomes)
+\item One $X$ chromosome in human females (Barr body, which is
+  not transcribed)
+\end{itemize}
+\item Heterochromatic regions of interphase chromosomes are areas
+  where gene expression is suppressed. Since the DNΑ is very
+  condensed, the information cannot be accessed. Some regions in
+  during the interphase are thus compact, some are not so much.
+\end{itemize}
+
+\subsection{Euchromatin}
+\begin{itemize}
+\item Relatively non-condensed chromatin
+\item Euchromatic regions of intrephase chromosomes regions where
+  genes tend to be expressed.
+\item The reversible switching from euchromatic to heterochromatic
+  regions is modulated by covalent modification of histones, the
+  presence of chromatin remodelling complexes and RNA polymerase
+  (transcription) complexes.
+\end{itemize}
+
+There are several implications of existence of condensed chromatin for gene expression:
+
+\begin{itemize}
+\item the interphase chromosomes are in discrete regions of the nucleus
+\item The expressing gene within the chromatin can be re-oriented. If
+  there is a need to express a gene, transcription can happen by
+  decondensing particular regions of a chromosome. If the chromatin
+  should not be expressed, everything stays condensed.
+
+  For example, chromatin can be remodelled to form loops in order to
+  access to DNA.
+\end{itemize}
+
+\subsection{Transcription Factories}
+
+\textbf{Transcription factories} are regions of the nucleus that have
+lots of RNA polymerase, lots of substrates, lots of materials for
+transcription.
+\begin{ques*}
+
+  What are the advantages to the cell of being able to package DNA
+  into a heterochromatics state?
+
+\end{ques*}
+
+\subsection{DNA Replication}
+
+DNA replication is important.
+
+\begin{ques*}
+
+Is DNA repllication conservative or semiconservative?
+
+\end{ques*}
+
+Before the cell division, a cell is a mother cell (or parental
+cell). Afterwards, they are daughter cells.
+
+In the conservative model, when the parental cell divides, one of the
+cells have the same strands, the other has all the new strands.
+
+In the semiconservative model, one of the strands in each daughter
+cell is old, the other one is new.
+
+Only the semiconservative method has been observed.
+
+\begin{ques*}
+
+What is the direction of the DNA replication?
+
+\end{ques*}
+Note the following:
+\begin{itemize}
+\item DNA is antiparallel.
+\item New DNA is synthesised from five' to three'
+\item The template is read 3' to 5'.
+\end{itemize}
+This implies that three modes of behaviour are possible:
+\begin{itemize}
+\item Unidirectional growth of single strands from two starting
+  points (for example, linear viruses use this technique)
+\item Unidirectional growth of two strands from one starting
+  point. The leading strand is in the same direction as the
+  separation. The other strand is called a lagging strang. (for
+  example some plasmids use predominantly this method).
+
+  The fragments produced are called \textbf{Okazaki fragments}.
+\item Bidirectional growth from one starting point.
+
+  There are two replication forks, each leading a leading and a
+  lagging strand. (for example, eubacteria and bacteria use this
+  method.
+
+\end{itemize}
+  \begin{ques*}
+
+    Where does DNA replication start?
+
+  \end{ques*}
+
+  There are two possibilities:
+
+
+\begin{enumerate}
+\item\label{item:1} Always starts from the same location on DNA.
+
+  What
+  are some of the characteristics of the sequences at replication
+  origins?
+\begin{itemize}
+\item Easy to open, A-T rich
+\item Recognized by and bound by indicator proteins
+\end{itemize}
+\item Random
+\end{enumerate}
+
+There is a single origin of replication in bacteria, while multiple in
+eukaryotes.
+
+\begin{ques*}
+
+How does DNA replication proceed in bacteria?
+
+\end{ques*}
+
+The style of replication only apples to circular genomes
+
+\begin{ques*}
+
+  What happens at the DNA replication forks?
+
+\end{ques*}
+
+With time there are more DNA separation, and also Okazaki fragments
+occuring which stitch to the leading strand.  The replication fork is
+assymetrical, and the leading strand is replicated continously, while
+the lagging strand is replicated discontinuosly.
+
+\subsection{Overview of DNA replication}
+
+\begin{enumerate}
+\item\label{item:2} Separate the DNA strands
+\item Synthesise the DNA
+\item Proofread newly synthesized DNA
+\end{enumerate}
+
+Ingredients for synthesis: origin, primers, dNTPs, ATP (as an energy
+source), DNA polymerase, accessory proteins
+
+\subsection{DNA Synthesis}
+
+This reaction is catalyzed by DNΑ polymerase.
+
+This reaction relies on accurate base pairing to make the DNA.
+
+First, take a primer. A primer is the first part of the growing polypeptide chain.
+
+The appropriate base pairing will induce the dNTP to catalyze the
+reaction which will cut off the pyrophosphate group that, in turn, is
+gradually degraded.
+
+Steps in the bacterial DNA replication are as follows:
+
+\begin{enumerate}
+\item\label{item:3} origin of replication
+
+  Initiator proteins for replication in E.coli bind to origin and help
+  the helicase to bind, for which ATP is required.
+
+\item binding of initiator proteins
+
+  First, primase binds
+  to helicase, forms a primosome, to which the rest of the replication
+  machinery binds.
+
+\item unwinding by helicase, brought by a helicase-loading protein
+
+  Helicases unwind and separate strands. The predominant helicase goes
+  5'-3' along the lagging strand template.
+
+  There are 5 subunits in each helicase.
+
+\item binding of single-strand binding proteins
+
+  Following the action of helicase, single strand binding proteins
+  keep DNA strands separated.
+
+  A helicase protein separates the strands by binding ssDNA and
+  prevents strands from H-bonding.
+
+\item RNA primers made by primase
+
+  In order to beign, DNA polymerase requires a bound primer.
+
+  The purpose of the primase in replication, which proceeds in the
+  direction 5'-3', is to synthesise an RNA primer.
+
+  Note that primase, DNA primase and RNA primase are all the same.
+
+\item DNA polymerase
+
+  Close to fingers and in the palm of the DNA polymerase is the
+  synthesis centre.
+
+  If there is a mismatch of pairs, 3'-5' exonuclease site in the wrist
+  area will chop it off.
+
+\item sliding clamp (also known as a $\beta$ clamp) holds polymerase
+  onto DNA
+
+  Polymerase does not hold to the strand, so sliding clamps keep the
+  polymerase catalyzing the reactions.
+
+\item nick sealing by DNA ligase
+
+
+  A special DNA repair system is responsible for removal of the RNA
+  primer and replacing it with a correctly matched DNA sequence.
+
+
+
+\end{enumerate}
+
+
+
+
+
+
+
+
+\end{document}

@@ -55,7 +55,7 @@
 On a vector space $V$ there can be many inner products.
 \end{remark}
 \begin{example}
-
+  \hfill
 \begin{itemize}
 \item if $\ipr{\*}{\*}$ is an inner product, then so is $c\ipr{\*}{\*}$ for $c>0$ in $\RR$
 \item if $\phi:V\to V$ is an isomorphism, then also $\ipr{x}{y}'=\ipr{\phi(x)}{\phi{y}}$
@@ -68,16 +68,17 @@ On a vector space $V$ there can be many inner products.
 
   Here, if $f(x) \in C[a,b]$, write $f(x) = f_1(x) + i f_2(x)$, where
   $f_1, f_2\in \RR$. Define
-  $\int_a^bf(t)\dif t = \int_a^bf_1 \dif t i \int_a^bf_2 \dif t$. Then
-  $\ol{\int f(t) \dif t} = \int \ol{f(t) \dif t }$ and
-  $\int(f(t)+cg(t))\dif t = \int f(t)\dif t + c \int g(t) \dif t$.
+  \[\int_a^bf(t)\dif t = \int_a^bf_1 \dif t + i\int_a^bf_2 \dif t.\] Then
+  \[\ol{\int f(t) \dif t} = \int \ol{f(t) \dif t }\] and
+  \[\int(f(t)+cg(t))\dif t = \int f(t)\dif t + c \int g(t) \dif t.\]
 \end{itemize}
 \end{example}
 
 \begin{definition}
   \hfill
+
   \textbf{H} is the inner product space $C[0,2\pi]$, $\FF = \CC$, with
-  $\ipr{f, g} = \frac{1}{2\pi}\int_0^{2\pi}f(t)g(t)\dif t$.
+  $\ipr{f, g} = \frac{1}{2\pi}\int_0^{2\pi}f(t)\ol{g(t)}\dif t$.
 \end{definition}
 
 \begin{theorem}
@@ -90,6 +91,8 @@ On a vector space $V$ there can be many inner products.
 
 \end{theorem}
 \begin{proof}
+  \hfill
+
   \begin{enumerate}[label=\alph*)]
   \item If $x = 0$, then $\ipr{x}{x} = 0$. Otherwise, $\ipr{x}{x}>0$
   \item If $\ipr{x}{y} = \ipr{x}{z}$ for all $x\in V$, then
@@ -99,6 +102,7 @@ On a vector space $V$ there can be many inner products.
 
 \begin{definition}
   \hfill
+
 The \textbf{norm} or \textbf{length} of $x\in V$ is $\norm{\sqrt{\ipr{x}{x}}} \geq 0$
 \end{definition}
 \begin{example}
@@ -118,7 +122,7 @@ The \textbf{norm} or \textbf{length} of $x\in V$ is $\norm{\sqrt{\ipr{x}{x}}} \g
   \item $\norm{cx} = \abs{c}\norm{x}$ for all $c \in \FF$ and $x\ in V$
   \item $\norm{x} = 0 \lra x = 0$
   \item $\abs{\ipr{x}{y}}\leq\norm{x}\norm{y}$ (\textit{Cauchy-Schwarz})
-  \item $\norm{x+y}\leq \norm{x} + \norm{y}$ (\textit{Triangle Inequality}
+  \item $\norm{x+y}\leq \norm{x} + \norm{y}$ (\textit{Triangle Inequality})
   \end{enumerate}
 \end{theorem}
 
@@ -148,11 +152,8 @@ The \textbf{norm} or \textbf{length} of $x\in V$ is $\norm{\sqrt{\ipr{x}{x}}} \g
 For the standard innerp product on $\FF^n$, from Cauchy-Schwarz it
 follows that
 $\abs{\sum_{i=1}^na_ib_i} \leq \sqrt{\sum \abs{a_i}^2}\sqrt{\sum
-  \abs{b_i}^2}$ and by Triangle Inequality$\abs{\sum_{i=1}^na_ib_i} \leq \sqrt{\sum \abs{a_i}^2}\sqrt{\sum
+  \abs{b_i}^2}$ and by Triangle Inequality $\abs{\sum_{i=1}^na_ib_i} \leq \sqrt{\sum \abs{a_i}^2}\sqrt{\sum
   \abs{b_i}^2}$
-
-def orthogonal
-
 
 
 \end{document}

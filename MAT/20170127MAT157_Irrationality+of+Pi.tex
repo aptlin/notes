@@ -1,0 +1,171 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{MAT157}{IX}{Irrationality of $\pi$}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+\section{Irrationality of $\pi$}
+
+\subsection{Observations}
+
+\begin{enumerate}
+\item\label{item:1} Consider the function $f_n(x) = \frac{x^n(1-x)^n}{n!}$.
+
+  Note that it satisfies the following inequality:
+
+
+  \begin{equation*}
+0 < f_n(x) < \frac{1}{n!}\text{ for $0< x < 1$}
+\end{equation*}
+
+Observe also that $f_n$ can be written as follows:
+
+\begin{equation}
+f_n(x) = \frac{1}{n!}\sum_{i=n}^{2n}c_ix^i,
+\end{equation}
+
+where $c_i \in \ZZ$.
+
+Therefore, $f_n^{(k)}(0) \in \ZZ$. Moreover, since
+$f_n(x) = f_n(1-x)$, then $f_n^{(k)}(0) =
+(-1)^kf_n^{(k)}(1-x)$. Therefore, $f_n^{k}(1) \in \ZZ$.
+
+\item For any $a \in \RR$ and $\epsilon > 0$, then for sufficiently
+  large $n$ we have $\frac{a^n}{n!}< \epsilon$.
+
+  To see this, observe that if $n\geq 2a$, then
+
+  \begin{equation}
+    \label{eq:1}
+    \frac{a^{n+1}}{(n+1)!} = \frac{a}{n+1}\frac{a^n}{n!} <
+    \frac{1}{2}\frac{a^n}{n!}.
+  \end{equation}
+
+
+  Now let $n_0$ be any natural number with $n_0\geq 2a$.
+
+  Therefore, applying the inequality (\ref{eq:1}), we obtain that
+  there exists $k\in \NN$ such that
+
+
+  \begin{equation*}
+    \frac{a^{n_0+k}}{(n_0+k)!}< \epsilon.
+  \end{equation*}
+
+\end{enumerate}
+
+Now we are ready to proceed with the proof.
+
+\subsection{Proof}
+
+
+\begin{theorem}
+$\pi$ and $\pi^2$ are both irrational.
+\end{theorem}
+
+\begin{proof}
+  Suppose, on the other hand, that $\pi = \frac{a}{b}$ for some
+  $a, b\in \NN$. Consider the following function:
+
+  \begin{equation}
+    \label{eq:2}
+    G(x) = b^n(\pi^{2n}f_n(x) - \pi^{2n-2}f_n''(x) + \pi^{2n-4}f_n^{(4)}(x) - \cdots + (-1)^nf_n^{(2n)}(x).
+  \end{equation}
+
+  Since $b^n\pi^{2n-k} = a^{n-k}b^k$ is an integer, while
+  $f_n^{(k)}(0)$ and $f_n^{(k)}(1)$ are also integers, then $G(0)$ and
+  $G(1)$ are integers.
+
+  Notice that
+
+  \begin{equation}
+    \label{eq:3}
+    G''(x) = b^n(\pi^{2n}f_n''(x) - \pi^{2n-2}f_n^{(4)}(x) + \cdots  + (-1)^nf_n^{(2n+2)}(x).
+  \end{equation}
+
+  Since $2n+2 > 2n$, the last term is zero. Therefore, adding
+  (\ref{eq:2}) and (\ref{eq:3}), we obtain that
+
+  \begin{equation}
+G''(x) + \pi^2G(x) = b^n\pi^{2n+2}f_n(x) = \pi^2a^2f_n(x)
+\end{equation}
+
+Now let
+\begin{equation}
+H(x) = G'(x) \sin(\pi x)  - \pi G(x) \cos(\pi x).
+\end{equation}
+
+Therefore,
+
+\begin{equation}
+H'(x) = \pi^{2}a^nf_n\sin(\pi x)
+\end{equation}
+
+Thus, by the Second Theorem of Calculus,
+
+
+\begin{align}
+  \pi^2\int_0^1a^nf_n(x)\sin(\pi x) \dif x &= H(1) - H(0)\\
+  &= \pi[G(1) + G(0)],
+\end{align}
+
+and therefore $  \pi\int_0^1a^nf_n(x)\sin(\pi x) \dif x $ is an integer.
+
+On the other hand, since $0 < f_n(x) < \frac{1}{n!}$ for $0 < x < 1 $, it follows that for $0 < x < 1 $ $0<  \pi a^nf_n(x)\sin(\pi x) \dif x < \frac{\pi a^n}{n!}$, which means that :
+
+
+\begin{equation*}
+0<   \pi\int_0^1a^nf_n(x)\sin(\pi x) \dif x < \frac{\pi a^n}{n!} < 1.
+\end{equation*}
+
+This is a contradiction, since $\pi\int_0^1a^nf_n(x)\sin(\pi x) \dif x $ was shown to be an integer. Thus, the original assumption that $\pi^2$ is rational does not hold, and hence $\pi$ is irrational.
+
+\end{proof}
+
+\end{document}

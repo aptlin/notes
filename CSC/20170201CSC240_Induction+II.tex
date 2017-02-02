@@ -1,0 +1,249 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{CSC240}{XVIII}{More on Induction}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\begin{problem*}
+Prove $q(n)$ is true for all even natural numbers.
+\end{problem*}
+
+\begin{soln}
+  Let $p(k) = q(2k)$.
+
+  $\forall k\in \NN. p(k)$
+
+  means the same as
+
+  $\forall k\in \NN. q(2k)$, which is the same as
+
+  $\forall n \in \NN.(\text{$n$ is even $\THEN$ $q(n)$}$.
+
+  Base Case:
+
+  $p(0) = q(0)$
+
+  Induction Step:
+
+  $p(k) \THEN p(k+1)$,
+
+  which is the same as
+
+  $q(2k) \THEN q(2k+2)$.
+
+  It is sufficient to prove
+
+  $q(0) \AND \forall n\in\NN(q(n)\THEN q(n+2))$ .
+\end{soln}
+
+\begin{theorem}
+  For all $n\in\ZZ^{+}$ and all $a_1, \dots, a_n\in \RR^+$,
+
+  \begin{equation*}
+    (\prod_{i=1}^na_i)^{\frac{1}{n}}\leq \frac{\sum_{i=1}^na_i}{n}
+  \end{equation*}
+\end{theorem}
+
+\begin{proof}
+  We prove $\forall n \in \ZZ^+.P(n)$.
+
+  Base Case:
+
+  $n = 2$
+
+  Let $a_1, a_2 \in \RR^+$ be arbitrary.
+
+  Then $0\leq (a_1-a_2)^2 = a_1^2-2a_1a_2+a_2^2$.
+
+  Hence, $a_1^2+a_2^2\geq 2a_1a_{2}$.
+
+  Thus, 
+  \begin{equation*}
+    (\frac{a_1+a_2}{2})^2= \frac{a_1^2+a_2^2+2a_1a_2}{4} \geq a_1a_2
+  \end{equation*}
+
+  Hence, $P(2)$ is true by generalisation.
+
+  Induction Step:
+
+  Let $n\in\ZZ^{+}$ be arbitrary and suppose $n\geq 2$.
+
+  Assume $P(n)$.
+
+  Let $a_1, \dots, a_{n-1}\in\RR^{+}$ be arbitrary.
+
+  Let $b_i=a_i$ for $i=1, \dots, n-1$.
+
+  Let $b_n = \frac{a_1+a_2+\dots+a_{n-1}}{n-1}$.
+
+  By specialisation of $p(n)$,
+
+  \begin{align}
+    b_1\cdots b_{n-1}b_n\leq (\frac{b_1+\cdots+b_n}{n})^n & = (\frac{b_1+\cdots+b_n}{n})^n \\
+                                                          & =  (\frac{a_1+\cdots+a_{n-1}+b_n}{n})^n \\
+                                                          &  =  (\frac{(n-1)b_n+b_n}{n})^n \\
+                                                          &  =  b_n^n 
+  \end{align}
+
+  Therefore, $b_1b_2\cdots b_{n-1} \leq b_n^{n-1}$.
+
+  Hence, $P(n-1)$ is true by generalisation.
+
+  Let $a_1, \dots, a_n\in\RR^+$ be arbitrary.
+
+  Let $b_1=\frac{a_1+\cdots+a_n}{n}$ and $b_2=\frac{a_{n+1}+\cdots+a_{2n}}{n}$.
+
+  By specialisation of $P(n)$,
+  
+  \begin{equation*}
+    \prod_{i=1}^na_i\leq (\frac{1}{n}\sum_{i=1}^na_i)^n
+  \end{equation*}
+  and
+  
+  \begin{equation*}
+    \prod_{i=n+1}^{2n}a_i\leq (\frac{1}{n}\sum_{i=n}^{2n}a_i)^n
+  \end{equation*}
+
+  and by specialisation of $P(2)$,
+
+  \begin{equation*}
+    b_1b_2\leq (\frac{b_1+b_2}{2})^2
+  \end{equation*}
+
+  Hence
+
+  \begin{equation*}
+  \prod_{i=1}^{2n}a_i \leq (\frac{\sum_{i=1}^na_i}{n})(\frac{\sum_{i=n+1}^{2n}a_i}{n})^n=(b_1b_2)^n\leq(\frac{b_1+b_2}{n})^{2n}.
+\end{equation*}
+
+Note that $(\frac{b_1+b_2}{n})^{2n} = (\frac{1}{2n}\sum_{i=1}^{2n}a_i)^{2n}$.
+
+By generalisation, $P(2n)$ is true.
+
+$\forall n\in\NN[(n\geq 2 \AND P(n))\THEN P(2n)]$.
+
+Therefore, by induction,
+
+$\forall n\in\ZZ^+.P(n)$
+\end{proof}
+\subsection{Induction in Finite Sets}
+
+\begin{problem*}
+Prove $\forall i\in\set{0, \dots, n}.P(i)$.
+\end{problem*}
+
+\begin{soln}
+  Base Case:
+
+  $p(0)$
+
+  Induction Step:
+
+  Let $i\in\set{0, \dots, n-1}$ be arbitrary.
+
+  Assume $p(i)$.
+
+  $\vdots$
+
+  $p(i+1)$.
+
+  $\forall i\in \set{0, \dots, n-1}.[p(i) \THEN p(i+1)]$
+
+  $\forall i\in\set{0, \dots, n} p(i)$ by induction
+  
+\end{soln}
+
+\subsection{Strong Induction}
+
+To prove $\forall i\in \NN. p(i)$ it suffices to prove that
+
+\[\forall i\in\NN.\forall j\in\NN.[\big((j<i)\THEN p(j)\big)\THEN P(i)]\]
+  
+The only difference of the strong induction from the weak induction is
+$p(0), \dots, p(i-1)$.
+
+A template proof follows.
+\begin{proof}
+Let $i\in\NN$ be arbitrary.
+
+Assume $\forall j\in\NN.(j<i \THEN p(i)$.
+
+\textit{$\dots$ various cases, including the base case $\dots$}
+
+$p(i)$
+
+$\forall i\in \NN[\forall j\in\NN.(j <i)\THEN p(j)]\THEN p(i)$ by direct proof and generalization.
+
+$\forall i\in\NN.p(i)$ by strong induction
+\end{proof}
+
+\begin{theorem}
+  For all $n\geq 4$, exactly a sum of $n$ can be exchanged in coins
+  with nomination 2 and 5\$ bills.
+\end{theorem}
+\begin{proof}
+  Let $p(n) = \exists f\in\NN.\exists g\in\NN.(n = 2f+ 5g)$ for all $n\in\NN$.
+
+  Let $n\in\NN$ be arbitrary.
+
+  Suppose $n\geq 4$ and $\forall j\in \NN.(4\leq j < n \THEN p(j))$.
+
+  If $n=4$, then $n = 2\* 2 +0\*5$.
+
+  If $n=5$, then $n = 0\*2 + 1\*5$.
+
+  If $n\leq 6$, then $4\leq n-2 <n$. Then $P(n-2)$ is true by specialisation.
+\end{proof}
+
+
+
+
+
+\end{document}
