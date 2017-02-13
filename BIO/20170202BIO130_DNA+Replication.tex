@@ -1,0 +1,184 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{BIO130}{IV}{DNA Replication}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+\section{DNA Replication}
+\begin{remark}
+\begin{itemize}
+\item The primer is the first part of the growing nucleotide chain.
+\item Leading strand is synthesized continuously from single RNA primers.
+\item Lagging strand is synthesised discontinuously from multiple primers.
+\item Okazaki fragments: RNA primer +DNA
+\item DNA synthesis proceeds from 5' to 3'
+\item Primosome is helicase + primase
+\item The predominant helicase is on the lagging strand.
+\end{itemize}
+\end{remark}
+
+\subsection{Problem at Ends of Chromosomes}
+
+Parental helices are pulled apart in the 3'-5' direction. Primase does
+not put a primer at the 3' end -- the reaction does not proceed. Even
+if the primer is put in, it must be subsequently removed. In this way,
+the 5' end of the daughter DNA is shortened, which results in a loss
+of sequence information. This is a major problem for a lagging
+strand.
+
+Since the growwth is bidirectional, both ends have one shortened
+strand. 5'-helicases will make all new and parental 5'-ends
+shorter. Why? This is needed for the protection of ends of DNA double
+strands. If the double strand is even, repair proteins will consider
+it as a broken chromosome and try to stitch two ends together.
+
+In the majority of eukaryotes the problem of shortening is solved by
+adding telomeres to the ends.
+
+\subsection{Telomerase to the Rescue}
+
+The repetitive sequence that is added to the 3' en of the parental
+strand is determined by the RNA template in telomerase.
+
+The RNA template resembles a reverse transcriptase, generates G-rich
+ends and adds nucleotide to 3' ends of parental strand template.
+
+After the repeated  elongation by telomerase, special DNA polymerase
+with the lygase, adds the RNA primer and then extends on.
+
+\subsection{Telomeres and Cancer}
+
+Somatic cells normally do not have enough telomerase to counter the
+problem.
+
+Most cancer cells produce high levels of telomerase. Modification of
+the telomerase RNA template interferes with cancer cell
+growth. Prognoses of some cancers (eg. neuroblastoma) can be
+ascertained by telomerase levels. Cell-targeted inhibitors of
+telomerase activity have been suggested as therapeutic agents
+
+\subsection{Issues in DNA Replication}
+
+\subsubsection{The Winding Problem}
+
+  As helicase is opened to replicate INA, supercoiling and torsional strain increases.
+  Problem is present in circular chromosomes and large linear eukaryotic chromosomes.
+
+  Topoisomerases deal with the problem by untangling or linking double stranded DNA. In particular, topoisomerase solves the problem in single-stranded breaks, allowing to rotate around the sugar PO$_4$ backbone of one strand. This does not require ATP.
+
+  Drugs stopping topoisomerases I is a viable method of treating some cancers.
+
+  In turn, topoisomerase II deals with double-stranded breaks, and allows one double-stranded helix to pass through another.
+
+\subsubsection{High Fidelity of DNA Replication}
+
+  RNA polymerases typically have an error rate of about 1 in
+  10$^4$. DNA polymerases, on the other hand, are only about in 1 in
+  10$^9$.
+
+  The human genome ($3\times 10^{9})$ is changed by 3 nucleotides
+  every time a cell divides.
+
+  There are two separate error-correcting codes, using 3' to 5'
+  exonuclease or strand-directed mismatch repair.
+
+  Exonuclease chews back the mis-incorporated nucleotide. Note that
+  exonuclease has a polymerization site and editing site.
+
+  Both prokaryotes and eukaryotes have similar strand-directed repair
+  mechanisms. Strand-directed repair in eukaryotes is a
+  post-polymerase error repair process. Initiated by detection of
+  distortion in the geometry of the double helix generated by
+  mismatched basepairs and by identifying a nick in the new DNA
+  strand, this strand is removed and repair DNA is synthesised.
+
+  \subsubsection{Damaged DNA}
+
+  Even after synthesis, DNA can be damaged and lead to cancer, which is often caused by oxidation, radiation, heat and chemicals. For example, UV radiation causes pyrimidine dimers. Depurination and deamination can occur spontaneously.
+
+  500 depurinations a day happen due to the sheer quantity of water and guanine in a cell. Cytosine can also turn into uracil after deamination.
+
+  If uncorrected, mutations now appear in daughter cells. The cell has until the next replication event to locate and correct errors.
+  \subsection{Repair and Error Correction}
+
+  \subsubsection{Base Excision Repair}
+
+  Base excision repair targets 1 nucleotide. First, Uracil-DNA glycosylase cuts into the DNA and removes the base, then AP endonuclease acts, with phosphodiesterase activity of DNA polymerase polymerase $\beta$, which gets a normal base and the DNA is then sealed.
+
+  \subsubsection{Nucleotide Excision Repair}
+
+  Nucleotide excision repair acts on many nucleotides.
+  
+  \section{Transcription}
+
+  \begin{definition}
+A gene is the entire nucleic acid sequence that is necessary for the synthesis of a protein or RNA. There are two types of genes such that when they are transcribed, the resulting acid either encodes a protein or functions as RNA.
+  \end{definition}
+  RNA polymerase  catalyzes the sequential addition of nucleotides, from 5' to 3'.
+
+  \subsubsection{Generation of RNA Transcript}
+
+  ssDNA acts as a template, with RNA linked by phosphodiester bonds
+  and DNA-RNA hybrids held together by basepairing.
+
+  \subsubsection{Transcription Cycle}
+
+  In bacteria, sigma factor binds to the core enzyme and then binds to the promoter. Then DNA is locally unwinded, for which ATP is not required. There is a loose associated between DNA and the core enzyme. RNA chains that are begun with the core enzyme are not initiated in the proper sites. Complete enzyme (holoenzyme) requires the presence of the sigma factor. When the sigma factor is present, it binds to the promoter at -10 and -35.
+
+  Note that the initiation start site is labelled as +1, and all the subsequent nucleotides transcribed are labelled incrementally. Therefore, the promoter is never transcribed.
+
+  The transcription cycle involves, first of all, initial RNA synthesis, after which a sigma factor is released, which then elongates RNA until the whole process terminates.
+
+  The initial steps of RNA synthesis are relatively inefficient, but the situation is quite different  in elongation mode of RNA polymerase, which is highly processive. Note that the characteristics of RNA termination signals involve the formation of a hairpin structure, with A-T rich sequences following the hairpin.
+
+  The termination signals help to dissociate the RNA transcript from
+  the polymerase by disrupting hydrogen bonds between the RNA and the
+  DNA template.
+
+\end{document}

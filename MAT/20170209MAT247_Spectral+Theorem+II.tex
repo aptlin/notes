@@ -1,0 +1,327 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{MAT247}{XII}{Spectral Theorem II}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\begin{lemma}
+  \label{sec:1}
+If $T=T^{*}$, then every eigenvalue of $T$ is real.
+\end{lemma}
+
+\begin{proof}
+  \hfill
+
+  Suppose $T(x) = \lambda x$ and $x\neq 0$.
+
+  Since $T = T^{*}$, then $T$ is normal, and hence $T^{*}(x) = \ol{\lambda} x = T(x) = \lambda x$. Since $x\neq 0$, then $\lambda  = \ol{\lambda}$.
+\end{proof}
+
+\begin{lemma}
+  \label{sec:2}
+For $\FF = \RR$, if $T = T^{*}$, then the characteristic polynomials of $T$ splits.
+\end{lemma}
+
+\begin{proof}
+  \hfill
+
+  Let $\beta$ be an orthonormal basis of $V$, let $A = [T]_{\beta}$. Then $A = A^{*} \in M_{n\times n}(\RR)\suq M_{n\times n}(\CC)$. Define $T_A: \CC^n\to \CC^n$ such that $[T_A]_{\gamma} = A$, where $\gamma$ is a standard basis.
+
+Since $\gamma$ is an orthonormal basis, we obtain that $T_A^{*} = T_A$.
+
+By Lemma \ref{sec:1}, every eigenvalue of $T_{A}$ is real, so every root of the characteristic polynomial of $T_A$ is real.
+
+Since the field is complex, the characteristic polynomial of $T_A$ splits, so it is $(-1)^n\prod_{i=1}^n(t-\lambda_i)$ and $\lambda_1,\dots, \lambda_n\in\RR$.
+
+But the characteristic polynomial of $T_A$ is equal to the characteristic polynomial of $A$ and the characteristic polynomial of $T$, so it splits over $\RR$.
+\end{proof}
+
+\begin{theorem}
+Let $\FF = \RR$. $T$ is self-adjoint if and only if $V$ has an orthonormal basis of eigenvectors for $T$.
+\end{theorem}
+
+\begin{proof}
+  \hfill
+
+  Let $\beta$ be an orthonormal basis of eigenvectors.
+
+  Then
+
+  \[[T]_{\beta} = 
+  \begin{pmatrix}
+    \lambda_1           &        & \\
+                        & \ddots & \\
+                        &        & \lambda_{n}
+                      \end{pmatrix},\]
+                    where $\lambda_i\in\RR$, so
+                    \[[T^{*}]_{\beta}=[T]^{*}_{\beta} = 
+            \begin{pmatrix}
+              \lambda_1 &        & \\
+                        & \ddots & \\
+                        &        & \lambda_n
+                      \end{pmatrix}^{*} =
+                      \begin{pmatrix}
+                        \lambda_1 & &\\
+                        & \ddots & \\
+                        & & \lambda_n
+                      \end{pmatrix} = [T]_{\beta},
+                    \]
+
+                    and thus $T^{*}=T$.
+
+Now we use induction on $n$.
+                    
+If $n=1$, then any unit vectors satisfies the claim.
+
+If $n>1$, assume the theorem holds for $n-1$.
+
+By Lemma \ref{sec:2}, the characteristic polynomial of $T$ splits, so $T$ has an eigenvalue $\lambda\in \RR$. Then $T(v) = \lambda v$ and $v\neq 0$. We may scale $v$ so that $\norm{v}=1$.
+
+Let $W = \spn(v)$. It is $T$-invariant, and so $W^{\bot}$ is $T$- and $T^{*}$-invariant.
+
+Observe that $\dim W^{\bot} = n-1$, and $T_{W^{\bot}}:W^{\bot}\to W^{\bot}$.
+
+\begin{claim*}
+  $T_{W^{\bot}}$ is self-adjoint if and only if $\ipr{T_{W^{\bot}}x}{y} = \ipr{x}{T_{W^{\bot}}y}$ for all $x, y \in W^{\bot}$.
+\end{claim*}
+\begin{proof}
+  \hfill
+
+Since $T=T^{*}$, the conclusion follows by the definition of $T^{*}$.
+\end{proof}
+
+By induction, $W^{\bot}$ has an orthonormal basis $v_2, \dots, v_{n}$ of eigenvectors for $T_{W^{\bot}}$.
+
+Therefore, $v, v_2, \dots, v_n$ is an orthonormal basis of eigenvectors for $T$.
+\end{proof}
+
+\begin{corollary}
+Any real symmetric matrix in $M_{n\times n}(\RR)$ is diagonalisable.
+\end{corollary}
+
+\begin{proof}
+  \hfill
+
+  $A = A^t = A^{*}$, and therefore $L_A^{*} = L_A:\RR^n\to \RR^n$,
+  then $\RR^n$ has an orthonormal basis of eigenvectors. Thus, $A$ is diagonalisable.
+\end{proof}
+
+\begin{theorem}
+$T$ is self-adjoint if and only if $T$ is normal and every eigenvalue is real.
+\end{theorem}
+
+\begin{proof}
+  \hfill
+
+  By Lemma \ref{sec:1}, if $T$ is self-adjoint, then $T$ is normal and
+  every eigenvalue is real.
+
+  By the Complex Spectral Theorem, pick an orthonormal basis $\beta$ of eigenvectors such that $[T]_{\beta} = 
+  \begin{pmatrix}
+    \lambda_1 & &\\
+    & \ddots &\\
+    & & \lambda_n
+  \end{pmatrix}$ and $\lambda_i$ are eigenvalues of $T$, and hence $\lambda_i\in \RR$.
+
+  Thus,
+
+  \[
+    [T^{*}]_{\beta} = [T]^{*}_{\beta} = 
+    \begin{pmatrix}
+      \lambda_1 & & \\
+      & \ddots &\\
+      & & \lambda_{n}
+    \end{pmatrix}= [T]_{\beta},
+  \]
+  and thus $T = T^{*}$.
+  \end{proof}
+
+  \begin{definition}
+    $A \in M_{n\times n}(\FF)$ is \textit{hermitian} ($\FF = \CC$) / \textit{symmetric} ($\FF = \RR$) if $A = A^{*}$ if $A=A^{*}$.
+  \end{definition}
+
+  \section{Unitary and Orthogonal Transformations}
+
+  Let $V$ be a finite-dimensional inner product space.
+
+  \begin{definition}
+    $T \in \Hom(V,V)$ is said to be \textit{unitary} ($\FF=\CC$) / \textit{orthogonal}($\FF = \RR$) if $\norm{T(x)}=\norm{x}$ for all $x\in V$.
+  \end{definition}
+
+  \begin{description}
+
+  \item[e.g.] rotation and reflection in $\RR^{2}$, $(x, y, z)\mapsto (-x, -y, -z)$ in $\RR^3$.
+
+  \end{description}
+
+  \begin{example}
+
+    Let $V = H = C[0, 2\pi]$ and $\FF=\CC$.
+
+    Fix a continuous function $h\in H$ such that $\abs{h(x)}=1$ for all $x\in[0, 2\pi]$.
+
+    Let $T(f) = hf$. Then $T: H \to H$ is unitary.
+
+  \end{example}
+  \begin{example}
+
+    Let $V = M_{n\times n}(\FF)$, with $\ipr{A}{B} = \Tr AB^{*}$.
+
+    Fix $Q\in V$ such that $Q Q^{*} = I$. Then $T \in \Hom(V,V)$ such that $A \mapsto AQ$ is unitary / orthogonal.
+
+    Reason: $\norm{T(A)} = \ipr{TA}{TA} = \ipr{AQ}{AQ} = \Tr AQ(AQ)^{*} = \norm{A}^2$.
+
+  \end{example}
+
+  \begin{theorem}
+    \label{sec:unit-orth-transf-1}
+    Let $T \in \Hom(V,V)$. The following are equivalent:
+
+    \begin{enumerate}[label=\alph*)]
+    \item $T$ is unitary / orthogonal, i.e. $\norm{T(x)} = \norm{x}$
+    \item $TT^{*} = T^{*}T = I$, and hence $T$ is normal
+    \item $\ipr{Tx}{Ty}=\ipr{x}{y}$ for all $x$ and $y$ in $V$
+    \item If $\beta$  is any orthonormal basis of $V$, then $T(\beta)$ is an orthonormal basis
+    \item There exists an orthonormal basis $\beta$ such that $T(\beta)$ is an orthonormal basis
+    \end{enumerate}
+  \end{theorem}
+
+  \begin{proof}
+    \hfill
+
+    We prove first that (a) implies (b). Note that
+    $\norm{Tx}^2= \norm{x}^2$, and therefore
+    $\ipr{Tx}{Tx} = \ipr{x}{x}$, which is equivalent to
+    $\ipr{T^{*}Tx}{x} = \ipr{x}{x}$, and therefore
+    $\ipr{(T^{*}T-I)x}{x} = 0$ for all $x\in V$.
+
+    Therefore, $S^{*} = (T^{*}T - I)^{*} = (T^{*}T)^{*}-I^{*} = T^{*}T^{**} - I =S$.
+
+    \begin{claim*}
+      \label{sec:unit-orth-transf}
+      If $S = S^{*}$, and $\ipr{Sx}{x} = 0$ ,then $S = 0$.
+    \end{claim*}
+
+    \begin{proof}
+      \hfill
+
+      If $x$ is an eigenvector of $S$, then $Sx = \lambda x$, and thus
+      $0 = \ipr{Sx}{x} = \ipr{\lambda x}{x}=\lambda\norm{x}^2$. Thus, $\lambda = 0$.
+    \end{proof}
+
+    We have proven that there exists an orthonormal basis of eigenvectors for $S$. Then $S=0$.
+  \end{proof}
+
+  By Lemma \ref{sec:unit-orth-transf}, $T^{*}T = I$, and therefore
+  $T, T^{*}$ is invertible and $T^{*} = T^{-1}$. Therefore,
+  $TT^{*} = I$.
+
+  We prove now that (b) implies (c). Note that
+  $\ipr{Tx}{Ty} =\ipr{T^{*}Tx}{y} = \ipr{x}{y}=I$ by (b), and the conclusion follows.
+
+  Now, (c) implies (d). If $\beta = \set{v_1, \dots, v_n}$ is an orthonormal basis, then $\ipr{Tv_{i}}{Tv_{j}} = \delta_{i,j}$ by (c), and hence $T(\beta)$ is orthonormal.
+
+  (d) trivially implies (e).
+
+  (e) implies (a), because if $\beta = \set{v_1, \dots, v_n}$ is an orthonormal basis and $\set{Tv_1, \dots, Tv_n}$ is orthonormal, then for any $x=\sum_{i=1}^nc_iv_i$:
+  \begin{align}
+    \norm{Tx}^2 & = \ipr{T(\sum_{i}c_iv_i)}{\sum_jc_jv_j} \\
+                & = \sum_ic_i \ipr{v_{i}}{\sum_{j}c_jv_j} \\
+                & = \sum_i\sum_jc_i\ol{c_j}\ipr{Tv_i}{Tv_j} = \sum_i\abs{c_i}^2
+  \end{align}
+
+  \begin{corollary}
+    \label{sec:unit-orth-transf-2}
+If $T$ is unitary or orthogonal, then $T$ is normal and any eigenvalue $\lambda$ of $T$ has $\abs{\lambda}=1$.
+\end{corollary}
+\begin{proof}
+  \hfill
+
+  The fact that $T$ is normal follows from \ref{sec:unit-orth-transf-1}(b).
+
+  If $Tv = \lambda v$, then $\norm{Tv} = \norm{v} = \norm{\lambda v}$. Therefore, $\abs{\lambda}=1$.
+\end{proof}
+
+\begin{corollary}
+  If $\FF = \CC$, $T$ is unitary if and only if $V$ has an orthonormal basis of eigenvectors with eigenvalues such that $\abs{\lambda} = 1$
+  % $T$ is normal and
+  % every eigenvalue has $\abs{\lambda} = 1$.
+\end{corollary}
+
+\begin{proof}
+  \hfill
+
+  The ($\ra$) direction follows from Corollary \ref{sec:unit-orth-transf-2} (see Theorems 6.16 and 6.17 in Friedberg \textit{ et al}.
+
+  Let $\beta$ be such an orthonormal basis. Then $[T]_{\beta} = 
+  \begin{pmatrix}
+    \lambda_1 & & \\
+    & \ddots &\\
+    && \lambda_n
+  \end{pmatrix}$, where $\abs{\lambda_i} = 1$.
+
+  Then $[T^{*}]_{\beta} = [T]^{*}_{\beta} = 
+  \begin{pmatrix}
+    \ol{\lambda_1} & & \\
+    & \ddots &\\
+    && \ol{\lambda_n}
+  \end{pmatrix},$
+
+  and hence $[T^{*}T]_{\beta} = 
+  \begin{pmatrix}
+    \abs{\lambda_1}^2 & &\\
+      & \ddots &\\
+      & & \abs{\lambda_n}^2
+  \end{pmatrix} = I.
+  $
+
+  Theerefore, $T^{*}T = I$.
+\end{proof}
+\end{document}

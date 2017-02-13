@@ -1,0 +1,139 @@
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+\documentclass[11pt]{scrartcl}
+\usepackage[beaue, pset, anon]{masty}
+\pSet{\hw{MAT247}{III}{4}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section*{Problem 4}
+
+Fix any matrix $A \in M_{n \times n}(F)$.
+
+Let $A^*$ denote a conjugate transpose of $A$.
+
+Consider the standard inner product $\langle \*,\*\rangle$ on $\FF^n$.
+
+\begin{lemma}
+  \label{tr}
+  For any $A, B \in M_{n\times n}(\FF)$, $(BA)^T=A^TB^T$.
+\end{lemma}
+\begin{proof}
+  Note that $(ba)_{ki}^T = (ba)_{ik} = \sum_{j=1}^nb_{ij}a_{jk}$, while
+
+  $(a^Tb^T)_{ki} = \sum_{j=1}^n(a)^T_{kj}(b)^T_{ji} = \sum_{j=1}^na_{jk}b_{ij} = \sum_{j=1}^nb_{ij}a_{jk}$.
+\end{proof}
+
+
+\begin{enumerate}[label=\alph*)]
+\item
+  \label{a}
+  \begin{claim*}\hfill
+    
+    For any $x, y \in F^n$ (thought of as column vectors) we have
+    $\langle x, Ay \rangle = \langle A^* x,y\rangle$.
+  \end{claim*}
+
+  \begin{proof}\hfill
+    
+    Note that, by definition, for all $x, y\in \FF^n$, $\ipr{x}{Ay}=\sum_{i=1}^n(x)_i\ol{(Ay)_{i}}$, where $(x)_i$ and $(y)_i$ are $i$th entries in $x$ and $Ay$ respectively.
+
+    Therefore, by definition of matrix multiplication,
+
+    \begin{align}
+      \ipr{x}{Ay}=x^T\times (\ol{A}\times\ol{y}) & = (x^T\times \ol{A})\times \ol{y}    \\
+      \label{trans}
+                                                 & = ((\ol{A})^T\times x)^T\times\ol{y} \\
+                                                 & = \ipr{(\ol{A})^T\times x}{y}        \\
+                                                 & = \ipr{A^{*}x}{y},
+    \end{align}
+    where (\ref{trans}) comes from Lemma \ref{tr}.
+  \end{proof}
+\item
+  \begin{claim*}\hfill
+    
+    Suppose that $B\in M_{n\times n}(\FF)$ and that
+    $ \langle x, Ay \rangle = \langle B x,y\rangle$
+    for all $x, y \in \FF^n$.
+
+    Then $B = A^*$.
+  \end{claim*}
+
+  \begin{proof}
+    From \ref{a}, for any $x,y\in\FF^{n}$ we have $\ipr{x}{Ay} = \ipr{A^{*}x}{y}$.
+
+    We are also given that $\ipr{x}{Ay} = \ipr{Bx}{y}$. Therefore,
+
+    \begin{align}
+      \ipr{A^{*}x}{y} - \ipr{Bx}{y} & = \ipr{x}{Ay} - \ipr{x}{Ay} \\
+      \ipr{A^{*}x - Bx}{y}          & = 0                         \\
+      \ipr{(A^{*}-B)x}{y}           & = 0
+    \end{align}
+  \end{proof}
+
+  Since this holds for any $x, y\in M_{n\times n}(\FF)$, take $y=(A^{*}-B)x$.
+
+  Suppose, on the contrary, that $A^{*}-B \neq \bm{0}$. Therefore,
+  neither input is zero, and thus $ \ipr{(A^{*}-B)x}{y}$ is greater than zero, which is a contradiction. Therefore, $A^{*} = B$.
+
+  % Let $T = A^{*}-B$
+
+  % If $\FF = \CC$, then
+
+  % \begin{align}
+  %   \frac{1}{4}(\ipr{T(x+y)}{x+y}-\ipr{T(x-y)}{x-y}) &=\\
+  %   \frac{1}{4}(\ipr{Tx}{x}+\ipr{Tx}{y}&+\ipr{Ty}{x}+\ipr{Ty}{y} -\\
+  %                                                     -\ipr{Tx}{x}+\ipr{Ty}{x}&+\ipr{Tx}{y}+T{y}{x}-\ipr{Ty}{y})
+  % \end{align}
+
+  
+\end{enumerate}
+
+
+
+\end{document}

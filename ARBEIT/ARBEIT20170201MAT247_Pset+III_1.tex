@@ -1,0 +1,181 @@
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+\documentclass[11pt]{scrartcl}
+\usepackage[beaue, pset, anon]{masty}
+\pSet{\hw{MAT247}{III}{1}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+\section*{Problem I}
+
+Consider an operation defined for $x= (x_1, x_2)$ and $y = (y_1, y_2)$, both in $\CC^2$, as
+
+\begin{equation}
+  \ipr{x}{y} =
+  \begin{pmatrix}
+    x_1 & x_2
+  \end{pmatrix}
+\begin{pmatrix}
+  1 & 1+i\\
+  1-i & 1
+\end{pmatrix}
+\begin{pmatrix}
+  \ol{y_1}\\
+  \ol{y_{2}}
+\end{pmatrix}
+\end{equation}
+
+Note that $\ipr{x}{y}$ is not an inner product, since if
+$x =
+\begin{pmatrix}
+-1 & i
+\end{pmatrix}$, then
+
+\begin{align}
+  \ipr{x}{x}                       & =
+               \begin{pmatrix}
+                 -1                 & i
+               \end{pmatrix}
+                     \begin{pmatrix}
+                       1           & 1+i   \\
+                       1-i         & 1
+                     \end{pmatrix}
+                             \begin{pmatrix}
+                               -1           \\
+                               -i
+                             \end{pmatrix} \\
+                                   & =
+                             \begin{pmatrix}
+                               i & -1
+                             \end{pmatrix}
+                             \begin{pmatrix}
+                               -1           \\
+                               -i
+                             \end{pmatrix} \\
+                                   & = -i +i = 0,
+\end{align}
+
+and thus $\ipr{x}{x} = 0$ even though $x =
+\begin{pmatrix}
+-1 & i
+\end{pmatrix}\neq \bm{0}
+$.
+
+Consider now an operation defined for $x= (x_1, x_2)$ and
+$y = (y_1, y_2)$, both in $\CC^2$, as
+
+\begin{equation}
+  [x, y] =
+  \begin{pmatrix}
+    x_1 & x_2
+  \end{pmatrix}
+  \begin{pmatrix}
+    4 & i\\
+    -i & 1
+  \end{pmatrix}
+  \begin{pmatrix}
+    \ol{y_1}\\
+    \ol{y_{2}}
+  \end{pmatrix}.
+\end{equation}
+
+By definition of the matrix summation and the distributive law for
+matrices, for any $x, y, z \in \CC^2$, $[x+y, z] = [x, z] + [y, z]$,
+and thus $[\*, \*]$ is additive.
+
+Similarly, by definition of the matrix multiplication by a scalar,
+$[\lambda x, y] = \lambda [x, y]$, and thus $[\*, \*]$ is homogeneous.
+
+Observe the following:
+\begin{align}
+  [x, y]          & =
+  \begin{pmatrix}
+    4x_1 - ix_{2} & x_2+ix_1
+  \end{pmatrix}
+  \begin{pmatrix}
+    \ol{y_1}    \\
+    \ol{y_{2}}
+  \end{pmatrix} \\
+                  & = (4x_1 - ix_{2})\ol{y_1} +  (x_2+ix_1)\ol{y_{2}}
+\end{align}
+
+Therefore,
+\begin{align}
+  \ol{[y, x]} & = \ol{(4y_1 - iy_{2})\ol{x_1} +  (y_2+iy_1)\ol{x_{2}}}      \\
+              & = (4\ol{y_1} + i \ol{y_2})x_1 + (\ol{y_2} - i\ol{y_1})x_{2} \\
+              & = (4x_1 - ix_{2})\ol{y_1} +  (x_2+ix_1)\ol{y_{2}}           \\
+              & = [x,y]
+\end{align}
+
+Consider $[x, x]$.
+\begin{align}
+  [x,x] & = (4x_1 - ix_{2})\ol{x_1} + (x_2+ix_1)\ol{x_{2}} \\
+        & = 4 \abs{x_1}^2 + \abs{x_2}^2 + i(x_1\ol{x_2}-\ol{x_1}x_2)\\
+        & = 4 \abs{x_1}^2 + \abs{x_2}^2 + i(x_1\ol{x_2}-\ol{x_1\ol{x_2}})\\
+  \label{eq:1}
+        & = 4 \abs{x_1}^2 + \abs{x_2}^2 - 2\Im(x_{1}\ol{x_2}).
+\end{align}
+
+Since
+$\Im(x_{1}\ol{x_2}) = \Re(x_1)\Im(\ol{x_2})+\Im(x_1)\Re(\ol{x_2})$,
+while
+\[\abs{x_1}^2 = \Re(x_1)^2 + \Im(x_1)^2\] and
+\[\abs{x_2}^2 = \Re(x_2)^2 + \Im(x_2)^2,\]
+it follows from (\ref{eq:1}) that
+
+\begin{align}
+  [x,x] & = 4\Re(x_1)^2 + 4\Im(x_1)^2 + \Re(x_2)^2 + \Im(x_2)^2 - 2 (\Re(x_1)\Im(\ol{x_2})+\Im(x_1)\Re(\ol{x_2})) \\
+  \label{eq:2}
+        & = 3(\Re(x_1)^2 + \Im(x_1)^2) + (\Re(x_1) + \Im(x_2))^2 +(\Im(x_1)-\Re(x_2))^{2} \geq 0
+\end{align}
+
+Note that, from (\ref{eq:2}), $[x, x] = 0$ if and only if
+$x_1 = \bm{0}$ and $x_2= \bm{0}$, because $\Re(x_1) = 0$ and
+$\Im(x_1) = 0$ from the first expression in parentheses, and the rest
+follows from the second and third expressions in parentheses.
+
+Therefore, $[\*, \*]$ is indeed an inner product.
+\end{document}

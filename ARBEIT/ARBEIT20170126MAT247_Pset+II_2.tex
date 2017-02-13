@@ -1,0 +1,133 @@
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+\documentclass[11pt]{scrartcl}
+\usepackage[beaue, pset, anon]{masty}
+\pSet{\hw{MAT247}{II}{2}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+% ----------------------------------------------------------------------
+% Body
+% ----------------------------------------------------------------------
+\begin{linenumbers}
+  Let $A\in M_{n\times n}(\FF)$. Recall that $A$ and its transpose
+  $A^{t}$ have the same characteristic polynomial, hence have the same
+  eigenvalues. For any eigenvalue $\lambda$, let $E_{\lambda}$ denote the $\lambda$-eigenspace of
+  $A$ and $E'_{\lambda}$ the λ-eigenspace of $A^{t}$.
+
+  Note that we can have $E_{\lambda}\neq E'_{\lambda}$
+
+  \begin{example*}
+
+    Take $A =
+    \begin{pmatrix}
+      1 & 4 \\
+      1 & 1
+    \end{pmatrix}
+    $. Then
+    $f_A(\lambda) = (1-\lambda)^2 - 4 = \lambda^2-2\lambda - 3 $ and
+    hence $\lambda = -1$ or $\lambda = 3$.
+
+    Thus, for $\lambda = 3$,
+
+    \begin{align}
+      \begin{pmatrix}
+        -2 & 4 \\
+        1 & -2
+      \end{pmatrix}\cv{x;y} = \cv{-2x + 4y; x - 2y} = 0
+    \end{align}
+
+    Thus, $ x = 2y$, and $\cv{2;1}$ spans $E_{3}$.
+
+    Consider now $E'_{3}$.   $A^{t} =
+    \begin{pmatrix}
+      -2 & 1 \\
+      4 & -2
+    \end{pmatrix} \cv{x;y} = \cv{-2x + y; 4x - 2y} = 0$, and thus
+    $\cv{1;2}$ spans $E'_{\lambda}$. This means that
+    $E'_{\lambda} \neq E_{\lambda}$, since $\cv{1; 2}$ and $\cv{2; 1}$
+    are linearly independent.
+  \end{example*}
+
+  Suppose $T \in \Hom(V,V)$ is a linear transformation corresponding
+  to the matrix $A$, where $V$ is a vector space over $\FF$.
+
+  Observe that $\rank (A - \lambda I) = \rank (A^{t} - \lambda I)$,
+  since $(A- \lambda I)^{t} = A^{t} - \lambda I$. Therefore, by
+  Rank-Nullity Theorem,
+  $\dim(E_{\lambda})  = \nll (A-\lambda I)  = \nll (A^{t} - \lambda I) = \dim(E'_{\lambda})$.
+  \begin{lemma*}
+    For a finite-dimensional vector space $V$ and $T \in \Hom(V,V)$
+    with the distinct eigenvalues denoted as
+    $\lambda_1, \lambda_2, \dots, \lambda_{k}$, $T$ is
+    diagonalisable if and only if $\dim V = \sum_{i=1}^m \dim E_{\lambda_{m}}$.
+  \end{lemma*}
+  \begin{proof}
+    Since $T$ is diagonalisable, it has a basis consisting of
+    eigenvectors of $T$. Since all $\lambda_i$ are distinct,
+    $E_{\lambda_i}\cap E_{\lambda_j} = \set{0}$ for any
+    $i, j \in [1, k]\cap \NN$. Therefore, all the eigenvectors are in
+    one and only one eigenspace, and thus
+    $\dim V = \sum_{i=1}^m \dim E_{\lambda_{m}}$.
+
+    Suppose now $\dim V = \sum_{i=1}^m \dim E_{\lambda_{m}}$.
+
+    Choose a basis for each $E_{\lambda_{i}}$ and take their union,
+    obtaining a set of eigenvectors
+    \[\beta = \set{v_1, v_2,\dots, v_{n}}.\] There are $n$ of them by
+    assumption. It has been proven earlier that it is linearly
+    independent, and thus $\beta$ is a basis of $V$. Therefore, $T$ is
+    diagonalisable.
+  \end{proof}
+
+  Since for all $\lambda$ $\dim(E_{\lambda}) = \dim(E'_{\lambda})$, it
+  follows that $\dim V = \sum_{i=1}^m \dim E'_{\lambda_{m}}$. Thus, by
+  the Lemma, $A^{t}$ is also diagonalisable.
+
+
+\end{linenumbers}
+\end{document}

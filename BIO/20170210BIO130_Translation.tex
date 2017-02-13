@@ -1,0 +1,96 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{BIO130}{V}{Translation}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Translation}
+
+Codons are read as mRNA triplets, encoding all 20 amino acids, so
+there is a redundancy with multiple codons for most amino acids.
+
+Reaing frames define the amino acid sequence, which are in turn
+determined by the position of the starting codon AUG.
+
+\subsection{TmRNA and protein sequence}
+
+The 3' end has an acceptor arm, where it will stick to the
+acid. Anticodons will base-pair complementary and antiparellel to the
+codon.
+
+There are modifications to traditional bases, such as D =
+dihydroeuridine.
+
+\subsection{Codon Redundancy}
+
+
+Some strategies of managing the redundancy for translation include the
+correspondence of more than 1 tRNA to many amino acids, with some
+tRNAs recognizing and base pairing with more than 1 codon.
+% There is some flexibility in codon bonding between .
+There are two sequential steps in ensuring fidelity: utilising
+aminoacyl-tRNA synthetases and base pairing. Hydrolytic editing, in
+turn, is conducted by aminoacyl-RNA-synthetase.
+
+Amino acid addition proceeds by condensation reactions.
+
+\subsection{Prokaryotic vs Eukaryotic Ribosomes}
+
+Both prokaryotic and eukaryotic ribosomes have large and small subunits.
+
+Eukaryotic ribosomes are typically larger and more complex.
+
+In eukaryotes, ribosomes are located on endoplasimc reticulum (which
+secretes proteins in some organelles) and in cytosol. In prokaryotes, ribosomes are only in cytosol.
+
+
+
+
+\end{document}

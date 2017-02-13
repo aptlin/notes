@@ -1,0 +1,206 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{MAT247}{XI}{Spectral Theorem}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Spectral Theorem}
+
+\begin{definition}
+  Let $V$ be a finite-dimensional inner product space, and let $T \in \Hom(V,V)$. Then $T$ is \textbf{normal} if $TT^{*} = T^{*}T$ and \textbf{self-adjoint} if $T = T^{*}$.
+\end{definition}
+
+\begin{theorem}
+  \label{sec:spectral-theorem}
+  If $\FF = \CC$, $V$ has an orthonormal basis of eigenvectors if and only if $T$ is normal.
+
+  If $\FF = \RR$, $V$ has an orthonormal basis of eigenvectors if and only if $T$ is self-adjoint.
+\end{theorem}
+
+\begin{example}
+
+\begin{itemize}
+\item Let $\FF = \CC$. Note that if $T$ is self-adjoint, then it is normal, and by Theorem \ref{sec:spectral-theorem} $T$ is diagonalisable.
+
+  However, if $T$ is normal, it is not necessarily self-adjoint, since for $A = 
+  \begin{pmatrix}
+    0 & -1\\
+    1 & 0
+  \end{pmatrix}
+  $ $A^{*}= -A$.
+
+  Moreover, if $T$ is diagonalisable, it is not necessarily normal, since for $B = 
+  \begin{pmatrix}
+    1 & 1  \\
+    0 & 2
+  \end{pmatrix}
+$, $\lambda = 1$ is an eigenvalue with the eigenvector $\cv{1;0}$ and $\lambda = 2$ is an eigenvalue with the eigenvector $\cv{1;1}$, which are not orthogonal.
+\item Suppose now $\FF = \RR$. Then $A  = 
+  \begin{pmatrix}
+    0 & -1 \\
+    1 & 0
+  \end{pmatrix}
+  $ is normal, but not diagonalisable, since the characteristic polynomial is $t^2+1$. Moreover, $
+  \begin{pmatrix}
+    1 & 1\\
+    0 & 2
+  \end{pmatrix}
+$ is diagonalisable, but not self-adjoint.
+\end{itemize}
+\end{example}
+
+\subsection{Infinite-Dimensional Inner Product Spaces}
+
+In general, infinite-dimensional inner product spaces do not necessarily have an orthonormal basis.
+
+The following can be proven:
+
+\begin{example}
+  Let $l^2 = \set{\sigma(1), \sigma(2), \dots, \in \FF; \sum_{i=1}^{\infty}\abs{\sigma(i)}^2 < \infty}$ be an inner product space with $\ipr{\sigma}{\tau} = \sum_{i=1}^{\infty}\sigma(i)\ol{\tau(i)} \in \FF$. Then $l^2$ does not have any orthonormal basis. For example, $(e_i)_{i=1}^{\infty}$ is a maximal orthonormal subset, but does not span.
+
+  Some linear transformations do not have an adjoint (see Friedberg \textit{et al}, 6.3/ex 24).
+
+  Moreover, $V  = W\oplus W^{\bot}$ and $W^{\bot \bot} = W$ can fail, and thus the spectral theorem fails.
+\end{example}
+
+\begin{remark}
+If $\beta$ is an orthonormal basis, then $T$ is normal if and only if $[T]_{\beta}$ is normal, since $[T^{*}]_{\beta} = [T]^{*}_{\beta}$.
+\end{remark}
+
+\begin{theorem}
+  Let $T \in \Hom(V,V)$ be normal.
+
+  \begin{enumerate}[label=\alph*)]
+  \item $\norm{T(x)} = \norm{T^{*}(x)}$ for all $x\in V$.
+  \item $T-\lambda I$ is normal, with $\lambda \in \FF$.
+  \item If $T(x) = \lambda x$, then $T^{*}(x) = \ol{\lambda}x$
+  \item Eigenvectors for \textit{distinct} eigenvalues are orthogonal to each other.
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  \hfill
+  
+  \begin{enumerate}[label=\alph*)]
+  \item $\norm{T(x)}^2 = \ipr{Tx}{Tx} = \ipr{T^{*}Tx}{x} = \ipr{TT^{*}x}{x} = \ipr{T^{*}x}{T^{*}x} = \norm{T^{*}x}^2$
+  \item Note that $(T-\lambda I)^{*} = T^{*}-\ol{\lambda} I^{*} =  T^{*} - \ol{\lambda}I$.
+
+    Therefore,
+    \begin{align}
+      (T-\lambda I)(T^{*} - \ol{\lambda}I) & = TT^{*} - \lambda T^{*} - \ol{\lambda}T + \lambda \ol{\lambda} \\
+                                           & = T^{*}T - \lambda T^{*} - \ol{\lambda}T + \lambda \ol{\lambda} \\
+                                           & =      (T^{*}-\lambda I)(T - \ol{\lambda}I)
+    \end{align}
+  \item Since $T(x) = \lambda x$, then $(T-\lambda I)(x) = 0$ and thus
+    $\norm{(T-\lambda I)(x)} = 0$, which means that $\norm{(T-\lambda I)^{*}} = 0$, and therefore, $\norm{T^{*} - \ol{\lambda} x} = 0$, and thus $T^{*} = \ol{\lambda}x$.
+  \item If $T(x) = \lambda x$ and $T(y) = \mu y$ and $\lambda  \neq \mu$:
+
+    \begin{align}
+      \ipr{Tx}{y} &= \ipr{x}{T^{*}y}\\
+      \lambda \ipr{x}{y} &= \mu \ipr{x}{y}\\
+      \ipr{x}{y} &= 0      
+    \end{align}    
+  \end{enumerate}
+\end{proof}
+
+\begin{lemma}
+  \label{sec:infin-dimens-inner}
+  Suppose $T \in \Hom(V,V)$. If $W\suq V$ is $T$-invariant, then $W^{\bot}$ is $T^{*}$-invariant.
+\end{lemma}
+\begin{remark}
+If the lemma is applied to $T^{*}$ instead, then $W^{\bot}$ is $T$-invariant, because $T^{**}= T$.
+\end{remark}
+
+\begin{proof}
+  Take any $x\in W^{\bot}$. We need to show that $T^{*}\in W^{\bot}$,
+  i.e. $\ipr{T^{*}x}{w} = 0$ for all $w\in W$. Note that $\ipr{T^{*}x}{w} = \ipr{x}{Tw} = 0$, since $Tw \in W$ and $x\in W^{\bot}$.
+\end{proof}
+\begin{theorem}
+  If $V$ is finite-dimensional, $\FF = \CC$, $T \in \Hom(V,V)$, then $T$ is normal if and only if $V$ has an orthonormal basis of eigenvectors for $T$.
+\end{theorem}
+\begin{proof}
+  The $\la$ direction from the theorems proven before.
+
+  We use induction on $\dim V$ to prove $\ra$.
+
+  Note that if $n = 1$ then any unit vector is an orthonormal basis of eigenvectors.
+
+  Assume the theorem holds for $(n-1)$-dimensional spaces.
+
+  Since $\FF = \CC$, we can pick an eigenvector for $T$. By scaling, we may assume that it has length $1$. Then we know that $Tv = \lambda v$ for some $\lambda \in \CC$. Therefore, $T^{*} = \ol{\lambda} v$.
+
+  Let $W = \spn(v)$ of dimension $1$.
+
+  Then $W$ is $T$-invariant and also $T^{*}$-invariant, since $v$ is an eigenvector.
+
+  By Lemma \ref{sec:infin-dimens-inner}, $W^{\bot}$ is $T$-invariant and also $T^{*}$-invariant.
+
+  Note that $\dim W^{\bot} = \dim V - \dim W = n - 1$.
+
+  \begin{claim*}
+    ($T_{W^{\bot}})^{*} = (T^{*})_{W^{\bot}}$.
+  \end{claim*}
+  \begin{proof}
+    Since $\ipr{Tx}{y}=\ipr{x}{T^{*}y}$ for all $x,y \in W^{\bot}$, this also hold if $T$ is restricted to $W^{\bot}$.
+  \end{proof}
+
+  From the claim we obtain that $T|_{W^{\bot}}$ is normal.
+  
+  By induction hypothesis applied to $W^{\bot}$ we obtain an
+  orthonormal basis $\set{v_2, \dots, v_n}$ of eigenvectors for
+  $T_{W^{\bot}}$.
+
+  Therefore, $\set{v, v_2, \dots, v_n}$ is an orthonormal basis of eigenvectors for $T$.
+\end{proof}
+
+
+
+
+\end{document}

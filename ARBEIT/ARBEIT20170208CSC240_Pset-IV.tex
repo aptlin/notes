@@ -1,0 +1,157 @@
+% Created 2017-02-06 Mon 02:25
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{scrartcl}
+\usepackage[beaue, pset, anon]{masty}
+\pSet{Alexander Illarionov - 1003590937 - CSC240 Pset IV}
+\usepackage[pass]{geometry}
+\usepackage{float}
+  \newcommand{\mbr}[1]{\text{\shortstack[l]{#1}}}
+  \pagenumbering{gobble}
+  
+\author{Alexander Illarionov}
+\date{\today}
+\title{}
+\begin{document}
+\textbf{Administrativia}: no discussions, no extra material consulted
+
+\textbf{Problem}
+
+Let \(S\) denote all subsets of some set of elements \(U\).
+
+For \(A, B \in S\), define \(A \Delta B = \set{x \in U; (x \in A) \XOR (x \in B)}\).
+
+Note that \(\delta\) is commutative and associative since \(\XOR\) is commutative and associative.
+
+Let \(n \in \ZZ^+\) and let \(A_1, \dots , A_n \in S\).
+
+Formally prove (using induction) that, for all \(x \in U\) , \(x \in A_1 \Delta A_2 \Delta \cdots \Delta A_n\) if and only if
+\(\#\set{i \in \set{1, \dots , n}; x \in A_i }\) is odd.
+
+\textbf{Solution}
+
+For any \(i\in\NN\), let \(T_i\) be the set of all sets consisting of \(i\) subsets in \(S\).
+
+Let \(A_i\) be the \(i^{\Th}\) element in each \(Q_{i}\in T_i\).
+
+For \(n\in\NN\), let 
+
+\(P(n)=``\forall \tau_n\in T_{n}.\forall x\in U.(x\in A_1\Delta \cdots \Delta A_n \IFF \#\set{i \in \set{1, \dots , n}; x \in A_i } \text{ is odd}"\).
+\newgeometry{left=0.3in, right=0.3in, top=0.8in}
+\begin{flagderiv}
+
+\hline\\
+
+  \step{bc}{P(1)}{\shortstack[l]{\ul{Base Case}\\
+      for all \(x\in U\),\\ if \(x\in A_1\), then,\\$\#\set{i \in \set{1, \dots , n}; x \in A_i} = 1$,\\ which is odd  }}
+  \\\hline\\
+  \assume{is}{\forall i\in [1, k]\cap\NN.P(i) \text{ for some $k \in \NN$}}{\shortstack[l]{Inductive Step\\Assumption }}
+  \\\hline
+  
+  \step{is-k}{P(k)}{Specialisation, \ref{is}}
+  \\\hline\\
+  \step{ise}{\mbr{\\$\forall Q'_k\in T_{k}.\forall x\in U.$\\$(x\in A_1\Delta \cdots \Delta A_k \IFF\#\set{i \in \set{1, \dots , k}; x \in A_i} \text{ is odd})$}}{Definition of $P$, \ref{is-k}}
+  \\\hline\\
+  \assume{int-t}{\text{Let $S_k\in T_{k}$ be arbitrary.}}{}
+  \\\hline\\
+  \assume{int-x}{\text{Let $x\in U$ be arbitrary.}}{}  
+  \\\hline\\
+  \step{int-S}{\mbr{Let $A_1, \dots, A_k$ be distinct elements in $S_k$.}}{}
+  \\\hline\\
+  \step{spec-is}{x\in A_1\Delta \cdots \Delta A_k \IFF\#\set{i \in \set{1, \dots , k}; x \in A_i} \text{ is odd}}{Specialisation, \ref{ise}}
+  \\\hline\\
+
+  \assume{int-k}{\text{Let $A_{k+1}\in S$ be arbitrary.}}{}
+  \\\hline\\
+  \step{int-y}{A_{k}\Delta A_{k+1}\in S}{Definition of $S$}
+  \\\hline\\
+  \step{use-y}{\mbr{$\set{A_1, \dots, A_{k-1}, A_k\Delta A_{k+1}}$ is a set of $k$ subsets in $S$}}{\ref{int-t}, \ref{int-y}}
+  \\\hline\\
+  \assume{int-q}{\mbr{Let $Q_k = A_k\Delta A_{k+1}$\\ and $Q_i = A_i$ for $i\in [1, k-1]\cap \NN$.}}{}
+  \\\hline\\
+  \step{int-Q}{\mbr{$Q = \set{Q_{1}, \dots, Q_{k}}$ is a set of $k$ subsets in $S$}}{Substitution; \ref{use-y}, \ref{int-Q}}
+  \\\hline\\
+  \step{Q-T}{Q\in T_k}{Definition of $Q$, \ref{int-Q}}
+  \\\hline\\
+  \step{ex-q}{\mbr{$\forall y\in U.$\\$(y\in Q_1\Delta \cdots \Delta Q_k \IFF$\\$\#\set{i \in \set{1, \dots , k}; y \in Q_i} \text{ is odd})$}}{Specialisation for $Q$, \ref{Q-T}}
+  \\\hline\\
+  \step{spec-ex}{\mbr{$(x\in Q_1\Delta \cdots \Delta Q_k \IFF$\\$\#\set{i \in \set{1, \dots , k}; x \in Q_i} \text{ is odd})$}}{Specialisation for $x$, \ref{ex-q}}  
+  \\\hline\\
+  \step{pre-sub}{\mbr{$Q_1\Delta \cdots \Delta Q_k = A_1\Delta \cdots \Delta A_k\Delta A_{k+1}$}}{\shortstack[l]{Definition of $Q_{i}$ for $i\in[1, k+1]\cap \NN$;\\\ref{int-q}}}
+  \\\hline\\
+  \step{sub-A}{\mbr{$(x\in A_1\Delta \cdots \Delta A_k\Delta A_{k+1} \IFF$\\$\#\set{i \in \set{1, \dots , k}; x \in Q_i} \text{ is odd})$}}{Substitution, \ref{pre-sub}}  
+  \\\hline\\      
+  \step{id-card}{\mbr{$\#\set{i \in \set{1, \dots , k}; x \in Q_i} =$\\$ \#\set{i\in\set{1, \dots, k-1};x\in Q_{i}} + \#\set{i\in\set{k};x\in Q_i}$}}{\shortstack[l]{  
+      Definition of\\ $\#\set{i \in \set{1, \dots , k}; x \in Q_i}$}}
+  \\\hline\\
+  \step{int-R}{\mbr{Let $R = \set{A_k, A_{k+1}}$.}}{}
+  \\\hline\\
+  \step{bel-R}{R\in T_2}{Definition of $T_2$ and $R$,\ref{int-R}}
+  \\\hline\\
+  \assume{is-2}{P(2)}{Specialisation, \ref{is}}
+  \\\hline\\
+  \step{ise-2}{\mbr{\\$\forall w\in U.(w\in A_k\Delta A_{k+1} \IFF$\\$\#\set{i \in \set{k , k+1}; w \in A_i} \text{ is odd})$}}{Specialisation for $R$, \ref{int-R}, \ref{is-2}}
+  \\\hline\\
+  \step{ise-3}{\mbr{\\$(x\in A_k\Delta A_{k+1} \IFF$\\$\#\set{i \in \set{k , k+1}; x \in A_i} \text{ is odd})$}}{Specialisation for $x$, \ref{ise-2}}  
+  \\\hline\\
+  \step{sub-qk}{\mbr{$(x\in Q_{k} \IFF$\\$\#\set{i \in \set{k , k+1}; x \in A_i} \text{ is odd})$}}{Substitution, \ref{int-k}, \ref{ise-3}}
+  \done
+  \\\hline\\
+  
+  \assume{is-1}{P(1)}{Specialisation, \ref{is}}
+  \\\hline\\
+  \step{use-q}{Q_k\in T_1}{Definition of $T_{1}$ and
+    $Q_{k}$, \ref{int-q}}
+  \\\hline\\
+  \step{ex-qk}{\mbr{$(x\in Q_k \IFF$\\$\#\set{i \in
+        \set{k}; x \in Q_i} \text{ is
+        odd})$}}{Specialisation for $Q_{k}$ and $x$, \ref{is-1}}
+  \\\hline\\
+  \step{pre-taut}{\mbr{Let $A, B, C$ be arbitrary propositional variables.}}{}
+  \\\hline\\
+  \step{taut-eqi}{$((A\IFF B)\AND (A\IFF C))\THEN(B\IFF C)$}{Tautology}
+  \\\hline\\
+  \step{use-eq}{\mbr{\\$\#\set{i \in \set{k}; x \in Q_i} \text{ is
+        odd} \IFF$\\$\#\set{i \in \set{k , k+1}; x \in A_i} \text{ is
+        odd}$}}{\shortstack[l]{  
+Use of Tautology (Modus Ponens),\\ \ref{sub-qk}, \ref{ex-qk}, \ref{taut-eqi}}}
+  \\\hline\\
+  \step{taut-par}{\mbr{$\forall A\in\NN\cup\set{0}.\forall B\in\NN\cup\set{0}.\forall C \in\NN\cup\set{0}.$\\
+      $[$($A$ is odd $\IFF$ $B$ is odd) $\IFF$\\
+      ($A+C$ is odd $\IFF$
+      $B+C$ is odd)] } }{\shortstack[l]{Tautology: Parity
+      Equivalence\\is Conserved Under Addition }}
+  \\\hline\\
+  \step{use-taut}{\mbr{\\($\#\set{i \in \set{k}; x \in Q_i} \text{ is
+        odd}
+      \IFF$\\$\#\set{i \in \set{k , k+1}; x \in A_i} \text{ is
+        odd}$)\\$\IFF(\#\set{i \in \set{k}; x \in
+        Q_i}+$\\$\#\set{i\in\set{1, \dots, k-1};x\in Q_{i}} \text{ is
+        odd} \IFF$\\$\#\set{i \in \set{k , k+1}; x \in
+        A_i}$\\$+\#\set{i\in\set{1, \dots, k-1};x\in Q_{i}} \text{ is
+        odd})$}}{Specialisation, \ref{taut-par}}
+  \\\hline\\
+  
+  \step{use-taut}{\mbr{\\$\#\set{i \in \set{k}; x \in Q_i}+$\\$\#\set{i\in\set{1, \dots, k-1};x\in Q_{i}} \text{ is odd} \IFF$\\$\#\set{i \in \set{k , k+1}; x \in A_i}$\\$+\#\set{i\in\set{1, \dots, k-1};x\in Q_{i}} \text{ is odd}$}}{Modus Ponens, \ref{use-eq}, \ref{use-taut}}
+  \\\hline\\
+  \step{use-taut}{\mbr{\\$\#\set{i \in \set{1, \dots , k}; x \in Q_i} \text{ is odd} \IFF$\\$\#\set{i \in \set{k , k+1}; x \in A_i}$\\$+\#\set{i\in\set{1, \dots, k-1};x\in A_{i}} \text{ is odd}$}}{Substitution, \ref{id-card}}
+    \\\hline\\
+  \step{id-card-2}{\mbr{\\$\#\set{i \in \set{k , k+1}; x \in A_i}$\\$+\#\set{i\in\set{1, \dots, k-1};x\in A_{i}}$\\$=\#\set{i\in\set{1, \dots, k+1};x\in A_{i}}$}}{\shortstack[l]{  
+      Definition of\\ $\#\set{i \in \set{1, \dots , k+1}; x \in A_i}$}}
+  \\\hline\\
+  \step{sub-ak}{\mbr{\\$\#\set{i \in \set{1, \dots , k}; x \in Q_i} \text{ is odd} \IFF$\\$\#\set{i\in\set{1, \dots, k+1};x\in A_{i}} \text{ is odd}$}}{Substitution, \ref{use-taut}}
+  \\\hline\\  
+  \step{use-taut-fin}{\mbr{$x\in A_1\Delta \cdots \Delta A_k\Delta A_{k+1} \IFF$\\$\#\set{i\in\set{1, \dots, k+1};x\in A_{i}} \text{ is odd}$}}{\shortstack[l]{  
+      Use of Tautology (Modus Ponens),\\ \ref{sub-A}, \ref{taut-eqi}, \ref{sub-ak}}}
+  \done
+\\\hline\\    
+\conclude[3]{pre-ind-k}{\mbr{$\forall x\in U.(x\in A_1\Delta \cdots \Delta A_k\Delta A_{k+1} \IFF$\\$\#\set{i\in\set{1, \dots, k+1};x\in A_{i}} \text{ is odd})$}}{Generalisation, \ref{int-x}}
+\\\hline\\    
+\conclude{pre-ind-s}{\mbr{$\forall S\in T_k.\forall x\in U.(x\in A_1\Delta \cdots \Delta A_k\Delta A_{k+1} \IFF$\\$\#\set{i\in\set{1, \dots, k+1};x\in A_{i}} \text{ is odd})$}}{Generalisation, \ref{int-t}}
+\\\hline\\    
+\step{pre-ind-f}{P(k+1)}{Direct Proof; \ref{is}-\ref{pre-ind-s}}
+\\\hline\\    
+\conclude{ind-f}{\forall n\in\NN.P(n)}{Induction; \ref{bc}-\ref{pre-ind-f}}
+
+\end{flagderiv}
+
+\end{document}

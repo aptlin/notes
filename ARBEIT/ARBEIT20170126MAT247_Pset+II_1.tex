@@ -1,0 +1,194 @@
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+\documentclass[11pt]{scrartcl}
+\usepackage[beaue, pset, anon]{masty}
+\pSet{\hw{MAT247}{II}{1}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+% ----------------------------------------------------------------------
+% Body
+% ----------------------------------------------------------------------
+\begin{linenumbers}
+
+  \begin{problem*}
+    Consider the matrix $A =
+    \begin{pmatrix}
+      -5 & 8 \\
+      -4 & 7
+    \end{pmatrix}$. Compute $A^n$ for any $n > 0$.
+  \end{problem*}
+  \begin{soln}
+    Calculating the characteristic polynomial of $A$, we obtain
+    \[f(\lambda) = (-5-\lambda)(7-\lambda) + 32.\]
+
+    Therefore,
+    \begin{align}
+      & & (\lambda - 7)(\lambda + 5) + 32 = 0 \\
+      \lra & &  \lambda^2-2\lambda - 3 =0          \\
+      \lra & & ( \lambda = -1) \Or (\lambda = 3)
+    \end{align}
+
+    Thus, for $\lambda = -1$, the corresponding eigenvalues in the
+    form $\cv{x;y}$ is such that:
+    \begin{equation*}
+      \begin{pmatrix}
+        -4 & 8\\
+        -4 & 8
+      \end{pmatrix} \cv{x;y} =
+      \begin{pmatrix}
+        -4x + 8y\\
+        -4x + 8y
+      \end{pmatrix}=
+      \begin{pmatrix}
+        0 & 0\\
+        0 & 0
+      \end{pmatrix}
+    \end{equation*}
+
+    Therefore, $x = 2y$ and thus $\cv{2; 1}$ spans $E_{-1}$.
+
+    For $\lambda = 3$, the corresponding eigenvalues in the
+    form $\cv{x;y}$ is such that:
+
+
+    \begin{equation*}
+      \begin{pmatrix}
+        -8 & 8\\
+        -4 & 4
+      \end{pmatrix} \cv{x;y} =
+      \begin{pmatrix}
+        -8x + 8y\\
+        -4x + 4y
+      \end{pmatrix}=
+      \begin{pmatrix}
+        0 & 0\\
+        0 & 0
+      \end{pmatrix}
+    \end{equation*}
+
+    Therefore, $x = y$ and thus $\cv{1; 1}$ spans $E_{3}$.
+
+    Suppose $T \in \Hom(\RR^2,\RR^2)$ is a linear transformation corresponding
+    to the matrix $A$.
+
+    Since $\RR^2 = E_1\oplus E_{2}$ (vectors spanning $E_1$ and
+    $E_{2}$ are linearly independent, then $T$ is
+    diagonalisable. Thus, taking $\gamma = \set{\cv{2;1}, \cv{1;1}}$, we obtain
+
+    \begin{equation*}
+      [T]_{\beta} =
+      \begin{pmatrix}
+        -1 & 0\\
+        0 & 3
+      \end{pmatrix}.
+    \end{equation*}
+
+    Denote $\beta = \set{\cv{1;0}, \cv{0;1}}$.
+
+    Note that
+
+    $[I]_{\beta}^{\gamma} =
+    \begin{pmatrix}
+      2 & 1\\
+      1 & 1
+    \end{pmatrix}  = U
+    $. Moreover,
+    \begin{align}
+      &\cv{1;0} = 1 \cv{2;1} - 1 \cv{1;1}\\
+      &\cv{0;1} =  (-1)\*\cv{2;1} +2 \cv{1;1}
+    \end{align}
+
+    and hence
+    $[I]_{\gamma}^{\beta} =
+    \begin{pmatrix}
+      1  & -1 \\
+      -1 & 2
+    \end{pmatrix} = U^{-1}$.
+
+    Therefore,
+    \begin{equation*}
+      A =     \begin{pmatrix}
+        1  & -1 \\
+        -1 & 2
+      \end{pmatrix}
+      \begin{pmatrix}
+        -1 & 0\\
+        0 & 3
+      \end{pmatrix}
+      \begin{pmatrix}
+        2 & 1\\
+        1 & 1
+      \end{pmatrix}
+    \end{equation*}
+    Since $UU^{-1}=I$, it follows that
+    \begin{equation*}
+      A^{n} =     \begin{pmatrix}
+        1  & -1 \\
+        -1 & 2
+      \end{pmatrix}
+      \begin{pmatrix}
+        (-1)^{n} & 0\\
+        0 & 3^{n}
+      \end{pmatrix}
+      \begin{pmatrix}
+        2 & 1\\
+        1 & 1
+      \end{pmatrix}
+    \end{equation*}
+
+
+
+
+
+
+  \end{soln}
+
+
+
+\end{linenumbers}
+\end{document}

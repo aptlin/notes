@@ -1,0 +1,79 @@
+% Created 2017-02-06 Mon 02:29
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{marvosym}
+\usepackage{wasysym}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage[version=3]{mhchem}
+\usepackage[numbers,super,sort&compress]{natbib}
+\usepackage{natmove}
+\usepackage{url}
+\usepackage{minted}
+\usepackage{underscore}
+\usepackage[linktocpage,pdfstartview=FitH,colorlinks,
+linkcolor=blue,anchorcolor=blue,
+citecolor=blue,filecolor=blue,menucolor=blue,urlcolor=blue]{hyperref}
+\usepackage{attachfile}
+\author{Alexander Illarionov}
+\date{\today}
+\title{}
+\begin{document}
+
+\tableofcontents
+
+\% Created 2017-02-06 Mon 02:25
+\% Intended \LaTeX{} compiler: pdflatex
+\documentclass[11pt]{scrartcl}
+  \usepackage[beaue, pset, anon]{masty}
+\pSet\{\hw{MAT247}{}{}\}
+\pagenumbering{gobble}
+\author{Alexander Illarionov}
+\date{\today}
+\title{}
+\begin{document}
+
+\textbf{Problem}
+
+Let \(S\) denote all subsets of some set of elements \(U\).
+
+For \(A, B \in S\), define \(A \Delta B = \set{x \in U; (x \in A) \XOR (x \in B)}\).
+
+Note that \(\delta\) is commutative and associative since \(\XOR\) is commutative and associative.
+
+Let \(n \in \ZZ^+\) and let \(A_1, \dots , A_n \in S\).
+
+Formally prove (using induction) that, for all \(x \in U\) , \(x \in A_1 \Delta A_2 \Delta \cdots \Delta A_n\) if and only if
+\(\#\set{i \in \set{1, \dots , n}; x \in A_i }\) is odd.
+
+\textbf{Solution}
+For any \(i\in\NN\), let \(T_i\) be the set consisting of \(i\) subsets in \(S\).
+
+Let \(T\) denote a set consisting of all sets containing some number of elements in \(S\).
+
+Let \(A_i\) be the \(i^{\Th}\) element in \(T_i\).
+
+For \(n\in\NN\), let 
+
+\(P(n)=\)``\(\forall T_n\forall x\in U.(x\in A_1\Delta \cdots \Delta A_n \IFF \#\set{i \in \set{1, \dots , n}; x \in A_i }\) is odd\()\)''.
+
+
+\begin{flagderiv}
+
+
+\step{bc}{P(1)}{Base Case \footnote{for all \(x\in U\), if \(x\in A_1\),then $\#\set{i \in \set{1, \dots , n}; x \in A_i} = 1$, which is odd}}
+\end{flagderiv}
+\end{document}
+\end{document}

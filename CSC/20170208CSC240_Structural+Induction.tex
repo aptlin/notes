@@ -1,0 +1,224 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{CSC240}{X}{Structural Induction}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Structural Induction}
+
+Let $p:S\to \set{T, F}$ be a recursively defined predicate.
+
+To prove $\forall s \in S. p(s)$ by structural induction, prove:
+
+\begin{itemize}
+\item $p(s)$ for all base cases of the definition
+\item $p(s)$ for the construct cases of the definition, assuming $s$ is true for the components.
+\end{itemize}
+
+We can define functions on recursively defined sets.
+\begin{example}
+
+
+For $f\in M$, let $n(f)=$ "the number of occurrences of propositional variables in $f$".
+
+Then $n(P) = 1$ for any propositional variable $P$, and $n(f) = n(f') + n(f'')$ for $f = (f' \OR f'')$ and $f = (f'\AND f'')$.
+
+Let $B$ be the set of all binary trees.
+\begin{description}
+\item[Base Case] \hfill
+
+  The empty tree is in $B$.  
+\item[Constructor Case] \hfill
+  
+  If $t_1, t_2 \in B$ and $r$ is a node, then we say $t_1 = \text{left}(t)$ and $t_2=\text{right}(t)$.
+\end{description}
+
+
+\end{example}
+
+\begin{example}
+
+  For $t\in B$, let $N(t)$ be the number of nodes in $t$
+
+  \begin{description}
+  \item[Base Case] \hfill
+
+    $N(\text{empty tree}) =0$
+  \item[Constructor Case] \hfill
+
+    $N(t) = 1 + N(\text{left}(t)) + N(\text{right}(t))$
+
+  \end{description}
+
+\end{example}
+
+\begin{example}
+Let $L(t)$ be the number of leaves in $t$.
+  \begin{description}
+  \item[Base Case] \hfill
+
+    Then $L(\text{empty tree}) = 0$ and $L(\text{one node tree }) = 1$.
+    
+  \item[Constructor Case] \hfill
+
+    $L(t) = L(\text{left(t)} + L(\text{right}(t))$
+  \end{description}
+\end{example}
+
+\begin{theorem}
+  A binary three with $n$ nodes has at most $\ceiling{\nicefrac{n}{2}}$ leaves. Thus,
+  \begin{equation*}
+    \forall t \in B.L(t) \leq \ceiling{\nicefrac{N(t)}{2}}, 
+  \end{equation*}
+  or, equivalently,
+  \begin{equation*}
+    \forall n \in \NN. \forall t \in B.(N(t) = n \THEN L(t)\leq \ceiling{\nicefrac{n}{2}}
+  \end{equation*}
+\end{theorem}
+
+\begin{example}
+
+  For $t\in B$ and $n\in \NN$, let $S(t,n) =$ ``$t$ has $n$ nodes'' and $AL(t, n)=$ `` $t$ has at most $n$ leaves''.
+
+  Then $\forall n\in N.\forall t\in B.(S(t, n) \THEN A(t, \ceiling{\nicefrac{n}{2}}))$.
+
+  Let $p(n) = $ `` $\forall t\in B.(S(t, n) \THEN A(t,\ceiling{\nicefrac{n}{2}})$ ''.
+
+  Let $n\in\NN$ be arbitrary.
+
+  Suppose $\forall i\in\NN.(i < n \THEN p(i))$.
+  Let $t\in B$   be arbitrary.
+
+  Suppose $S(t, n)$.
+
+  To prove $A(t, \ceiling{\nicefrac{n}{2}})$.
+
+  \begin{description}
+
+  \item[Case 1:]
+    \hfill
+    
+    $n=0$.
+
+    Then $t$ has 0 nodes and 0 leaves. Since $0 = \ceiling{\nicefrac{n}{2}}$, then $A(t, 0)$ is true.
+
+    Thus, $A(t, 0)$ is true.
+  \item[Case 2:]
+    \hfill
+    
+    $n>0$.
+
+    Then $t$ has a root, a left subtree $t'$ and a right subtree $t''$.
+
+    Let $n' = N(t')$, $S(t',n')$, $n''=N(t''), S(t'', n'')$.
+
+    Then $n=n' + n'' + 1$, so $n', n'' < n$.
+
+    By specialisation of inductive hypothesis,
+    $A(t', \ceiling{\nicefrac{n'}{2}}$, $A(t'', \ceiling{\nicefrac{n''}{2}})$ are true.
+
+    Then
+    \[
+      L(t) = L(t') +L(t'') \leq \ceiling{\nicefrac{n'}{2}} + \ceiling{\nicefrac{n''}{2}} \leq \frac{n' + 1}{2} + \frac{n''+1}{2} = \frac{n+1}{2}
+    \]
+
+    If $n$ is odd, $\frac{n+1}{2} = \ceiling{\nicefrac{n}{2}}$.
+
+    If $n$ is even, then $\frac{n+1}{2} = \frac{n}{2}+ \frac{1}{2}$ and thus $\ceiling{\nicefrac{n}{2}} = \frac{n}{2}$.
+
+    Since $L(t) \leq \frac{n}{2} +\frac{1}{2}$ and $L(t) \in \NN$, then $L(t) \leq \frac{n}{2} =\ceiling{\nicefrac{n}{2}}$.
+
+  \end{description}
+
+  Then $A(t, \ceiling{\nicefrac{n}{2}})$.
+  $p(n)$ by generalisation.
+  $\forall n\in \NN.p(n)$ by strong induction.
+
+  
+  
+
+\end{example}
+
+\begin{theorem}\hfill
+  
+  Every integer greater than $1$ can be written as a product of primes.
+\end{theorem}
+
+\begin{proof}
+  \hfill
+
+  Suppose the claim is false.
+
+  Let $n$ be the smallest integer that cannot be written as a product
+  of primes. Then $n$ is not prime, since any prime can be written as
+  a trivial product of itself.
+
+  Therefore, $n$ is composite, so there exists $k, m \in\NN$ such
+  that$k > 1$ and $m>1$ and $n = k\*m$, while $k$ and $m$ are smaller
+  than $n$. Since they can be written as a product of prmies, $n$ is
+  also a product of primes, which is a contradiction.
+\end{proof}
+
+\begin{definition}[Well Ordering Principle]
+  Every nonempty subset of $\NN$ has the smallest element.
+\end{definition}
+
+\begin{example}
+
+  Let $p(n) =$ "n cannot be written as aproduct of primes". Let
+  $C = \set{n\in\NN; p(n) \text{ is false}}$, $C\neq \emptyset$.
+
+  Assume $[\forall n\in \NN.p(n)]$ is false. Then by the Well-Ordering Principle there exists the smallest element in $C$.
+
+\end{example}
+
+
+
+\end{document}

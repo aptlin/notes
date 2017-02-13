@@ -1,0 +1,309 @@
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+\documentclass[11pt]{scrartcl}
+\usepackage[beaue, pset, anon]{sdll}
+\pSet{\hw{MAT247}{I}{3}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+% ----------------------------------------------------------------------
+% Body
+% ----------------------------------------------------------------------
+\begin{linenumbers}
+  \begin{claim*}
+    Suppose that $M, N \in M_{n\times n}(\CC)$ and $N$ is
+    invertible. Then there exists $a\in\CC$ such that $M+aN$ is not
+    invertible.
+  \end{claim*}
+  \begin{lemma}
+    \label{sec:1}
+    Suppose $V$ is a finite-dimensional non-zero vector space over $\CC$ and
+    $T\in \Hom(V,V)$. Then $T$ has an eigenvalue.
+  \end{lemma}
+  \begin{proof}[Proof of Lemma \ref{sec:1}]
+    From the Fundamental Theorem of Algebra it follows that the
+    characteristic polynomial $f(t) = \det(T-tI)$ splits. Therefore
+    there exists at least one eigenvalue.
+  \end{proof}
+  \begin{lemma}
+    \label{sec:3}
+    Suppose $T\in\Hom(V,V)$ and $\beta=\set{v_1, v_2, \dots, v_n}$ is
+    a basis of a vector space $V$.
+
+    Then $[T]_{\beta}$ is upper-triangular if and only if
+    $Tv_j\in\spn(v_1, v_2,\dots, v_j)$ for each
+
+    $j = 1, \dots ,n$.
+  \end{lemma}
+  \begin{proof}[Proof of Lemma \ref{sec:3}]
+
+    Suppose first that $M = [T]_{\beta}$ is upper-triangular. Evaluating
+    $Tv_{j}$, we obtain that $Tv_{j} = \sum_{i=1}^{j}M_{ij} \in \spn(v_1, v_2,\dots, v_j)$.
+
+    Conversely, if
+    $Tv_{j} = \sum_{i=1}^{j}M_{ij} \in \spn(v_1, v_2,\dots, v_j)$,
+    then by definition $M$ is upper-triangular.
+  \end{proof}
+
+  \begin{lemma}
+    \label{sec:2}
+    Suppose $V$ is a finite-dimensional vector space over $\CC$ and
+    $T\in \Hom(V,V)$. Then there exists an ordered basis of $V$ such
+    that $[T]_{\beta}$ is upper-triangular.
+  \end{lemma}
+  \begin{proof}[Proof of Lemma \ref{sec:2}]
+    Let $n=\dim V$. We proceed by induction on $n$.
+
+    Note that the lemma holds trivially in case $n=1$.
+
+    Suppose now that $k> 1$ and the lemma holds for all dimensions
+    less than $k$. By Lemma \ref{sec:1}, there exists an eigenvalue
+    $\lambda$. Let
+    \begin{equation*}
+      U=\ran(T-\lambda I).
+    \end{equation*}
+
+    Note that $T-\lambda I$ is not injective, and thus not surjective,
+    making $\dim U < \dim V$. Note also that $U$ is invariant under
+    $T$, which can be seen as follows. Suppose $u\in U$, and thus
+
+    \begin{equation*}
+      Tu = (T-\lambda I) u + \lambda u
+    \end{equation*}
+
+    Since $(T-\lambda I) u \in U$ and also $u\in U$, it follows that
+    $T u \in U$. Therefore, $U$ is invariant under $T$. Note that a
+    restriction of $T$ on $U$, denoted as $T|_{U}$ is thus an
+    operator, i.e $T|_{U} \in \Hom(V,V)$, which, by inductive
+    hypothesis, means that there exists a basis
+    $\gamma = \set{u_1, u_2, \dots, u_m}$ such that
+    $[T|_{U}]_{\gamma}$ is upper-triangular. By Lemma \ref{sec:3}, for
+    each $j$ we have
+    \begin{equation*}
+      Tu_j= (T|_{U})v_j \in \spn \gamma.
+    \end{equation*}
+
+
+    Extend $\gamma$ to a
+    basis of $V$, so that
+    $\beta = \set{u_1, u_2, \dots, u_m, v_1, v_2, \dots, v_k}$.
+
+    For each $k$, $Tv_k = (T-\lambda I)v_k + \lambda v_{k}$. By
+    definition, $ (T-\lambda I)v_k \in U$, while
+    $\lambda v_{k} \in \spn(\beta)$, and thus $Tv_k\in \spn(\beta)$.
+
+    Therefore, using Lemma \ref{sec:3}, $T$ has an upper-triangular
+    matrix representation.
+
+    Thus, the Lemma holds for all $k\in \NN$ by induction.
+  \end{proof}
+
+  \begin{lemma}
+    \label{sec:4}
+    Suppose $T\in\Hom(V,V)$ has an upper-triangular matrix
+    representation for some basis of $V$. Then the eigenvalues of $T$
+    are precisely the entries on the diagonal of this matrix.
+  \end{lemma}
+  \begin{proof}[Proof of Lemma \ref{sec:4}]
+    Suppose that $\beta$ is a basis of $V$ such that $M = [T]_{\beta}$
+    is upper-triangular:
+
+    \begin{equation*}
+      M=
+      \begin{pmatrix}
+        \lambda_1 &             &        & * \\
+                  & \lambda_{2} &        &   \\
+                  &             & \ddots &   \\
+        0         &             &        & \lambda_{n}
+      \end{pmatrix}
+    \end{equation*}
+
+    Therefore,
+
+
+    \begin{equation*}
+      M - \lambda I =       \begin{pmatrix}
+        \lambda_1 - \lambda &                       &        & * \\
+                            & \lambda_{2} - \lambda &        &   \\
+                            &                       & \ddots &   \\
+        0                   &                       &        & \lambda_{n}-\lambda
+      \end{pmatrix}
+    \end{equation*}
+
+
+    $\det(M - \lambda I) = 0$ if and only if some diagonal entry is
+    equal to an eigenvalue. Since there are $n$ entries on the
+    diagonal, all the eigenvalues must be there as well.
+  \end{proof}
+
+  \begin{proof}[Proof of the Claim]
+    Consider $\det(M+aN)$.
+
+    From Lemmas \ref{sec:2} and \ref{sec:4}, there exists a basis
+    $\beta$ for which $N$ is upper-triangular with all the eigenvalues
+    $\lambda_1, \lambda_2, \dots, \lambda_{n}$ on the diagonal. Note
+    also that $0$ is not one of the eigenvalues, since $N$ would not
+    be invertible otherwise.
+
+    Suppose first that $N$ is diagonalizable. Therefore,
+
+    \begin{equation*}
+      [M+aN]_{\beta} =  [M]_{\beta}+a[N]_{\beta}=
+      \begin{pmatrix}
+        M_{11}      & \dots  & M_{1n} \\
+        \vdots      & \ddots & \vdots \\
+        M_{n1}      & \dots  & M_{nn}
+      \end{pmatrix}
+      +
+      a\begin{pmatrix}
+        \lambda_{1} & \dots  & 0      \\
+        \vdots      & \ddots & \vdots \\
+        0           & \dots  & \lambda_{n}
+      \end{pmatrix}
+    \end{equation*}
+    % Therefore, if $a = - \frac{M_{11}}{\lambda_{11}}$, then
+    % \begin{align}
+    %               & [M+aN]_{\beta} =
+    %     \begin{pmatrix}
+    %       0       & \dots  & M_{1n} \\
+    %       \vdots  & \ddots & \vdots \\
+    %       M_{n1}  & \dots  & M_{nn}-\frac{M_{11}}{\lambda_{11}}
+    %     \end{pmatrix}
+    %   \end{align}
+    Denote the $i$th column of $[M]_{\beta}$ as $m_i$ and the $j$th column of $[N]_{\beta}$ as $l_{j}$.
+
+    Therefore,
+    \begin{align*}
+      \det [M+aN]_{\beta} & = \det(m_1 + al_1, m_2 + al_2, \dots, m_n+al_{n}) \\
+                          & = \det(m_1, m_2+al_2,\dots, m_n+al_n) + a\det(l_1, m_2+al_2,\dots, m_n+al_{n})
+    \end{align*}
+    By expanding $a\det(l_1, m_2+al_2,\dots, m_n+al_{n})$ along the first column we obtain
+    \begin{align*}
+      \det [M+aN]_{\beta} & = \det(m_1 + al_1, m_2 + al_2, \dots, m_n+al_{n}) \\
+                          & = \det(m_1, m_2+al_2,\dots, m_n+al_n) + a\lambda_{1}\det\wt{A_{11}}
+    \end{align*}
+    where $A_{11} = (l_1,m_2+al_2,\dots, m_n+al_{n})$. Thus, $\wt{A_{11}} = \wt{(M+aN)}_{11}$.
+
+    Repeating the procedure, first we use multilinearity for the $k$th
+    of $\det$ and then apply the Laplacian expansion to the $k$th
+    column of the second term for all $k$ in $[2, n]\cap \NN$:
+
+    \begin{align*}
+      \det [M+aN]_{\beta} & = \det(m_1, m_2,\dots, m_n) + a\sum_{i=1}^{n}\lambda_{i}\det\wt{A_{ii}},
+    \end{align*}
+    where $A_{ii} = (m_1,\dots, m_{i-1}, l_i, m_{i+1}+al_{i+1}\dots, m_n+al_{n})$.
+
+    Note that for $i = n$, $A_{nn} = (m_1,m_2,\dots,m_{n-1}, l_{n})$, and thus $\wt{A}_{nn} = \wt{M}_{nn}$.
+
+    Note also that, by multilinearity again,
+
+    \[\det\wt{A_{11}} = \det(m_2, m_3,\dots, m_n) +
+      a\sum_{i=2}^{n}\lambda_{i}\det\wt{B_{ii}},\]
+    where $B_{ii}$ is a matrix such that
+    \[B_{ii} = (m_2,\dots, m_{i-1}, l_i, m_{i+1}+l_{i+1},\dots,
+      m_n+al_{n}).\]
+
+    Similarly,
+    \[\det\wt{A_{ii}} = \det(m_1, m_2,\dots, m_{i-1}, m_{i+1}, m_n) +
+      a\sum_{j=i+1}^{n}\lambda_{j}\det\wt{B_{jj}},\] where $B_{jj}$ is a
+    matrix such that
+    \[B_{jj} = (m_{i+1},\dots, m_{j-1}, l_j, m_{j+1}+l_{j+1},\dots,
+      m_n+al_{n}).\]
+
+    In turn, $\det(\wt{B_{jj}})$ can be defined similarly. Let's call
+    $A_{ii}, B_{jj}$ and similarly defined matrix coefficients as
+    \textit{plaques}. Call a determinant of a permutation of $m_{i}$
+    corresponding to each plaque as a \textit{wall}. Let's also call
+    cofactor of each plaque as a \textit{fat}. Observe that in each
+    iteration the dimension of a newly added plaque decreases, since a
+    fat of the previous iteration is a plaque of the current
+    iteration. Each fat has a product of $a$ and some eigenvalue of
+    $[N]_{\beta}$ as the coefficient before it. Note that the terminal
+    plaque is thus equal to $(m_{n})$ with the corresponding
+    coefficient of $a\lambda_{n}$.
+
+    By definition of a plaque, there are $n$ plaques in total. Before
+    each plaque there is a factor of $a$. Since each wall is a
+    well-defined complex number, $ \det [M+aN]_{\beta}$ is a
+    polynomial in $a$ of degree $n$. Therefore, by the Fundamental
+    Theorem of Algebra, there exists at least one $a\in \CC$ such that
+    $ \det [M+aN]_{\beta}$ is equal to zero.
+
+    In case of the non-diagonalizable matrix $N$, the argument is
+    similar, since by a similar procedure of \textit{expanding} the
+    determinant of a sum of the matrices still gives a polynomial in
+    $a$ of degree not greater than $n$, for which a root is guaranteed
+    by the Fundamental Theorem of Algebra.
+  \end{proof}
+
+  \begin{problem*}
+    Find non-zero $2\times 2$ matrices $M, N$ over $\CC$ such that
+    $M+aN$ is invertible for all $a\in\CC$.
+  \end{problem*}
+
+  \begin{soln}
+    By the Claim above, if $M+aN$ is invertible for all $a\in \CC$,
+    then $N$ is not invertible.
+
+    Take $
+    M =
+    \begin{pmatrix}
+      1 & 1\\
+      0 & 1
+    \end{pmatrix}, N =
+    \begin{pmatrix}
+      0 & 1\\
+      0 & 0
+    \end{pmatrix}$. Then $\det(M+aN) = \det
+    \begin{pmatrix}
+      1 & 1 + a \\
+      0 & 1
+    \end{pmatrix} = 1 \neq 0. $
+  \end{soln}
+
+\end{linenumbers}
+\end{document}

@@ -1,0 +1,248 @@
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+\documentclass[11pt]{scrartcl}
+\usepackage[beaue, pset, anon]{sdll}
+\pSet{\hw{MAT247}{I}{2}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+% ----------------------------------------------------------------------
+% Body
+% ----------------------------------------------------------------------
+\begin{linenumbers}
+  Consider $V = \SP_2(\CC)$ and the linear transformation $T\in \Hom(V,V)$ given by
+
+  \begin{equation*}
+    T(f(x)) = xf'(x) + xf(1) + f(2).
+  \end{equation*}
+
+  \begin{problem*}
+    Find the eigenvalues of $T$.
+  \end{problem*}
+  \begin{soln}
+    Note that $\gamma = \set{1, x, x^{2}}$ is an ordered basis of
+    $\SP(\CC)$. Note that a linear transformation is completely
+    determined by its action on a basis. Thus,
+
+    \begin{align}
+      T(1)   & = x + 1               \\
+      T(x)   & = x + x + 2 =  2x + 2 \\
+      T(x^2) & = 2x^2 + x + 4
+    \end{align}
+
+    Therefore, $[T]_{\gamma} =
+    \begin{pmatrix}
+      1 & 2 & 4 \\
+      1 & 2 & 1 \\
+      0 & 0 & 2
+    \end{pmatrix}
+    $.
+
+    Consider $\det([T]_{\gamma}-\lambda I) = 0$.
+
+
+    \begin{align*}
+      \det([T]_{\gamma}-\lambda I)                                         & =
+      \det\begin{pmatrix}
+        1 - \lambda                                                        & 2         & 4 \\
+        1                                                                  & 2-\lambda & 1 \\
+        0                                                                  & 0         & 2-\lambda
+      \end{pmatrix}                                                                        \\
+                                                                           & =
+                                                               \det\begin{pmatrix}
+                                                                 - \lambda & \lambda   & 3 \\
+                                                                 1         & 2-\lambda & 1 \\
+                                                                 0         & 0
+                                                                           &
+                                                                 2-\lambda
+                                                               \end{pmatrix}               \\
+                                                                           & =
+                                                               \det\begin{pmatrix}
+                                                                 0 & 3\lambda - \lambda^{2}   & 3 + \lambda \\
+                                                                 1         & 2-\lambda & 1 \\
+                                                                 0         & 0
+                                                                           &
+                                                                 2-\lambda
+                                                               \end{pmatrix},
+    \end{align*}
+    which, expanding along the first column, becomes
+
+    \begin{align}
+      \det([T]_{\gamma}-\lambda I) & = -\lambda(3-\lambda)(2-\lambda) = 0
+    \end{align}
+    Therefore, the possible eigenvalues are
+    $\lambda=0, \lambda = 3, \lambda = 2$.
+  \end{soln}
+  \begin{problem*}
+    Find a basis $\beta$ for which $[T]_{\beta}$ is a diagonal matrix.
+  \end{problem*}
+  \begin{soln}
+    First, we find eigenvectors corresponding to the eigenvalues found
+    above.
+
+    For $\lambda=0$, $
+    \begin{pmatrix}
+      1 & 2 & 4 \\
+      1 & 2 & 1 \\
+      0 & 0 & 2
+    \end{pmatrix}\cv{x; y; z} = \bm{0}$ if and only if
+
+    \begin{align}
+      & x + 2y + 4z = 0 \\
+      & x + 2y + z = 0  \\
+      & 0 + 0 + 2z = 0.
+    \end{align}
+
+    Therefore, $\cv{2; -1; 0}$ spans $E_0$.
+
+    For $\lambda=2$, $
+    \begin{pmatrix}
+      -1 & 2 & 4 \\
+      1 & 0 & 1 \\
+      0 & 0 & 0
+    \end{pmatrix}\cv{x; y; z} = \bm{0}$ if and only if
+
+    \begin{align}
+      -& x + 2y + 4z = 0 \\
+       & x  + 0 + z = 0     \\
+       & 0 + 0 + 0 = 0.
+    \end{align}
+
+    Therefore, $\cv{2; 5; -2}$ spans $E_2$.
+
+    For $\lambda=3$, $
+    \begin{pmatrix}
+      -2 & 2 & 4 \\
+      1 & -1 & 1 \\
+      0 & 0 & -1
+    \end{pmatrix}\cv{x; y; z} = \bm{0}$ if and only if
+
+    \begin{align}
+      -& 2x + 2y + 4z = 0 \\
+      & x - y + z = 0     \\
+      & 0 + 0 + -z = 0.
+    \end{align}
+
+    Therefore, $\cv{1; 1; 0}$ spans $E_3$.
+
+    Since the eigenvalues found are distinct, the corresponding
+    eigenvalues are linearly independent, and thus, since there are
+    three of them and the dimension of $\SP(\CC)$ is $3$, they form a basis.
+
+    Take $\beta = \set{\cv{2;-1;0}, \cv{2; 5; -2}, \cv{1;1;0}}$. Then
+    the corresponding diagonal matrix is
+
+
+    \begin{equation*}
+      [T]_{\beta} =
+      \begin{pmatrix}
+        0 & 0 & 0\\
+        0 & 2 & 0\\
+        0 & 0 & 3
+      \end{pmatrix},
+    \end{equation*}
+    as required.
+  \end{soln}
+
+    % Note the following:
+    % \begin{align}
+    %   & \cv{1;0;0} = \frac{1}{3}\cv{2;-1;0} + 0 \cv{2;5;-2} +
+    %     \frac{1}{3}\cv{1;1;0} \\
+    %   & \cv{0;1;0} = -\frac{1}{3}\cv{2;-1;0} + 0 \cv{2;5;-2} +
+    %     \frac{2}{3}\cv{1;1;0} \\
+    %   & \cv{0;0;1} = -\frac{1}{2}\cv{2;-1;0} -\frac{1}{2} \cv{2;5;-2} +
+    %     2\cv{1;1;0} \\
+    % \end{align}
+
+    % Therefore,
+    % $[I]_{\gamma}^{\beta} =
+    % \begin{pmatrix}
+    %   \frac{1}{3} & - \frac{1}{3} & -\frac{1}{2} \\
+    %   0           & 0             & -\frac{1}{2} \\
+    %   \frac{1}{3} & \frac{2}{3}   & 2
+    % \end{pmatrix}
+    % $, while $[I]^{\gamma}_{\beta} =
+    % \begin{pmatrix}
+    %   2           & 2             & 1 \\
+    %   -1          & 5             & 1 \\
+    %   0           & -2            & 0
+    % \end{pmatrix}
+    % $.
+
+    % Thus, since $[T]_{\beta} = [I]_{\gamma}^{\beta}[T]_{\gamma}[I]_{\beta}^{\gamma}$,
+
+
+    % \begin{equation*}
+    %   [T]_{\beta} =
+    %   \begin{pmatrix}
+    %     \frac{1}{3} & - \frac{1}{3} & -\frac{1}{2} \\
+    %     0           & 0             & -\frac{1}{2} \\
+    %     \frac{1}{3} & \frac{2}{3}   & 2
+    %   \end{pmatrix}
+    %   \begin{pmatrix}
+    %     1 & 2 & 4 \\
+    %     1 & 2 & 1 \\
+    %     0 & 0 & 2
+    %   \end{pmatrix}    \begin{pmatrix}
+    %     2           & 2             & 1 \\
+    %     -1          & 5             & 1 \\
+    %     0           & -2            & 0
+    %   \end{pmatrix} =
+
+    %   \begin{pmatrix}
+    %     \frac{1}{3} & - \frac{1}{3} & -\frac{1}{2} \\
+    %     0           & 0             & -\frac{1}{2} \\
+    %     \frac{1}{3} & \frac{2}{3}   & 2
+    %   \end{pmatrix}
+    %   \begin{pmatrix}
+
+    %   \end{pmatrix}
+
+    % \end{equation*}
+
+\end{linenumbers}
+\end{document}

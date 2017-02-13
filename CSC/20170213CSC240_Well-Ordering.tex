@@ -1,0 +1,169 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{CSC240}{XI}{Well-Ordering}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Well-Ordering}
+
+\begin{definition}
+An \textit{order set} (or \textit{partially ordered set}) $S$ is \textbf{well-ordered} if every nonempty subset of $S$ has a smallest element. 
+\end{definition}
+\begin{description}
+
+\item[e.g.] If ordered by value, $\NN$ is well-ordered, while $\ZZ$ and $\QQ$ are not. However, if $\ZZ$ is ordered by absolute value and then by value, then $\ZZ$ is well-ordered. Similarly, if $\QQ^+$ is considered with all the elements in the reduced form, then ordering first by a denominator and then by a numerator induces well-ordering. Another well-ordering $\QQ^+$ is induced by taking $\max{\text{numerator},\text{denominator}}$ in reduced form and then ordering by value, which is a construction used in Cantor's diagonal argument.
+\end{description}
+
+The proposition $\forall e\in S.P(e)$ can be proved using the well-ordering principle for any well-ordered set $S$ with ordering $\prec$.
+
+\begin{description}
+\item[L1] To obtain a contradiction, suppose that $\forall e\in S.P(e)$ is false.
+\item[L2] Let $C = \set{e\in S; P(e) \text{ is false}}$ be the set of counterexamples to $P$.
+\item[L3] $C\neq \emptyset$ by L1 and L2
+\item[L4] Let $e$ be the smallest element of $C$; well ordering principle, L3.
+\item[L5] Let $e' = \dots$
+\item[L6] $e'\in C$
+\item[L7] $e' \prec e$
+\item[L8] This is a contradiction to L4, L5, L6
+\item[L9] $\forall e \in S. P(e)$; proof by contradiction, L1 - L7
+\end{description}
+
+\section{Diagonalization}
+
+\begin{definition}
+  A function $f: A\to B$ is said to be \textit{surjective} or \textit{onto} if $\forall y\in B.\exists x\in A.f(x) = y$. 
+\end{definition}
+
+From the existence of a surjective function, if $A$ and $B$ are finite sets, we can conclude that $\abs{B}\geq \abs{A}$.
+\begin{definition}
+A nonempty set $C$ is countable if there is a surjective function from $\NN$ to $\CC$. By convention, an empty set is countable.
+\end{definition}
+
+Note that, by definition, every finite set is countable.
+
+Suppose $C = \set{c_0, \dots, c_{n-1}}$ is a nonempty finite set of $n$ elements. Define $f:\NN\to \CC$ such that
+
+\begin{equation}
+  f(i)=\begin{cases}
+    c_i \text{, for $i = 0,\dots, n-1$}\\
+    c_{n-1} \text{, for $i\geq n$}
+   \end{cases}.
+ \end{equation}
+
+ Then $f$ is surjective and hence $C$ is countable.
+
+ Moreover, $\ZZ$ is countable. Then
+
+ \begin{equation}
+   g(x) = \begin{cases}
+     \frac{-x-1}{2} \text{, if $x$ is odd}\\
+     \frac{x}{2} \text{if $x$ is even}
+   \end{cases}
+ \end{equation}
+
+ is surjective, and hence $\ZZ$ is countable.
+
+ Furthermore, if $A$ and $B$ are countable, then so is $A\cup B$. To prove this, we need the following lemma.
+
+ \begin{lemma}
+   If $A$ is countable and there is a surjective function $f: A\to B$,
+   then $B$ is countable.
+ \end{lemma}
+
+ \begin{proof}
+   \hfill
+   Since $A$ is countable, then there exists a surjective function $g:\NN \to A$. Consider the function $h:\NN \to B$ defined by $h(i) = f(g(i))$ for all $i\in\NN$.
+
+   To prove that $h$ is surjective, consider any $z\in B$. Since $f$
+   is surjective, there exists $y\in A$ such that $f(y) = z$. Since
+   $g$ is surjectiv, then there exists $x\in\NN$ such that $g(x) =
+   y$. Hence, $f(g(x)) = z$, and by construction $h$ is surjective.
+ \end{proof}
+
+ 
+ Consider the function $f(m, n) = 2^m\* 3^{n}\in\NN$ for any
+ $m, n\in\NN$.
+ 
+ \begin{definition}
+   For any set $A$, the power set of $A$ is the set of all subsets of
+   $A$. Thus, $P(A) = \set{S; S\suq A}$. 
+ \end{definition}
+
+ Note that if $\abs{A}=n$, then $\abs{P(A)} = 2^n$.
+
+ \begin{theorem}
+   $P(\NN)$ is uncountable.
+ \end{theorem}
+
+ \begin{proof}
+   \hfill
+
+   Suppose $P(\NN)$ is countable. Then there is a surjective function $f:\NN \to P(\NN)$.
+
+   Let $D = \set{i\in\NN; i\not\in f(i)} \in P(\NN)$.
+
+   Since $f$ is surjective, there exists $j\in\NN$ such that $f(j) = D$. Then for all $i\in\NN$, $i\in f(j)\IFF i\in D$, since $f(j) = D$. This is true if $i\not\in f(i)$ by definition of $D$. Since $j\in\NN$, by specialisation $j\in f(j) \IFF j\not\in f(j)$. This is a contradiction, and therefore $P(\NN)$ is uncountable.
+ \end{proof}
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+\end{document}

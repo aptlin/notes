@@ -1,0 +1,107 @@
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+\documentclass[11pt]{scrartcl}
+\usepackage[beaue, pset, anon]{masty}
+\pSet{\hw{MAT247}{II}{4}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+Suppose that $W_1, \dots, W_{k}$ are subspaces of a finite-dimensional
+vector space V such that $W_1+\cdots+W_k = V$.
+
+\begin{claim*}
+
+  \begin{equation*}
+    \sum_{i=1}^k\dim W_i \geq \dim V
+  \end{equation*}
+
+\end{claim*}
+
+\begin{proof}
+
+  Consider $v\in V$.
+
+  Let $\beta = \bigcup_{i=1}^k\beta_i$ be the union of the bases
+  $\beta_i$ of all $W_i$. Let $w_{i}$ for $i\in[1,k]\cap \NN$ be
+  vectors in $W_i$ such that
+  \begin{equation*}
+    v = \sum_{i=1}^kw_{i}
+  \end{equation*}
+
+
+  Since each $w_i$ can be represented as a linear combination of
+  vectors in $\beta_i$, it follows that
+  $v\in \spn\set{\bigcup_{i=1}^k\beta_i} = \spn \beta$.
+
+  Hence, $\sum_{i=1}^k\dim W_i \geq \dim V$.
+\end{proof}
+\begin{claim*}
+  $\sum_{i=1}^k \dim W_i = \dim V $ if and only if
+  $ V = W_1 \oplus W_2 \oplus \cdots \oplus W_k$.
+\end{claim*}
+\begin{proof}
+  Suppose first $ V = W_1 \oplus W_2 \oplus \cdots \oplus W_k$.
+  Thus, $W_i\cap(\sum_{j\neq i}W_{j}) = \set{0}$.
+
+  From the previous claim, $\sum_{i=1}^k\dim W_i \geq \dim V$, and
+  thus it is sufficient to show that
+  $\sum_{i=1}^k\dim W_i \leq \dim V$. Note that since all $W_i$ are
+  subspaces of $V$, if $\gamma$ is a basis of $V$, then all $W_i$ are
+  also subsets of the span of $\gamma$.
+
+  Consider $\beta = \bigcup_{i=1}^k\beta_i$, where $\beta_{i}$ is a
+  basis of $W_i$.
+
+  Since, $W_i\cap(\sum_{j\neq i}W_{j}) = \set{0}$, then
+  $\spn{\beta_i}\cap\bigcup_{i\neq j}(\spn W_{j}) = \set{0}$, and
+  thus, since all $\beta_{i}$ are linearly independent, then the union
+  of the bases is linearly independent as well. Hence, $\beta$ is the
+  basis for $V$, which gives that $\dim V = \sum_{i=1}^k \dim W_{i}$,
+  as required.
+\end{proof}
+
+\end{document}

@@ -1,0 +1,201 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{BIO130}{V}{Transcription II}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Transcription II}
+
+\subsection{E.coli promoters}
+
+The sequences which are transcribed are numbered with
+$\ZZ\setminus\set{0}$, with $1$ at the start of transcription.
+
+Positive ordinals are transcribed.
+
+The higher the number, the more \textit{downstream} the sequences are. 
+
+At $-35$ to $-10$ there are promoter consesus (most common, average)
+sequences.
+
+\textit{E.coli} has different $\sigma$-factors, which recognize
+different consensus sequences.
+
+\subsection{Simplified Model of Gene Expression}
+
+Transcription and translation are coupled.
+
+In procaryotes, translation can begin before the transcription is finished.
+
+A more realistic model would include polycistronic mRNA generating
+multiple proteins, which is usually a product of a single promoter to
+coordinate expression, as well as regulatory genes, which may stop a promoter.
+
+Eukaryotic transcription is more complicated.
+
+Transcription and translation are not coupled, since a nuclear export
+must happen before translation happens at the location of
+ribosomes. Note that primary RNA transcript is defferent from mature
+mRNA. The mature mRNA has a cap, with introns removed by splicing and
+polyadenylation end. Sometimes primary RNA might have a cap, with
+introns not removed and without polyadenylation end.
+
+Observe that both eukaryotes and prokaryotes have mRNAs, rRNAs and
+tRNAs. However, eukaryotes have much more (siRNAs, snRNAs,
+snoRNAs,scaRNAs, miRNAs and other noncoding RNAs, lots of which are
+not involved in producing proteins).
+
+Each of RNA polymerase I (larger rNAs), II (mRNAs), and III is a
+multi-subunit protein which are responsible for transcription of
+different RNAs. Animals and plants share thes RNAPs, but plants also
+have RNA polymerase IV and V.
+
+\subsection{Subunits of Eukaryotic RNA Polymerases}
+
+RNAPs are complex structures with many subunits, where some subunits
+are common to all three RNAPs and some subunits resembling the
+subunits of bacterial RNAPs. For example, in RNAP II there is a
+special CTD, carboxyterminal domain.
+
+Eukaryotic RNA polymerases require proteins, called transcription
+factors, to help position them at the promoter. These factors fulfill
+a similar role to sigma subunits of the bacterial RNA
+ploymerases. Eukaryotic RNA polymerases also need to deal with chromosomal
+structures.
+
+There is no splicing (no introns), no caps and no poly-a tail at 3'
+end in prokaryotic mRNA.
+
+There are coding and noncoding sequences. For example, in mRNA the
+start of translation is marked by the AUG sequence.
+
+Even if introns are removed, there are still coding and noncoding
+regions. Both in eukaryotes and prokaryotes, there are UTR
+untranslated regions at 3' and 5'. Translation of mRNA in eukaryotes
+results in one protein, while in prokaryotes there are several.
+
+\subsection{Transcription of Protein-Coding Genes}
+
+\subsubsection{Eukaryotes}
+
+Eukaryotes have the TATA box, found 25-36 base pairs upstream from the
+start, which positions RNAP II and contains highly conserved and
+hyghly transcribed (not all) genes. The TATA box is one example of the
+highly conserved sequences called elements.
+
+Eukaryotes can have any combination of $TATA$ or other elements (Inr,
+DPE).
+
+TATA is ulually at $(-35)-(-25)$, while the Inr is at 1, with DPE is
+approximately at +30.
+
+TBP binds along the rest of TFID, which includes TAFS, and mobilizes
+the binding of TFIIB complex adjacent to TATA box, so that RNAP can
+now bind in the correct orientation at the start site.
+
+Thus, TBP, a subunit of TFIID, binds to the TATA box promoter in the
+minor mode, bending and distorting DNA. This attracts other
+transcription factors, which help to orient and bind RNAP II to the
+DNA. The helicase activity of TFIIH ??.
+
+In RNAP II only the carboxy terminal domain of the largest subunit has
+a stretch of 7 amino acids that are repeated ??.
+
+RNAPII proceeds by abortive transcription.
+
+There addition factors required for transcription initiation. For example,  enhancers control transcriptional activators, which recognize the sequence. There are also insulator sequences, which terminate the passage of transcription.
+
+RNA polymerase II is activated by phosporylation of CTD S
+groups. There are about 100 subunits involved in initiating eukaryotic
+transcription.
+
+\subsection{RNA Factory}
+
+Phosphorylation of C-terminal tail of RNA Polymerase II results in the
+binding of RNA processing units. Phosphorylation of CTD depends on the
+phosphorylation of different protein patterns.
+
+\subsection{Capping}
+
+Capping helps to protect RNA from exonucleases. RNA triphoshatase
+removes ??. Guanyltransferase removes ??. RNA Methyltransferases then
+add a Methyl to the G base.
+\subsection{Introns}
+
+Key words: exons, introns, 
+RNA processing increases the number of gene products. 
+
+\subsection{Splicing reaction}
+
+Splicing is a two step process, with adenosine attacking the 5' splice
+site and 3' of one exon reacting with 5' of next exon to release
+intron, forming an intron lariat, exons ligate.
+
+\subsection{Catalytic Mechanism}
+
+2' OH group of the ribose sugar is not present in dexyribose. This
+group is necessary for the formation of the lariat structure in intron
+splicing.
+
+Sequences required for the intron removel are almost invariant.
+
+\subsection{Termination}
+
+Transcription of the consensus sequences and recruitment of modifying
+proteins.
+
+CPSF and CtsF move from the CTD to the specific sequences on the RNA.
+
+PAP = poly-a polymerase
+
+PABPN1 = Poly-a binding protein N1
+
+mRNA translated in the cytoplasm, a site of protein synthesis.
+\end{document}

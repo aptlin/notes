@@ -1,0 +1,177 @@
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+\documentclass[11pt]{scrartcl}
+\usepackage[beaue, pset, anon]{sdll}
+\pSet{\hw{MAT247}{I}{4}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+% ----------------------------------------------------------------------
+% Body
+% ----------------------------------------------------------------------
+\begin{linenumbers}
+  \begin{claim*}
+    Suppose that $M\in M_{n\times n}(\FF)$ has three distinct
+    eigenvalues $\lambda, \mu, \nu$ and that
+    $\dim E_{\lambda} = n - 2$. Then $M$ is diagonalizable.
+  \end{claim*}
+
+  \begin{proof}
+    Let $T = \LL_{M}$.
+    Note that $T$ is diagonalizable if and only if
+    \[\dim V = \dim E(\lambda, T) + \dim E(\mu, T) + \dim E(\nu, T).\]
+
+    We prove that this condition indeed holds.
+
+    Since $\mu$ and $\nu$ are distinct eigenvalues,
+    $\dim E(\mu, T) \geq 1$ and $\dim E(\nu, T) \geq 1$. Given that
+    $\dim E_{\lambda} = n-2$, we obtain
+
+    \[ \dim E(\lambda, T) + \dim E(\mu, T) + \dim E(\nu, T) \geq n = \dim V.\]
+
+    Since $V = E(\lambda, T) \oplus E(\mu, T) \oplus E(\nu, T)$,
+    \[\dim E(\lambda, T) + \dim E(\mu, T) + \dim E(\nu, T) \leq n =
+      \dim V.\]
+
+    Therefore,
+    \[\dim V = \dim E(\lambda, T) + \dim E(\mu, T) + \dim E(\nu, T),\]
+    and thus $T$ is diagonalizable.
+  \end{proof}
+
+  \begin{problem*}
+    Give an example of a matrix with precisely three distinct
+    eigenvalues that is not diagonalizable.
+  \end{problem*}
+
+  \begin{soln}
+    By the Claim above, if $M$ is not diagonalizable but has three
+    distinct eigenvalues, neither of them has
+    $\dim E_{\lambda_{i}} = n - 2$.
+
+    Moreover, if $M$ is not diagonalizable, then
+    \[\dim V > \dim E(\lambda, T) + \dim E(\mu, T) + \dim E(\nu, T).\]
+
+    Suppose $M \in M_{4 \times 4}(\QQ)$ is defined over $\QQ$.
+
+    Take $M =
+    \begin{pmatrix}
+      0 & 0 & 0  & 1 \\
+      0 & 1 & 0  & 0 \\
+      0 & 0 & -1 & 0 \\
+      0 & 0 & 5 & 0
+    \end{pmatrix}
+    $.
+
+    Consider $\det(M-\lambda I) = 0$.
+
+    \begin{align}
+      \det(M-\lambda I) =
+      \det\begin{pmatrix}
+        -\lambda & 0 & 0  & 1 \\
+        0 & 1-\lambda & 0  & 0 \\
+        0 & 0 & -1-\lambda & 0\\
+        0 & 0 & 5 & -\lambda
+      \end{pmatrix} = 0
+    \end{align}
+
+    Expanding along the first column and using the fact that
+    $M-\lambda I$ has a normal Jordan form, we obtain
+    \begin{align}
+      \det(M-\lambda I) =
+      -\lambda\det\begin{pmatrix}
+        1-\lambda & 0          & 0 \\
+        0         & -1-\lambda & 0 \\
+        0         & 5          & -\lambda
+      \end{pmatrix} = -\lambda^{2}(1-\lambda)(1+\lambda),
+    \end{align}
+
+
+    which gives possible eigenvalues of $0, 1, -1$. Note that they are
+    distinct.
+
+    For $\lambda=0$,
+    \begin{align}
+      \begin{pmatrix}
+        0 & 0 & 0  & 1 \\
+        0 & 1 & 0  & 0 \\
+        0 & 0 & -1 & 0 \\
+        0 & 0 & 5 & 0
+      \end{pmatrix}\cv{w;x;y;z} = \bm{0},
+    \end{align}
+    if $x=0$, $y=0,z=0$. Thus, $\cv{1;0;0;0}$ spans $E_{0}$.
+
+    For $\lambda = 1$,
+    \begin{align}
+      \begin{pmatrix}
+        -1 & 0 & 0  & 1 \\
+        0  & 0 & 0  & 0 \\
+        0  & 0 & -2 & 0 \\
+        0  & 0 & 5  & -1
+      \end{pmatrix}\cv{w;x;y;z} = \bm{0},
+    \end{align}
+    if $w = z$, $y=0$ and $z = 5y = 0 = w$. Thus, $\cv{0;1;0;0}$ spans $E_{1}$.
+
+  For $\lambda = -1$,
+  \begin{align}
+    \begin{pmatrix}
+      1 & 0 & 0 & 1 \\
+      0 & 2 & 0 & 0 \\
+      0 & 0 & 0 & 0 \\
+      0 & 0 & 5 & 1
+    \end{pmatrix}\cv{w;x;y;z} = \bm{0},
+  \end{align}
+  if $w = -z$, $x=0$ and $z = -5y$. Thus, $\cv{5;0;1;-5}$ spans $E_{-1}$.
+
+  Since there are only three eigenvectors, while the domain of
+  $T = \LL_{M}$ has the dimension $4$, there is no basis for the
+  domain consisting of eigenvectors, and thus $M$ is not
+  diagonalizable, while there are three distinct eigenvalues
+  corresponding to $M$.
+  \end{soln}
+
+\end{linenumbers}
+\end{document}

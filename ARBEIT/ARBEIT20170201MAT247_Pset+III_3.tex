@@ -1,0 +1,241 @@
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+\documentclass[11pt]{scrartcl}
+\usepackage[beaue, pset, anon]{masty}
+\pSet{\hw{MAT247}{III}{3}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+\section*{Problem 3}
+Let $V$ be a finite-dimensional vector space over $\FF$. Let $\beta = \set{v_1, v_2, \dots, v_n}$ be a basis of $V$. Fix scalars $c_1, c_2, \dots, c_n \in \FF$ and define for any $a_i, b_i\in \FF$:
+\begin{equation*}
+\ipr{\sum_{i=1}^na_iv_i}{\sum_{i=1}^nb_iv_i} = \sum_{i=1}^nc_ia_i\ol{b_i}
+\end{equation*}
+
+Let $\varepsilon = \set{e_1, e_2,\dots, e_n}$ be an orthonormal basis given by the Gram-Schmidt Procedure for the standard inner product $[\*,\*]$.
+% Note that, since $\varepsilon$ is a basis, then $v_i = \sum_{j=1}^n[v_i,e_j]e_j$.
+
+
+\begin{enumerate}[label=\alph*)]
+\item
+
+  Suppose first that $\ipr{\*}{\*}$ is an inner product.
+
+  By definition of $\ipr{\*}{\*}$,
+
+  \begin{align}
+    \ipr{\sum_{i=1}^na_iv_i}{\sum_{i=1}^nb_iv_i} & = \sum_{i=1}^na_i\ipr{v_i}{\sum_{i=1}^nb_iv_i} \\
+                                                 & =\sum_{i=1}^na_i\sum_{j=1}^n\ol{b_j}\ipr{v_i}{v_j}                                              \\
+                                                 & = \sum_{i=1}^nc_ia_i\ol{b_i}
+  \end{align}
+
+  Since $\ipr{v_i}{v_j}\geq 0$ and the final sum contains only
+  products of $a_i\ol{b_i}$ multiplied by some scalar, we can infer
+  that $\ipr{v_i}{v_j} = \delta_{ij}\ipr{v_i}{v_j}$. Moreover, since
+  for any $v, w\in V$ $\ipr{v}{w} = \ol{\ipr{w}v}$, $c_i$ must be real
+  and thus equal to its complex conjugate. Therefore,
+  $c_i = \ipr{v_i}{v_i} \in \RR^{+}$, where $\RR^{+}$ denotes positive
+  reals, which is a necessary condition.
+
+  Note that inequality is strict, since there is no zero $v_i$.
+
+  To prove that this condition is sufficient, suppose
+  $\ipr{v_i}{v_i}=c_i \in \RR^{+}$. Therefore,
+
+  \begin{equation*}
+    \ipr{\sum_{i=1}^na_iv_i}{\sum_{i=1}^nb_iv_i} = \sum_{i=1}^na_i\ol{b_i}\ipr{v_i}{v_i} = \sum_{i=1}^na_i\ol{b_i}c_{i}
+  \end{equation*}
+
+  We prove that this is an inner product.
+
+\begin{description}
+
+\item[Positivity]\hfill
+
+  For all $v = \sum_{i=1}^na_iv_i\in V$, $\ipr{v}{v} = \sum_{i=1}^na_i\ol{a_i}c_i = \sum_{i=1}^n|a_i|^2c_i \geq 0$, since $\abs{\*}\geq 0$ and $c_i >0$.
+\item[Definiteness] \hfill
+
+  Let $v = \sum_{i=1}^na_iv_i\in V$.
+
+  Suppose $\ipr{v}{v} = 0$. Therefore, $\sum_{i=1}^n \abs{a_i}^2c_{i} = 0$. Therefore, $\ipr{v}{v}$ is $0$ if and only if $a_i = 0$ for all $i$, and therefore $v = 0$.
+  
+\item[Additivity in the First Slot] \hfill
+
+  Note that for all $u= \sum_{i=1}^nx_iv_i,v=\sum_{i=1}^ny_iv_i, w = \sum_{i=1}^nz_iv_i\in V$
+  \[
+    \ipr{u+v}{w} = \sum_{i=1}^n(x_i+y_i)\ol{z_i}c_i =  \sum_{i=1}^nx_i\ol{z_i}c_i + \sum_{i=1}^ny_i\ol{z_i}c_i = \ipr{u}{w}+\ipr{v}{w}.
+  \]
+  
+\item[Homogeneity in the First Slot]\hfill
+
+  For all $v = \sum_{i=1}^na_iv_i, w=\sum_{i=1}^nb_iv_i\in V$ and $\lambda \in \FF$,
+  \[    \ipr{\lambda v}{w} = \sum_{i=1}^n\lambda a_i\ol{b_i}c_i = \lambda \sum_{i=1}^na_i\ol{b_i}c_i = \lambda \ipr{v}{w}
+  \]
+  
+\item[Conjugate Symmetry] \hfill
+
+  For all $v = \sum_{i=1}^na_iv_i, w=\sum_{i=1}^nb_iv_i\in V$,
+
+  \[\ipr{v}{w} = \sum_{i=1}^n a_i\ol{b_i}c_i = \sum_{i=1}^n \ol{\ol{a_i}b_i\ol{c_i}} =  \sum_{i=1}^n \ol{\ol{a_i}b_ic_i} = \ol{\ipr{w}{v}}
+  \]
+  
+  Therefore, $\ipr{\*}{\*}$ is an inner product.
+
+\end{description}  
+
+%   Since $\varepsilon$ is a basis, then $v_j = \sum_{i=1}^n[v_j, e_i]e_{i}$.
+  
+% % obtained by putting the coefficients in the decomposition of each $e_i$ above as entries in the $i$th row and $j$th column.
+% Therefore, $\sum_{i=1}^na_iv_i$ can be represented uniquely as a column vector with the coefficient before each corresponding $e_i$ as an entry in the $i$th row. Denote this vector as $v$, with the entry in the $i$th row given by:
+
+% \begin{equation*}
+% a'_i = \sum_{j=1}^na_j[v_j,e_i]
+% \end{equation*}
+
+
+% Similarly, $\sum_{i=1}^nb_iv_i$ can be represented uniquely as a column vector with the corresponding coefficient before $e_i$ in the $i$th row. Denote this vector as $w$, with the entry in the $i$th row given by:
+
+% \begin{equation*}
+% b'_i = \sum_{j=1}^nb_j[v_j,e_i]
+% \end{equation*}
+
+% Since $[e_i, e_i] = 1$ for all $i\in[1,n]\cap\NN$: 
+% \[[v,w] = \sum_{i=1}^n a'_i\ol{b'_i}.\]
+% Suppose that $\ipr{\*}{\*}$ is also an inner product.
+
+% $\dots$
+
+% % Therefore,
+
+% % \[\ipr{v}{w} = \ipr{\sum_{i=1}^na'_ie_i}{\sum_{i=1}^nb'_ie_i} = \sum_{i=1}^n a'_i\ol{b'_i}\ipr{e_i}{e_i}\]
+
+\item
+Let $\phi$ be the linear transformation $\phi \in \Hom(V,V)$ such that $\phi(v_i)=e_i$. Note that such a transformation is well-defined, since every homomorphism is defined by its action on the basis of the domain.
+
+Moreover, since $\varepsilon$ is a basis, the range of $\phi$ is the whole $V$, which means, from the rank-nullity theorem, that $\phi$ is an isomorphism. Therefore, $\phi$ is invertible.
+
+Define an inner product $\irp{\*}{\*}$ such that for all $v,w\in V$ $\irp{v}{w} = \ipr{\phi v}{\phi w}$, where $\ipr{\*}{\*}$ is a standard inner product.
+
+We prove now that $\irp{\*}{\*}$ is indeed an inner product:
+
+
+\begin{description}
+
+\item[Positivity]\hfill
+
+  For all $v\in V$, $\irp{v}{v} = \ipr{\phi v}{\phi v} \geq 0$ by definition of $\ipr{\*}{\*}$.
+\item[Definiteness] \hfill
+
+  Suppose $\irp{v}{v} = 0$. Therefore, $\ipr{\phi v}{\phi v} = 0$. By definition of $\ipr{\*}{\*}$, $\phi v = 0$, and since $\phi$ is an isomorphism and hence injective, then $v = 0$.
+  
+\item[Additivity in the First Slot] \hfill
+
+  Note that for all $u,v, w \in V$
+  \[
+    \irp{u+v}{w} = \ipr{\phi(u+v)}{\phi w} = \ipr{\phi u}{\phi w} + \ipr{\phi v}{\phi w}=\irp{u}{w}+\irp{v}{w}
+  \]
+  
+\item[Homogeneity in the First Slot]\hfill
+
+  For all $v, w\in V$ and $\lambda \in \FF$,
+  \[    \irp{\lambda v}{w} = \ipr{\phi(\lambda v)}{\phi w} = \ipr{\lambda \phi v}{\phi w} = \lambda \ipr{\phi v}{\phi w} = \lambda \irp{v}{w}
+  \]
+  
+\item[Conjugate Symmetry] \hfill
+
+  For all $v, w \in V$,
+  \[\irp{v}{w} = \ipr{\phi v}{\phi w} = \ol{\ipr{\phi w}{\phi v}} = \ol{\irp{w}{v}}
+  \]
+  
+  Therefore, $\irp{\*}{\*}$ is an inner product.
+
+  Observe that for any $i, j\in[1,n]\cap \NN$:
+\[\irp{v_i}{v_j}= \ipr{\phi v_i}{\phi v_j} = \ipr{e_i}{e_j} = 
+  \begin{cases}
+    1, \text{ if $i=j$}\\
+    0, \text{ if $i\neq j$}
+  \end{cases} = \delta_{ij},
+\]
+\end{description}
+
+and thus $\beta$ is an orthonormal basis, if $\irp{\*}{\*}$ is an inner product.
+
+\item
+  \begin{claim*}
+    $\irp{\*}{\*}$ is unique.
+  \end{claim*}
+  \begin{proof}
+    Suppose, on the other hand, there exists an inner product $[\*,\*]$ such that $\beta$ is orthonormal under $[\*,\*]$.
+
+    Therefore, by definition, for all $i, j \in [1,n]\cap \NN$,
+    \[
+      [v_i, v_j] = \delta_{ij} = \ipr{e_i}{e_j} = \ipr{\phi v_i}{\phi v_j} = \irp{v_i}{v_j}.\]
+
+  Thus, $\irp{\*}{\*}$ is unique.
+  \end{proof}
+
+
+
+\end{enumerate}
+\end{document}
+
+
+% Consider $x = v - \frac{[v,w]}{[w,w]}w$.
+
+% Observe that
+
+% \[[x, w] =  [v - \frac{[v,w]}{[w,w]}w, w]= [v,w] - [v,w] = 0. \]
+
+% Suppose that $\ipr{\*}{\*}$ is an inner product.
+
+% Therefore,
+
+% \begin{align}
+% \ipr{x}{w} = \ipr{v - \frac{[v,w]}{[w,w]}w}{w} = \ipr{v}{w}-\frac{[v,w]}{[w,w]}\ipr{w}{w}
+% \end{align}
+
+

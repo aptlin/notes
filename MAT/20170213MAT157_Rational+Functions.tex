@@ -1,0 +1,86 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{MAT157}{XVI}{Rational Functions}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Rational Functions}
+
+The key in integrating a function in the form $\frac{p(x)}{q(x)}$ is factoring the denominator. The following theorem can be proven:
+
+\begin{theorem}
+Any real polynomial can be factored as a unique product up to the order of linear terms in the form $ax+b$ and irreducible quadratic terms $Ax^2+Bx+C$ with $B^2-4AC < 0$.
+\end{theorem}
+
+Given a rational function $\frac{p(x)}{q(x)}$, if $\deg p \geq \deg q$, then a polynomial division can be performed:
+
+\[
+\frac{p(x)}{q(x)} = P(x) + \frac{r(x)}{q(x)},
+\]
+
+with $\deg(r)<\deg(q)$ and $P$ a polynomial. Thus, it suffices to show how to integrate $\frac{p}{q}$ when $\deg p < \deg q$.
+
+The following result can be shown:
+
+\begin{theorem}
+  Any rational function in the form $\frac{p}{q}$ when
+  $\deg p \leq \deg q$ can be expressed as a sum of terms, each of which
+  has only one term in the denominator, possibly repeated.
+\end{theorem}
+
+\begin{description}
+
+\item[e.g.] $\frac{1}{x^2-1}= -\frac{1}{2(x+1)}+\frac{1}{2(x-1)}$
+
+\end{description}
+
+
+
+\end{document}

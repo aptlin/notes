@@ -1,0 +1,115 @@
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+\documentclass[11pt]{scrartcl}
+\usepackage[beaue, pset, anon]{masty}
+\pSet{\hw{MAT247}{III}{2}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+Suppose that $V$ is an inner product space over $\FF$.
+
+\begin{enumerate}[label=\alph*)]
+\item
+  \begin{claim*}
+    If $\FF = \RR$, then
+    $\ipr{x}{y} = \frac{(\norm{x+y}^2 - \norm{x-y}^2)}{4}$.
+  \end{claim*}
+  \begin{proof}
+    Note the following:
+    \begin{align}
+      (\norm{x+y}^2 - \norm{x-y}^2) & = \ipr{x+y}{x+y}-\ipr{x-y}{x-y}                     \\
+                                    & = \norm{x}^2 + \norm{y}^2 + \ipr{x}{y} + \ipr{y}{x} \\
+                                    & - \norm{x}^2 - \norm{y}^2 + \ipr{x}{y} + \ipr{y}{x} \\
+                                    & = 2(\ipr{x}{y} + \ipr{y}{x})
+    \end{align}
+
+    Since $\FF = \RR$, $\ipr{x}{y} = \ipr{y}{x}$, and thus
+    $ (\norm{x+y}^2 - \norm{x-y}^2) = 4 \ipr{x}{y}$, from which the claim follows.
+  \end{proof}
+\item
+
+  \begin{claim*}
+    
+    \begin{equation*}
+      \ipr{x}{y} = \frac{1}{4} \sum_{k=0}^3\norm{x+i^ky}^2
+    \end{equation*}
+  \end{claim*}
+  \begin{proof}
+    \hfill
+
+    Consider $\frac{1}{4} \sum_{k=0}^3\norm{x+i^ky}^2$.
+
+    Note that
+
+    \begin{align*}
+      \sum_{k=0}^3i^k\norm{x+i^ky}^2 =\ \ \ &                                                     \\
+                                         & \ipr{x+y}{x+y}
+                                   + i\ipr{x+iy}{x+iy}                                          \\
+                                  -      & \ipr{x-y}{x-y}
+                                     - i\ipr{x-iy}{x-iy}                                        \\
+      =                           \ \ \  & \ipr{x}{x}+\ipr{y}{y}+\ipr{x}{y}+\ipr{y}{x}         \\
+      +                                  & i\ipr{x}{x}+i\ipr{iy}{iy}+i\ipr{x}{iy}+i\ipr{iy}{x}     \\
+      -                                  & \ipr{x}{x}-\ipr{-y}{-y}-\ipr{x}{-y}-\ipr{-y}{x}     \\
+      -                                  & i\ipr{x}{x}-i\ipr{-iy}{-iy}-i\ipr{x}{-iy}-i\ipr{-iy}{x} \\
+            =                           \ \ \  & \ipr{x}{x}+\ipr{y}{y}+\ipr{x}{y}+\ipr{y}{x}         \\
+      +                                  & i\ipr{x}{x}+i(i(-i))\ipr{y}{y}+i(-i)\ipr{x}{y}+i^2\ipr{y}{x}     \\
+      -                                  & \ipr{x}{x}-(-(-1))\ipr{y}{y}-(-1)\ipr{x}{y}-(-1)\ipr{y}{x}     \\
+      -                                  & i\ipr{x}{x}-(-i(i))i\ipr{y}{y}-i^2\ipr{x}{y}-i(-i)\ipr{y}{x} \\
+      =                           \ \ \  & \ipr{x}{x}+\ipr{y}{y}+\ipr{x}{y}+\ipr{y}{x}         \\
+      +                                  & i\ipr{x}{x}+i\ipr{y}{y}+\ipr{x}{y}-\ipr{y}{x}     \\
+      -                                  & \ipr{x}{x}-\ipr{y}{y}+\ipr{x}{y}+\ipr{y}{x}     \\
+      -                                  & i\ipr{x}{x}-i\ipr{y}{y}+\ipr{x}{y}-\ipr{y}{x} \\
+= \ \ \ & 4\ipr{x}{y}
+    \end{align*}
+
+    Therefore, the claim holds.
+  \end{proof}
+\end{enumerate}
+
+
+
+\end{document}

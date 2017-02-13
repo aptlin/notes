@@ -1,0 +1,134 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{MAT157}{XIII}{More on the Exponential Functions}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{More on the Exponential Functios}
+
+Note that for $a>0$,
+\begin{equation*}
+  a^{r} = e^{r\log a}.
+\end{equation*}
+
+Therefore,
+
+\begin{align}
+  \frac{\dif }{\dif x}x^{r} & = \frac{\dif }{\dif x}e^{r\log x} \\
+                            & = \frac{r}{x} e^{r\log x}         \\
+                            & =rx^{r-1}
+\end{align}
+
+Define $f$ as follows:
+\begin{equation*}
+  f(x) = \begin{cases}
+    e^{\frac{-1}{x^2}}, x\neq 0\\
+    0, x = 0
+  \end{cases}
+\end{equation*}
+
+It can be proven that $f(x)$ is continuous.
+
+In fact, it is smooth and $f^{(k)}(0) = 0$ for all $k\in \NN$.
+
+Consider $g(x) = \frac{(x+2)^4}{(x^2-x+1)^5}\arctan(x)$.
+
+Even though finding $g'$ is straightforward, it is messy. Taking logs, however, is easier:
+
+\begin{equation*}
+\log g(x) = 4 \log(x+2) - 5 \log(x^2-x+1) + \log(\arctan(x)).
+\end{equation*}
+
+This makes differentiation cleaner.
+
+By chain rule,
+\begin{equation*}
+  \frac{\dif }{\dif x}\log(g(x)) = \frac{g'(x)}{g(x)}.
+\end{equation*}
+
+So
+\begin{align}
+  g'(x) & = g(x) \frac{\dif}{\dif x}\log(g(x)) \\
+        & = \frac{(x+2)^4}{(x^2-x+1)^5}\arctan(x)[\frac{4}{x+2}-\frac{5}{x^2-x +1}+\frac{1}{(1+x^2)\arctan x}]
+\end{align}
+
+\section{Hyperbolic Functions}
+
+\begin{definition}
+  \begin{align}
+    \cosh(x) & = \frac{e^x+e^{-x}}{2} \\
+    \sinh(x) & = \frac{e^x-e^{-x}}{2} \\
+    \tanh(x) & = \frac{\sinh(x)}{\cosh(x)}
+  \end{align}
+\end{definition}
+
+Note the following:
+\begin{align}
+  \frac{\dif }{\dif x}\cosh x & = \sinh x     \\
+  \frac{\dif }{\dif x}\sinh x & = \cosh x     \\
+  \frac{\dif }{\dif x}\sinh x & = \sech^{2} x \\
+  \cosh^2 x -\sinh^2x         & =1
+\end{align}
+
+Note that the area of the hyperbolic sector for some $x$ is $\frac{x}{2}$.
+
+The shape of the $\cosh x$ graph is \textit{catenary}, which is the
+shape of a hanging rope with the uniform mass.
+
+
+\section{Techniques of Integration}
+\subsection{Integration by Parts}
+Recall product rule:
+\[(uv)' = u'v + uv'\]
+
+Then
+\[\int uv' = uv - \int u' v \]
+
+\end{document}

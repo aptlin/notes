@@ -1,0 +1,172 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{CSC240}{IX}{Induction III}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{More on Induction}
+
+\begin{theorem}
+Every integer greater than $1$ is a product of primes.
+\end{theorem}
+\begin{proof}
+  For $n\in\NN$, let $p(n)=$"n is a product of primes".
+
+  Let $n\in\NN$ be arbitrary.
+
+  Suppose $n>1$ and $\forall i\in \NN.[1<i<n \THEN P(i)]$.
+
+  If $n$ is prime, then $n$ is a product of primes, and thus $P(n)$.
+
+  Otherwise, there are positive integeres $1<k<n$, $1< m < n$ such that $n = k\* m$.
+
+  By the inductive hypothesis, $k$ and $m$ are products of primes: $P(k)$ and $P(m)$.
+
+  Thus, $n = k\*m$ is a product of primes.
+
+  Therefore, for all $n\in\NN$, and hence $(n>1)\THEN p(n)$.
+\end{proof}
+
+\section{Recursively Defined Sets}
+
+Recursive definitions have 2 parts:
+\begin{itemize}
+\item a base case, that does not depend on anything else
+\item a constructor case, that depends on previous cases.
+\end{itemize}
+
+\begin{example}
+  \hfill
+  
+\begin{enumerate}
+\item\label{item:1} Let $\set{0, 1}^{*}$ be a set of all finite strings of bits.
+
+  Base Case: $\lambda$, empty string of length 0, is in $\set{0, 1}^{*}$.
+
+  Constructor Case: If $s\in\set{0, 1}^{*}$, then $s0$ and $s1$ are in $\set{0, 1}^{*}$.
+
+  Similarly, for any set $\Sigma$, $\Sigma^{*}$ is the of all finite
+  length strings of letters from $\Sigma$.
+\item Let $B$ be a set of finite strings of matched brackets.
+
+  Base Case: $\lambda$, empty string of zero matched brackets, is in $B$.
+
+  Constructor Case: if $p, q\in B$, then $p[q] \in B$.
+\item Let $S$ be a set of syntactically correct formulas of propositional logic.
+
+  Base Case: propositional variables are in $S$.
+
+  Constructor Case: if $p, q \in S$, then $\NOT p \in S$, $p \AND q \in S$, $p \OR q \in S, \dots$
+\item Let $M$ be a set of syntactically correct monotone formulas of propositional logic.
+
+  Base Case: propositional variables are in M
+
+  Constructor Case: if $p, q \in M$, then $\NOT p \in M$, $p \AND q \in M$, $p \OR q \in M, \dots$
+  
+  Note that $M$ is hte smallest set of formulas containing all the propositional variables and closed under $\AND$ and $\OR$.
+\end{enumerate}
+\end{example}
+
+\section{Structural Induction}
+Structural induction can be used to prove properties about recursively defined sets.
+
+To prove $\forall s \in S. p(s)$, where $p: S\to \set{T, F}$ is a predicate, prove the following:
+\begin{itemize}
+\item $p(s)$ for all base cases $s$ given by the definition of $S$.
+\item $p(s)$ for the constructor cases $s$ given by the definition of $S$, assuming $p$ is true for the components of $s$.
+\end{itemize}
+\begin{example}
+For all $f\in M$, let $V(f)$ be the number of occurrences of propositional variables in $f$ and let $B(f)$ be the number of occurrences of binary connectives in $f$.
+
+Let $p(f)="N(f) = B(f) + 1"$.
+
+Base Case: If $f$ is a propositional variable, then $N(f) = 1 +B(f) = 1$, so $p(f)$ is true.
+
+Constructor Cases: Consider $f = f'\OR f''$.
+
+Assume $p(f')$ and $p(f'')$. Then $N(f) = N(f') + N(f'')$ and $B(f) = B(f') +B(f'') + 1$.
+
+By inductive hypothesis, $N(f) = (B(f') + 1) + (B(f'') + 1) = (N(f')+N(f'')+1) + 1 = N(f) +1$. So $p(f)$.
+
+Similarly, if $f = f' \AND f''$, then $P(f)$ is true.
+
+By structural induction, $\forall f\in M. p(f)$.
+\end{example}
+\begin{example}
+
+  $\NN$ can be defined recursively.
+
+  Base Case: $0\in \NN$.
+
+  Constructor Case: if $n\in \NN$, then $n+1\in \NN$.
+
+  $\forall m \in \NN. \forall n \in \NN.p(m, n)$
+
+  Let $m\in \NN$ be arbitrary.
+
+  Prove that $\forall n\in\NN. p(m, n)$ by induction or generalisation.
+
+  $\forall m\in\NN.\forall n\in\NN.p(m, n)$ by generalisation.
+
+  Otherwise, define $\NN\times \NN$ recursively as follows:
+  
+\begin{enumerate}
+\item\label{item:2} Base Case: $(0, 0) \in \NN\times\NN$.
+\item Constructor Case: If $(m,n)\in \NN\times\NN$, then $(m+1, n), (m, n+1)\in \NN$.
+\end{enumerate}
+
+Then assume $p(i, j)$ for all $(i, j)$, where $i\leq m$ or $j\leq n$, and either $i< m$ or $j <n$. Then prove $p(m, n)$.
+
+\end{example}
+
+
+
+
+\end{document}

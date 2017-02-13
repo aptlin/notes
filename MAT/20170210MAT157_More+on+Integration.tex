@@ -1,0 +1,118 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{MAT157}{XV}{More on Integration}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\begin{example}
+
+  Let $u=\cos x$, and thus $\dif u = -\sin(x) dx$. Therefore,
+
+  \begin{align}
+    \int \sin(x)\cos^7(x) \dif x & = -\int u^7 \dif u \\
+                                 & = -\frac{u^8}{8}   \\
+                                 & = -\frac{1}{8}\cos^8
+  \end{align}
+\end{example}
+
+\begin{example}
+
+  If $m, n\in\NN$ are not both even, then
+  $\int \cos^m x\sin^nx \dif x$ can be solved by using the substitution as above.
+
+  If $m, n$ are both even, the equation can be reduced to something
+  more manageable by using double angle formulas.
+\end{example}
+
+\section{Reduction Formula}
+
+Suppose $\int \sin ^n x \dif x = \sin x \sin^{n-1}x \dif x$ is
+given. Integrating it by parts, we obtain:
+
+\begin{align}
+  \int \sin^nx \dif x &= -\cos x \sin^{n-1} x + (n-1)\int \sin^{n-2}x\cos^2x \dif x\\
+                      &= -\frac{1}{n}\cos x \sin^{n-1}x+\frac{n-1}{n}\int \sin^{n-2}\dif x
+\end{align}
+
+\section{Examples}
+
+\begin{example}
+
+  Note that $\sec \theta \tan \theta + \sec^2\theta = \sec \theta(\tan\theta + \sec\theta)$.
+
+  Therefore, $\sec \theta = \frac{\sec \theta(\tan\theta + \sec\theta)}{\tan\theta + \sec\theta)} = \frac{f'}{f}$
+
+  $\int \sec\theta \dif \theta = \log \abs{\sec \theta +\tan \theta}$.
+\end{example}
+
+\begin{example}
+
+  \begin{align}
+    \int \frac{1}{x^2 \sqrt{1-x^2}}\dif x &= \int \frac{1}{\cos^2\theta\sin\theta}\dif\theta\\
+    &= -\int \sec^2\theta = -\tan \theta
+  \end{align}
+\end{example}
+
+\begin{example}
+
+  Consider now $\int x \sqrt{9-x^2}$.
+
+  Let $x=3\sin x$, and $\dif x = 3\cos x$ .
+
+  Therefore,
+
+  \begin{align}
+    \int x \sqrt{9-x^2} & = 27\int \sin \theta \cos^2\theta \\
+                        & = -9 \cos ^3\theta                \\
+                        & =-9(1-\frac{x^2}{9})^{\nicefrac{3}{2}}
+  \end{align}
+
+\end{example}
+\end{document}

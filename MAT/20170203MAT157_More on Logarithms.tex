@@ -1,0 +1,127 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{MAT157}{XII}{More on Logarithms}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{More on Logarithms}
+
+\begin{theorem}
+If $x, y > 0$, then $\log(xy) = \log(x) + \log(y)$
+\end{theorem}
+
+\begin{proof}
+  For some $y > 0$, let $f(x) = \log(yx)$. Therefore, $f'(x) = \frac{1}{x} = \log'(x)$.
+
+  Thus, there exists a number $c$ such that $f(x) = \log(x) + c$. When
+  $x=1$, $f(1) = \log y$ by definition of $f$ and $f(1)=c$ by the obtained relation.
+
+  Hence, $\log xy = \log x + \log y$.
+\end{proof}
+
+\begin{corollary}
+For all $n\in \NN$, $\log(x^n) = n\log(x)$.
+\end{corollary}
+
+\begin{corollary}
+$\log(\frac{x}{y}) = \log x - \log y$.
+\end{corollary}
+
+Since for any $n\in \NN$, $\log 2^n = n\log 2$. Moreover,
+$\log(\frac{1}{2^n}) = -n \log 2$, and thus $\log$ is neither bounded
+above nor below. Since $\log$ is continuous, it follows that it takes
+all the values in $\RR$.
+
+\begin{definition}
+$\forall x\in \RR.\exp x = \log ^{-1} x$ 
+\end{definition}
+
+\begin{theorem}
+$\forall x\in\RR.\exp' x = \exp x$
+\end{theorem}
+
+\begin{proof}
+  Observe that
+
+  \begin{align}
+    \exp'(x) = (\log^{-1}x)' & = \frac{1}{\log(\log^{-1} x)}    \\
+                             & =\frac{1}{\frac{1}{\log^{-1} x}} \\
+                             & =\log^{-1}x  = \exp x
+  \end{align}
+\end{proof}
+
+\begin{theorem}
+  \label{sec:more-logarithms}
+For any $x, y\in\RR$, $\exp(x+y) = \exp(x)\exp(y)$
+\end{theorem}
+\begin{proof}
+  Let $x' = \exp x$ and $y' = \exp y$.
+
+  Then  $x+y = \log x' +\log y' = \log x'y'$, and thus $\exp(x+y) = \exp(x)\exp(y)$.
+\end{proof}
+
+\begin{definition}
+$e = \exp(1)$
+\end{definition}
+
+From (\ref{sec:more-logarithms}) we obtain that for any $x\in\QQ$,
+$\exp(1)^x=\exp(x)$. It is consistent with our earlier use of the
+exponential notation to define $e^x$ as $\exp x$ for all $x\in\RR$.
+
+\begin{definition}
+$e^x= \exp x$.
+\end{definition}
+
+\begin{definition}
+If $a>0$, for any real number $a^x= e^{x\log a}$.
+\end{definition}
+
+
+\end{document}
