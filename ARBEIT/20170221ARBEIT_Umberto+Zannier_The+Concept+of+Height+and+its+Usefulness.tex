@@ -1,0 +1,157 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{Umberto Zannier}{}{Height}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Heights}
+
+\begin{definition}
+  A basic height is a mapping $h: \ol{\RR} \to \RR_{\geq 0}$, which
+  has a natural correspondence with a degree of rational or algebraic
+  functions.
+\end{definition}
+
+The concept of a height was first introduced by Weil, and then
+developed further by Arakelov.
+
+\subsection{Origins}
+
+\begin{itemize}
+\item Transcendental numbers
+\item Diophantine equations $f_{\alpha}(x_1, \dots, x_n) = 0$, where $x_i\in\ZZ, \QQ, \CC,\RR,\QQ_p, \dots$
+\end{itemize}
+
+The concept of a height is similar to the concept of an absolute
+value, but with greater generality.
+
+For example, the statement \quote{If $\in \ZZ\setminus\set{0}$, then
+  $ \abs{m}\geq 1$} describes the discreteness of $\ZZ$.
+
+\subsection{Applications}
+
+Suppose $\alpha \in \ol{\QQ}$ and $f(x) = \sum_{i=0}^d a_ix^{d-i}$ are
+such that $f(\alpha) = 0$, and $d\geq 1$, $a_i\in\ZZ$, while
+$a_0 > 0$.
+
+Then the \textbf{Weil height} can be defined as
+$R(t) = \frac{A(t)}{B(t)}$, where $A, B \in \CC[t]$ are coprime.
+
+Then we can define
+\begin{align}
+  \deg R & = \sum_{x_0\in\CC} \max(0, -\ord_{x_0}(R) +
+           max(0, -\ord_{\infty}(R) \\
+         & = \max(\deg A, \deg B).
+\end{align}
+
+Then we can define a dictionary, which identifies the correspondence
+between $\CC[t]$ and $\ZZ$, $\CC(t)$ and $\QQ$, $t-x_0$ for
+$x_0\in\CC$ and prime numbers $p$, $\ord_{x_0}$ and $\ord_p$, $\infty$
+and $\abs{r}_{\infty} = \abs{r}$, where $r = \frac{a}{b}$, where
+$a, b$ are corresponding integers.
+
+Armed with this dictionary, we then define a height as follows:
+\begin{align}
+  h(r) & = \sum_{p\in\PP} \max(0, -\ord_p(r))\log p + \log \max(1,\abs{r}) \\
+       & = \sum \log \max(1, \abs{r}_p) = \log \max(\abs{a}, \abs{b})
+\end{align}
+
+We can also define the \textit{exponential height}, given by
+$H(r) = \exp(h(r))$.
+
+If $\alpha \in \ol{\QQ}$, and $\alpha \in K$ is a number field, with
+$\nu$ an arbitrary value of $K$, then
+
+\begin{equation*}
+h(\alpha) = \sum_{\nu\in M_K}\log \max(1, \abs{\alpha}_{\nu, K} \geq 0
+\end{equation*}
+
+The following formula can also be proven.
+
+\begin{theorem}
+  If $\alpha_1, \dots, \alpha_d$ are roots of $f(x)$ then
+  $H^d(\alpha) = a_0\prod_{i=1}^d\max(1, \abs{\alpha_i})$.
+\end{theorem}
+
+For example, $H(1+\sqrt{2} = \sqrt{1+\sqrt{2}}$.
+
+\subsection{Properties}
+
+\begin{itemize}
+\item $h(\sum_{i=1}^r \alpha_i) \leq \sum_{i=1}^rh(\alpha_i) + \log r$
+\item $h(\prod_{i=1}^r \alpha_i \leq \sum_{i=1}^rh(\alpha_i)$
+\item $h(\alpha^n) = \abs{n} h(\alpha) \ra h(\xi) = 0$ for a root of unity $\xi$, and $h(\xi \alpha) = h(\alpha)$.
+
+  Moreover, $h(p(\alpha)) = \deg p \* h(\alpha) + O(1)$, whenever $p$
+  is a fixed polynomial.
+\item $h(\alpha^r) = h(\alpha)$
+\end{itemize}
+
+\subsection{Applications}
+Applications of heights include the proofs of Northcott's and Kronecker's Theorems.
+
+Moreover, heights are useful in the study of multiplicative algebraic curves $\mathbb{G}(\ol{QQ}) =  \ol{\QQ}^K$ and elliptic curves $y^2 = x^3 + ax +b$.
+
+For example, let $p$ be a point on an elliptic curve with rational
+coordinates, $p\in E(\QQ)$. Then $h(mp) = m^2h(p) + O(1)$, and
+$h(p) = h(x(p))$. If some point $p_0$ is some fixed point, then
+$h(p+p_0) = h(p)+O(1)$. Tate-Neron have show that height in this case
+behaves as a quadratic form.
+
+In turn, Mordell-Weil have shown that the group $E(\QQ)$ is finitely
+generated. The proof of the theorem is in two steps. The first,
+arithmetical, step, is to observe that there is a finite set of points
+on $E(\QQ)$ such that if $\QQ$ is any point on $E(\QQ)$, then
+$\QQ = 2\QQ' + R$, for $Q' \in E(\QQ)$ and $R\in S$.
+
+The second step is to show that $h(\QQ) = h(z\QQ') + O(1) = 14h(\QQ') + O(1)$.
+
+
+\end{document}
