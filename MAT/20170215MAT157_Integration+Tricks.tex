@@ -1,0 +1,79 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{MAT157}{XVII}{Integration Tricks}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Integration Tricks}
+
+For rational functions of $\sin$ and $\cos$, if all else fails, try the substitution $x = \tan \frac{\theta}{2}$.
+
+Thus, $1+x^2 = \sec^2(\frac{\theta}{2})$, and hence $\frac{1}{1+x^2} = \cos^2(\frac{\theta}{2})$, and hence $\cos \theta = \frac{1-x^2}{1+x^2}$. Moreover, $\sin^2 \theta = \frac{4x^2}{(1+x^2)^2}$, which means that $\sin \theta = \frac{2x}{1+x^2}$.
+
+In this way, this substitution converts any rational function of
+$\cos$ and $\sin$ into a rational function of $x$. In principle, this
+leads to an integral which always can be integrated. Generally,
+however, this substitution results in an unwieldy equation, and thus
+this method should be used as a last resort.
+
+\section{Solids of Revolution}
+
+Suppose a curve is given in the first quarter of the Cartesian
+plane, defined over the interval $[a, b]$. Rotate this curve around the $x$ axis to obtain a \textit{solid of revolution}.
+
+Informally, the volume of the obtained solid can be calculated by
+summing the volumes of very thin slices. Suppose that $\dif x$ is the
+thickness of the slice. Then its volume is $\pi f(x)^2 \dif x$, and
+hence $V = \int_a^b \pi f(x)^2 \dif x.$
+
+Consider a cone, of height $h$ and radius $r$, with the vertex at the
+origin. Then $y=f(x) = \frac{r}{h} x$ is the corresponding
+curve. Thus, $V = \frac{\pi}{3}r^2h$.
+\end{document}

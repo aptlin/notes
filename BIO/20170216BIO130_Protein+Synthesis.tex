@@ -1,0 +1,116 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{BIO130}{}{Protein Synthesis}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Protein Synthesis}
+
+\subsection{Elongation Factors}
+
+EF-Tu binds to GTP, which then binds to tRNA, checking that the aminoacid is correct, goes to the A-site and cutting GTP to GDP and then it is released, provided the H-bonding is correct. If, however,
+
+EF-G binds to GTP, after which the large subunit moves forward, which helps the small subunit move.
+
+Ribosomes can perform protein synthesis without the aid of elongation factors, but the factors improve speed and efficiency, while also providing an error correcting function. Elongation factors are mediated by the release of the EF-Tu, EF-C and GTP hydrolysis, while EF-Tu binds aminoacyl-tRNA and EF-G helps to ratchet ?.
+
+\subsection{Ribozymes}
+
+Ribozymes are the RNA molecules that possess a catalytic function.
+
+\section{Initiation of Translation}
+
+\subsection{Prokaryotes}
+
+\begin{itemize}
+\item Recognition of Shine-Dalgamo sequence (they are upstream, before the start codon, and help to position the ribosome)
+
+  Note that Shine-Dalgamo sequences are non-coding, but they are required to start the translation
+  
+\item Positioning of small subunit to correct AUG, also requiring initiation factors
+\item fMethionine aminoacyl tRNA binds to initiator codon
+\item Large ribosomal subunit binds
+\end{itemize}
+
+It is important to note that Shine-Dalgarno sequences and multiple sites of initiation are characteristic of prokaryotic translation.
+
+\subsection{Eukaryotes}
+
+\begin{itemize}
+\item There are no Shine-Dalgarno sequences.
+\item Small ribosomal subunits
+\item initiation factors (eIFs) are different
+\item Loop with a poly-A tail and a cap is necessary to start translation
+\end{itemize}
+
+\section{Termination of Translation}
+
+A release factor goes to an A-site and stops the reaction.
+
+\begin{description}
+
+\item[e.g.] Release factor terminating the translation is a protein that looks like tRNA, which is a result of a molecular mimicry 
+
+\end{description}
+
+\subsection{Polyribosomes}
+
+Protein synthesis with polyribosomes is relatively slow. Polyribosomes are positioned with the typical spacing of 80 nuclei.
+
+\section{Protein Folding}
+\subsection{Molecular Chaperones}
+\begin{definition}
+  Molecular chaperones are proteins that help other proteins fold properly (for example, Hsp60 (heat-shock protein 60) and Hsp70). The heat-shock property means that more of the protein will be released if the temperature/pressure is increased, helping other protein to fold back. 
+\end{definition}
+
+\subsection{Antibiotics}
+
+Antibiotics often stop prokaryotic translation. 
+\end{document}

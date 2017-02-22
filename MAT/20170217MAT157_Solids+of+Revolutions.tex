@@ -1,0 +1,116 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{MAT157}{XVIII}{Solids of Revolution}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Ellipsoids}
+
+Note that the general equation for an ellipse is $\frac{y^2}{b^2} = 1- \frac{x^2}{a^2}$.
+
+Thus, the equation of an upper half of an ellipse is $y = b \sqrt{1-\frac{x^2}{a^2}}$.
+
+Thus, the volume of an ellipse is given by the following integral:
+\begin{equation*}
+  \int_{-a}^a \pi b^2(1-\frac{x^2}{a^2}) \dif x = \frac{4}{3}\pi ab^2
+\end{equation*}
+
+\section{Method of Shells}
+Another method of evaluating a volume is the \textit{method of slices}.
+
+Suppose a circle of radius $r$ is drawn on the Cartesian plane such that its centre is on the $y$-axis at the distance of $r$ from the origin. Revolve this circle around the $x$-axis to obtain a torus, also called an \textit{annulus}.
+
+Although the standard method of computing its volume can be applied,
+another way is available.
+
+Note that the equation of the given circleis $x^2+(y-R)^2= r^2$.
+
+Thus, the upper and lower semicircle is given by $x = \pm\sqrt{r^2-(y-R)^2}$.
+
+Slice the circle in horizontal stripes and revolve this stripes around the $x$-axis. In such a way, a set of cylindrical shells is obtained. We may easily apply the standard method to evaluate the volume of each shell of thickness $\dif y$, radius $r$ and width of $2\sqrt{r^2-(y-R)^2}$.
+
+The volume of a shell is thus given by $2\pi y \* 2 \sqrt{r^2-(y-R)^2} \dif y$.
+
+Therefore, the total volume of a torus is $\int_{R-r}^{R+r}2\pi y \* 2 \sqrt{r^2-(y-R)^2} \dif y$, and hence
+
+\begin{align}
+  V & = \int_{R-r}^{R+r}2\pi y \* 2 \sqrt{r^2-(y-R)^2} \dif y                        \\
+    & = 4\pi\int_{R-r}^{R+r} y \sqrt{r^2-(y-R)^2} \dif y                             \\
+    & = 4\pi (\int_{-r}^ru \sqrt{r^2-u^2}\dif u + R \int_{-r}^r \sqrt{r^2-u^2}\dif u \\
+    & = 2\pi^2Rr^2
+\end{align}
+
+\section{Surface Area}
+
+The surface area of a solid of revolution can also be computed by considering thin slices of its surface.
+
+Suppose a graph of a function $f(x)$ is drawn in the first quart of the Cartesian plane, and the corresponding solid of revolution is drawn.
+
+Thenthe radius of a slice is $f(x)$ and the circumference is $2\pi f(x)$.
+
+Note that the width of a strip is given by
+
+\begin{equation}
+  \label{eq:1}
+\sqrt{(\dif x) ^2 + (\dif y)^2}= \sqrt{1+f'(x)^2} \dif x.
+\end{equation}
+
+Therefore, the surface area of a solid is given by
+$ 2\pi\int_a^b f(x) \sqrt{1+f(x)^2}\dif x$.  For a sphere,
+$f(x) = \sqrt{R^2-x^2}$ and hence $f'(x) = \frac{-x}{\sqrt{R^2-x^2}}$,
+which, subbing into the obtained equation (\ref{eq:1}), gives us the surface area of $4\pi R^2$.
+
+Consider now a horn obtained by rotating the graph of
+$f(x) = \frac{1}{x}$ from 1 to $\infty$ around the $x$-axis.
+
+Thus,
+
+\[V = \int_1^{\infty}\pi \frac{1}{x^2}\dif x = \lim_{R\to 0} \int_1^R \pi \frac{1}{x^2}\dif x = \pi\] 
+\end{document}

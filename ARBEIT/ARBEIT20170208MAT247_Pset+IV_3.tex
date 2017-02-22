@@ -1,0 +1,83 @@
+% Created 2017-02-05 Sun 03:32
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{scrartcl}
+  \usepackage[beaue, pset, anon]{masty}
+\pSet{\hw{MAT247}{IV}{3}}
+\pagenumbering{gobble}
+\author{Alexander Illarionov}
+\date{\today}
+\title{}
+\begin{document}
+
+Suppose that \(V\) is a finite-dimensional inner product space and that
+\(T : V \to V\) is a linear transformation.
+
+\textbf{Problem}
+Show that \(R(T^*)^\perp = \ker T\).
+
+\textbf{Solution}
+
+Note that for all \(x, y\in V\), \(\ipr{Tx}{y}= \ipr{x}{T^{*}y}\).
+
+Therefore, if \(x\in\ker T\), then \(Tx = 0\). Therefore, from above,
+\(\ipr{0}{y} = 0 = \ipr{x}{T^{*}y}\).
+
+Note that \(T^{*}y \in \Img T^{*}\), and since \(y\) is arbitrary, it follows
+that \(\ker T \suq (\Img T^{*})^{\perp}\).
+
+Suppose now \(y\in (\Img T^{*})^{\perp}\). Therefore, for all \(u\in \Img T^{*}\),
+\(\ipr{u}{y} =0\).
+
+Fix some \(u\). Since \(u\in \Img T^{*}\), there exists \(x\in V\) such that
+\(T^{*}x = u\).
+
+Thus, \(\ipr{T^{*}x}{y} = 0 = \ipr{x}{Ty}\).
+
+Since \(u\) was chosen arbitrarily, then this holds for any \(u\) and
+ corresponding \(x\). Therefore \(Ty = 0\), and hence \((\Img
+ T^{*})^{\perp}\suq \ker T\).
+
+Therefore, \(R(T^*)^\perp = \ker T\).
+
+\begin{lemma*}
+\label{SEC:1}
+For any finite dimensional vector space $V$, if $S\suq V$ and $S\neq \emptyset$, then $S=(S^{\bot})^{\bot}.
+\end{lemma*}
+
+\begin{proof}
+\hfill
+
+Note that $S^{\bot} = \set{x\in V: \forall y\in S.\ipr{x}{y} = 0}.
+
+Therefore, $(S^{\bot})^{\bot} = \set{v\in V: \forall w\in S^{\bot}.\ipr{v}{w} = 0}.
+
+Suppose $u\in S$ and $w\in S^{\bot}$. Since $\forall y\in S.\ipr{w}{y} = 0$, $\ipr{w}{u} = 0$.
+
+Since $\ipr{w}{u} = \ol{\ipr{u}{w}}$ and $\ol{0} = 0$, then $\ipr{u}{w} = 0$. 
+
+Since $w$ is arbitrary, $\forall w\in S^{\bot}. \ipr{u}{w} = 0$. Therefore, by definition, $u\in S^{\bot}^{\bot}$, and thus $S \suq S^{\bot\bot}.
+
+Suppose now $s\in S^{\bot}^{\bot}$.
+
+Therefore, $\forall w\in S^{\bot}$. Take some $w\in S^{\bot}$.
+
+Note that $\ipr{s}{w} = 0$. Similarly to the argument given above, we can deduce that $\ipr{w}{s} = 0$.
+
+Since $s$ is arbitrary, $\forall s\in S^{\bot\bot}. \ipr{s}{w}=0$. Therefore, by definition of $S^{\bot}$, it follows that $s\in S$, and hence $S\suq S^{\bot\bot}$. 
+\end{proof}
+
+From Lemma \ref{SEC:1} we obtain that \((\Img T^{*})^{\bot\bot} = \Img T^{*} = (\ker T)^{\bot}\).
+
+Moreover, since \(T^{**} = T\), substituting \(T^{*}\), we get that \((\Img T)^{\bot} = \ker T^{*}\).
+
+By the rank-nullity theorem, \(\nll T^{*} + \rank T^{*} = \dim V\). 
+
+Since \(V = \Img T\oplus (\Img T)^{\bot}\), we also obtain that \(\dim V
+= \rank T + \dim \Img T^{\bot}\).
+
+Thus, 
+\[\rank T + \dim \Img T^{\bot} = \nll T^{*} + \rank T^{*}\]
+
+Since \((\Img T)^{\bot} = \ker T^{*}\), we get \(\dim (\Img T)^{*} = \nll
+T^{*}\), and therefore, \(\rank T = \rank T^{*}\).
+\end{document}

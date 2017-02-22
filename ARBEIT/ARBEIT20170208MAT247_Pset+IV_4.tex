@@ -1,0 +1,134 @@
+% Created 2017-02-05 Sun 18:58
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{scrartcl}
+  \usepackage[beaue, pset, anon]{masty}
+\pSet{\hw{MAT247}{IV}{4}}
+\pagenumbering{gobble}
+\author{Alexander Illarionov}
+\date{\today}
+\title{}
+\begin{document}
+
+Suppose \(V\) is the infinite-dimensional vector space of sequences \(\sigma : \NN \to F\) that have only a finite number of non-zero terms. In other words, \(\sigma(k) \ne 0\) for only finitely many positive integers k. 
+
+Define \(\langle \sigma,\tau\rangle = \sum_{k=1}^\infty \sigma(k) \overline{\tau(k)}\).
+
+\textbf{Problem}
+
+Show that this is an inner product on V.
+
+\textbf{Solution}
+
+\begin{description}
+
+\item[Positivity]\hfill
+
+Since the sum of products of nonnegative integers is nonnegative, then
+for any $\sigma, \tau \in V$ we have $\ipr{\sigma}{\tau} \geq 0$.
+
+\item[Definiteness] \hfill
+
+Let $\sigma \in V$ be a sequence ${a_i}$.
+
+Suppose $\ipr{v}{v} = 0$. Therefore, $\sum_{i=1}^n \abs{a_i}^2 =
+  0$. Hence, $\ipr{v}{v}$ is $0$ if and only if $a_i = 0$ for all
+  $i$, and thus $v = 0$.
+  
+\item[Additivity in the First Slot] \hfill
+
+  Note that for all $\sigma, \tau, \upsilon \in V$
+  \begin{align}
+    \ipr{\sigma+\tau}{\upsilon} &= \sum_{i=1}^{\infty}(\sigma(i)+\tau(i))\ol{\upsilon(i)}\\
+    &=\sum_{i=1}^{\infty}\sigma(i)\ol{\upsilon(i)} + \sum_{i=1}^{\infty}\sigma(i)\ol{\upsilon(i)}\\
+    &=\ipr{\sigma}{\upsilon} + \ipr{\tau}{\upsilon}
+  \end{align}
+
+  
+\item[Homogeneity in the First Slot]\hfill
+
+  For all $\sigma, \tau \in V$ and $\lambda \in \FF$,
+  \[    \ipr{\lambda \sigma}{\tau} = \sum_{i=1}^\infty\lambda \sigma(i)\ol{\tau(i)} = \lambda \sum_{i=1}^\infty\sigma(i)\ol{\tau(i)} = \lambda \ipr{\sigma}{\tau}
+  \]
+  
+\item[Conjugate Symmetry] \hfill
+
+  For all $\sigma, \tau \in V$
+
+  \[\ipr{\sigma}{\tau} = \sum_{i=1}^\infty \sigma(i)\ol{\tau(i)} = \sum_{i=1}^\infty \ol{\ol{\sigma(i)}\tau(i)} =  \sum_{i=1}^\infty \ol{\tau(i)\ol{\sigma(i)}}} = \ol{\ipr{\tau}{\sigma}}
+  \]
+  
+  Therefore, $\ipr{\*}{\*}$ is an inner product.
+\end{description}
+\textbf{Problem}
+
+For \(n \ge 1\) define \(e_n \in V\) by \(e_n(k) = 1\) if \(k=n\) and \(e_n(k)
+= 0\) if \(k\ne n\). Show that the set \(\{e_n\}\) is an orthonormal basis
+of V
+
+\textbf{Solution}
+
+Since for each \(k\in \NN\), \(\sigma \in V\) and any \(i\in \NN\) there
+exists \(\lambda \in \NN\) such that \(\sigma(i) = \lambda k\) by the
+fundamental theorem of arithmetic, while each \(\sigma\) contains only
+finitely many nonzero elements, then \(V\) is spanned by \(e_i\). By
+definition, the set of all \(e_i\) is linearly independent.
+
+We prove now that it is also orthonormal.
+
+Take \(e_i, e_j\) for any \(i, j \in \NN\) such that \(i\neq j\)
+
+Note that \(\ipr{e_i}{e_j}=\sum_{k=1}^{\infty} e_i(k)\ol{e_j(k)} = 0\),
+since \(e_i\) is nonzero only at the \(i^{\text{th}}\) position and \(e_j\)
+is nonzero at the \(j^{\text{th}}\) position.
+
+If \(i=j\), however, we obtain \(\ipr{e_i}{e_i}=1\), since the value of
+\(e_i\) at the \$i\$th position is \(1\), and thus \(e_i\ol{e_i} = 1\).
+
+Therefore, \(\set{e_n}\) is an orthonormal basis.
+
+\textbf{Problem} 
+
+Let W be the subspace spanned by the elements \(e_1 + e_n\) for all \(n \ge 2\).
+
+Show that \(e_1 \not\in W\) and that \(W^\perp = \{0\}\). 
+
+Deduce that \((W^\perp)^\perp \ne W\).
+
+\textbf{Solution}
+
+Note that for any sequence \(w\in W\), \(w = a_1e_1 +
+\sum_{i=2}^{\infty}a_ie_{i}\) by definition of \(W\). Moreover, if \(a_1=
+0\), then \(w = 0\), since \(W\) is spanned by \(e_1+e_i\) for \(i\geq 2\). 
+
+If, however, \(a_1\neq 0\), then there exists at least one \(k\geq 2\)
+such that 
+\[w = a_1e_1 + a_ke_k + \sum_{i=2, i\neq k}^{\infty}a_ie_i\] and \(a_{k}\neq 0\).
+
+Since \(e_1\) and \(e_k\) are linearly independent, the first element and
+the \(k^{\Th}\) in the sequence of \(w\) are nonzero.
+
+Therefore, there does not exist an element \(v\in V\) such that the
+first element in \(v\) is nonzero and the rest are zero. Therefore, \(e_1 \not\in W\).
+
+Consider now \(W^{\bot}\).
+
+Let \(w\in W\) be a sequence in \(W^{\bot}\).
+
+Since \(\set{e_i}\) is a basis of \(V\), 
+\[w = \sum_{i=1}^{\infty}a_ie_{i},\]
+where there are only finitely many nonzero \(a_i\).
+
+Suppose that there exists \(k\in \NN\) such that some \(a_k\) is nonzero.
+
+By definition, \(\forall y\in W.\ipr{w}{y} = \sum_{i=1}^{\infty}a_i\ol{b_{i}}=0\), where \(b_i\) are such that \(y = \sum_{i=1}^{\infty}b_ie_i\).
+
+Take some \(y\in W\) such that \(y\neq 0\) and the \(k^{\Th}\) element in \(y\) is nonzero. By the argument above and definition of \(W\) as a span of \(e_1+e_i\) for \(i\geq 2\), such an element exists. 
+
+Therefore, \(\ipr{w}{y} = \sum_{i=1}^{\infty}a_i\ol{b_{i}}\), and thus
+\(\ipr{w}{y} = a_k b_{k}\), since \(b_k\in \NN\) and thus \(b_k=\ol{b_k}\). 
+
+Since \(a_k\neq 0\) and \(b_k\neq 0\), while \(a_k, b_k\in\NN\), we get that
+\(\ipr{w}{y} > 0\). But \(w\in W^{\bot}\) by assumption, so our assumption must be false and hence there exists no such \(k\in \NN\) such that some \(a_k\) is nonzero. Therefore, \(W^{\bot}=\set{0}\).
+
+Since \(\set{0}^{\bot} = V\), because each vector in \(V\) is orthogonal to \(0\), while \(e_1\not\in W\) and thus \(V\neq W\), it follows that \(W^{\bot\bot}\neq W\).
+\end{document}

@@ -1,0 +1,123 @@
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+\documentclass[11pt]{scrartcl}
+\usepackage[beaue, pset, anon]{masty}
+\pSet{\hw{MAT247}{IV}{1}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+\usepackage{units}
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+  Consider $V=\CC^3$ with the standard inner product. Let $W$ be the
+  subspace of $V$ spanned by $(2, i, 0)$ and $(0, 1, i)$.
+\begin{problem*}
+  Find an orthogonal basis $\beta$ of $W$.
+\end{problem*}
+\begin{soln}
+  \hfill
+    \begin{center}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{>{\centering\bfseries}m{0.1in}| >{\centering}m{0.5in}| >{\centering}m{1in}| >{\centering}m{1in}|  >{\centering\arraybackslash}m{1in}}%{|c|c|c|c|c|c|}
+      \hline
+      $i$                                                                                         & $v_i$       & $\sum_{j=1}^{i-1} \frac{ \ipr{v_i}{u_j}}{\ipr{u_j}{u_j}}u_j$ & $u_i$        & $\norm{u_i}^2$ \\
+      \hline
+      1                                                                                           & $(2, i, 0)$ & --                                                           & $ (2, i, 0)$ & $5$            \\
+      \hline
+      2                                                                                           & $(0, 1, i)$ & \shortstack[l]{ $\frac{2\*0+(-i)\*1+0\*i }{5}u_1 $                                           \\$=(-\nicefrac{2}{5}\ 
+      i, \nicefrac{1}{5}
+      , 0)$ }
+                                                                                                  & $(0, 1, i)-(-\nicefrac{2}{5}
+                                                                                                    \ i, \nicefrac{1}{5}
+                                                                                                    , 0) = (\nicefrac{2}{5}
+                                                                                                    \ i, \nicefrac{4}{5}
+                                                                                                    , i)$ & $\nicefrac{9}{5}
+                                                                                                            $ \\
+      \hline
+    \end{tabular}
+  \end{center}
+    
+  Therefore,
+  \begin{equation*}
+    \beta = \set{(2,i, 0),(\nicefrac{2}{5}\ i,\nicefrac{4}{5}, i)}
+  \end{equation*}
+\end{soln}
+
+\begin{problem*}
+Find an orthogonal basis of $V$ that contains the basis $\beta$.
+\end{problem*}
+
+\begin{soln}
+  Suppose $(1, 0, 0)\in\spn{\beta}$. Therefore, there exist
+  $a, b\in\CC$ such that
+
+  \begin{align}
+a (2,i, 0) + b (\nicefrac{2}{5}\ i,\nicefrac{4}{5}, i) = (1, 0, 0)
+  \end{align}
+
+  Thus, $a\*0 + bi =0$ and hence $b = 0$. But then $ai = 0$, and thus
+  $a=0$. Therefore, $(1, 0, 0)$ is not in the span of $\beta$.
+
+  Let $v_3=(1, 0, 0)$. Observe that $\beta \cup \set{v_3}$ is linearly
+  independent.
+
+  Using the values in the table and applying the Gram-Shmidt procedure, we obtain
+
+  
+  \begin{align*}
+    u_3 & = v_3 - \frac{\ipr{v_3}{u_1}}{\norm{u_{1}}^{2}}u_1 - \frac{\ipr{v_{3}}{u_2}}{\norm{u_{2}}^2}u_2                         \\
+        & = (1, 0, 0) - \frac{2}{5}(2, i, 0) - \frac{- \nicefrac{2}{5}i }{\nicefrac{9}{5}}(\nicefrac{2}{5}\ i,\nicefrac{4}{5}, i) \\
+        & =(\nicefrac{1}{5}, -\nicefrac{2}{5}i, 0) + \frac{2}{9}i(\nicefrac{2}{5}\ i,\nicefrac{4}{5}, i)                          \\
+        & =(\nicefrac{1}{9}, -\nicefrac{2}{9}i, -\nicefrac{2}{9})
+  \end{align*}
+
+  Therefore, $\gamma = \beta \cup \set{(\nicefrac{1}{9}, -\nicefrac{2}{9}i, -\nicefrac{2}{9})}$ is an orthogonal linearly independent set of length 3 which contains $\beta$.
+
+  Thus, since $\gamma$ has the right length, it is a basis of $\CC^3$.
+\end{soln}
+
+
+
+
+\end{document}

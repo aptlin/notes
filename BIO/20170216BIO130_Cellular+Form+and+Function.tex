@@ -1,0 +1,150 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{BIO130}{}{Cellular Form and Function}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Cellular Form and Function}
+
+\subsection{Saccharomyces cerevisiae}
+
+Saccharomyces cerevisiae is an example of a single-celled eukaryotic organism. Note that, in comparison, there are much more diversity in the type of a cell in humans -- more than 200 types of cells make humans work!
+
+\subsection{Typical Animal Cell}
+
+\textbf{Lysosome} consists of remnants of the degradation of cellular
+parts that are not longer needed. Note that lysosome is animal cell specific.
+
+\textbf{Extracellular matrix} is the specialised material outside of a cell.
+
+\subsection{Typical Plant Cell}
+
+Typical plant cells are not found in animal cells.
+
+\textbf{Cell wall} is a tough protective outer coat.
+
+\textbf{Vacuoles} are of two types, one functioning like an animal lysosome, while the other are used for storage.
+
+\subsection{Membrane Structure}
+
+\textbf{Cytoplasm} contains the contents of the cell outside of the nucleus.
+
+\textbf{Cytosol} is the aqueous part of the cytoplasm, without the membrane-bound cells.
+
+\textbf{Lumen} is the interior of organelles.
+
+Many cellular functions occur at membranes: ompartmentalization, scaffolding for biochemical activities, etc.
+
+\subsection{Membrane Bilayers}
+
+Singer and Nicolson (1972) describes membrane bilayers with a fluid mosaic model. Thus, there is one membrane, but with two layers or leaflets.
+
+The lipids of the membrane have an ampipathic property, thus
+possessing hydrophilic or polar head groups and hydrophobic tails.
+
+\subsection{Membrane Lipids}
+
+There are many kind of lipids. One kind of a lipid is a phospholipid. One example of a phospholypid is phosphoglyceride, and there are many phosphoglycerides.
+
+Membrane lipids have the polar head group interacting with water, two hydrophobic hydrocarbon tails interacting with other hydrophobic tails, which in an aqueous environment phospholipids spontaneously self-associate into a bilayer.
+
+Lipid bilayers, called liposomes, can be obtained artificially. These are used to study lipid and membrane protein properties, while also providing a promising method of drug delivery.
+
+\subsection{Phosphoglycerides}
+
+Phosphoglycerides have three main groups (phosphate group, glycerol group, and two hydrophobic fatty acid chains).
+
+Hydrocarbon tails have the carbon skeleton length of approximately 14-24, and can be saturated or unsaturated.
+
+\subsection{Steroids}
+
+Steriods are another kind of membrane lipids.
+
+In animals, all steroids are mainly cholesterol. In plants, there are
+also plant steroids. Therey decrease the mobility of phospholipid
+tails, while making plasma membrane less permeable to polar molecules.
+
+There can be up to 1:1 ratio of cholesterol and phospholipids.
+
+\subsection{Cell Membranes are Fluid}
+
+Phospholipids rapidly diffuse laterally within each leaflet.
+
+Phospholipids rarely move from one leaflet to another on their own.
+
+They move in the membrane by the way of flexion (free tail wobble),
+rotation and lateral shift, going around other tails.
+
+A membrane can be deformed without causing damage.
+
+For example, laser tweezers can be used to deform it without breaking.
+
+At lower temperatures lipid bilayers become rigid (more
+gel-like).
+
+Presence of cis-double bonds allows the membrane to remain
+fluid at lower temperatures.
+
+Shorter hydrocarbon tails increase fluidity at lower temperatures,
+since the lipid tails interact less.
+
+Enzymes in the cell membrane flip lipids from one leaflet to another,
+with the phospholipid translocators catalysing the rapid
+flip-flop. This is needed, because phospholipids are synthesized in
+cytosolic leaflet of endoplasmic reticulum.
+
+The nucleus has two membranes: an inner and an outer membrane.
+
+In mitochondria, there are also two layers.
+
+\subsection{Assymetry of the Lipid Bilayer}
+
+Glycolipids and glycoproteins, found on the exoplasmic leaflet, are formed by adding sugar groups. Phospholipids, in turn, are assymetrically distributed, and some can bind cytosolic proteins.
+\end{document}

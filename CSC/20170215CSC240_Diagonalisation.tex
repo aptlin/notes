@@ -1,0 +1,206 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{CSC240}{}{Diagonalisation}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+\section{Diagonalisation}
+\begin{theorem}
+$P(\NN)$ is uncountable.
+\end{theorem}
+
+\begin{proof}
+  \hfill
+
+  Suppose $P(\NN)$ is countable. Thus, there is a surjective function
+  $f:\NN\to P(\NN)$.
+
+  Let $D = \set{i\in\NN; i\not\in f(i)}\in P(\NN)$.
+
+  Since $f$ is surjective, there exists $j\in\NN$ such that $f(j) = D$.
+
+  Then for all $i\in\NN$ $i\in f(j)$ if and only if $i\in D$, and thus
+  iff $i\not\in f(i)$.
+
+  Since $j\in\NN$, by specialisation $j\in f(j) \IFF j \not \in f(j)$ , which is a contradiction.
+
+  Therefore, $P(\NN)$ is uncountable.
+\end{proof}
+
+
+Now, let $S\suq \set{1, 2, 3, 4}$. Note that $S$ can be represented by a binary sequence $S_1,S_2, S_3, S_4$, where $S_i= \begin{cases}
+1, i\in S\\
+0, i\not\in S.
+\end{cases}$
+
+Each $S_i$ is called a \textit{characteristic vector} of the set $S$.
+
+In thus way, for example, $0, 1, 1, 0$ denotes $\set{2, 3}$ and $0,0,0,0$ denotes $\emptyset$.
+
+Consider a list of all subsets of $\NN$, possibly with duplications, in the form of an infinite two-dimensional Boolean array $M$, where $M[i, j] = f(i)_j$:
+\[
+  \begin{pmatrix}
+    f(0): f(0)_0 & f(0)_1 & \cdots & f(0)_j & \cdots\\
+    f(1): f(1)_1 & f(1)_1 & \cdots & f(1)_j & \cdots\\
+     & \vdots & \ddots & &
+  \end{pmatrix}
+\]
+
+The characteristic vector of $D$ is the complement of the diagonal of the matrix $M$.
+
+Note that the characteristic vector of $D$ does not agree with row $i$
+of $M$ in column $i$. The characteristic vector is equal to $1$ if and only if $i\not\in f(i)$. Thus, $M$ does not contain $D$, which contrandicts that $f$ is surjective.
+
+\begin{theorem}
+The set of all functions from $\NN$ to $\NN$ is uncountable.
+\end{theorem}
+
+\begin{proof}
+  \hfill
+
+  Suppose $\SF$ is countable. Then there is a surjective function $f: \NN\to\SF$.
+
+  $f_i$ is a function from $\NN$ to $\NN$. Construct an infinite two-dimensional matrix where row $i$ corresponds to $f_i\in f$. Define $g(n) = f(n) + 1$. Note that $g\in \SF$, since for all $n\in\NN$, $f_n(n) \in\NN$ and $\NN$ is closed under addition.
+
+  Since $f$ is surjective, then $g = f_n$ for some $n\in\NN$. Then
+  $g(n) = f_n(n)$. By definition, $g(n) = f_n(n)+1\neq f_n(n)$. This
+  is a contradiction, and therefore $\SF$ is uncountable.
+\end{proof}
+
+If $\Sigma$ is a finite set of letters, let $\Sigma^{*}$ be a set of all finite strings of letters from $\Sigma$.
+
+For example, $\set{0, 1}^{*}$ is the set of all finite length binary strings.
+
+Note that there are $2^k$ binary strings of length $k\in\NN$.
+
+\begin{theorem}
+  $\set{0, 1}^{*}$ is countable.
+\end{theorem}
+
+\begin{proof}
+  \hfill
+
+Exercise. Construct a surjective function $f$ from $\NN$ to $\set{0, 1}^{*}$.
+\end{proof}
+
+In general, if $\abs{\Sigma} = s$ , then there are $s^k$ strings of length $k$ in $\Sigma^{*}$.
+
+The set of all finite strings of ASCII characters is countable.
+\begin{example}
+
+The set of all syntactically correct C programmes is countable, since it is a subset of ASCII$^{*}$.
+
+\end{example}
+
+There is a function $G$ that determines whether a given ASCII string $P$ is a syntactically correct $C$ function:
+
+
+\begin{equation}
+  G: \text{ASCII}^{*} \to \set{0, 1},
+\end{equation}
+
+and thus
+
+\begin{equation}
+  G(P)= \begin{cases}
+    1,\text{ if P is a syntactically correct C function}\\
+    0, \text{otherwise}
+  \end{cases}
+\end{equation}
+
+Consider the function $H:\text{ASCII}^{*}\times \text{ASCII}^{*} \to \set{0, 1}$ such that
+\[
+  H(P, x) =
+\begin{cases}
+  1 \text{if P is a syntactically correct C program that eventually returns an input $X$}\\
+  0 \text{ otherwise}.
+\end{cases}
+\]
+
+In this way, $H(P, x)$ returns $0$ if $P$is not syntactically correct or $P$ runs forever on input $X$.
+
+The halting problem is solvable if such a C function $H$ exists.
+
+\begin{theorem}
+The halting problem is not solvable.
+\end{theorem}
+
+\begin{proof}
+  \hfill
+
+  We proceed by contradiction and diagonalisation.
+
+  By way of contradiction, assume that such a function $H$ exists.
+
+  Consider the syntactically correct C-function $D$ defined by the following program:
+
+  D(x); \{
+
+  if (H(x,x))
+
+  while (1) \{
+  \};
+  
+  else return 1;
+  \}
+
+  When $D$ runs on input $D$, if $H(D,D) = 0$, then $D$ returns on
+  input $D$. If $H(D, D) = 1$, then $D$ goes into an infinite loop on
+  input $D$.
+
+  By the definition of $H$, if $D$ returns on input $D$, then $H(D, D) = 1$.
+
+  If $D$ goes into an infinite loop on input $D$, then $H(D, D) = 0$.
+
+  These are contradictory, and thus the halting problem is unsolvable
+  and hence such a function $H$ does not exist.
+  
+\end{proof}
+
+\end{document}

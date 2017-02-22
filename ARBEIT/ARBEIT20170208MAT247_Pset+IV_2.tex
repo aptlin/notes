@@ -1,0 +1,120 @@
+% Created 2017-02-04 Sat 22:38
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{scrartcl}
+  \usepackage[beaue, pset, anon]{masty}
+\pSet{\hw{MAT247}{IV}{2}}
+\pagenumbering{gobble}
+\author{Alexander Illarionov}
+\date{\today}
+\title{}
+\begin{document}
+
+Consider \(V = \SP_2(\FF)\) with the inner product \(\langle f(x),g(x)\rangle = \int_{-1}^1 f(t)\overline{g(t)} dt\).
+
+Let \(\beta = \set{1+x, x^2}\) and let \(W\) be the subspace of \(V\) spanned by \(\beta\).
+
+\begin{problem*}
+Find $W^{\bot}$.
+\end{problem*}
+
+\textbf{Solution}
+
+Let \(v_1  = 1 + x\) and \(v_2 = x^2\). 
+Therefore, \(\ipr{1+x}{1+x} = \int_{-1}^1 (1+x)^2 = [x+x^2+\nicefrac{1}{3}x^3]_{-1}^1\), 
+and thus \(\norm{1+x}^2 = 2 + \nicefrac{2}{3} = \frac{8}{3}\).
+
+\begin{adjustbox}{center}
+\begin{tabulary}{1.25\textwidth}{|C|C|C|C|C|C|}
+\hline
+\(i\) & \(v_i\) & \(\sum_{j=1}^{i-1} \frac{ \ipr{v_i}{u_j}}{\ipr{u_j}{u_j}}u_j\) & \(u_i\) & \(\norm{u_i}^2\) & \(e_i\)\\
+\hline
+1 & \(1 + x\) & -- & \(1+x\) & \(\int_{-1}^1(1+x)^2 = [x+x^2+\nicefrac{1}{3}x^3]_{-1}^1\) & \(\nicefrac{\sqrt{6}}{4}(1+x)\)\\
+ &  &  &  & \(\norm{1+x}^2 = 2 + \nicefrac{2}{3} = \frac{8}{3}\). & \\
+\hline
+2 & \(x^2\) & \(\frac{\ipr{v_2}{u_1}}{\ipr{u_1}{u_1}}u_1=\) & \(x^2-\frac{1}{4}(1+x)\) &  & \\
+ &  & \(\frac{\int_{-1}^1 x^2 + x^3 dx}{\nicefrac{8}{3}}(1+x) =\) & \(x^2-\frac{1}{4}x - \nicefrac{1}{4}\) & \(\int_{-1}^1 (x^2-\frac{1}{4}x - \nicefrac{1}{4})^2\) & \(\sqrt{\frac{30}{7}}(x^2-\frac{1}{4}x - \nicefrac{1}{4})\)\\
+ &  & \(\frac{[\nicefrac{1}{3}x^3 + \nicefrac{1}{4}x^4 dx]_{-1}^1}{\nicefrac{8}{3}}(1+x) =\) &  & \(=\frac{7}{30}\) & \\
+ &  & \(\frac{1}{4}(1+x)\) &  &  & \\
+ &  &  &  &  & \\
+\hline
+\end{tabulary}
+\end{adjustbox}
+
+Note that \(1\) is not in the span of \(\beta\). Let \(v_3=1\).
+
+Therefore, 
+\begin{align}
+\sum_{j=1}^{2} \frac{ \ipr{v_3}{u_j}}{\ipr{u_j}{u_j}}u_j &= \frac{ \ipr{1}{u_1}}{\ipr{u_1}{u_1}}u_1 + \frac{ \ipr{1}{u_2}}{\ipr{u_2}{u_2}}u_2\\
+&= \frac{\int_{-1}^1 (1+x) dx}{\nicefrac{8}{3}}(1+x) + \frac{\int_{-1}^1 (x^2-\nicefrac{1}{4}\ x -\nicefrac{1}{4}) dx}{\nicefrac{7}{30}}(x^2-\nicefrac{1}{4}\ x - \nicefrac{1}{4})\\
+&=\nicefrac{3}{4} + \nicefrac{3}{4}\ x + \nicefrac{5}{7}\ x^2 - \nicefrac{5}{28}\ x - \nicefrac{5}{28}\\
+&= \nicefrac{5}{7}\ x^2 + \nicefrac{4}{7}\ x + \nicefrac{4}{7}
+\end{align}
+
+Thus, 
+\begin{align}
+u_3 = 1 - (\nicefrac{5}{7}\ x^2 + \nicefrac{4}{7}\ x + \nicefrac{4}{7}) =
+ -\nicefrac{5}{7}\ x^2 - \nicefrac{4}{7}\ x + \nicefrac{3}{7}
+\end{align}
+
+Since \(\beta' = \set{u_1, u_2}\) is a basis for \(W\), while
+\(\beta'\cup\set{u_3}\) is a basis for \(V\) by construction, since \(V =
+W\oplus W^{\bot}\), then \(W^{\perp}\) is spanned by \(u_3\).
+
+Note that \(\norm{u_3}^2 = \int_{-1}^1 ( -\nicefrac{5}{7}\ x^2 -
+\nicefrac{4}{7}\ x + \nicefrac{3}{7})^2 dx = \nicefrac{8}{21}\), and
+thus
+\[
+e_3 =  \frac{\sqrt{42}}{4}(-\nicefrac{5}{7}\ x^2 - \nicefrac{4}{7}\ x + \nicefrac{3}{7})
+\]
+
+\begin{problem*}
+Fix $u \in \FF$ and suppose that $\theta_u : V \to F$ is the linear function given by $\theta_u(f(x)) = f(u)$. Find $g_u(x) \in V$ such that $\theta_u(f(x)) = \langle f(x),g_u(x)\rangle$ for all $f(x) \in V$. 
+\end{problem*}
+
+\textbf{Solution}
+
+Let \(y = \sum_{i=1}^n \ol{\theta_u(e_i)}e_i\), where \(e_i\) are
+orthonormal vectors given in the tables above. Then by Theorem 6.8 in
+Friedberg \emph{et al}, we obtain that \(g_u(x) = y\).
+
+The coefficients before each \(e_i\) in the expression for \(y\) are given
+below:
+\begin{itemize}
+\item  $\ol{\theta_u(e_1)} = \frac{\sqrt{6}}{4}(1+u)$
+\item  $\ol{\theta_u(e_2)} = \sqrt{\frac{30}{7}}(u^2-\frac{1}{4}u - \nicefrac{1}{4})$
+\item  $\ol{\theta_u(e_3)} = \frac{\sqrt{42}}{4}(-\nicefrac{5}{7}\ u^2 - \nicefrac{4}{7}\ u + \nicefrac{3}{7})$
+\end{itemize}
+
+\begin{problem*}
+Suppose that $T : V \to V$ is defined by $T(f(x)) = f'(x)$. Find $T^*(1+x)$.
+\end{problem*}
+
+\textbf{Solution}
+
+Note that \(\beta = \set{1, x, x^2}\) is an orthonormal basis of \(\SP_2(\FF)\).
+
+Note the following:
+\begin{itemize}
+\item $T(1) = 0$
+\item $T(x) = 1$
+\item $T(x^2) = 2x$
+\end{itemize}
+
+Therefore,
+\[[T]_{\beta} = 
+\begin{pmatrix}
+0 & 1 & 0\\
+0 & 0 & 2\\
+0 & 0 & 0 
+\end{pmatrix}\]
+
+Since \([T^{*}]_{\beta} = [T_{\beta}]^{*}\), it follows that
+\(T^{*}(1+x)\) can be represented in the matrix form as
+\[\begin{pmatrix}
+0 & 0 & 0\\
+1 & 0 & 0\\
+0 & 2 & 0 
+\end{pmatrix}\cv{1;1;0}=\cv{0;1;2}\]
+
+Therefore, \(T^{*} =x+2x^2\).
+\end{document}

@@ -1,0 +1,155 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{MAT247}{XIII}{More on Isometries}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{More on Isometries}
+\begin{corollary}
+  \label{sec:more-isometries}
+  $T$ is unitary/orthonormal if and only if $T$ is normal and every eigenvalue $\lambda$ is such that $\abs{\lambda}=1$.
+\end{corollary}
+\begin{theorem}
+  Let $T \in \Hom(V,V)$ be an operator on $V$ with $F = \RR$. Then $T$ is orthogonal and self-adjoint if and only if $V$ has an orthonormal basis of eigenvectors for $T$ with eigenvalues $\pm 1$. 
+\end{theorem}
+\begin{proof}
+  \hfill
+  From Corollary \ref{sec:more-isometries}, all eigenvalues are $\pm 1$. Then by Theorem 6.17 (Friedberg \textit{et al}), there exists an orthonormal basis of eigenvectors.
+
+  Now, pick an orthonormal basis $\beta$ of eigenvectors with eigenvalues $\pm 1$.
+
+  Then $[T]_{\beta} = 
+  \begin{pmatrix}
+    \lambda_1 &        & \\
+              & \ddots & \\
+              &        & \lambda_n
+            \end{pmatrix}$, and
+  $[T^{*}]_{\beta}\begin{pmatrix}
+    \lambda_1 &        & \\
+              & \ddots & \\
+              &        & \lambda_n
+            \end{pmatrix}$, and hence
+            $[TT^{*}]_{\beta} = I$.
+          \end{proof}
+
+          \begin{definition}
+            $A \in M_{n\times n}(\FF)$ is orthogonal ($\FF = \RR$)/unitary ($\FF=\CC$) if $AA^{*}=I = A^{*}A$.
+          \end{definition}
+
+\begin{remark}
+    If $\beta$ is an orthonormal basis, then $T$ is orthogonal/unitary if and only if $[T]_{\beta}u$ is orthogonal/unitary.
+  \end{remark}
+
+  \begin{remark}
+    $A$ is orthogonal/unitary if and only if rows or columns form an orthonormal basis of $\FF^n$ with a standard inner product.
+  \end{remark}
+  \begin{proof}
+    \hfill
+
+    \begin{align}
+      (AA^{*})_{ij} & = \sum_k A_{ik}A^{*}        \\
+                    & = \sum_{k} A_{ik}\ol{A_{jk}} \\
+                    & = \ipr{ \text{$i^{\Th}$ row}}{\text{$j^{\Th}$ row}}
+    \end{align}
+    \begin{align}
+      (A^* A)_{ij} & = \sum_kA_{ik}(A^{*})        \\
+                    & = \sum_{k} A_{ik}\ol{A_{jk}} \\
+                    & = \ipr{ \text{$i^{\Th}$ row}}{\text{$j^{\Th}$ row}}
+    \end{align}
+  \end{proof}
+  \begin{definition}
+    Two matrices $A, B \in M_{n\times n}(\FF)$ are unitarily/orthogonally equivalent there exists a unitary/orthogonal $Q$ usch that $Q^{-1}AQ = B$, which is equivalent to $Q^{*}AQ = B$.
+  \end{definition}
+  \begin{theorem}
+    $A \in M_{n\times n}(\FF)$ is normal if and only if $A$ is unitarily equivalent to a diagonal matrix.
+  \end{theorem}
+
+  \begin{proof}
+    \hfill
+
+    If $A$ is normal, then $L_A:\CC^n\to\CC^n$ is normal, since (since $[L_A]_{\text{std}}=A$.
+
+    Thus, by Theorem 6.16 there exists an orthonormal basis $\beta$ of eigenvectors for $L_{A}$. Thus, $Q^{-1}[L_A]_{\text{std}}Q$, where $Q=[I]_{\beta}^{\text{std}}$.
+
+    On the other hand, if $A = Q^{-1}DQ=Q^{*}DQ$, where $Q$ is unitary and $D$ is diagonal. Then $A^{*}=Q^{*}D^{*}Q^{**}=Q^{*}DQ$, and hence \[AA^{*} = Q^{*}DQQ^{*}D^{*}Q = Q^{*}DD^{*}Q.\]
+    Thus,  $A^{*}A = Q^{*}D^{*}DQ$.
+  \end{proof}
+
+  \begin{theorem}
+    $A \in M_{n\times n}(\FF)$ is self-adjoint if and only if $A$ is orthogonally equivalent to a diagonal matrix.
+  \end{theorem}
+
+  \begin{theorem}[Schur]
+    If the characteristic polynomial of $T \in \Hom(V,V)$ splits, then there exists $\beta$ such that $[T]_{\beta}$ is upper-triangular.
+  \end{theorem}
+
+  \begin{remark}
+See also Exercise 5.4/32 in Friedberg \textit{et al}.
+\end{remark}
+
+\begin{lemma}
+  If $T \in \Hom(V,V)$ has an eigenvalue $\lambda$, then $T^{*}$ has an eigenvalue $\ol{\lambda}$.
+\end{lemma}
+
+\begin{proof}
+  \hfill
+
+  Note that $\rank(T-\lambda I)^{*}=\rank(T-\lambda I)$. herefore, $\ker (T-\lambda I)^{*}= \ker (T-\lambda I) >0$.
+
+  Thus $T^{*}$ has an eigenvalue $\ol{\lambda}$.
+\end{proof}
+
+
+
+
+
+
+
+\end{document}
