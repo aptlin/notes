@@ -1,0 +1,147 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{Fedor Manin}{}{Why Should You Care About Model Categories?}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\begin{theorem}
+  If a map between CW complexes is a \textit{weak homotopy
+    equivalence}, then it is a homotopy equivalence.
+\end{theorem}
+
+\begin{remark}
+  This does not hold for more general spaces. For example, Cantor's
+  set is not a homotopy equivalence to discrete uncountable
+  space. Similarly, the Warsaw circle, \textit{connected topologist sine curve} is
+  not homotopy equivalent to a point, because the length of the
+  topologist sine curve has an infinitely large length.
+\end{remark}
+
+Let $G$ be a finite group. What can we say about spaces with the
+action of G and $G$-equivalent maps? What can we say about
+$G$-isovariant maps, maps which are equivariant and such that for any
+$x$, the stabiliser of $f(x)$ is the same as the stabiliser of $x$?
+
+What if, provided a map between $G$-CW complexes induces equivariant
+isomorphisms on homotopy groups, then it's an equivariant homotopy
+equivalence? Unfortunately, this does not hold. However, we still want
+to something about equivariant homotopy equivalences.
+
+\begin{definition}
+  A \textit{model structure} on a category $\SC$, which has all limits
+  and colimits, consists of $3$ distinguished classes of morphims:
+  fibrations (F), cofibrations (C), and weak equivalences (W).
+\end{definition}
+
+We provide the following axioms, along with the property of
+\textit{lifting}:
+
+\begin{itemize}
+\item if $g$is a fibration, cofibration or a weak equivalence, and $f$
+  is a retract of $g$, then $f$ is also.
+\item If $g\circ f$ can be composed and 2 out $f, g, g\circ f$ are one
+  of F, C or W, then so is the third.
+\item every morphism $f$ can be written as $p\circ i$, where $p$ is a
+  fibration, while $i$ is a cofibration, and either one can also be a
+  weak fibration.
+\end{itemize}
+\begin{remark}
+  What is a cofibration? A cofibration can be thought as an inclusion
+  of a subcomplex of a CW complex.
+\end{remark}
+
+We can now define a standard model structure on Top:
+
+\begin{itemize}
+\item W are weak homotopy equivalences.
+\item F are Serre fibrations
+\item C are whatever that has the lifing property with respect to acyclic fibration
+\end{itemize}
+
+We need some more definitions.
+
+\begin{definition}
+  An object $X$ is fibrant if $ X \to *$ is a fibration.
+\end{definition}
+
+\begin{definition}
+  An object $X$ is cofibrant if $\emptyset \to X$is a cofibration.
+\end{definition}
+
+Now, we have enough to prove the following lemma.
+
+\begin{lemma}
+Every object is weak equivalent to one that is both fibrant and cofibrant.
+\end{lemma}
+
+Having defined a cylinder object, we can define left and right
+homotopies, so that the following can be proven.
+
+\begin{theorem}
+  If $X, Y$ are both fibrant and cofibrant, then $f, g: X\to Y$ are
+  left homotopy equivalent if and only if they are right homotopy
+  equivalent.
+\end{theorem}
+
+\begin{theorem}
+Fibrant-cofibrant objects are weak equivalent if and only if they are homotopy equivalent.
+\end{theorem}
+
+Do equivariant spaces and maps model structure for Top$^G$?
+
+We can make the following choices:
+
+\begin{itemize}
+\item F are still equivariant Serre fibrations.
+\item A choice of W determines C
+\end{itemize}
+
+It turns out that cofibrant spaces are free $G$-CW complexes.
+\end{document}
