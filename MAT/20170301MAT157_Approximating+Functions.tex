@@ -1,0 +1,124 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{MAT157}{}{Approximating Functions}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Approximating Functions}
+
+What do we mean when we say that a polynomial approximates $f(x)$?
+
+Can we say what we definitely do not mean by polynomial approximation?
+Yes! For example, in case of discontinuous functions, we cannot find a
+suitable continuous function \textit{close enough} to be similar.
+
+We have already shown that $f(x) = e^x$, a polynomial
+$P_n(x) = \sum_{k=0}^n \frac{x^k}{k!}$ is a \textit{good}
+approximation. What we mean by \textit{good} in a special case is, for
+instance, that for greater $n$, $P_n(1)$ gets closer to $e$.
+
+Suppose now $g(x) = \log x$.
+
+Note that, for $n>0$, $g^{(n)}(x) = (-1)^{n-1}\frac{(n-1)!}{x^{n}}$.
+
+Therefore, $Q_n(x) = f(a) + \sum_{k=1}^n \frac{-1^{k-1}}{k a^{k}}
+(x-a)^k$. However, this is a \textit{very slow} approximation, which
+is not \textit{good}.
+
+For another example, take $h(x) = \arctan x$. Since
+$h'(x) = \frac{1}{1+x^2}$, to find $h^{(k)}(x)$ is a nontrivial task.
+
+Suppose now $f(x)$ is $n$-time differentiable at $x=a$.
+
+Let $P_n(x) = \sum_{k=0}^n \frac{f^k(x)}{k!}(x-a)^k$.
+
+To make an approximation \textit{good}, one of the methods is to
+minimise $\abs{P_n(x) - f(x)}$. However, it does not account for where
+the approximation is centered. Therefore, it makes intuitive sense to consider
+$\frac{P_n(x) - f(x)}{(x-a)^n}$. Thus, for polynomials,
+
+\begin{equation*}
+\lim_{x\to a}\frac{P_n(x) - f(x)}{(x-a)^n} = 0.
+\end{equation*}
+
+The great news is that it is also true for any function $f$.
+
+\begin{theorem}
+$\lim_{x\to a}\frac{P_n(x) - f(x)}{(x-a)^n} = 0$ for all $f$ and corresponding Taylor polynomials $P_n(x)$.
+\end{theorem}
+
+\begin{proof}
+  \hfill
+
+  Note the following:
+
+  \begin{align}
+    \frac{P_n(x)-f(x)}{(x-a)^n} &= \frac{\sum_{k=0}^{n-1} \frac{f^k(x)}{k!}(x-a)^k - f(x) +\frac{f^n(x)}{n!}(x-a)^n}{(x-a)^{n}}\\
+                                &= \frac{\sum_{k=0}^{n-1} \frac{f^k(x)}{k!}(x-a)^k - f(x)}{(x-a)^{n}}  +\frac{f^n(x)}{n!}.
+  \end{align}
+
+  We know that the consecutive derivatives of $\sum_{k=0}^{n-1} \frac{f^k(x)}{k!}(x-a)^k$ at $a$ are equal to the derivatives of $f$ at $a$ up to the $(n-1)$-degree.
+
+  Therefore, by recursive application of the l'Hospital rule,
+
+  \begin{align}
+    \lim_{x\to a}\frac{\sum_{k=0}^{n-1} \frac{f^k(x)}{k!}(x-a)^k - f(x)}{(x-a)^n} &= \lim_{x\to a} \frac{f^{n-1}(a) - f^{n-1}(x)}{n! (x-a)}\\
+                                                                                  &= - \frac{f^n(a)}{n!}.
+  \end{align}
+  
+  Therefore, $\lim_{x\to a}\frac{P_n(x)-f(x)}{(x-a)^n} = 0$, and thus close to $x = a$, $f(x)$ behaves like $P_n(x)$.
+\end{proof}
+
+  % Suppose $f'(a) = f''(a) = \cdots = f^{(m-1)}(a) = 0$, while
+  % $f^m\neq 0$, and suppose that we want to say that in this case
+  % $f(x)$ has a \textit{good} approximation by the Taylor polynomial,
+  % with the degree of the minimal nonconstant monomial being equal to
+  % $m$.
+\end{document}

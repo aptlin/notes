@@ -1,0 +1,305 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{MAT247}{}{Canonical Forms}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+Given $V$ is a finite-dimensional vector space over any field $\FF$ and $T \in \End(V)$, it would be great to have a \textit{nice} matrix representation $[T]_{\beta}$ for $T$.
+
+If $T$ is diagonalisable, we can take a basis of eigen vectors as
+$\beta$ to obtain a diagonal matrix.
+
+The happy result is that there is a way to maximise the number of
+zeroes in the matrix so that the matrix is in a block form.
+
+If a acharacteristic polynomial splits, we can find a matrix in a Jordan Canonical Form.
+
+In general, any matrix can be represented in a Rational Canonical Form.
+
+\section{Jordan Canonical Form}
+
+\begin{definition}
+  A \textbf{Jordan block} is a n $n\times n$ matrix of the form
+  \begin{equation}
+    \begin{pmatrix}
+      \lambda & 1       & 0      & \cdots & 0      \\
+      0       & \lambda & 1      & 0     & \vdots  \\
+      \vdots  & 0       & \ddots &       & 1 \\
+      0 & 0 & \cdots & 0 & \lambda
+    \end{pmatrix}
+  \end{equation}
+\end{definition}
+
+\begin{definition}
+  A sqquare matrix is in \textbf{Jordan Canonical Form} (JCF) if it is of the form
+  \begin{equation}
+  \begin{pmatrix}
+    J_1    & 0      & \cdots & 0      \\
+    0      & J_2    & 0      & \vdots \\
+    \vdots &        & \ddots &        \\
+    0      & \cdots &        & J_k
+  \end{pmatrix},
+  \end{equation}
+  where each $J_i$ is a Jordan block.
+\end{definition}
+
+\begin{description}
+
+\item[e.g.] any diagonal matrix is in JCF with $1\times 1$ blocks.
+
+\end{description}
+
+Our goal is to prove that, if a characteristic polynomial of $T$ splits, there exists an ordered basis $\beta$ such that $[T]_{\beta}$ is in JCF. Moreover, JCF is unique, up to the reordering of blocks.
+
+\begin{description}
+
+\item[e.g.] Over $\ZZ_2$, possible matrices in JCF when $n=3$ are
+
+  $
+  \begin{pmatrix}
+    0 &   & \\
+      & 0 & \\
+      &   & 0
+    \end{pmatrix},  \begin{pmatrix}
+    0 &1   & \\
+      & 0 & \\
+      &   & 0
+    \end{pmatrix},  \begin{pmatrix}
+    0 & 1  & \\
+      & 0 &1 \\
+      &   & 0
+    \end{pmatrix},
+      \begin{pmatrix}
+    1 &   & \\
+      & 1 & \\
+      &   & 1
+    \end{pmatrix},  \begin{pmatrix}
+    1 &1   & \\
+      & 1 & \\
+      &   & 1
+    \end{pmatrix},$
+
+    $  \begin{pmatrix}
+    1 & 1  & \\
+      & 1 &1 \\
+      &   & 1 
+    \end{pmatrix},
+          \begin{pmatrix}
+    0 &   & \\
+      & 1 & \\
+      &   & 1
+    \end{pmatrix},  \begin{pmatrix}
+    0 &    & \\
+      & 1 & 1 \\
+      &   & 1
+    \end{pmatrix},
+    \begin{pmatrix}
+    1 &   & \\
+      & 0 &1 \\
+      &   & 0 
+    \end{pmatrix},
+    \begin{pmatrix}
+    1 &   & \\
+      & 0 & \\
+      &   & 0 
+    \end{pmatrix}
+    $.
+  \end{description}
+
+  Suppose $[T]_{\beta}$ is a $n\times n$ Jordan block. Then the characteristic polynomial is $(-1)^n(t-\lambda)^n$.
+
+  Thus, by the Cayley-Hamilton Theorem $(T-\lambda I)^n = 0$, and
+  hence $(T-\lambda I)^n v = 0$ for all $v\in V$. Moreover, $n$ is a
+  minimal positive integer with such a property.
+
+  \begin{definition}
+    A nonzero vector $v\in V$ is a \textbf{generalised eigenvector} corresponding to $\lambda$ if $(T-\lambda I)^{n} v = 0$ for some $n\geq 1$.
+  \end{definition}
+  \begin{description}
+
+  \item[e.g.] If $v$ is an eigenvector with the corresponding eigenvalue $\lambda$, then it is a generalised egienvector with $n = 1$.
+
+  \end{description}
+
+  \begin{definition}
+    The \textbf{generalised eigenspace } of $T$ corresponding to $\lambda$ is
+    \[K_{\lambda} = \set{v\in V; \exists n \geq 1.(T-\lambda I)^nv = 0}.\]
+  \end{definition}
+
+  Note that each $K_{\lambda}$is an eigenspace of all generalised
+  eigenvectors and $0$. Thus, $E_{\lambda} \suq K_{\lambda}$.
+
+  \begin{theorem}
+    \label{sec:jord-canon-form}
+    \begin{enumerate}[label=\alph*)]
+    \item $K_{\lambda}$ is a $T$-invariant subspace.
+    \item $T-\mu I \in \End(K_{\lambda})$ is injective for all $\mu \neq \lambda$.
+    \end{enumerate}
+  \end{theorem}
+
+  \begin{proof}
+    \hfill
+    \begin{enumerate}[label=\alph*)]
+    \item
+      \label{item:1}
+      Note first that $0\in K_{\lambda}$.
+
+      Suppose $x, y\in K_{\lambda}$, $c\in \FF$.
+
+      Therefore, $(T-\lambda I)^r(x) = 0$ and $(T-\lambda I)^{s}(y)$ for some $r, s \geq 1$.
+
+      Let $n = \max(r, s)$. If $x, y \in \ker (T-\lambda I)^n$, then
+      $cx+y \in \ker (T-\lambda I)^n \suq K_{\lambda}$.
+
+      If $x\in K_{\lambda}$, then $(T-\lambda I)^nx = 0$ for some
+      $n$.
+
+      Therefore, $(T-\lambda I)^n Tx = T(T-\lambda I)^nx = 0$. Hence,
+      $Tx \in K_{\lambda}$.
+    \item By \ref{item:1}, we know that $K_{\lambda}$ is $(T-\mu I)$-invariant.
+
+      Thence, $(T-\mu I) \in \End(K_{\lambda})$ is well-defined.
+
+      By way of conradiction, suppose that $(T-\mu I)x = 0$, where
+      $x\in K_{\lambda}$ and $x\neq 0$.
+
+      Since $x\in K_{\lambda}$, $(T-\lambda I)^n(x) = 0$ for some $n \geq 1$.
+
+      By Well-Ordering Principle, We may assume that $n \geq 1$ is the
+      smallest integer satisfying the conditions.
+
+      Let $y = (T-\lambda I)^{n-1}x \neq 0$. Note that
+      $(T-\lambda I)y = 0$, and thus $y\in E_{\lambda}$.
+
+      Moreover,
+
+      \begin{align}
+        (T-\mu I) y &= (T-\mu I)(T-\lambda I)^{n-1}x\\
+                    &= (T-\lambda I)^{n-1}(T-\mu I) x = 0.
+      \end{align}
+
+      Therefore, $y\in E_{\mu}$.
+
+      So $y \in E_{\lambda}\cap E_{\mu} = \set{0}$, because
+      $\lambda\neq\mu$, and thus $y=0$, which is a contradiction.
+
+      Therefore, $T-\mu I \in \End(K_{\lambda})$ is injective.
+    \end{enumerate}
+  \end{proof}
+
+  \begin{theorem}
+    Suppose the characteristic polynomial $f(t)$ of $T$ splits.
+
+    \begin{enumerate}[label=\alph*)]
+    \item \label{item:3} $\dim K_{\lambda} \leq m_{\lambda}$, where $m_{\lambda}$ is the algebraic  multiplicity
+    \item $K_{\lambda}= \ker (T-\lambda I)^{m_{\lambda}}$
+    \end{enumerate}
+  \end{theorem}
+
+  \begin{proof}
+    \hfill
+
+    \begin{enumerate}[label=\alph*)]
+    \item Let $W = K_{\lambda}$. Then $W$ is $T$-invariant by Theorem \ref{sec:jord-canon-form}.
+
+      Therefore, the characteristic polynomial of $T_W$, $f_W(t)$,
+      divides the characteristic polynomial of $T$ by Theorem 5.21. Therefore, $f_W(t)$ splits.
+
+      From Theorem \ref{sec:jord-canon-form} (b) we know that the only
+      eigenvalue of $T_{W}$ can be $\lambda$.
+
+      Thus, $f_W(t) = (-1)^d(1-\lambda)^d | f(t)$, where $d = \dim W\leq m_{\lambda}$.
+    \item The fact that
+      $\ker (T-\lambda I)^{m_{\lambda}} \suq K_{\lambda}$ follows by
+      the definition of $K_{\lambda}$.
+
+      We prove that $K_{\lambda} \suq \ker (T-\lambda I)^{m_{\lambda}}$.
+
+      By the Cayley-Hamilton Theorem, $(T_W-\lambda I)^d=0$ for all $w\in W$.
+
+      Therefore, $(T-\lambda I)^{m_{\lambda}}w = 0$ for all $w\in W$ by part \ref{item:3}.
+
+      Thus, $W\suq \ker (T-\lambda I)^{m_{\lambda}}$.
+    \end{enumerate}
+  \end{proof}
+
+  \begin{theorem}
+    Suppose that the characteristic polynomial $T$splits.
+
+    \begin{enumerate}[label=\alph*)]
+    \item $V = \bigoplus_{i=1}^r K_{\lambda_{i}}$, where $\lambda_1,\dots, \lambda_r$ are distinct eigenvalues.
+    \item $\dim K_{\lambda}= m_{\lambda}$ for all eigenvalues $\lambda$.
+    \end{enumerate}
+  \end{theorem}
+
+  \begin{proof}
+    \hfill
+
+    We first show that $V = \sum_{i=1}^r K_{\lambda_i}$ by induction on $r$.
+
+    Suppose first that $r = 0$. Since $f(t)$ splits, then $\dim V = 0$.
+
+    Assume the claim holds for $r-1$ eigenvalues.
+
+    \begin{claim*}
+      Let $W = \img (T-\lambda_1 I)^{m_1}$, where $m_1 = m_{\lambda_1}$. Show that $V = K_{\lambda_1}\oplus W$.
+    \end{claim*}
+
+    We know that $K_{\lambda_1}=\ker (T-\lambda_1I)^{m_1}$ by Theorem
+    7.2. Moreover, $\dim K_{\lambda_1}+\dim W = \dim V$.
+
+    If $x\in K_{\lambda_1}\cap W$, then $x= (T-\lambda_1 I)^{m_1}y$ for some $y\in V$ and $(T-\lambda_1I)^{m_1}x = 0$.
+
+    Therefore, $(T-\lambda_1 I)^{2m_1}y = 0$ and hence $y\in K_{\lambda_1} = \ker (T-\lambda_1)^{m_{1}}$. Therefore, $(T-\lambda_1I)^{m_1}y = x = 0$.
+
+  \end{proof}
+
+
+\end{document}

@@ -1,0 +1,262 @@
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+\usepackage{csquotes}
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+\pSet{Alexander Illarionov - 1003590937 - CSC240 Pset VI}
+\usepackage{program}
+\begin{document}
+
+% ----------------------------------------------------------------------
+% Body
+% ----------------------------------------------------------------------
+\NumberProgramstrue
+\textbf{Administrativia}: no discussions, no extra material consulted
+\section*{Problem I}
+Consider the following algorithm:
+
+ISUM$(A)$
+\begin{program}
+  best \gets 0
+  \IF A[1] > best \THEN best \gets A[1] \FI
+    \FOR i\gets 1 \TO n-1 \DO
+    b\gets A[i+1]
+    \IF b > best \THEN best \gets b \FI
+    \FOR j\gets i | down| \TO 1 \DO
+    b\gets b+A[j]
+    \IF b > best \THEN best \gets b \FI
+    \OD
+    \OD
+    |return|(best)
+\end{program}
+
+What is the worst number of assignments performed by this algorithm?
+
+\section*{Solution}
+
+Let $T:\ZZ^+ \to \NN$ be the map such that for any $n\in\ZZ^{+}$
+$T(n)$ is the maximum number of assignments performed by the algorithm
+above on arrays $A$ of length $n$.
+
+Let $n$ be arbitrary positive integer.
+
+Let $A$ be an arbitrary array of length $n$.
+
+From the algorithm, there is one assignment in the line (1), and at
+most one assignment in the line (2).
+
+From the line (3), there are $n-1$ iterations of the for-loop, and
+thus there are $n-1$ assignments performed in the line (4).
+
+There is at most one assignment for each iteration of the for-loop in
+the line (5), and thus at most $n-1$ assignments executed on line (5)
+in total.
+
+For each $(i)$th iteration initiated in the line (3), there are $i$
+iterations initiated by the line (6). Thus, for each $(i)$th iteration
+there are $i$ assignments given by the line (7). There is at most
+1 assignment on line $(8)$, and hence for each $(i)$th iteration
+there are at most $i$ assignments executed on line (8).
+
+Therefore,
+\begin{align}
+  T(n) &\leq 1 + 1 + (n-1)+(n-1)+ \sum_{i=1}^{n-1}\big(i+i\big)\\
+       &=2n +n(n-1) = n^2+n
+\end{align}
+
+Thus, $T(n)\leq n^2+n$.
+
+Consider now an array $G$ of length $n\in\NN$ such that, for all
+$i\in[1, n]\cap\NN$, $G[i] = F[i]$, where $F(1) = 1$ and $F(2) = 2$,
+and, for $j \geq 3$, $F(j) = F(j-1) + F(j-2)$.
+
+\begin{lemma}
+  \label{sec:solution}
+For all $j\in\ZZ^+$, $0 < F(j) < F(j+1)$.
+\end{lemma}
+
+\begin{proof}
+  \hfill
+
+  We proceed by induction.
+
+  For any $i\in \ZZ^+$, let $P(i)$ denote the predicate \enquote{$F(i) < F(i+1)$ and $F(i)> 0$}.
+
+  \begin{description}
+  \item[Base Case] \hfill
+
+    Note that by definition $F(1) = 1 > 0$, $F(2) = 2 > 0$, and thus $0< F(1) < F(2)$. Thus, $P(1)$ holds.
+
+    Moreover, $F(3) = F(1) + F(2) = 3 > 0$, and thus $0< F(2) < F(3)$.
+  \item[Inductive Step] \hfill
+
+    Assume the hypothesis holds for some $k\in \ZZ^{+}$ such that $k\geq 3$.
+
+    Thus, $ 0 < F(k) < F(k+1)$. By definition of $F$, since $k\geq 3$,
+    $F(k+2) = F(k) + F(k+1)$.
+
+    By inductive hypothesis, $F(k) > 0$, and thus $F(k+2) > F(k+1)$.
+
+    Since $F(k+1) > 0$, then $F(k+2) > F(k+1) > 0$.
+
+    Therefore, $P(k+1)$.
+
+  \item[Conclusion]
+    \hfill
+
+    For all $j\in\ZZ^+$, $0 <F(j) < F(j+1)$ by induction. $\qedsymbol$
+  \end{description}
+
+  For the array $G$, ISUM($G$) executes one assignment in the line (1), and since $F(1) = 1 > 0$, there is a second assignment on line (2).
+
+  Since there are $n-1$ iterations of the for-loop initiated in the line (3), there are $n-1$ unconditional assignments in the line (4). Since for each $i$ from $1$ to $n-1$ $G[i+1] = F(i+1) > F(i) = G[i]$ by Lemma \ref{sec:solution}, then there are $n-1$ assignments in line (5).
+
+  For each $(i)$th iteration initiated in the line (3), there are $i$
+  iterations initiated by the line (6).
+
+  For each $(i)$th iteration there are $i$ unconditional assignments
+  given by the line (7).
+
+  Since for each $(i)$th iteration $G[i]$ is positive by Lemma
+  \ref{sec:solution}, then the if-condition in the line (8) is
+  satisfied, and hence there are $i$ assignments executed from the
+  line (8).
+
+  The maximum number of assignments in the worst case is no better
+  than the number of assignments for the array $G$, and hence
+
+  \begin{align}
+  T(n) &\geq 1 + 1 + (n-1)+(n-1)+ \sum_{i=1}^{n-1}\big(i+i\big)\\
+       &=2n +n(n-1) = n^2+n
+\end{align}.
+
+Since $T(n)$ is also less than or equal to $n^2+n$, $T(n) = n^2 + n$.
+
+Thus, $\forall n\in\ZZ^+.T(n) = n^2+n$ by generalisation.
+\end{proof}
+
+\section*{Problem II}
+
+For any given $A$, define $R:\ZZ^+\to \NN$ as $R(n) =$ \textquote{the worst case number of assignments of sums of elements to $best, best'$ and $b$ performed by RSUM($A, 1, n$)}.
+
+If $n=1$, then there is one assignment on line 1 and at worst one assignment on line 4.
+
+If $n > 1$, there is one assignment on line 1, and there is one assignment on line 6.
+
+There are $n-\floor{\frac{n+1}{2}}$ iterations initiated in the line 7, and thus there are $n-\floor{\frac{n+1}{2}}$ assignments on line 8 and at worst $n-\floor{\frac{n+1}{2}}$ assignments on line 9.
+
+Then there are 2 assignments from lines 10 and 11.
+
+In the line 12, a for-loop is initiated with $\floor{\frac{n+1}{2}}$ iterations, and hence there are $\floor{\frac{n+1}{2}}$ assignments on line 13 and at most $\floor{\frac{n+1}{2}}$ assignments on line 14.
+
+Then there is one assignment on line 15.
+
+On line 16, there are $R(\floor{\frac{n+1}{2}})$ assignments.
+
+On line 17, there is at most one assignment.
+
+On line 18, there are $R(n-\floor{\frac{n+1}{2}})$ assignments.
+
+On line 19, there is at most one assignment.
+
+Therefore, in the worst case, 
+\begin{equation*}
+  R(n) = \begin{cases}
+    2 , \text{if }  n =1\\
+    2n+7 + R(\floor{\frac{n+1}{2}}) + R(n-\floor{\frac{n+1}{2}}), \text{if } n > 1
+  \end{cases}
+\end{equation*}
+
+Note that, by definition of a floor function, if $z\in\ZZ^+$, then $\floor{z+\nicefrac{1}{2}} = z$.
+
+Consider $R(m)$ for $m= 2^{k} $ such that  $k\in\ZZ^+$:
+
+\begin{align*}
+  R(2^{k}) &=
+             \begin{cases}
+               2 , \text{if }  k =0\\
+               2^{k+1}+7 + R(2^{k-1}) + R(2^{k-1}), \text{if } k > 0
+         \end{cases}\\
+       &=
+         \begin{cases}
+           2 , \text{if }  k =0\\
+           7+2^{k+1}+ 2R(2^{k-1}), \text{if } k > 0
+         \end{cases}\\
+\end{align*}
+
+\begin{claim*}
+  For any $k\in\NN^+$, $R(2^k) = (2^k-1)7+(k+1)2^{k+1}$.
+\end{claim*}
+\begin{proof}
+  \hfill
+
+  For any $n\in\NN^+$, let $Q(n) =$\textquote{$R(2^n) = (2^n-1)7+(n+1)2^{n+1}$}.
+
+  We proceed by induction on $n$.
+
+  \begin{description}
+  \item[Base Case] \hfill
+
+    If $n=0$, then $R(2^0) = R(1) = 2 = (2^0-1)7+2^{0+1}$ and thus $Q(0)$ holds.
+  \item[Inductive Step] \hfill
+
+    For $n>0$, suppose $Q(n-1)$ holds.
+
+    By the recurrent definition of $R(n)$, we obtain that
+    $R(n) = 7+2^{n+1}+ 2R(2^{n-1})$, which is, by inductive
+    hypothesis, equivalent to
+
+    \begin{align}
+      R(n) &= 7+ 2^{n+1}+2((2^{n-1}-1)7+n2^{n})\\
+           &= 7+(n+1)2^{n+1}+(2^n-2)7\\
+           &=(2^n-1)7+(n+1)2^{n+1}.
+    \end{align}
+
+    Thus, $Q(n)$ holds, and hence $\forall n\in\NN.P(n)$ by induction.
+  \end{description}
+\end{proof}
+
+
+
+
+\end{document}

@@ -1,0 +1,164 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{CSC240}{}{Correctness of Algorithms}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Correctness of Algorithms}
+
+An algorithm is said to be \textbf{correct} if it satisfies its
+specifications.
+
+A \textbf{precondition} is a statement which involves variables used
+in the algorithm, specifying certain facts must hold before the
+execution begins.
+
+A \textbf{postcondition} is a statement about the variables used in
+the algorithm, specifying the conditions which must be satisfied when
+the execution ends without error. Postconditions often identify the
+correct output for a given input.
+
+\textbf{Termination} is the final state of the halting algorithm,
+provided the preconditions are satisfied.
+
+If the preconditions hold and the algorithm halts if executed, while also implying that the postconditions hold, the algorithm is said to be \textbf{partially correct}.
+
+If an algorithm is partically correct and there is a termination
+state, then the algorithm is \textbf{totally correct}.
+
+\begin{problem*}
+  Search an array $A$ for a key $k$.
+\end{problem*}
+
+\begin{description}
+
+\item[Preconditions]\hfill
+  
+  \begin{itemize}
+  \item $A$ is finite
+  \item $k$ is of the same type as
+    elements of $A$ or $k$ can be compared to the elements of $A$
+  \end{itemize}
+\item[Postconditions] \hfill
+  
+  \begin{itemize}
+  \item return true if $k\in A$, false otherwise
+  \item return an integer $i$ such that $1\leq i\leq \text{length} A$ and $A[i]=k$, or $-1$ if $k \not\in A$
+  \item return a list of all locations in $A$ such that $A[i] = k$
+  \item $A$ and $k$ are not changed by the programme
+  \end{itemize}
+\end{description}
+
+We alswant to ensure that a programme acesses only elements of $A$ where $A$ is defined.
+
+Consider now an algorithm of binary search
+
+As our preconditions, we have that elements of $A$ and $k$ must belong
+to a totally ordered set, and $A$ must be sorted in the nondecreasing
+order.
+
+For the postconditions, we must ensure that elements in the array are
+permutations of the elements originally in the array, in the
+nondecreasing order.
+
+Suppose now we want to merge two arrays, $U$ and $V$, into $W$.
+
+\begin{description}
+
+\item[Preconditions] \hfill
+
+  $U$ and $V$ are sorted in the nondecreasing order.
+
+\item[Postconditions] \hfill
+
+  $W$ is sorted in the nondecreasing and the multiset of elements in
+  $W$ consists of the multiset union of the multiset of elements in
+  $U$ and the multiset of elements in $V$. We must also make sure that
+  $U$ and $V$ are not changed.
+
+\end{description}
+
+Consider now MERGESORT.
+
+For $n\in\NN$, let $P(n) =$\textquote{for all arrays $A[1, n]$ with
+  elements from a totally ordered domain, if MERGESORT$(A, n)$ is
+  performed, thet it eventually halts, while $A$ is sorted in the
+  nondecreasing order and the multiset of elements in $A$ is
+  unchanged}.
+
+We prove that $\forall n\in\NN. P(n)$ by induction.
+
+Let $n\in\NN$ be arbitrary.
+
+Consider MERGESORT$(A, n)$ for any array $A[1, \dots, n]$.
+
+\begin{description}
+\item[Base Case] \hfill
+
+  If $n=0$, the test on line 1 fails and $A$is
+  unchanged. Vacuously,$A$ is sorted in the nondecreasing order.
+
+\item[Inductive Step] \hfill
+
+  If $n>1$, suppose that $P(n')$ is true for all $n'\in\NN$ such that $n' < n$.
+
+  The test on the line 1 succeeds.
+
+  By the Inductive Hypothesis, after lines 3 and 4 $A'$ and $A''$ are sorted in the nondecreasing order and the multiset of elements in $A'$ and $A''$ are unchanged.
+
+  By the correctness of MERGE, the elements of $A$ are in
+  nondecreasing order and the multiset of $A$, the union of multiset
+  of $A'$ and $A'$, which has the same contents of $A$. 
+\item[Conclusion]
+  \hfill
+
+  Hence, $P(n)$ and thus $\forall n\in\NN. P(n)$ by induction.
+\end{description}
+\end{document}

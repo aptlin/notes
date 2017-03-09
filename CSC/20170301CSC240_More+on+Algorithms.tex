@@ -1,0 +1,180 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{CSC240}{}{Analysis of Algorithms}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Iterative Algorithms}
+
+An \textbf{iterative algorithm} is encoded without loops and with
+procedure or function calls taking constant time.
+
+If a loop is executed $O(f(n))$ times and each iteration takes
+$O(g(n))$ time, then the entire loop takes the time of $O(f(n)g(n))$.
+
+If an if-then-else statement has corresponding complexities of
+$O(h(n))$, $O(f(n))$, and $O(g(n))$, then the complexity of the
+statement is $O(\max\set{h(n), f(n), g(n)})$.
+
+For procedural or functional calls, if P, with the size of input $m$,
+has a running time $T(m)\in O(f(m))$,then a call to $P$ with an input
+of size $g(n)$ takes the time of $O(f(g(n))$.
+
+Let $T_{IS}:\NN \to \NN$ be such that $T_{IS}(n)$ is the maximum
+number of comparisons and assignments taken by insertion sort on
+arrays $A$ of length $n$.
+
+An Insertion Sort algorithm on the list $A$ is as follows:
+
+\begin{flagderiv}
+  \step{}{i \gets 1}{}
+  \assume{}{\text{while } i \leq \text{length}(A) \text{ do}}{}
+  \assume{}{\text{while } j> 1 \text{ and } A[j]< B[j-1] \text{ do} }{}
+  \step{}{B[j] \gets B[j-1]}{}
+  \step{}{j \gets j-1}{}
+  \step{}{B[j] \gets A[i]}{}
+  \done
+  \step{}{i \gets i+1}{}
+  \conclude{}{\text{return}(B)}{}
+\end{flagderiv}
+
+\begin{lemma}
+$T_{IS}(n) \leq 2n^2+4n+2$
+\end{lemma}
+\begin{proof}
+  \hfill
+
+  Let $n\in\NN$ be arbitrary.
+
+  Let $A$ be an arbitrary array of length $n$.
+
+  From the code, there are $n$ complete iterations of the outer while loop.
+
+  Each iteration of the outer while loop consists of $4$ steps (on
+  lines 2, 3, 7, 8) plus an execution of the inner while loop.
+
+  For each complete iteration of the inner while loop at most 3 steps
+  are performed (on lines $4, 5, 6$).
+
+  During the $i$th iteration of the outer loop, there are at most
+  $i-1$ complete iterations of the inner while loop.
+
+  The final (incomplete) iteration of the inner while loop takes at
+  most $2$ steps.
+
+  Therefore, the number of steps taken by the inner while loop is at
+  most $4(i-1)+2$.
+
+  Thus, the total number of steps taken by the $n$ complete iterations of the outer while loop is at most
+
+  \begin{equation*}
+\sum_{i=1}^n[(4i-1)+2 +4] = 2n^2+4n.
+  \end{equation*}
+
+  The final incomplete iteration of the outer while loop takes 1 step and there is 1 step before the outer while loop.
+
+  Hence $T_{IS}(n) \leq 2n^2 + 4n + 2$ by generalisation.
+\end{proof}
+% \begin{lemma}
+
+% \end{lemma}
+% \begin{proof}
+%   \hfill
+
+% Let $n\in \NN$ be arbitrary. Consider $A= [n, n-1, \cdots, 1]$ of length $n$.
+% \end{proof}
+\begin{claim*}
+  For $i\in\set{1, \cdots, n}$, $4i+1$ steps are performed during the
+  iteration $i$ of the outer while loop on input $A$. After the
+  iteration is completed, $B$ contains the elements
+  $\set{n- i + 1, \cdots, n}$.
+\end{claim*}
+\begin{proof}
+  \hfill
+
+  Let $P(i) =$\textquote{$4i+1$ steps are performed during the iteration
+    $i$ and afterwards $\set{n-i+1, \cdots, n} \suq B$}.
+
+  Base Case:
+  $i=1$.
+
+  5 steps are performed in iteration 1 (on lines 2. 3, 4, 7 and 8).
+
+  By line 7,  $B$ contains $\set{n}$. Hence, $P(1)$ holds.
+
+  Let $i< n$ and assume $P(i)$.
+
+  During the iteration $i+1$ of the outer while loop there are $4$ steps in addition to the inner loop (on lines 2, 3, 7, 8).
+
+  There are $i$ complete iterations of the inner while loop.
+
+  Since $A[i+1] = n-i$, which is smaller than all the elements in $b$,
+  each iteration of the inner loop takes $4$ steps (on lines 4, 5,
+  6). In the final incomplete iteration of the inner while loop, 1
+  step is performed and $j=1$, so $A[i+1] = n-i$ is written into
+  $B[i]$, while all the other elements of $B$ have been shifter right.
+
+  Thus, after the iteration $\set{n\i, \cdots, n} \suq B$ and $4i+5$
+  steps are performed during the iteration $i+1$. Thus, $P(i+1)$ is
+  true.
+
+  The final iteration of the outer while loop takes 1 step on line 4,
+  while there is also 1 step taken before the outer loop on line 1.
+
+  Thus $t_{IS}(A) = 2+ \sum_{i=1}^n(4i+1)$, so
+  $T_{IS}(n) \geq 2+\sum_{i=1}^n(4i+1)$, and thus
+  $T_{IS}(n) \leq 2n^2+3n+2$.
+
+  
+
+\end{proof}
+
+
+\end{document}

@@ -1,0 +1,234 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{MAT247}{}{Orthogonal Projections and Spectres}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Review}
+
+Let $V$ be a finite dimensional inner product space, and let $W\suq V$
+be a subspace.
+
+Suppose $x\in V$, and let $w \in W, w'\in W^{\bot}$ be unique vectors
+such that $v = w + w'$.
+
+Then $P_W \in \End(V)$ is an \textit{orthogonal projection} such that
+$P_W(x) = w$.
+
+We have already proven that $\img P_W=W$ and $\ker P_W = W^{\bot}$.
+
+Moreover, $T \in \End(V)$ is an orthogonal projection if and only if
+$T^2= T = T^{*}$.
+
+\section{Spectral Theorem Revisited}
+
+\begin{theorem}
+  \label{sec:spectr-theor-revis}
+  Suppose $T \in \End(V)$ is normal (if $\FF = \CC$) or self-adjoint (if $\FF = \RR$).
+
+  Let $\lambda_1$, $\dots$, $\lambda_k$ be the distinct eigenvalues of
+  $T$.
+
+  Let $W_i$ be a $\lambda_i$-eigenspace.
+
+  Let $T_i = P_{W_i}$ be the orthogonal projection onto $W_i$.
+
+  Then the following properties hold:
+
+  \begin{enumerate}[label=\alph*)]
+  \item $V = W_1\oplus \cdots \oplus W_k$
+  \item $W_i^{\bot}  = \sum_{j\neq i}W_j =  \bigoplus_{j+1} W_{j}$.
+  \item $T_1+\cdots +T_k = I$
+  \item $T_iT_j = \delta_{ij}T_i$
+  \item $T = \sum_{i=1}^k\lambda_iT_i$.
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  \hfill
+
+  \begin{enumerate}[label=\alph*)]
+  \item By Theorem 6.16/6.17, $T$ has an orthonormal basis of eigenvectors. Therefore, $T$ is diagonalisable, which is by Corollary to Theorem 5.10 equivalent to the statement $V = W_1\oplus \cdots \oplus W_k$.
+  \item Since $T$ is normal, eigenvectors for distinct eigenvalues are
+    orthogonal by Theorem 6.15. Hence, $W_j\suq W_i^{\bot}$ for all $j\neq i$, and thus $\sum_{j\neq i} W_j \suq W_i^{\bot}$.
+
+    We also know that $\sum_{j\neq i} W_j = \bigoplus_{j\neq i} W_j$
+    because by part (a) if $\sum_{j\neq i}w_j = 0$ for $w_j\in W_j$,
+    then $w_j = 0$.
+
+    Therefore, $\dim(\bigoplus_{j\neq i}W_j) = \sum_{j\neq i}\dim W_j$.
+
+    Since
+    $\dim W_i^{\bot} = \dim V - \dim W_i = \sum_{j\neq i}\dim W_j$,
+    then $\bigoplus_{j\neq i} W_j = W_i^{\bot}$.
+
+  \item By (a), any $v\in V$ can be uniquely written as $v = \sum_{i=1}^k w_i$
+    for $w_i\in W_i$.
+
+    Therefore,
+    $T_i(\sum_{i=1}^k w_i = \sum_{j=1}^kT_i(w_{j}) = T_i(w_i) =
+    w_{i}$, since by (b), $w_{j}\in \ker T_i$ for $j\neq i$.
+
+    Therefore, $(\sum_{i=1}^k T_{i})(\sum_{i=1}^kw_i)= \sum_{i=1}^kw_i = I$.
+    
+  \item Note that $T_{i} T_j(\sum_{i=1}^kw_i = T_i(w_j) = \delta_{ij}w_j = \delta_{ij}T_j(\sum_{i=1}^kw_i)$.
+  \item Note that $T(\sum_{i=1}^k w_i) = \sum \lambda_iw_i$.
+
+    Moreover, $(\sum_{i=1}^k\lambda_iT_i)(\sum_{i=1}^kv_i) = \sum_{i=1}^k\lambda_iw_i$.
+  \end{enumerate}
+\end{proof}
+
+\begin{lemma}
+\label{sec:spectr-theor-revis-1}
+  Suppose $T \in \End(V)$ is normal (if $\FF = \CC$) or self-adjoint
+  (if $\FF = \RR$).
+
+  Let $\lambda_1$, $\dots$, $\lambda_k$ be the distinct eigenvalues of
+  $T$.
+
+  Let $W_i$ be a $\lambda_i$-eigenspace.
+
+  Let $T_i = P_{W_i}$ be the orthogonal projection onto $W_i$.
+
+  \begin{enumerate}[label=\alph*)]
+  \item  If $g(t)$ is a polynomial, then $g(T)) = \sum_{i=1}^kg(\lambda_i)T_i$.
+  \item $T^{*}= \sum_{i=1}^k\ol{\lambda_i}T_{i}$.
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  \hfill
+
+  \begin{enumerate}[label=\alph*)]
+  \item Write $g(t) = \sum_{i=0}^na_{i}t^{i}$, where $a_i\in \FF$. Then
+
+    \begin{align}
+      g(T)(\sum_{i=1}^kw_i) & = (\sum_{i=1}^na_iT^i)(\sum_{i=1}^kw_i)           \\
+                            & = \sum_{i=1}^k(\sum_{j=1}^na_jT^j)(w_i)           \\
+                            & = \sum_{i=1}^k(\sum_{j=1}^na_j\lambda_i^{j}w_{i}) \\
+                            & = \sum_{i=1}^k g(\lambda_i)w_i                    \\
+                            & = \sum_{i=1}^kg(\lambda_i)T_i(\sum_{j=1}^kw_j).
+    \end{align}
+
+    Therefore, $g(T) = \sum_{i=1}^kg(\lambda_i)T_i$.
+  \item Note that
+    \begin{align}
+      T^{*} & = (\sum_{i=1}^k \lambda_iT_i)*      \\
+            & = \sum_{i=1}^k\ol{\lambda_i}T_i^{*} \\
+            & = \sum_{i=1}^k \ol{\lambda_i}T_i,
+    \end{align}
+
+    since $T_i^{*} = T_{i}$.
+  \end{enumerate}
+\end{proof}
+\begin{corollary}
+  \label{sec:spectr-theor-revis-2}
+  Suppose $\FF = \CC$. Then $T$ is normal if and only if $T^{*} = g(T)$ for some polynomial $g(t)$.
+\end{corollary}
+
+\begin{proof}
+    \hfill
+
+    If $T^{*} = g(T)$, then $TT^{*} = T g(T) = g(T)T = T^{*}T$.
+
+    If $T$ is normal, then $T = \sum_{i=1}^k\lambda_{i}T_i$ by Theorem \ref{sec:spectr-theor-revis}.
+
+    Lemma \ref{sec:spectr-theor-revis-1} tells us that
+    $T^{*}= \sum_{i=1}^k\ol{\lambda_i}T_{i}$ and for any polynomial
+    $g(t)$, $g(T)) = \sum_{i=1}^kg(\lambda_i)T_i$.
+
+    By Lagrange interpolation (see section 1.6), we can find a
+    polynomial $g(t)$ such that $g(\lambda_i) = \ol{\lambda_i}$. Then
+    $T^{*}=g(T)$.
+
+  \end{proof}
+
+  \begin{corollary}
+    If $\FF = \CC$, $T$ is normal and $W\suq V$ is a subspace, then
+    \begin{enumerate}[label=\alph*)]
+    \item if $W$ is $T$-invariant, then $W$ is $T^{*}$-invariant.
+    \item if $W$ is $T$-invariant, then $W^{\bot}$ is $T$-invariant.
+    \end{enumerate}
+  \end{corollary}
+  \begin{proof}
+    \hfill
+    \begin{enumerate}[label=\alph*)]
+    \item     By Corollary \ref{sec:spectr-theor-revis-2}, $T^{*} = g(T)$ for some polynomial $g(t)$.
+
+    Therefore, for $w\in W$,
+
+    \begin{align}
+      T^{*}(w) & = g(T)w                 \\
+               & = (\sum_{i=0}^na_iT^i)w \\
+               & = \sum_{i=0}^na_iT^iw,
+    \end{align}
+
+    and since $Tw\in W$ by assumption, $T^{*}w \in W$ for all $w\in W$..
+  \item From Section 6.4,  if $W$ is $T$-invariant, then $W^{\bot}$ is $T^{*}$-invariant. Thus, by part (a), $W^{\bot}$ is $T$-invariant.
+    \end{enumerate}
+  \end{proof}
+
+  \begin{corollary}
+
+    Suppose $T \in \End(V)$ is normal (if $\FF = \CC$) or self-adjoint
+    (if $\FF = \RR$) so that $T = \sum_{i=1}^k\lambda_iT_i$.
+    Then $T_i = g_i(T)$ for some polynomial $g_i(t)$.
+  \end{corollary}
+  \begin{proof}
+    \hfill
+
+    By Lemma \ref{sec:spectr-theor-revis-1}, $g_i(T) = \sum_{i=1}^kg_i(\lambda_i)T_i$.
+
+    Choose $g_i$ by Lagrange interpolation such that $g_i(\lambda_j) = \delta_{ij}$. Then
+    \begin{equation}
+      g_i(t) = \frac{\prod_{j\neq i}(t-\lambda_j)}{\prod_{j\neq i}(\lambda_i-\lambda_j)}
+    \end{equation}
+  \end{proof}
+\end{document}

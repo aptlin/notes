@@ -1,0 +1,124 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{CSC240}{}{Analysis of Algorithms}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Analysis of Algorithms}
+
+Let $\SF$ denote the set of all functions from $\NN$ to $\RR^{+}$.
+
+For any $f\in\SF$, let
+\[O(f) = \set{g\in\SF; \exists c \in\RR^+.\exists b\in\NN.\forall
+    n\in\NN.(n \geq b \THEN g(n) \leq c f(n)}.\]
+
+For an algorithm $A$, let $t(I)$ be the number of steps the algorithm
+$A$ takes to halt on input $I$.
+
+And what is a step?
+
+Pick 1 or 2 operations such that the total number of operations
+performed by $A$ is the same as the number of these opoerations
+performed by $A$, to within a constant factor.
+
+\subsection{Properties of $O$ Notation}
+
+\begin{itemize}
+\item For any $c\in\RR^+\cup{0}$, $c f(n) \in O(f(n))$ and
+  $f(n) \in O(c f(n))$.
+\item If $\lim_{n\to \infty} \frac{h(n)}{g(n)} = 0$, then
+  $g(n) + h(n) \in O(g(n))$
+\item If $f(n)\in O(g(n))$ and $g(n) \in O(h(n))$, then $f(n)\in (h(n))$
+\item If $f_1\in O(g_1)$ and $f_2\in O(g_2)$, then $f_1+f_2 \in O(g_1+g_2)$.
+\item $\max \set{f, g} \in O(f+g)$
+\item $f+g \in O(\max\set{f, g})$
+\item If $f_1\in O(g_1)$ and $f_2\in O(g_2)$, then $f_1f_2\in O(g_1g_2)$
+\item Leh $a+b$ be constant. If $a< b$,then $n^a\in O(n^{b}$
+\item If $1 < a < b$, then $a^n\in O(b^n)$, but $b^n not\in O(a^n)$
+\item For all $a, b > 1$, $\log_a(n)\in O(\log_b(n))$.
+\end{itemize}
+
+\begin{example}
+
+  Consider the following algorithm $LS(L, x)$ such that, if $x$ occurs
+  in $L$, the algorithm returns an index of $L$ at which $x$
+  occurs. Otherwise, return $0$. Let $L$ be  an array with the index of $1$:
+
+  i <- 1
+  
+  while $i\leq$ length(L) do
+
+  if $L[i] = x$
+
+  then return $i$
+
+  i < i+1
+
+  end while
+
+  return 0.
+
+  Now, count the number of comparisons with $x$. Suppose that each
+  iteration of the loop performs $O(1)$ steps (assuming LENGTH takes
+  $O(1)$, and outside the loop $O(1)$ steps are performed.
+
+  Now, we can express the complexity as a function of the input size:
+  \begin{align}
+    T_A: \NN \to \NN\\
+    T_A(n)=\max\set{t_A(I); \text{size}(I) = n},
+  \end{align}
+  which gives the worst case time complexity of an algorithm $A$. For $LS$, $\text{size}((L, x)) = \text{length}(L)$
+\end{example}
+\begin{example}
+  Now we can estimate the average cas time complexity. Define $T'_A:\NN\to\RR^+\cup\set{0}$, where $T_A'(n) = \EE[t_{A}]$, where the expectation is taken over a probability space of all inputs of size $n$. If all inputs of size $n$ are equally likely,  then $T'_A(n) = \frac{\sum \set{t_A(I); \text{size}(I) =n}}{\#\set{I; \text{size}(I) = n }}$
+
+
+\end{example}
+\end{document}

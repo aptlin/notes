@@ -1,0 +1,113 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{MAT157}{}{Polynomial Approximation}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Polynomial Approximation}
+
+The tangent line at $x=a$ can be thought as the best linear
+approximation to $f(x)$ when $x=a$. Can we do better approximations
+with polynomials?
+
+We choose polynomials because of their properties which make them
+amenable to differentiation and integration.
+
+Suppose $a=0$.
+
+Consider a polynomial of degree $2$:
+
+\begin{align}
+  P_2(x) &= a_0 + a_1 x + a_2 x^2\\
+  P_2'(x) &= a_1 + 2 a_2x\\
+  P_2''(x) &= 2a_2
+\end{align}
+
+If $a_0=f(0)$, $a_1=f'(0)$ and $a_2 = \frac{1}{2}f''(0)$, then $P_2$ would satisfy
+\begin{align}
+  P_2(0) &= f(0)\\
+  P_2'(x) &= f'(0)\\
+  P_2''(x) &= f''(0)
+\end{align}
+
+We shall prove that $P_2(x)$ is the best approximation of $f$ in terms
+of the polynomial of the second degree.
+
+
+Now, consider $P_n(x)=\sum_{k=0}^n a_kx^k$. Then it is easy to show
+that $P_n^{(m)}(0) = m! a_m$.
+
+Take $a_m = \frac{1}{m!}f^{(m)}(0)$.
+
+This approximation has a name.
+
+\begin{definition}
+  The \textit{Taylor polynomial} of degree $n$ for $f(x)$ near $x=0$ is
+
+  \begin{equation*}
+    P_n(x) = \sum_{k=0}^n \frac{1}{m!} f^{(m)}(0)x^k 
+ \end{equation*}
+\end{definition}
+
+Note that a Taylor polynomial can also be defined at any point $a$ by translation:
+  \begin{equation*}
+    P_n(x) = \sum_{k=0}^n \frac{1}{m!} f^{(m)}(a)(x-a)^k
+  \end{equation*}
+
+  \begin{example}
+
+Let $f(x) = \sin x$.  Then $f(x)$ for $x< 1$ is approximated well by $g_n(x) = \sum_{k=0}^n x-\frac{x^3}{3!}+\frac{x^5}{5!} -\cdots$.
+\end{example}
+
+Suppose now that $f(x) = \begin{cases}
+  e^{-\frac{1}{x^2}-}, x\neq 0\\
+  0, x = 0
+\end{cases}$
+\end{document}

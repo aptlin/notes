@@ -1,0 +1,195 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{CSC240}{}{Further Analysis of Algorithms}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+\usepackage{program}
+\begin{document}
+
+\section{Further Analysis of Algorithms}
+Consider the following function:
+
+function square(n)
+
+\begin{program}
+  \IF n = 1
+  \THEN |return | n
+  \ELSE |return| (n+n-1 +|square|(n-1))
+  \FI
+\end{program}
+
+Define $T:\ZZ^+\to \NN$, where $T(n)=$\textquote{the number of
+  arithmetic operations performed by the square$(n)$}.
+
+Then $T(n) = \begin{cases}
+  0, n =1\\
+  4+T(n-1) , n > 1
+\end{cases}$.
+
+Now, consider the mergesort algorithm:
+
+MERGESORT($A, n$)
+\begin{program}
+  \IF n =1 \THEN |return|
+  |divide A into 2 subarrays |A'| and |A''| of size| \ceiling{\frac{n}{2}}| and |\floor{\nicefrac{n}{2}}
+  |MERGESORT|(A', \ceiling{\nicefrac{n}{2}})
+  |MERGESORT|(A'', \floor{\nicefrac{n}{2}})
+  \FI
+  A\gets |MERGE|(A', A'')
+  |return|
+\end{program}
+
+For $n\in\ZZ^{+}$, let $M(n)=$\textquote{the worst case time
+  complexity of MERGESORT($A, n$) over all arrays $A$ of size $n$}.
+
+Then $M(n) = \begin{cases}
+  c, n = 1\\
+  M(\ceiling{\nicefrac{n}{2}}) + M(\floor{\nicefrac{n}{2}}))+dn, n > 1
+\end{cases}$, where $c, d$ are constants.
+
+Consider now the binary search algorithm.
+
+BINSEARCH$(A, f, l, x)$
+
+\begin{program}
+  \IF f = l \THEN
+  \IF A[f]= x \THEN |return| f
+  \ELSE |return | 0
+  \FI
+  \FI
+  m \gets \floor{ \nicefrac{f+l}{2} }
+  \IF A[m] \geq x \THEN
+  |return| | BINSEARCH|(A, f, m, x)
+  \ELSE |return| |BINSEARCH|(A, m+1, l, x)
+\end{program}
+
+
+Define $B:\ZZ^+\to \NN$, where $B(n)$ denotes the wors case number of
+comparisons with $x$ performed by BINSEARCH$(A, f, l, x)$, where $n = l s f +1$ over all choices of $A, f, l, x$.
+
+Then $B(n) = \begin{cases}
+  1, n = 1\\
+  1+\max\{B(\ceiling{\nicefrac{n}{2}}), B(\floor{\nicefrac{n}{2}})\}, n > 1
+\end{cases}$
+\section{Methods of Solving Recurrences}
+
+\subsection{Guess and Verify}
+\begin{itemize}
+\item genereate a table of values
+\item look for a pattern
+\item guess a solution
+\item prove it is a solution by induction
+\end{itemize}
+\subsection{Repeated Substitution / Plug \& Chug}
+To find a closed form for $M(n)$ from above, consider the special case where $n$ is a power of $2$.
+
+Then $M(n) = \begin{cases}
+  c, n=1\\
+  2M(\frac{n}{2})+dn, n>1
+\end{cases}$.
+
+Therefore,
+
+\begin{align}
+  M(n)&= 2M(\nicefrac{n}{2}) + dn\\
+      &=2[2M(\nicefrac{n}{4}+d \nicefrac{n}{2}] + dn\\
+      &= 4M(\nicefrac{n}{4})+ 2 dn\\
+      &= 2^iM(\nicefrac{n}{2^{i}})+ i dn.
+\end{align}
+
+For $k\in\NN$, let $Q(k) =$\textquote{$M(2^k) = c2^k+dk2^k$}.
+
+Prove that $\forall k\in\NN.Q(k)$.
+
+\begin{theorem}
+  $M(n) \in O(n\log n)$.
+\end{theorem}
+\begin{proof}
+  \hfill
+
+  To prove this, we show that $M(n)$ is a nondecreasing function
+  $M(n+k)\geq M(n)$ for all $n\in \ZZ^+$, $k\in \NN$.
+
+  Let $n\in\ZZ^{+}$ be arbitrary. Let $2^k$ be the smallest power of
+  two that is greater than or equal to $n$, i.e.
+  $k = \ceiling{\log_2 n}$.
+
+  Since $M$ is nondecreasing, then $n \leq 2^k \leq 2n$.
+
+  Thus, $M(n) \leq M(2^k) = c2^k+dk2^k < c2n + d2n\log(2n) = 2cn + 2dn(\log_2n+1)$.
+
+  Hence, $\forall n\in\ZZ^+.M(n) \leq 2cn+2dn\log_2n+2dn$, and so $M(n)\in O(n\log n)$.
+\end{proof}
+
+\begin{lemma}
+  $\forall m\in\ZZ^+. \forall n\in\ZZ^+.[m\leq n \THEN M(m) \leq M(n)]$.
+\end{lemma}
+\begin{proof}
+  \hfill
+
+  For $n\in\ZZ^+$, let $R(n) =$\textquote{$\forall.m\in\ZZ^+.m\leq n \THEN M(m) \leq M(n)$}.
+  
+  Let $n\in\ZZ^{+}$ be arbitrary and suppose that $R(n')$ is true for all $n'\in\ZZ^{+}$ such that $n' < n$.
+
+  Then $M(1) = c < 2c +2d = M(2) $. Therefore, $R(1)$ and $R(2)$ are true.
+
+  Now consider $n> 2$. Then $1\leq \floor{\nicefrac{n}{2}} \leq \ceiling{\nicefrac{n}{2}\leq n-1 < n}$.
+
+  Note that $R(\floor{\nicefrac{n}{2}})$, $R(\ceiling{\nicefrac{n}{2}})$
+  and $R(n-1)$ are all true by inductive hypothesis.
+
+  Let $M\in\ZZ^{+}$ be arbitrary. Suppose $m \leq n$.
+
+  If $m = n$, then $M(m) = M(n)$ by substitution.
+
+  Suppose then $m = n-1$.
+
+  \textbf{Exercise}: continue the proof. And look up the Master Theorem.
+\end{proof}
+
+\end{document}

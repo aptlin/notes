@@ -1,0 +1,72 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{Arthur Jaffe}{}{A New Look at the Mathematics of Quantum Information}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{A New Look at the Mathematics of Quantum Information}
+
+\textit{see Zhengwei Liu, Alex Wozniakowski, $PA+PF \ra PAPPA \ra QI \ra M\cup \Phi$}
+
+We know that a language of algebra can be defined for $\dim = 1$,
+planar algebra for $\dim = 2$ and quon for $\dim = 3$. On the other
+hand, there is a connection between 1-string theory and category
+theory, 2-string theory and planar algebra and 4-string theory and
+quon.
+
+To study quantum information, we can use a diagrammatic
+language. Thus, we can prove theorems with pictures! In this way, a
+\textquote{charge} can be denoted as $\cap_k$ for $k\in \ZZ_d$ and its
+adjoint, a \textit{vertical reflection}, as $\cap_k^{*} = \cup_{-k}$.
+
+\textit{Key concepts}: twisted product, reflection positivity
+condition, string Fourier transform (a generalisation of the Fourier
+transform), Pauli matrices, Reidemeister moves
+\end{document}

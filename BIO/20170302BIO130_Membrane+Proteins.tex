@@ -1,0 +1,339 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{BIO130}{}{Membrane Proteins}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Membrane Proteins}
+
+
+\begin{itemize}
+\item Have specific functions
+\item Associated with the lipid bilayer in different ways
+\end{itemize}
+
+\textbf{Integral membrane proteins} are located at the region where a protein penetrates or spans the lipid bilayer. If the lipid bilayer is spanned, a protein is called a transmembrane protein.
+
+\textbf{Peripheral membrane proteins} associate with the phospholipid
+bilayer and with the penetrating proteins noncovalently.
+
+\textbf{Anchored proteins} can be anchored with a sugar or a lipid.
+
+\subsection{Integral Membrane Proteins}
+
+Integral membrane proteins are amphipathic, with AA side chains being
+polar if the hydrophilic domains are aqueous. AA side chains are
+non-polar if the membrane-spanning domain is hydrophobic.
+
+Single-pass transmembrane proteins have the shape of a single
+$\alpha$-helix, while multipass transmembrane proteins have multiple
+$\alpha$-helices.
+
+Other structures can span the membrane as well.
+
+A membrane spanning $\alpha$-helix has 20 to 30 hydrophobic
+aminoacids. Not all $\alpha$-helices, however, span the membrane.
+
+\begin{description}
+
+\item[e.g.] receptors (with hydrophilic tails participating in
+  intracellurar signalling), ion channels (conformational changes
+  regulate permeability), $\beta$-barrel (a rigid rolled beta-sheet,
+  wich play a role of some channels in bacteria, mitochondria,
+  chloroplasts).
+
+\end{description}
+
+\subsection{Techniques of Identification}
+
+\begin{itemize}
+\item X-ray crystallography
+  
+ Precise identification of the 3D structure
+
+\item Hydrophobicity plots
+  
+  Segments of 20-30 hydrophobic amino acids spanning the lipid bilayer
+  as an $\alpha$-helix show as high peakson the graph of
+  hydrophobicity agians the amino acid residue number.
+
+\end{itemize}
+
+\subsection{Cell Membrane Proteins on One Sicde}
+
+Proteins can be anchored on the ctosolic face by an amphipathic $\alpha$-helix.
+
+\subsection{Lipid-Anchored Membrane Proteins}
+
+GPI anchored proteins are synthesised in ER lumen and usually end up
+on the cell surface. Proteins with other lipid anchors, which are
+added by cytosolic enzymes, are directed to tho cytosolic face.
+
+% \subsection{Peripheral Membrane Proteins}
+% Peripheral membrane proteins are bound to other proteins or lipids
+
+\subsection{Extraction of Membrane Proteins}
+
+Peripheral membrane proteins use gentle extraction that does not destroy a lipid bilayer.
+
+Integral membrane proteins destroy the membrane with detergents to extract the protein.
+% \subsection{Studying the Properties of }
+
+\subsection{Lateral Diffusion of Membrane Proteins}
+
+\begin{itemize}
+\item there is lateral diffusion within a leaflet
+\item no flip-flop
+\end{itemize}
+
+The protein movement can be studies with GFP (green fluorescent proteins).
+
+\subsection{FRAP (Fluorescence Recovery After Photobleaching)}
+
+\begin{enumerate}
+\item\label{item:1} First, proteins are labelled with a dye.
+\item Then a spot is photobleached with a laser beam.
+\item The bilayer is then recovered and the recovery time is then
+  measured. If the recovery is faster, then the transmembrane proteins
+  have lots of translative movement.
+\end{enumerate}
+
+Movement via simple diffusion througth the lipid bilayer is such that down the concentration gradient the concentration drops
+
+\subsection{Impermeability of the Lipid Bilayer}
+
+These require membrane proteins for transportation.
+
+\subsection{Proteins Involved in Membrane Transport}
+
+\begin{itemize}
+\item Multipass transmembrane proteins
+\begin{itemize}
+\item create a protein-lined path across cell membrane
+\item transport polar and charged molecules
+\end{itemize}
+\item Each transport protein is selective
+\item Different cell membranes have a different complement of transport proteins
+\end{itemize}
+
+\subsection{Passive and Active Transport}
+
+\textbf{Passive transport} is down the concentration gradient and hence does not require energy.
+
+\textbf{Active transport} is the opposite.
+
+Notice that there are two type of proteins: channel proteins (only passive transport) and transporter proteins (some do passive, some do active).
+
+Channel proteins do not interact a lot with and do not bind strongly with the transported molecule. The conformation of channel proteins is also not changed a lot.
+
+Transporter proteins are also called carrier proteins,
+
+Both channel and transporter proteins are called transport proteins.
+
+\subsection{Resting Membrane Potential}
+
+A molecule with a positive charge has the greates motive force across
+the membrane, even though the concentration difference is the same for
+positive, negative and neutral molecules with the corresponding channel proteins.
+
+\subsection{Concentration Gradient and Membrane Potential}
+
+Electrochemical gradient is determined by the additive effect of the
+concentration gradient and the membrane potential (electrical
+gradient).
+
+\section{Channel Proteins}
+
+\begin{itemize}
+\item hydrophilic pore across a membrane
+\item most channel proteins are selective
+\item passive transport
+
+  \begin{itemize}
+\item weak interactions with a solute
+\item faster transport by channels than transporters, with several
+  molecules passing when open
+\end{itemize}
+\end{itemize}
+
+\subsection{Ion Channels}
+
+There are two types of ion channels:
+
+\begin{description}
+
+\item[Non-gated] Always open
+
+  \begin{description}
+
+  \item[e.g.] K$^+$ leak channels, which are improtant in the plasma membrane of animal cells. They are also involved in determining the resting membrane potential.
+
+  \end{description}
+  
+\item[Gated] Only open on certain circuimstances
+
+  
+\begin{itemize}
+\item Voltage-gated ion channel  (change in the voltage across a membrane triggers the gate)
+\item Mechanically-gated ion channel (kept closed by a mechanical stress, opens if the plasma membrane is stretched)
+\item Ligand-gated (Extracellular ligand) (for example, neurotransmitters can trigger the gate)
+\item Ligand-gated (Intracellular ligand) (ions, nucleotides can open a gate)
+\end{itemize}
+\end{description}
+
+\section{Transporter Proteins}
+
+\begin{itemize}
+\item bind a specific solute
+\item go through a conformational change that transports that solute
+  across the membrane
+\end{itemize}
+
+One type of transporter proteins are uniporters:
+\begin{itemize}
+\item one molecule (with a passive transport down electrochemical gradient)
+\item direction of transport is reversible
+\end{itemize}
+
+\begin{description}
+
+\item[e.g.] GLUT uniporters (move glucose from a high concentration to low concentration down the electrochemical gradient, and can work in either directions, in and out of the cell)
+
+\end{description}
+
+Uniporters provide a passive transport with a transporter by facilitated diffusion.
+
+\subsection{Active Transport}
+
+\begin{itemize}
+\item Active transport is against electrochemical gradient, which requires energy, but not necessarily in the form of ATP
+\begin{itemize}
+\item Contransporters
+  One molecule down the gradient, the second molecule against the gradient
+\item ATP-driven pumps
+  Involved ATP hydrolysis, moving molecules against the gradient
+\item Light-driven pumps (bacteria)
+  Use light energy, moving molecules against the gradient
+\end{itemize}
+\end{itemize}
+
+\subsection{Symporters and Antiporters}
+
+\textbf{Symporters} move two molecules in the same direction.
+
+\textbf{Antiporters} move two molecules in opposite directions.
+
+Free energy from co-transported ion moving down the electrochemical
+gradient is used to transport the 2nd molecule against its
+electrochemical gradient or to drive a secondary active transport.
+
+\begin{example}
+
+   moves Na$^+$ down the electrochemical
+  gradient, which provides the energy to move glucose agains the
+  concentration gradient. Cooperative binding of Na$^{+}$ and glucose
+  leads to a conformational change in the protein.
+
+\end{example}
+
+\begin{example}
+
+  Most proteins require a spaciic pH (cytosol -- neutral pH, lysosomes
+  -- acidic). Excess H$^{+}$ produced by acid forming reactions leaks
+  into the cell, and then Na$^{+}$ direvn antiporters maintain
+  cytosolic pH.
+
+\end{example}
+
+\begin{example}
+
+  Na$^{+}$/H$^+$ exchanger (antiporter) uses the free energy stored in
+  the Na$^{+}$ electrochemical gradient to move H$^{+}$ out of the
+  cell. It responds to cytosolic pH so that if pH drops, the
+  transporter activity increases.
+
+\end{example}
+
+Na$^{+}$/glucose symporter and Na$^{+}$/H$^{+}$ exchanger use the
+energy stored in the Na$^{+}$ electrochemical gradient to move other
+molecules against their electrochemical gradients. Continued action
+would equalise the Na$^{+}$ gradient, if there is no external supply
+of Na$^{+}$. The electrochemical gradient is hence maintained by the
+Na$^{+}$/K$^{+}$ pump (a transport ATPase).
+
+\subsection{ATP-driven pumps}
+
+\begin{itemize}
+\item P-type transport ATPases are phosphorylated
+  
+  \begin{itemize}
+  \item Na$^{+}$ and K$^{+}$ are moved against electrochemical
+    gradients
+  \item Na$^{+}$ gradient is used to transport of nutrients (glucose)
+    into cells and maintain the pH and cell volume.
+  \end{itemize}
+\end{itemize}
+
+\subsubsection{The Pumping Cycle of the Na$^+$/K$^+$ Pump}
+
+\begin{enumerate}
+\item\label{item:2} ATP is bound to the pump, 3 Na$^{+}$ bind an open
+  cytosolic pocket
+\item The pocket closes preventing Na$^{+}$ escape
+\item ATP hydrolysis occurs, the pump is phosphorylated, the release
+  of ADP causes a conformational change to E2.
+\item In E2 the binding pocket is exposed on the extracellular side,
+  3Na$^{+}$ exit.
+\item 2 K$^{+}$ bind
+\item The pocket closes preventing K$^{+}$ release.
+\item The pump is deposhporylated.
+\item ATP binds the pump returning it to the E1 state.
+\end{enumerate}
+\end{document}

@@ -1,0 +1,200 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{MAT247}{}{Unitary/Orthogonal Transformations}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Review}
+
+$T \in \Hom(V,V)$ is unitary/orthogonal if
+\begin{itemize}
+\item $\norm{Tx}=\norm{x}$
+\item $\ipr{Tx}{Ty} = \ipr{x}{y}$
+\item $TT^{*} = T^{*}T = I$
+\item $T$ sends an orthonormal basis to an orthonormal basis.
+\end{itemize}
+
+\begin{definition}
+  For $A, B \in M_{n\times n}(\FF)$, $A$ and $B$ are called
+  unitarily/orthogonally equivalent if there exists $Q$
+  unitary/orthogonalsuch that $A=Q^{-1}BQ$.
+\end{definition}
+\begin{remark}
+  If $\beta$ is an orthonormal basis, then $T$ is unitary/orthogonal
+  if and only if $[T]_{\beta}$ is unitary/orthogonal.
+\end{remark}
+\begin{remark}
+  If $\beta, \beta'$ are orthonormal bases, then the change-of-basis
+  matrix $[I]_{\beta}^{\beta'}$ is unitary/orthogonal.
+\end{remark}
+\begin{description}
+
+\item[e.g.] If $\beta$ is a standard basis, which is orthonormal, then
+  $[I]_{\beta}^{\beta'}$ is unitary/orthogonal, since colums are an
+  orthonormal basis of $\FF^n$. Thus, if $\beta, \beta'$ are
+  orthonormal bases, then $[T]_{\beta}$, $[T]_{\beta'}$ are
+  unitarily/orthogonally equivalent.
+\end{description}
+
+\begin{lemma}
+  \label{sec:review}
+  Let $T \in \Hom(V,V)$. If $T$ has an eigenvalue $\lambda$, then
+  $T^{*}$ has an eigenvalue $\ol{\lambda}$.
+\end{lemma}
+
+\begin{theorem}
+  If the characteristic polynomial of $T$ splits, then there exists an
+  orthonormal basis $\beta$ such that $[T]_{\beta}$ is
+  upper-triangular.
+\end{theorem}
+
+\begin{proof}
+  \hfill
+
+  We proceed by induction on $\dim V$.
+
+  If $n=1$, then the change-of-basis matrix is one by one, and hence
+  upper-triangular.
+
+  If $n> 1$, assume the claim holds for $n-1$.
+
+  Since the characteristic polynomial $f(t)$ of $T$ splits, then $T$
+  has an eigenvalue, say $\lambda \in \FF$.
+
+  Then by Lemma \ref{sec:review}, $T^{*}$ has an eigenvalue
+  $\ol{\lambda}$, say $T^{*}v = \ol{\lambda}v$, with $\norm{v} = 1$.
+
+  Thus, $W = \spn{v}$ is $T^{*}$-invariant, and thus $W^{\bot}$ is
+  $T$-invariant, with $\dim W^{\bot} = n-1$.
+
+  By Theorem 5.21, the characteristic polynomial of $T_{W^{\bot}}$
+  divides $f(t)$, so $f_{W^{\bot}}(t)$ splits.
+
+  By inductive hypothesis, hdece exits an orthonormal basis $\gamma$
+  of $W^{\bot}$ such that $[T_{W^{\bot}}]_{\gamma}$ is
+  upper-triangular. Therefore, $\beta = \gamma\cup\set{v}$ is an
+  orthonormal basis of $V$.
+
+  Since $[T_{W^{\bot}}]_{\gamma}$ is upper-triangular, then
+  $[T]_{\gamma}$ is upper-triangular.
+
+  \begin{corollary}
+    If $A \in M_{n\times n}(\FF)$ and the characteristic polynomial of
+    $A$ splits, then $A$is unitarily/orthogonally equivalent to an
+    upper-triangular matrix.
+  \end{corollary}
+\end{proof}
+\section{Orthogonal Projections and The Spectral Theorem}
+
+Let $V$ be a finite-dimensional inner product space.
+
+Suppose $W\su V$. Thus, $V = W\oplus W^{\bot}$, and thus we can define
+a linear map, called an orthogonal projection onto $W$,
+$P_W \in \Hom(V,V)$ by $P_W(w+w^{\bot}) = w$.
+
+\begin{theorem}
+  \label{sec:orth-proj-spectr}
+  \begin{enumerate}[label=\alph*)]
+  \item $\img P_W = W$, $\ker P_W = W^{\bot}$.
+  \item $P_W^2 = P_{W}$ and $P_{W}^{*} = P_{W}$
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  \hfill
+
+  We prove (b).
+
+  By definiton, $P'(w+w^{\bot}) = P_W P_W(w+w^{\bot}) = P_w w = w$.
+
+  To check that $P_W^{*} = P_{W}$, observe the following, for
+  $v, w\in W$:
+
+  \begin{align}
+    \ipr{P_{W}(w+w^{\bot})}{v+v^{\bot}} &= \ipr{w}{v+v^{\bot}} = \ipr{w}{v}\\
+    \ipr{w+w^{\bot}}{P_W(v+v^{\bot})} &= \ipr{w+w^{\bot}}{v} = \ipr{w}{v}
+  \end{align}
+\end{proof}
+
+\begin{theorem}[6.24]
+  Suppose $T \in \Hom(V,V)$. Then $T$ is an orthogonal projection if
+  and only if $T^2=T$ and $T^{*}=T$.
+\end{theorem}
+\begin{proof}
+  \hfill
+
+  We have proved the first direction in Theorem
+  \ref{sec:orth-proj-spectr}.
+
+  Suppose now $T^2=T$ and $T^{*}=T$.
+    
+  Let $W=\img (T)$. We want to show that $T = P_{W}$.
+
+  Since $\img (T^{*})^{\bot} = \ker T$, then $W^{\bot} = \ker(T)$.
+
+  Since $T=T^{*}$, $\img T^{*} = \img T$.
+
+  Therefore, $V = \ker T \oplus \img T$.
+
+  Fix $v\in V$. Since $V = \ker T \oplus \img T$, there exists
+  $w\in \img T$, $w' \in \ker T$ such that $v = w+w'$.
+
+  Then $Tv = T(w+w') = Tw + Tw'$, and since $w'\in\ker T$, $Tv = Tw$.
+
+  Note that $x = Tx + (x - Tx)$. Observe that $Tx = T^2x+ T(x-Tx)$,
+  and since $T=T^{2}$, then $x-Tx \in \ker T$. Therefore,
+  $w+w' - Tw - Tw' = w-Tw + w' \in \ker T$, which means that
+  $w-Tw \in \ker T$. But $w-Tw\in\img T$, because $\img T$ is
+  $T$-invariant, while $V = \img T \oplus \ker T$, and thus $w-Tw = 0$.
+
+  Hence, $Tv = Tw = w$, and hence $T$ is an orthogonal projection.
+\end{proof}
+
+\end{document}
