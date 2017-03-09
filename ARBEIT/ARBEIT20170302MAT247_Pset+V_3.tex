@@ -1,0 +1,198 @@
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+\documentclass[11pt]{scrartcl}
+\usepackage[beaue, pset, anon]{masty}
+\pSet{\hw{MAT247}{V}{3}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+Let $T \in \Hom(V,V)$, where $V$ is a finite-dimensional inner product
+space over $\FF$. Define $T$ as positive semi-definite if $T=T^{*}$ and
+$\ipr{T(x)}{x}\geq 0$ for all $x\in V$.
+
+\begin{lemma}
+  \label{sec:1}
+  If $T = T^{*}$, then $T$ is positive semi-definite if and only if
+  all eigenvalues of $T$ are in $\RR^+\cup\set{0}$.
+\end{lemma}
+
+\begin{proof}
+  \hfill
+
+  Assume $T = T^{*}$.
+
+  Suppose first $T$ is positive semi-definite, i.e. $\ipr{T(x)}{x}\geq0$ for all $x\in V$.
+
+  Let $\lambda$ be an arbitrary eigenvalue of $T$. Thus, for a corresponding eigenvector $x\in V$, $Tx = \lambda x$.
+
+  Since $T$ is self-adjoint, then all the eigenvalues are real.
+
+  Since $T$ is positive semi-definite, then
+  $\ipr{\lambda x}{x} = \lambda \ipr{x}{x} \geq 0$.
+
+  Thus, since $x$ is an eigenvector, $x\neq 0$, then $\ipr{x}{x}>0$
+  and hence $\lambda \geq 0$.
+  Suppose now any eigenvalue $\lambda$ is such that $\lambda\in \RR^+\cup\set{0}$.
+
+  Since $T$ is self-adjoint and $\FF=\CC$ or $\FF = \RR$, then by the
+  Spectral Theorem there is an orthonormal basis $\beta$ of $V$,
+  consisting of eigenvectors of $T$. Let $v$ be an arbitrary vector of $\beta$.
+
+  Note that $Tv = \lambda v$ for some  $\lambda\in \RR^+\cup\set{0}$ by assumption.
+
+  Take an arbitrary $x\in V$. Since $\beta$ is a basis, there exist
+  $a_1, a_2,\dots,a_n\in \FF$, where $n=\dim V$, such that, for
+  $v_i\in \beta$ and $\lambda_i$ being a corresponding eigenvalue,
+  \[v  = \sum_{i=1}^na_iv_i.
+  \]
+  
+
+  Consider $\ipr{Tx}{x}$:
+\allowdisplaybreaks
+  \begin{align}
+    \ipr{Tx}{x} & = \ipr{T(\sum_{i=1}^na_iv_i)}{\sum_{j=1}^na_jv_j}       \\
+                & = \ipr{\sum_{i=1}^na_iT(v_i)}{\sum_{j=1}^na_jv_j}       \\
+                & = \ipr{\sum_{i=1}^na_i\lambda_iv_i}{\sum_{j=1}^na_jv_j} \\
+                & = \sum_{i=1}^na_i\lambda_i\ipr{v_i}{\sum_{j=1}^na_jv_j} \\
+                & = \sum_{i=1}^na_i\lambda_i\sum_{j=1}^n\ol{a_j}\ipr{v_i}{v_j} \\
+                & = \sum_{i=1}^na_i\lambda_i\sum_{j=1}^n\ol{a_j}\ipr{v_i}{v_j} \\
+                & = \sum_{i=1}^na_i\lambda_i\sum_{j=1}^n\ol{a_j}\delta_{ij} \\
+    \label{eq:1}
+                & = \sum_{i=1}^n\abs{a^2_i}\lambda_i 
+  \end{align}
+
+  Since for all $i\in [1, n]\cap\NN$ $\lambda_i \geq 0$ by assumption and $\abs{a^2_i} \geq 0$ by definition of $\abs{\*}$, then $\ipr{Tx}{x}\geq 0$ for all $x\in V$ by generalisation of (\ref{eq:1}).
+  % Thus, for any eigenvector $x$, $Tx = \lambda x$, and hence $\ipr{x}{(T-\lambda I)x}$
+  % By definition of an adjoint and since $T=T^{*}$, $\ipr{Tx}{x} = \ipr{x}{Tx}$.
+\end{proof}
+
+\begin{lemma}
+  \label{sec:2}
+  $T$ is positive semi-definite if and only if there exists a linear transformation
+
+  $S \in \Hom(V,V)$ such that $T=S^{*}S$.
+\end{lemma}
+
+\begin{proof}
+  \hfill
+
+  Suppose first $T$ is positive semi-definite.
+
+  Thus, $T = T^{*}$ and $\ipr{T(x)}{x}\geq0$ for all $x\in V$.
+
+  Since $T$ is self-adjoint, then by the Spectral Theorem there is an
+  orthonormal basis $\beta = \set{v_1, \dots, v_n}$ of eigenvectors,
+  with the corresponding eigenvalues $\lambda_1, \dots, \lambda_n$.
+
+  Define a linear transformation $S$, $S \in \Hom(V,V)$, so that
+  $Sv_i = \sqrt{\lambda_i}v_i$. Since any linear transformation is
+  defined by its action on a basis, $S$ is well-defined.
+
+  By Lemma \ref{sec:1}, any $\lambda_i$ is real and nonnegative. Hence, by
+  definition of $S$, all eigenvalues of $S$ are real and
+  nonnegative. Moreover, since $\beta$ is a basis and also a set of
+  all eigenvectors of $S$, then, by Lemma \ref{sec:1} again, $T$ is
+  self-adjoint. Therefore, by definition, $S$ is positive semi-definite.
+
+  Note that for any $v_i\in\beta$ $S(Sv_i) = \lambda_iv_i = Tv_i$, by
+  construction of $S$ and since $v_i$ is an eigenvector of $T$. Since
+  $v_i\in\beta$, which is a basis of $V$, and $T$ and $S^2$ are
+  defined uniquely by its action on a basis, then $S^2 = T$.
+
+  Since $S$ is positive-definite, $S = S^{*}$, and thus $T = S^{*}S$.
+
+  Suppose now there exists a linear transformation
+  $S \in \Hom(V,V)$ such that $T=S^{*}S$.
+
+  Therefore, $T^{*}=(S^{*}S)^{*} = S^{*}S = T$, and hence $T$ is
+  self-adjoint. By the Spectral Theorem there is an orthonormal basis
+  $\beta = \set{v_1, \dots, v_n}$ of $V$, consisting of eigenvectors
+  of $T$, with the corresponding eigenvalues
+  $\lambda_1, \dots, \lambda_n$.
+
+  For any $v\in V$, consider $\ipr{Tv}{v}$:
+  \begin{align}
+    \ipr{Tv}{v} & = \ipr{S^{*}Sv}{v} \\
+                & =\ipr{Sv}{Sv}\\
+                &=\norm{Sv}\geq 0
+  \end{align}
+
+  Therefore, for all $v\in V$, $\ipr{Tv}{v}\geq 0$ and thus $T$ is
+  positive semi-definite.
+\end{proof}
+
+\begin{ques}
+  Is it true that $T$ is positive semi-definite if and only if there exists a linear transformation
+  $S \in \Hom(V,V)$ such that $T=S^2$?
+\end{ques}
+
+\begin{answer*}
+
+  From the proof of Lemma \ref{sec:2}, it is true that if $T$ is
+  positive semi-definite, then there exists a linear transformation
+  $S \in \Hom(V,V)$ such that $T=S^2$.
+
+  However, suppose $T=
+  \begin{pmatrix}
+    1  & -2 \\
+    0  & 1
+  \end{pmatrix}
+  $. It is easy to check that if $S = 
+  \begin{pmatrix}
+    -1 & 1  \\
+    0  & -1
+  \end{pmatrix}
+  $, then $T = S^2$. However, since $T^{*}= 
+  \begin{pmatrix}
+    1  & 0  \\
+    -2 & 1
+  \end{pmatrix}\neq T$, then $T$ is not self-adjoint and hence not positive semi-definite.
+
+\end{answer*}
+
+\end{document}

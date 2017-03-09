@@ -1,0 +1,176 @@
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+\documentclass[11pt]{scrartcl}
+\usepackage[beaue, pset, anon]{masty}
+\pSet{\hw{MAT247}{VI}{1}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+\section{Problem I}
+Suppose that $V$ is a finite-dimensional inner product space over
+$\FF$. Suppose that $u \in V$ satisfies $\Vert u \Vert = 1$. Define the linear
+transformation $T \in \End(V)$ by $T(x) = x-2\langle x,u\rangle u$.
+
+\begin{lemma}
+  \label{sec:problem-i}
+  $Tx = x$ if and only if $x$ is orthogonal to $u$.
+\end{lemma}
+
+\begin{proof}
+  \hfill
+
+  Suppose first $Tx = x$. Therefore,
+  $ Tx = x-2\langle x,u\rangle u = x$, and thus
+  $2\langle x,u\rangle u = 0$.
+
+  Since $\norm{u}=1$, $u\neq 0$. Therefore, $\ipr{x}{u} = 0$, and thus
+  $x$ is orthogonal to $u$.
+
+  Suppose now that $x$ is orthogonal to $u$.
+
+  Therefore, $\ipr{x}{u}=0$, and thus
+  $Tx = x- 2\langle x,u\rangle u = x$.
+\end{proof}
+
+\begin{lemma}
+  \label{sec:problem-i-1}
+  $Tx = -x$ if and only if $x\in \spn u$.
+\end{lemma}
+\begin{proof}
+  \hfill
+
+  Suppose first $Tx = -x$.
+
+  Therefore, $ Tx = x-2\langle x,u\rangle u = -x$, and thus
+  $2\langle x,u\rangle u = 2x$.
+
+  Since $\ipr{x}{u}\in \FF$, $x = \ipr{x}{u}u \in \spn u$.
+
+  Suppose now $x\in\spn u$, so that there exists $k\in\FF$ such that $x=ku$.
+
+  Hence, $\ipr{x}{u} = \ipr{ku}{u} = k\ipr{u}{u} = k$, since
+  $\norm{u}=1$.
+
+  Therefore, $Tx = x-2\langle x,u\rangle u = x -2ku = x-2x= -x$.
+\end{proof}
+
+\begin{lemma}
+$T^2=I, T^{*}=T$ and $T$ is unitary/orthogonal.
+\end{lemma}
+
+\begin{proof}
+  \hfill
+
+  For any $x\in V$, note that
+
+  \begin{align}
+    T^2x & = T(Tx) = T(x-2\langle x,u\rangle u)          \\
+         & =Tx - 2 \ipr{x}{u}Tu                          \\
+         & =x-2\langle x,u\rangle u - 2 \ipr{x}{u}Tu     \\
+         & =x - 2 \ipr{x}{u}(u+Tu)                       \\
+         & =x - 2 \ipr{x}{u}(u+ u-2\langle u,u\rangle u) \\
+         & =x - 2 \ipr{x}{u}(2u - 2 \norm{u}^2u)         \\
+         & =x - 2 \ipr{x}{u}(2u-2u)                      \\
+         & =x.
+  \end{align}
+
+  Thus, $T^2 = I$.
+
+  For any $v, w \in W$, by definition of $T^{*}$, $\ipr{Tv}{w}=\ipr{v}{T^{*}w}$.
+
+  Note the following:
+
+  \begin{align}
+    \ipr{Tv}{w} & = \ipr{v-2\langle v,u\rangle u}{w}        \\
+                & =\ipr{v}{w} - 2 \ipr{v}{u}\ipr{u}{w}      \\
+                & =\ipr{v}{w} - \ipr{v}{\ol{2 \ipr{u}{w}}u} \\
+                & =\ipr{v}{w-2\ol{ \ipr{u}{w} }u}           \\
+                & =\ipr{v}{w- 2\ipr{w}{u}u }                \\
+                & =\ipr{v}{Tw}
+  \end{align}
+
+  Now, $\ipr{v}{T^{*}w} = \ipr{v}{Tw}$ for any $v, w\in V$. Taking
+  $v = T^{*}w - Tw$, we obtain that $T^{*} = T$.
+
+  Moreover,
+
+  \begin{align}
+    \ipr{Tx}{Tx} & = \ipr{x}{T^{*}Tx} \\
+                 & =\ipr{x}{T^{2}x}   \\
+                 & =\ipr{x}{Ix}       \\
+                 & =\ipr{x}{x}
+  \end{align}
+
+  Since $\ipr{x}{x} \geq 0$ for any $x\in V$, then taking square roots
+  of both sides we obtain that $\norm{Tx} = \norm{x}$, and thus $T$ is unitary/orthogonal.
+
+
+\end{proof}
+\begin{problem*}
+  Find the characteristic polynomial of $T$.
+\end{problem*}
+\begin{soln}
+  \hfill
+
+  Since $T$ is both self-adjoint and orthogonal, all eigenvalues of
+  $T$ have an absolute value of 1.
+
+  By Lemma \ref{sec:problem-i}, if $\dim V \geq 2$, $1$ is an
+  eigenvalue of $T$ (since $T$ is self-adjoint, there is an
+  orthonormal basis of eigenvectors).
+
+  By Lemma \ref{sec:problem-i-1}, if $\dim V \geq 1$, $-1$ is an
+  eigenvalue of $T$.
+
+  Since the coefficient corresponding to a monomial of the highest
+  degree in the characteristic polynomial is $(-1)^n$, where
+  $n=\dim V$, the characteristic polynomial of $T$ is as follows:
+  \[p(\lambda) = (-1)^n(\lambda-1)(\lambda+1).\]
+\end{soln}
+
+
+\end{document}

@@ -1,0 +1,243 @@
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+\documentclass[11pt]{scrartcl}
+\usepackage[beaue, pset, anon]{masty}
+\pSet{\hw{MAT247}{VI}{4}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+\section{Problem IV}
+
+Suppose that $T \in \End(V)$, where $V$ is a finite-dimensional inner
+product space over $\FF$. Suppose also that $T$ is normal if
+$\FF = \CC$ and self-adjoint if $\FF = \RR$.
+
+Let $U \in \End(V)$ be such that $TU = UT$.
+
+% Since $V$ is
+% finite-dimensional, there exists an adjoint $U^{*}$, so that
+% $U^{*}T^{*} = T^{*}U^{*}$.
+
+For each $i\in [1, k]\cap \NN$, let $W_i$ be the eigenspace of $T$
+corresponding to the eigenvalue $\lambda_i$, and let $T_i$ be the
+orthogonal projection of $V$ on $W_i$.
+
+Note that, by the Spectral Theorem, $V = \bigoplus_{i=1}^k W_i$, and
+$T = \sum_{i=1}^k\lambda_iT_i$.
+
+Corollary 1 to Theorem 6.25 guarantees that $T^{*} = g(T)$ for some
+polynomial $g$. Suppose that $g(t) = a_0+\sum_{i=1}^ka_it^i$ such that
+$a_i\in \FF$ for each $i\in[0, k]\cap \ZZ$.
+
+% Suppose that $g(t)$ is a polynomial such that, for
+% $i\in [0, n]\cap \NN$ and $a_i\in \FF$, it is given by
+% $g(t) = \sum_{i=1}^n a_ix^i +a_0I$.
+
+% Therefore, $g(T)=\sum_{i=1}^nT^i + a_0I$.
+
+% Since $T = \sum_{i=1}^k\lambda_iT_i$ and for any
+% $i, j \in [1, k]\cap\NN$ we have $T_iT_j = \delta_{ij}T_i$ and for any
+% $l\in \ZZ^+$ it is true that $T_i^l = T_i$, then
+
+% \begin{align}
+    %     g(T) &= \sum_{j=1}^na_j(\sum_{i=1}^k\lambda_iT_i)^j +a_0I\\
+    %                &= a_0I + \sum_{i=1}^k\sum_{j=1}^na_j\lambda_i^jT_i\\
+    %   \end{align}
+
+    %     Therefore, if $a_0=0$, then $g(T) = \sum_{i=1}^kg(\lambda_i)T_i$.
+
+    %     Corollary 1 to Theorem 6.25 guarantees that 
+
+    %     Since $UT = TU$, then
+    %     \begin{align}
+    %     UT &= U(\sum_{i=1}^k\lambda_iT_i)\\
+    %                &= \sum_{i=1}^k\lambda_iUT_i\\
+    %                &=TU\\
+    %                &=\sum_{i=1}^k\lambda_iT_iU.
+                       %   \end{align}
+                       %                        Consider the following for $j\in [1, k]\cap \NN$.
+
+                       %                        Since $I = \sum_{i=1}^kT_i$, then $T_j = I- \sum_{i\neq j}T_i$.
+
+                       %                        Therefore, $UT_j = U - U(\sum_{i\neq j}T_i)$ and $T_jU = U-(\sum_{i\neq j}T_iU)$.
+
+                       %                        Thus, for $v_j\in W_j$, we obtain $UT_jv_j = Uv_j = (I-\sum_{i\neq j}T_i)Uv_j = T_jUv_j$.
+
+                       %                        If $v_i\not \in W_j$, then the left equation gives us that
+                       %                        $0 = Uv_i - Uv_i$, which is true, and the right equation gives
+                       %                        $T_jUv_i = (I-\sum_{i\neq j}T_i) Uv_i$, which also holds.
+
+                       %                        Hence $T_jUT_j=T_jU - T_jU(\sum_{i\neq j}T_i)$ and $T_jUT_j = UT_j - \sum_{i\neq j}T_iUT_j$, which means that
+                       %                        \begin{align}
+                       %                        0=T_jU - UT_j -\sum_{i\neq j}(T_jUT_i+T_iUT_j)
+                       %   \end{align}
+
+\begin{lemma}
+          $UT^{*} = T^{*}U$
+\end{lemma}
+\begin{proof}
+  \hfill
+
+  Since $UT = TU$, then $UT^j =TUT^{j-1} = \cdots =  T^jU$ for any $j\in\ZZ^+$. Therefore, 
+  \begin{align}
+    UT^{*} &= Ug(T)\\
+           &= U(a_0I+\sum_{i=1}^ka_iT^i)\\
+           &=a_0U+U(\sum_{i=1}^ka_iT^i)\\
+           &=a_0U+\sum_{i=1}^ka_iT^iU\\
+           &=(a_0+\sum_{i=1}^ka_iT^i)U\\
+           &= g(T)U\\
+           &= T^{*}U.
+  \end{align}
+
+  % Note that, since $T = \sum_{i=1}^k\lambda_iT_i$, then
+  % $T^{*} = \sum_{i=1}^k\ol{\lambda_i}T^{*}_{i}$, and since each $T_i$
+  % is an orthogonal projection and hence self-adjoint, then
+  % \begin{equation*}
+  %   T^{*} = \sum_{i=1}^k\ol{\lambda_i}T_i.
+  % \end{equation*}
+
+  % Therefore,
+  % \begin{align}
+      %       UT^{*} &= U(\sum_{i=1}^k\ol{\lambda_i}T_i)\\
+      %                      &= \sum_{i=1}^kU(\ol{\lambda_i}T_i)\\
+      %                      &= \sum_{i=1}^k\ol{\lambda_i}UT_i\\
+      %                      &= \sum_{i=1}^k\ol{\lambda_i}T_iU\\
+      %                      &= (\sum_{i=1}^k\ol{\lambda_i}T_i)U\\
+      %                      &= T^{*}U.
+                               %     \end{align}
+  Thus, $T^{*}U = UT^{*}$.
+\end{proof}
+
+\begin{lemma}
+  \label{sec:problem-iv}
+  $W_i$ is $U$-invariant.
+\end{lemma}
+
+\begin{proof}
+  \hfill
+
+  Suppose $x\in W_i$.
+
+  Let $\beta = \set{v_1,\dots, v_k}$, $k=\dim W_i$, be the orthonormal
+  basis of $W_i$ consisting of eigenvectors. Since $T$ is normal or
+  self-adjoint, $\beta$ is well-defined.
+
+  Let $v\in \beta$ be arbitrary.
+
+  % Suppose first that $\lambda_i=0$. Since $TU = UT$,
+  % $UTv = U(0) = 0 = TUv$. Thus $Uv\in\ker T$ for any $v\in\beta$, and
+  % for any $x\in W_i$ we obtain that $Ux\in\ker T$ (a linear
+  % transformation is defined by its action on a basis), and thus
+  % $\img U\suq \ker T$. Since $Tv = 0$, then $v\in \ker T$ as well, and
+  % hence $W_i$ is $U$-invariant.
+
+  Note that $UT(v) = \lambda_i Uv = TUv$, and thus
+  $(T-\lambda_iI)Uv = 0$. Hence, $Uv \in \ker (T-\lambda_iI)$. By generalisation, since a linear
+  transformation is defined by its action on a basis, for any
+  $x\in W_i$, $Ux \in \ker (T-\lambda_iI) = W_i$, and thus $W_i$ is
+  $U$-invariant.
+\end{proof}
+
+\begin{lemma}
+
+  Suppose $U$ is normal (if $\FF =\CC$) or self-adjoint (if $\FF = \RR$).
+
+  There exists an orthonormal basis of $V$ that consists of vectors
+  that are eigenvectors for both $T$ and $U$.
+
+\end{lemma}
+
+\begin{proof}
+  \hfill
+
+  First we show that each $W_i$ is $(U|_{W_i})^{*}$- and $U^{*}|_{W_i}$-invariant.
+
+  By Lemma \ref{sec:problem-iv}, $W_i$ is $U$-invariant.
+
+  Therefore, $U|_{W_i}:W_i\to W_i$, and thus
+  $(U|_{W_i})^{*}: W_i\to W_i$ by definition of $(U|_{W_i})^{*}$,
+  which means that $W_i$ is $(U|_{W_i})^{*}$-invariant.
+  
+  Since for any $x \in W_i$, $U^{*}x = \ol{\lambda_i}x \in W_i$, then
+  $W_i$ is $U^{*}|_{W_i}$-invariant.
+
+  Now we show that $U|_{W_i}$ is normal.
+
+  For any $x, y\in W_i$,
+  \[\ipr{U|_{W_i}x}{y} = \ipr{x}{(U|_{W_i})^{*}y}\]
+  and
+  \[\ipr{U|_{W_{i}}x}{y}  = \ipr{Ux}{y} = \ipr{x}{U^{*}y} = \ipr{x}{(U^{*})|_{W_i} y},\]
+
+  which means that $\ipr{x}{(U|_{W_i})^{*}y - (U^{*})|_{W_i} y} = 0$.
+
+
+  Since $(U|_{W_i})^{*}y - (U^{*})|_{W_i} y \in W_i$ because $W_i$ is
+  both $(U|_{W_i})^{*}$- and $(U^{*})|_{W_i}$-invariant, then taking
+  $x = (U|_{W_i})^{*}y - (U^{*})|_{W_i} y$ we obtain that
+  $(U|_{W_i})^{*} = (U^{*})|_{W_i} $ and thus $W_i$ is $U^{*}$-invariant. 
+
+  Since $UU^{*}=U^{*}U$ and thus $(UU^{*})|_{W_i} = (U^{*}U)|_{W_i}$,
+  while $W_i$ is both $U$- and $U^{*}$-invariant, we obtain that
+  $U|_{W_i}(U|_{W_i})^{*} = (U|_{W_i})^{*}U|_{W_i}$, and hence
+  $U|_{W_i}$ is normal (if $\FF = \CC$ or self-adjoint (if $\FF = \RR$). 
+
+  % Since $W_i\suq V$ and for any $v\in V$ we have $UU^{*}v = U^{*}Uv$,
+  % if $v\in W_i$.
+
+  Therefore, there exists an orthonormal basis $\beta_i$ of $W_i$
+  consisting of eigenvectors of $U$. Since any vector in $W_i$ is an
+  eigenvector of $T$, while $V = \bigoplus_{i=1}^kW_i$, then
+  $\gamma = \bigcup_{i=1}^k\beta_i$ is a basis of eigenvectors of $U$ and $T$.
+
+  
+  
+\end{proof}
+
+
+
+
+\end{document}

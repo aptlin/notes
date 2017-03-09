@@ -1,0 +1,255 @@
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+\documentclass[11pt]{scrartcl}
+\usepackage[beaue, pset, anon]{masty}
+\pSet{\hw{MAT247}{VI}{3}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Problem III}
+
+Let $V$ be a finite-dimensional inner product space over $\FF$. Suppose that $T \in \End(V)$.
+
+\begin{lemma}
+  If $T$ is an orthogonal projection, then  $\norm{Tx}\leq \norm{x}$.
+\end{lemma}
+
+\begin{proof}
+  \hfill
+
+  Fix $x\in V$.
+
+  Since $T$ is an orthogonal projection, then
+  $V = \img T \oplus \ker T$ and $\img(T)^{\bot} = \ker T$. Let
+  $v \in \img T$ and $w\in \ker T$ be such that $x = v + w$. Since $T$
+  is a projection, $Tv = v$.
+
+  Since $\img T$ and $\ker T$ are orthogonal subspaces of $V$, then
+  $\ipr{v}{w} = 0 = \ipr{w}{v}$, and therefore
+  \begin{align}
+    \ipr{x}{x} &= \ipr{v+w}{v+w}\\
+               &= \ipr{v}{v} + \ipr{v}{w}+\ipr{w}{v}+\ipr{w}{w}\\
+               &= \ipr{v}{v}+\ipr{w}{w}.
+  \end{align}
+
+  Since $\ipr{Tx}{Tx}=\ipr{v}{v}$, then $\ipr{Tx}{Tx}\leq \ipr{x}{x}$,
+  with equality only when $x\in\img T$. Therefore,
+  $\norm{Tx}^2\leq \norm{x}^2$, and since $\norm{y} \geq 0$ for all
+  $y\in V$, $\norm{Tx}\leq \norm{x}$.
+
+\end{proof}
+
+\begin{lemma}
+  \label{sec:problem-iii}
+  If $T$ is a projection such that $\norm{Tx}\leq \norm{x}$ for all
+  $x\in V$, then $T$ is an orthogonal projection.
+\end{lemma}
+
+\begin{proof}
+  \hfill
+
+  Let $W_1\suq V$ and $W_2\suq V$ be such that $V = W_1\oplus W_2$,
+  and suppose $T$ is a projection on $W_1$ along $W_2$.
+
+  Let $D = \set{z\in V; Tz = z}$.
+
+  If $y\in W_1$, then, by definition of $T$, $Ty =y$, and hence
+  $y\in D$ and $W_1\suq D$.
+
+  If $y \in D$, let $y_1\in W_1$ and $y_2\in W_2$ be such that
+  $y=y_1+y_2$. Since $y\in D$, $T(y_1+y_2) = y_1+y_2$, and by
+  definition of $T$ $T(y_1+y_2) = y_1$. Therefore, $y_2 = 0$ and hence
+  $y_1=y\in W_1$. Therefore, $D\suq W_1$ and thus $D = W_1$.
+
+  Suppose $x\in V$.
+
+  Let $w_1\in W_1$ and $w_2\in W_2$ be such that $x = w_1+ w_2$.
+
+  For any $v_1\in W_1$, $Tv_1 = v_1$ and thus $v_1\in \img T$ and
+  $W_1\suq \img T$. Similarly, if $v\in \img T$, let $v_1\in W_1$ and
+  $v_2\in W_2$ be such that $v = v_1+v_2$. Therefore,
+  $v_2= v-v_1\in \img T$, and since $W_1\cap W_2= \set{0}$, then
+  $v_2=0$, which means that $v_1=v\in W_1$ and thus $\img T \suq
+  W_1$. Hence, $\img T = W_1$.
+
+  Note that $x = Tx +(x-Tx)$.
+
+  Therefore,
+  $Tx = T^2x + T(x-Tx) = Tw_1+T(x-Tx) =w_1+T(x-Tx) = T(w_1+w_2) =
+  w_1$, and thus $T(x-Tx) = 0$ and hence $x-Tx \in \ker T$.
+
+  Noting that $W_1=\img T = D$, suppose $z\in W_1 \cap\ker
+  T$. Therefore, $Tz = z = 0$, and thus $V = \img T\oplus \ker T$.
+
+  Let $v\in \img T$ and $w\in \ker T$ be such that $x = v+ w$.
+
+  Note that $V = \ker T \oplus\ker(T)^{\bot}$.
+
+  Let $v'\in\ker(T)^{\bot}$ and $w'\in \ker T$ be such that $x = v'+w'$.
+
+  Note that, by definition of $T$,
+  $Tx = T(v'+w') = Tv' +Tw' = Tv' = v = Tv$. Thus, $T(v'-v) = 0$, and
+  hence $v'-v\in \ker T$. But $\ipr{v'}{v'-v} = 0$, because
+  $v'\in \ker(T)^{\bot}$, and thence $\ipr{v'}{v'}=\ipr{v'}{v}$.
+
+  Moreover, $\norm{Tv'}\leq \norm{v'}$, which means that
+  $\ipr{Tv'}{Tv'} = \ipr{v}{v} \leq \ipr{v'}{v'}=\ipr{v'}{v}$.
+
+  Hence, $\ipr{v-v'}{v}\leq 0$.
+
+  However, since $\ipr{v'}{v'-v}=0$, then
+  $-\ipr{v'}{v-v'} = -\ol{\ipr{v-v'}{v'}} = 0$.
+
+  Thus, $\ipr{v-v'}{v'}=0$.
+
+  Therefore, $\ipr{v-v'}{v-v'}\leq 0$, which is possible only when
+  $v=v'$ (by positive definiteness of $\ipr{\*}{\*}$). Therefore,
+  $v\in \ker(T)^{\bot}$ and $v'\in\img T$, and thus
+  $\img T = \ker (T)^{\bot}$.
+
+  Hence, $T$ is an orthogonal projection.
+  % Suppose first that for any $x\in V$, the corresponding $w = 0$. Then
+  % $\ker T = \set{0}$ and $V = \img T$, and hence
+  % $\ker (T)^{\bot} = V = \img T$, proving that $T$ is an orthogonal
+  % projection.
+  % Suppose now that $w\neq 0$.
+  % % Then $\norm{Tx}=\norm{Tv+Tw} = \norm{Tv} = \norm{v}\leq \norm{v+w}$,
+  % % and thus $\ipr{v}{v}\leq \ipr{v+w}{v+w}$, and thus
+  % % $0\leq\ipr{v}{w}+\ipr{w}{v}+\ipr{w}{w}$.
+  % For any $c\in \FF$,
+  % $\norm{T(v-cw)}=\norm{Tv} = \norm{v}\leq \norm{v-cw}$, and thus
+  % $\ipr{v}{v}\leq\ipr{v-cw}{v-cw}$, which is equivalent to
+  % $0\leq -\ipr{v}{cw}-\ipr{cw}{v}+\ipr{cw}{cw}$.
+  % Thus,
+  % \begin{equation*}
+  %   0\leq -\ol{c}\ipr{v}{w}-c \ipr{w}{v}+\abs{c}^2 \ipr{w}{w}.
+  % \end{equation*}
+  % Let $c = \frac{1}{\norm{w}}>0$. Then
+  % \begin{equation*}
+  %   0 \leq  -\frac{1}{\norm{w}}\ipr{v}{w}-\frac{1}{\norm{w}}\ipr{w}{v} +1.
+  % \end{equation*}
+  % Therefore, $\ipr{v}{w}+\ipr{w}{v}\leq \norm{w}$
+  % Suppose now $x\in \img T$.
+  % Let $y \in \ker T$ be arbitrary. Then $\ipr{x}{y}$
+  % Since $\ker T$ is a subspace of $V$, then $V = \ker (T) \oplus \ker(T)^{\bot}$.
+  % Let $v\in \ker T$ and $w \in\ker(T)^{\bot}$ be such that $x = v+w$.
+  % Then $Tx = T(v+w) = Tv + Tw = Tw$.
+\end{proof}
+
+\begin{lemma}
+  If $T$ is a projection and $T$ is normal, then $T$ is an orthogonal projection.
+\end{lemma}
+
+\begin{proof}
+  \hfill
+  % Since $T$ is a projection, $T = T^2$.
+  % Since $T$ is normal, there exists an adjoint $T^{*}$ such that
+  % $TT^{*}= T^{*}T$.
+  % Let $W_1\suq V$ and $W_2\suq V$ be such that $V = W_1\oplus W_2$,
+  % and suppose $T$ is a projection on $W_1$ along $W_2$.
+
+  % We have already shown that $V = \ker T \oplus \img T$.
+
+  % Suppose first that $\FF = \CC$.
+
+  % Since $T$ is normal, there exists an orthonormal basis
+  % $\beta = \set{v_1, \dots, v_n}$ of eigenvectors, where $n = \dim V$, so that
+  % the eigenspaces corresponding to the eigenvalues
+  % $\lambda_1, \dots, \lambda_n$, are orthogonal.
+
+  % Let $\beta_R$ be an orthonormal basis of eigenvectors spanning
+  % $\img T$, and let $\beta_N$ be an orthonormal basis of eigenvectors
+  % spanning $\ker T$. Since $\ker T\cap \img T = \set{0}$, then
+  % $\beta_R\cap \beta_N = \set{0}$. Therefore, relabelling if
+  % necessary, we can suppose that $\beta_{R} = \set{v_1, \dots, v_k}$
+  % and $\beta_N = \set{v_{k+1}, \dots, v_n}$.
+
+  % For any $x\in \img T$, $x = \sum_{i=1}^ka_iv_i$ for some $a_i\in \FF$.
+
+  % Let  $y\in \ker T$ be arbitrary, and suppose $y = \sum_{j=k+1}^nb_jv_j$ for some $b_i\in \FF$.
+
+  % Note that for any $i\in [1, k]\cap \NN$ and $j\in[k+1, n]\cap \NN$,
+  % $\ipr{v_{i}}{v_{j}} = 0$ by orthogonality of $\beta$.
+
+  % Therefore,
+
+  % \begin{align}
+      %       \ipr{x}{y} &= \ipr{\sum_{i=1}^ka_iv_i}{\sum_{j=k+1}^nb_jv_j}\\
+      %       &= \sum_{i=1}^ka_i\ipr{v_i}{\sum_{j=k+1}^nb_jv_j}\\
+      %       &= \sum_{i=1}^ka_i\sum_{j=k+1}^n\ol{b_j}\ipr{v_{i}}{v_{j}}\\
+      %       &=0.
+      %     \end{align}
+
+      %     Thus, $\img T \suq \ker(T)^{\bot}$.
+
+      %     Suppose now that $x\in \ker(T)^{\bot}$. Therefore, for any
+      %     $v_i\in \beta_N$, $v_i\not \in \ker(T)^{\bot}$, and thus
+      %     $\ker(T)^{\bot}\suq \spn\set{v_1, \dots, v_k} = \img T$. Hence,
+      %     $\img T = \ker(T)^{\bot}$ and  $T$ is an orthogonal projection.
+
+  Since $T$ is a projection, we have shown in the proof of Lemma
+  \ref{sec:problem-iii} that $V = \img T \oplus \ker T$.
+  
+  Note that $\ker T^{*} = \img (T)^{\bot}$ and
+  $\img T^{*} = \ker(T)^{\bot}$ by the properties of $T^{*}$.
+
+  Suppose $x\in \ker T^{*}$. Therefore, since $T$ is normal, then
+  $ T^{*}Tx = TT^{*}x = 0$, and thus
+  $Tx\in \ker T^{*} = \img T^{\bot}$. Since $Tx\in\img T$, then
+  $\ipr{Tx}{Tx} = 0$, which means that $Tx = 0$ and thence
+  $x\in\ker T$. Therefore, $\ker T\suq \ker T^{*}$.
+
+  Suppose now that $x\in\ker T$. Again, since $T$ is normal, then
+  $T^{*}Tx = 0 = TT^{*}x$, and thus $T^{*}x\in \ker T$. Since
+  $T^{*}x\in\img T^{*} = \ker(T)^{\bot}$, then
+  $\ipr{T^{*}x}{T^{*}x} = 0$, which means that $T^{*}x = 0$ and thence
+  $x\in\ker T^{*}$. Therefore, $\ker T^{*} \suq \ker T$, and hence
+  $\ker T^{*} = \ker T$. But $\ker T^{*} = \img T^{\bot}$, and thus
+  $\ker T = \img T^{\bot}$ and $T$ is an orthogonal projection.
+\end{proof}
+\end{document}

@@ -1,0 +1,135 @@
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+\documentclass[11pt]{scrartcl}
+\usepackage[beaue, pset, anon]{masty}
+\pSet{\hw{MAT247}{VI}{2}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+\section{Problem II}
+Recall that two matrices $A,B \in M_{n \times n}(\FF)$ are unitarily/orthogonally equivalent if there exists a unitary/orthogonal matrix $Q$ such that $A = Q^{-1} B Q$ (or equivalently, $A = Q^* B Q$). Let us write $A \sim B$ if this is the case.
+
+Suppose now that $A,B,C \in M_{n \times n}(\FF)$.
+
+\begin{lemma}
+$A\sim A$
+\end{lemma}
+
+\begin{proof}
+  \hfill
+
+  Since for all $x\in V$ $\norm{Ix} = \norm{x}$, $I$ is
+  unitary/orthogonal. Moreover, $I^{-1} = I$, and hence
+  $A = I^{-1}A I$, which means that $A\sim A$.
+\end{proof}
+
+
+
+\begin{lemma}
+  \label{sec:problem-ii}
+If $Q$ is unitary/orthogonal, then $Q^{*}$ is also unitary/orthogonal.
+\end{lemma}
+
+\begin{proof}
+  \hfill
+
+  For any $x\in V$, $\ipr{Q^{*}x}{Q^{*}x} = \ipr{x}{QQ^{*}x}$, and
+  since $QQ^{*}=Q^{*}Q = I$, then
+  $\ipr{x}{QQ^{*}x} = \ipr{x}{Q^{*}Qx} = \ipr{Qx}{Qx}$.
+
+  Because $Q$ is unitary/orthogonal, $\ipr{Q^{*}}{Q^{*}} = \ipr{Qx}{Qx} = x$.
+\end{proof}
+\begin{lemma}
+ $A \sim B$ is equivalent to $B \sim A$.
+\end{lemma}
+
+\begin{proof}
+  \hfill
+
+  Suppose there exists a unitary/orthogonal matrix $Q$ such that
+  $A = Q^{*} B Q$.
+
+  Therefore, since $Q$ is invertible,
+  $A Q^{*} = Q^{*}BQQ^{*} = Q^{*}B$.
+
+  Moreover, $QAQ^{*} = QQ^{*}B = B$.
+
+  Let $P = Q^{*}$. Therefore, $P^{*}= Q^{**} = Q$, and thus
+  $B = P^{*} A P$.
+
+  Note that $P$ is unitary/orthogonal from Lemma \ref{sec:problem-ii}.
+
+  Relabelling $A$ as $B$ and $B$ as $A$, we obtain the conclusion in the other direction.
+\end{proof}
+
+\begin{lemma}
+If $A \sim B$ and $B \sim C$, then $A \sim C$.
+\end{lemma}
+
+\begin{proof}
+  \hfill
+
+  Suppose there exists a unitary/orthogonal matrix $Q$ such
+  that $A = Q^{*} B Q$, and suppose there exists a unitary/orthogonal
+  matrix $P$ such that $B = P^{*} C P$.
+
+  Therefore, $A = (Q^{*}P^{*})C (PQ)$.
+
+  Note that $(PQ)^{*} = Q^{*}P^{*}$. Moreover, for any $x\in V$,
+  $ \ipr{PQx}{PQx} = \ipr{Qx}{Qx}$, because $P$ is unitary/orthogonal,
+  and since $Q$ is unitary/orthogonal, then
+  $\ipr{Qx}{Qx} = \ipr{x}{x}$. Therefore,
+  $\ipr{PQx}{PQx} = \ipr{x}{x}$, and thus $PQ$ is unitary/orthogonal.
+
+  From Lemma \ref{sec:problem-ii}, $(PQ)^{*} = Q^{*}P^{*}$ is also
+  unitary/orthogonal.
+
+  If $R=PQ$, then $A = R^{*}C R$ and $R$ is
+  unitary/orthogonal, and thus $A\sim C$.
+\end{proof}
+
+\end{document}

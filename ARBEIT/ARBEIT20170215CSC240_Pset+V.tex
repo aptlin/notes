@@ -1,0 +1,541 @@
+% Created 2017-02-06 Mon 01:14
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt, letterpaper]{scrartcl}
+  \usepackage[beaue, pset, anon]{masty}
+\pSet{Alexander Illarionov - 1003590937 - CSC240 Pset V}
+\pagenumbering{gobble}
+\author{Alexander Illarionov}
+\date{\today}
+\title{}
+\usepackage{csquotes}
+\usepackage{dirtytalk}
+\begin{document}
+
+\textbf{Administrativia}: no discussions, no extra material consulted
+\section{Problem I}
+Let $\SN$ denote the nonempty finite subsets of
+$\ZZ^{+}$ that do not contain any consecutive numbers.
+
+Let $F:\ZZ^+\to \ZZ^+$ be defined recursively as follows:
+
+\begin{itemize}
+\item $F(1) = 1$
+\item $F(2) = 2$
+\item $\forall n \geq 3.F(n) = F(n-1) + F(n-2)$
+\end{itemize}
+
+\begin{problem*}
+Give a recursive definition of $\SN$.
+\end{problem*}
+\begin{soln}
+  \hfill
+
+  Let $\SN$ be the set of nonempty finite subsets of
+$\ZZ^{+}$ that do not contain any consecutive numbers.
+
+\begin{description}
+
+\item[Base Case]
+  \hfill
+
+  Singlets, sets containing only one positive integer in $\ZZ^{+}$,
+  are in $\SN$:
+  \[
+    \forall n \in \ZZ^{+}.\set{n}\in\SN
+  \]
+  
+\item[Constructor Case]
+  \hfill
+  \begin{align*}
+    &\forall M \in \SN.\forall i\in M.(i+1\not\in M)\\
+    &\AND\\
+    &\bigg[\forall P\in\SN.\forall Q\in\SN.\Bigg(\forall k_P\in P.\forall k_Q\in Q.\bigg(\abs{k_P-k_Q}\neq 1\bigg)\Bigg)\THEN P\cup Q \in \SN\bigg]
+  \end{align*}
+\end{description}
+\end{soln}
+\section{Problem II}
+\begin{lemma}
+  \label{sec:csc240-problem-set}
+$\forall n\in\ZZ^{+}.F(n)>0.$
+\end{lemma}
+
+\begin{proof}
+  \hfill
+
+  Let $P(n)$="$F(n)>0$" for any $n\in\ZZ^{+}$.
+  
+  \begin{description}
+  \item[Base Case] \hfill
+
+    Note that $F(1) = 1 > 0$ and $F(2) = 2 > 0$. Therefore, $P(1)$ and $P(2)$ hold.
+  \item[Inductive Step] \hfill
+
+    Suppose, for some $k\in\ZZ^{+}$ such that $k\geq 3$, $\forall i\in[1,k]\cap \ZZ^+.P(i)$.
+
+    In particular, $P(k)$ and $P(k-1$ by specialisation, and thus
+
+    $F(k) > 0$ and $F(k-1) > 0$.
+
+    Note that, by definition of $F$, since $k\geq 3$,
+    $F(k+1) = F(k) + F(k-1) > 0$. Therefore, $P(k+1)$.
+  \item[Conclusion]
+    \hfill
+
+    Therefore, $\forall n\in\ZZ^+.F(n) > 0$ by strong induction.
+
+  \end{description}
+\end{proof}
+\begin{corollary}
+  \label{sec:problem-i}
+  $\forall n\in\ZZ^{+}.F(n+1)>F(n)> 0.$
+\end{corollary}
+\begin{proof}
+  \hfill
+
+  Let $P(n)$="$F(n+1)>F(n)> 0$" for any $n\in\ZZ^{+}$.
+
+  \begin{description}
+
+  \item[Base Case] \hfill
+
+    Note that $F(1) = 1$ and $F(2) = 2 > 1 = F(1)$. Therefore, $P(1)$ and $P(2)$.
+  \item[Inductive Step] \hfill
+
+    Suppose, for some $k\in\ZZ^{+}$ such that $k\geq 3$, $\forall i\in[1,k]\cap \ZZ^+.P(i)$.
+
+    In particular, $P(k+1)$ and $P(k)$ by specialisation, and thus
+    $F(k+1) > F(k)$ and $F(k) > F(k-1)$.
+
+    Therefore, $F(k+2) = F(k+1) + F(k) > F(k) + F(k-1) = F(k+1)$. Thus, $P(k+1)$.
+  \item[Conclusion]
+    \hfill
+
+    Hence, $\forall n\in\ZZ^+.F(n+1) > F(n) > 0$ by strong induction and Lemma \ref{sec:csc240-problem-set}.
+
+  \end{description}
+
+\end{proof}
+
+\begin{corollary}
+  \label{sec:problem-i-2}
+  Let $n\in\ZZ^{+}$, $k\in\ZZ^{+}$ be such that $n>k$ and $n\geq 2$. Then $F(n-1) \geq F(k)$.
+\end{corollary}
+\begin{proof}
+  \hfill
+
+  Since $n>k$, then $n-1 \geq k$.
+
+  Suppose $n-1 = k$. Then $F(n-1) = F(k)$ by substitution.
+
+  Suppose now $n-1 > k$. Then, $F(n-1) > F(n-2) >\cdots>F(k)$ by
+  repeated application of Corollary \ref{sec:problem-i}.
+
+  Therefore, $F(n-1) > F(k)$.
+
+  Thus, for any $n\in\ZZ^{+}$, $k\in\ZZ^{+}$ we obtain that
+  $F(n-1) \geq F(k)$.
+\end{proof}
+
+\begin{corollary}
+  \label{sec:problem-i-1}
+$\forall k\in\ZZ^{+}.F(k)\geq k$
+\end{corollary}
+
+\begin{proof}
+  \hfill
+  
+  \begin{description}
+
+  \item[Base Case] \hfill
+
+    Note that $F(1) = 1$ and thus $F(1) \geq 1$.
+
+    Note also that $F(2) = 2$ and thus $F(2) \geq 2$.
+
+  \item[Inductive Step] \hfill
+
+    Suppose for some $k\in\ZZ^{+}$ $\forall k\in[1,k]\cap \ZZ^+.F(k) \geq k$.
+
+    In particular, $F(k) \geq k$.
+
+    Since the claim has been shown to hold in case $k=1$ and $k=2$, suppose
+    $k\geq 3$. Therefore, $F(k+1) = F(k) + F(k-1)$ by definition of $F$.
+
+    By Corollary \ref{sec:problem-i}, $F(k-1) \geq F(1)$. Therefore, $F(k-1) \geq 1$.
+
+    Therefore, $F(k+1) = F(k) + F(k-1) \geq k +1$ by inductive
+    hypothesis, which is exactly the claim in case $n = k+1$.
+  \item[Conclusion]
+    \hfill
+
+    Hence, $\forall n\in\ZZ^+.F(n) > n$ by induction.
+  \end{description}
+
+\end{proof}
+
+
+\begin{problem*}
+  Prove that
+  
+  \begin{equation}
+    \label{eq:1}
+    \forall S\in\SN.\Bigg(\sum_{i\in S} F(i) < F(1+\max(S))\Bigg).
+  \end{equation}
+
+\end{problem*}
+\begin{soln}
+  \hfill
+
+  Let $P(S) = \sum_{i\in S} F(i) < F(1+\max(S))$ for any $S\in\SN$.
+  
+  For all $i\in \ZZ^{+}$, denote the set of all sets in $\SN$ of
+  cardinality $i$ as $T(i)$.
+
+  \begin{description}
+
+  \item[Base Case] \hfill
+
+    Let $n\in\ZZ^{+}$ be arbitrary. By definition of $\SN$, $\set{n} \in \SN$.
+
+    If $n=1$, then $F(1) = 1$ and $F(2)=2$ by definition of $F$. Hence
+    \[\sum_{i\in \set{1}}F(i) = F(1) = 1 < F(2) = 2.\]
+
+    Then $P(\set{1})$ holds.
+    
+    Note that $F(3) = F(1) + F(2) = 3$ by definition of $F$.
+
+    If $n=2$, then $F(2) = 2$ and $F(3) = 3$. Hence
+    \[\sum_{i\in \set{2}}F(i) = F(2) = 2 < F(3) = 3.\]
+
+    Then $P(\set{2})$ holds.
+
+    Suppose now $n\geq 3$ and $P(\set{n})$ holds.
+
+    By definition of $F$, $F(1+n) = F(n) + F(n-1)$. Hence by Lemma \ref{sec:csc240-problem-set}:
+    \[\sum_{i\in \set{n}} F(i)= F(n) < F(n) + F(n-1) = F(1+n).\]
+    
+    Thus, $P(\set{n+1})$ holds.
+
+    Therefore, $\forall S\in T(1).P(S)$ by induction, and thus
+
+    \[\forall n \in \ZZ^{+}.\Bigg(\sum_{i\in \set{n}} F(i) <
+    F\bigg(1+\max\set{n}\bigg)\Bigg).\]
+
+    Let now $m\in\ZZ^+$, $n\in\ZZ^{+}$ be such that $\abs{m-n}\neq 1$ and $m\neq n$.
+
+    By definition of $\SN$, $\set{m, n}\in\SN$. Without loss of generality, assume $n>m$.
+
+    Since $\abs{m-n}\neq 1$ and $m, n$ are distinct, then
+    $\abs{n-m} > 1$, and thus $n>m+1$.
+
+    Observe that, since $m\geq 1$ by definition and $n>m+1$, then
+    $n\geq 3$.
+
+    By Corollary \ref{sec:problem-i-2}, we obtain that
+    $F(n-2)\geq F(m)$ (because $n-1 > m$), which means that
+    \begin{equation*}
+      F(n) + F(n-2)\geq F(n) + F(m) = \sum_{i\in\set{m,n}}F(i)
+    \end{equation*}
+
+    Note that by Corollary \ref{sec:problem-i} we have
+    $F(n-1) > F(n-2)$, and thus
+    \begin{equation*}
+      F(n) + F(n-1) > \sum_{i\in\set{m,n}}F(i).
+    \end{equation*}
+
+    Since $n\geq 3$, which means that $F(1+n) = F(n)+F(n-1)$, we obtain that
+
+    \begin{equation*}
+      F(1+n) > \sum_{i\in\set{m,n}}F(i).
+    \end{equation*}
+
+    Because $n$ was assumed to be the greatest of the two, $\max \set{m, n} = n$, and thus
+    
+    \begin{equation*}
+      F(1+\max\set{m, n}) > \sum_{i\in\set{m,n}}F(i).
+    \end{equation*}
+
+    Therefore, since $m, n$ were chosen arbitrarily, by generalisation
+    the claim holds in case of any sets in $\SN$ consisting of two
+    elements, i.e.
+
+    \[ \forall S\in T(2).P(S). \]
+
+  \item[Constructor Case] \hfill
+
+    Suppose now for some $k\in\ZZ^{+}$ such that $k\geq 3$
+    $\forall i\in [1, k]\cap \ZZ^{+}.\forall S\in T(i).P(i)$.
+
+    Let $Q\in T(k)$ be arbitrary.
+
+
+    Let $a_1, a_2, \dots, a_k\in \ZZ^{+}$ be such that $a_i\in Q$ for
+    all $i\in [1,k]\cap \ZZ^+$ and $a_i\neq a_j$ for all $i\neq j$
+    such that $i\in [1,k]\cap \ZZ^+$ and $j\in [1,k]\cap \ZZ^+$.
+
+    Let $A = \ZZ^+\setminus\set{a_1, \dots, a_k, a_1-1,a_1+1, a_2-1, a_2+1, \dots, a_k-1, a_k+1}$.
+
+    Let $q\in A$ be arbitrary.
+
+    By definition of $A$, since $\forall a\in Q.\abs{a-q}\neq
+    1$. Thus, using the definition of $\SN$ and modus ponens we obtain
+    that $Q\cup \set{q}\in\SN$.
+
+    Note that $Q\cup\set{q}\in T(k+1)$, since $q$ is distinct from any
+    element in $Q$ by definition of $A$. Moreover, by definition of
+    $\SN$, for any $i\in\ZZ^{+}$ each element in $T(i+1)$ can be
+    constructed by adding a suitable element to $T(i)$ from the set
+    $\ol{T(i)}$, where $\ol{T(i)}$ is the subset of $\ZZ^{+}$
+    complementary to $T(i)$, which means that our construction is
+    generalisable for each element in $T(k+1)$.
+
+    Let $Q' = Q\cup\set{q}$
+
+    Suppose first that $q = \max(Q')$.
+
+    Therefore, since $k\geq 3$, then $q\geq 3$ (note that $1, 3, 5$ is the \textit{minimal} set in $T_3$, i.e the set the sum of elements of which is minimal).
+
+    Therefore,
+
+    \begin{equation}
+      \label{eq:2}
+      \sum_{i\in Q'} F(i) = \sum_{i\in Q}F(i) + F(q) < F\big(1+\max(Q)\big)+F(q),
+    \end{equation}
+    by specialisation of inductive hypothesis for $Q\in T(k)$.
+
+    Observe that $\max(Q)+1 < q$ by construction of $q$ ($q$ is
+    distinct from all elements in $Q$ and $\abs{\max(Q)-q} \neq 1$) and
+    assumption ($\max(Q) < q$).
+
+    Therefore, $\max(Q) +1 \leq q-1$.
+
+    Thus, from Corollary \ref{sec:problem-i-2}, $F(1+\max(Q))\leq F(q-1)$, and
+    hence from (\ref{eq:2}) we have
+    \begin{equation}
+      \sum_{i\in Q'} F(i) = \sum_{i\in Q}F(i) + F(q) < F(q-1)+F(q),
+    \end{equation}
+    and therefore from Corollary \ref{sec:problem-i-1} we obtain
+
+    \begin{equation}
+      \sum_{i\in Q'} F(i) < F(q-1)+F(q),
+    \end{equation}
+
+    and since $q\geq 3$,
+
+    \begin{equation}
+      \sum_{i\in Q'} F(i) < F(1+q),
+    \end{equation}
+
+    which by assumption that $q=\max(Q')$ is equivalent to
+
+    \begin{equation}
+      \sum_{i\in Q'} F(i) < F(1+\max(Q')).
+    \end{equation}
+
+    Suppose now $q \neq \max(Q')$.
+
+    Thus, one of $\set{a_1, a_2, \dots, a_{k}}$ is equal to
+    $\max(Q')$.
+
+    Let $m=a_{j}$ be such that $a_j = \max(Q')$.
+
+    Let $U = \set{a_1, a_2, \dots, q, \dots, a_{j-1}, a_{j+1}, \dots,
+        a_k}$
+
+      Note that $Q' = U\cup\set{m}$ and $U\in T(k)$.
+
+      Therefore,
+    \begin{equation}
+      \label{eq:3}
+      \sum_{i\in Q'} F(i) = \sum_{i\in U}F(i) + F(m) < F\big(1+\max(U)\big)+F(m),
+    \end{equation}
+    by specialisation of inductive hypothesis for $U\in T(k)$.
+    
+    Observe that, since $m = \max(Q')$ and
+    $\forall i \in Q'\setminus\set{m}.(\abs{i-m}\neq 1)$, then
+    \[m-1 > \max(U),\] which means that $m > 1+ \max(U)$, and thus by
+    Corollary \ref{sec:problem-i-2}, \[F(m-1) \geq F(1+\max(U)).\]
+
+    Thus, by (\ref{eq:3}),
+    
+    \begin{equation}
+      \sum_{i\in Q'} F(i) < F(m-1)+F(m),
+    \end{equation}
+
+    Again, since $Q'\in T(k+1)$, $m\geq 3$, because $k\geq 3$ by assumption and hence $(1, 3, 5, 7)$ is the minimal set in the sense explained earlier. Therefore, by definition of $F$, 
+    \begin{equation}
+      \sum_{i\in Q'} F(i) < F(m-1)+F(m) = F(1+m) ,
+    \end{equation}
+
+    and since $m = \max Q'$, we obtain that
+
+        \begin{equation}
+      \sum_{i\in Q'} F(i) < F(1+\max Q').
+    \end{equation}
+
+    Thus, the claim holds for $S\in T(k+1)$.
+  \item[Conclusion] \hfill
+
+    Since the claim holds for any set in $T(1)$ or $T(2)$, while, if $k\in\ZZ^{+}$,
+
+    \[\bigg(\forall R\in T_k.P(R)\bigg) \THEN \bigg(\forall S\in T_{k+1}.P(S)\bigg),\]
+
+    then $\forall S\in \SN. P(S)$ by strong induction. Therefore,
+    \begin{equation}
+      \label{eq:4}
+      \forall S\in\SN.\Bigg(\sum_{i\in S} F(i) < F(1+\max(S))\Bigg).
+    \end{equation}
+  \end{description}
+\end{soln}
+
+\section{Problem III}
+\begin{problem*}
+Prove that every positive integer is equal to $\sum_{i\in S} F(i)$ for some
+$S \in \SN$.
+\end{problem*}
+
+\begin{soln}
+  \hfill
+
+  Let $P(n) =$ "$n$ is equal to $\sum_{i\in S} F(i)$ for some $S \in \SN$" be defined for $n\in \ZZ^{+}$.
+  
+  \begin{description}
+  \item[Base Case] \hfill
+
+    Consider the positive integers $F(k)$ for all $k\in\ZZ^{+}$.
+
+    Note that, for any $k\in\ZZ^{+}$,
+
+    \begin{equation*}
+      F(k) = \sum_{i\in\set{k}}F(i),
+    \end{equation*}
+
+    and since $\set{k}\in\SN$ by definition of $\SN$, then
+
+    \[\forall f\in\ZZ^{+}.P(F(f)).\]
+
+    In particular, since $F(1) = 1$ and $F(2)= 2$, if
+    $i\in[1,F(2)]\cap\ZZ^{+}$, then $i$ can be written as
+    $\sum_{i\in S} F(i)$ for some $S \in \SN$.
+
+  \item[Inductive Step] \hfill
+
+    Suppose now there exists $k\in\ZZ^{+}$ such that for all
+    $i\in[1, F(k)]\cap \ZZ^+$ the claim holds, i.e. each $i\in[1, F(k)]\cap \ZZ^+$ can be
+    written as $\sum_{i\in S} F(i)$ for some $S \in \SN$.
+
+    The claim has been shown to hold in case $k=1$ or $k=2$, so assume
+    that $k\geq 3$.
+
+    Therefore, $F(k+1) = F(k)+F(k-1)$ by definition of $F$.
+
+    We show now that any number in $[F(k)+1, F(k+1)]$ can be written
+    in the required form.
+
+    Note that $F(k+1) - F(k) = F(k-1)$. Since $F(k-1) < F(k)$ by
+    Corollary \ref{sec:problem-i}, by inductive hypothesis each number
+    $j$ in $[1,F(k-1)]\cap\ZZ^{+}$ can be written as
+    $\sum_{i\in S_j} F(i)$ for some $S_{j} \in \SN$. Since by
+    inductive hypothesis $F(k)$ can also be written in such a form,
+    then each number in $[F(k)+1, F(k+1)] = [F(k)+1, F(k)+F(k-1)]$ satisfies the claim
+
+    Therefore, $P(F(k+1))$ holds.
+  \item[Conclusion]
+p    \hfill
+
+    By strong induction, $\forall m\in\ZZ^{+}.\forall r\in [1, F(m)]\cap\ZZ^+.P(r)$ holds. By
+    definition of $F$, $F$ is not bounded, and by Archimedean property
+    of $\ZZ^{+}$ for all $q\in\ZZ^{+}$ there exists $g\in\ZZ^{+}$ such
+    that $q < F(g)$. Therefore, $\forall n\in\ZZ^{+}.P(n)$ must hold.
+  \end{description}
+\end{soln}
+
+\section{Problem IV}
+
+\begin{problem*}
+  \hfill
+  
+Prove that every positive integer is equal to $\sum_{i\in S}F(i)$ for at most one set $S\in\SN$.
+\end{problem*}
+
+\begin{soln}
+  \hfill
+
+From Problem III, every positive integer is equal to
+$\sum_{i\in S}F(i)$ for at least one set $S\in\SN$. We prove now that
+this set is unique.
+
+Let $U\suq \ZZ^{+}$ be a set of numbers in $\ZZ^{+}$ such that they
+cannot be written uniquely in the required form. By way of
+contradiction, suppose $U$ is not empty. Therefore, by well-ordering
+principle, there exists the smallest integer in $U$.
+
+Let $k\in\ZZ^{+}$ be the smallest integer in $U$, and let $D\in\SN$ be a set such that
+$\sum_{i\in D}F(i) = k$.
+
+Suppose that another set $D'\in\SN$ is such that
+$k=\sum_{i\in D'}F(i)$ and $D\neq D'$.
+
+Let $C = (D\cup D')\setminus(D\cap D')$. Since $D$ and $D'$ are distinct, then $C$ is not empty (because if $C$ is empty, then $D\cup D' = D\cap D'$ and hence $D = D'$). By definition of $C$, each element in $C$ belongs either to $D$ or $D'$, but not both.
+
+Let $A = \set{a_1, a_2, \dots, a_p} \suq C$ be such that $\set{a_1, a_2, \dots, a_p} \suq D$,
+
+and let $B=\set{b_1, b_2, \dots, b_q}\suq C$ be such that $\set{b_1, b_2, \dots, b_q}\suq D$, where $p\in\ZZ^{+}$, $q\in\ZZ^+$ and $p+q = \abs{C}$ (so that $A\cup B = C)$.
+
+Since $k=\sum_{i\in D'}F(i)$ and $k=\sum_{i\in D}F(i)$, subtracting one from another and rearranging we obtain that
+
+\begin{equation}
+  \label{eq:5}
+  \sum_{i\in A} F(i) = \sum_{j\in B} F(j).
+\end{equation}
+
+If $A$ is a proper subset of $D$, then $\sum_{i\in A} F(i) < k$, and
+since $k$ is the minimal positive integer which does not have a unique
+representation, then the number $\sum_{i\in A} F(i)$ has a unique
+representation. Since all elements in $A$ are distinct from elements
+in $B$ by construction, from (\ref{eq:5}) we get a contradiction,
+because $\sum_{i\in A} F(i)$ must have a unique representation in the
+required form. Therefore, $A = D$, and thus $B = D'$ by construction
+of $A$ and $B$. Since $C = A\cup B$, we obtain that $C = D\cup D'$ and
+thus by the construction of $C$ we get that $D\cap D' = \emptyset$.
+
+
+Let $m = \max(C) = \max(D\cup D')$. Therefore,
+$\forall s \in (D\cup D')\setminus \set{m}.(s< m)$ by construction of
+$m$.
+
+Since each element in $C$ is either in $D$ or $D'$ but not both,
+without loss of generality assume $m\in D$.  Note that, since all
+elements in $A$ and $B$ are also in $\SN$ by construction,
+\[\forall i\in[1, p]\cap\ZZ^+.\forall j\in[1, q]\cap\ZZ^+.(\abs{a_i -
+    b_j}\neq 1).\] Therefore, by Problem II,
+$F(m) > F(1+\max D')> \sum_{i\in D'}F(i)$, which is a contradiction to
+Equation (\ref{eq:5}).
+
+Suppose now $m\in D'$. Similarly, by Problem II,
+$F(m) > F(1+\max D')> \sum_{i\in D'}F(i)$, which is a contradiction to
+Equation (\ref{eq:5}).
+
+Therefore, our assumption that there exist such $D, D'$ must be false,
+and hence $k$ can be written uniquely in the required form. Thus,
+every positive integer can be written as $\sum_{i\in S}F(i)$ uniquely
+by generalisation.
+
+
+
+
+% By the well-ordering principle, there exists a minimal element in
+% $C$. Let $m_1$ be such a minimal element. Similarly, let $m_2$ be a
+% minimal element in $C\setminus\set{m}$. Note that, if
+% $C\setminus\set{m}$ is not empty, then $m_1<m_2$ (otherwise, $m_1$ is
+% not the minimal element, while by definition $m_1\neq m_2$). Continuing
+% in the same way, we obtain a set of values
+% $M = \set{m_1, m_2, \dots, m_{\abs{C}}} = C$ such that
+% \[
+%   m_1 < m_2 <\dots < m_{\abs{C}}.
+% \]
+
+% Consider 
+
+\end{soln}
+\end{document}

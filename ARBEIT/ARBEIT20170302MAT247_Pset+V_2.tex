@@ -1,0 +1,185 @@
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+\documentclass[11pt]{scrartcl}
+\usepackage[beaue, pset, anon]{masty}
+\pSet{\hw{MAT247}{V}{2}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+Let $T \in \Hom(V,V)$ be a linear transformation, where $V$ is a
+finite-dimensional inner product space over $\FF$.
+
+\begin{lemma}
+  \label{sec:2}
+  Suppose that $T = T^{*}$. Show that $\ipr{Tx}{x}\in\RR$ for all $x\in V$.
+\end{lemma}
+
+\begin{proof}
+  \hfill
+
+  Take $x\in V$.
+  
+  Since $\ipr{Tx}{x} = \ipr{x}{T^{*}x}$ by definition of an adjoint,
+  then $\ipr{Tx}{x} = \ipr{x}{Tx}$ by assumption.
+
+  Moreover, $\ipr{x}{Tx}= \ol{\ipr{Tx}{x}}$ from properties of an
+  inner product, and thus $\ipr{Tx}{x} = \ol{\ipr{Tx}{x}}$, which
+  means that $\ipr{Tx}{x}$ is real for all $x\in V$.
+\end{proof}
+
+\begin{lemma}
+  \label{sec:1}
+  If $\FF = \CC$ and $\ipr{Tx}{x}=0$ for all $x\in V$, then $T = \bm{0}$.
+\end{lemma}
+
+\begin{proof}
+  \hfill
+
+  Let $x, y\in V$.
+
+  Note the following:
+
+  \begin{align}
+    T(x+y)  & = T(x) + T(y) \\
+    T(x+iy) & = T(x) + iT(y)
+  \end{align}
+
+  Since $\ipr{T(x+y)}{x+y}= 0$, while $\ipr{Tx}{x} = 0$ and
+  $\ipr{Ty}{y}=0$ then
+  \begin{align}
+    \ipr{T(x+y)}{x+y} & = \ipr{Tx}{x+y}+\ipr{Ty}{x+y}                     \\
+                      & = \ipr{Tx}{x}+\ipr{Tx}{y}+\ipr{Ty}{x}+\ipr{Ty}{y} \\
+                      & = \ipr{Tx}{y}+\ipr{Ty}{x} = 0
+  \end{align}
+
+  Therefore, $\ipr{Tx}{y}=-\ipr{Ty}{x}$
+
+  Similarly,
+  \begin{align}
+    \ipr{T(x+iy)}{x+iy} & = \ipr{Tx}{x+iy}+i\ipr{Ty}{x+iy}                         \\
+                        & = \ipr{Tx}{x}+\ipr{Tx}{iy}+i\ipr{Ty}{x}+i(-i)\ipr{Ty}{y} \\
+                        & = \ipr{Tx}{x}-i\ipr{Tx}{y}+i\ipr{Ty}{x}+\ipr{Ty}{y}      \\
+                        & = -i\ipr{Tx}{y}+i\ipr{Ty}{x} = 0
+  \end{align}
+
+  Therefore, $\ipr{Tx}{y} = \ipr{Ty}{x}$.
+
+  Hence, by combining two equations above, we obtain that
+  $\ipr{Tx}{y} = 0$, which holds for all $y\in V$. Note that
+  $Tx\in V$, and thus $\ipr{Tx}{Tx} = 0$, which holds if and only if
+  $Tx=0$ for all $x\in V$. Therefore, $T = \bm{0}$.
+\end{proof}
+
+\begin{lemma}
+  If $\FF = \CC$ and $\ipr{Tx}{x}\in\RR$ for all $x\in V$, then $T = T^{*}$.
+\end{lemma}
+\begin{proof}
+  \hfill
+
+  Take $x\in V$.
+  
+  Note that, by definition of an adjoint,
+  \begin{equation}
+    \label{eq:1}
+    \ipr{Tx}{x}=\ipr{x}{T^{*}x}.
+  \end{equation}
+
+  Moreover, since $\ipr{Tx}{x}\in \RR$, then
+
+  \begin{equation}
+    \label{eq:2}
+  \ipr{Tx}{x}=\ol{\ipr{x}{Tx}} = \ipr{x}{Tx}.
+  \end{equation}
+
+  Therefore, subtracting (\ref{eq:2}) from (\ref{eq:1}), we obtain that
+  \begin{equation}
+    \ipr{x}{T^{*}x-Tx} = \ipr{x}{(T^{*}-T)x} = \ipr{(T^{*}-T)^{*}x}{x}=0.
+  \end{equation}
+
+  Therefore, since $\FF = \CC$, we get by \ref{sec:1},
+  $(T^{*}-T)^{*} =\bm{0}$.
+
+  Then $T - T^{*}=\bm{0}$, and hence $T = T^{*}$.
+\end{proof}
+
+\begin{lemma}
+  If $\FF = \RR$, then $\ipr{Tx}{x}=0$ for all $x\in V$ if and only if $T^{*} = -T$.
+\end{lemma}
+
+\begin{proof}
+  \hfill
+
+  Since $\FF = \RR$, then
+  $\ipr{Tx}{x}=\ol{\ipr{x}{Tx}} = \ipr{x}{Tx}$, and by definition of
+  an adjoint,
+
+  $\ipr{Tx}{x}= \ipr{x}{T^{*}x}$. Thus, $\ipr{x}{Tx} = \ipr{x}{T^{*}x}$.
+
+  Suppose first $\ipr{Tx}{x}=0$. Then
+  $\ipr{x}{Tx} = \ipr{x}{T^{*}x} = 0$, and thus, summing two
+  equations, we obtain that, for all $x\in V$,
+
+  \begin{align}
+    \label{eq:3}
+    \ipr{x}{(T+T^{*})x} = 0.
+  \end{align}
+
+  Note that this holds for an arbitrary $x\in V$. In particular,
+  (\ref{eq:3}) holds for $x=(T+T^{*}x)$, and hence $(T+T^{*})x = 0$ for
+  all $x\in\RR$, which means that $T +T^{*}= \bm{0}$, and thus $T^{*} = -T$.
+
+  Suppose now $T^{*}=-T$. Therefore, $T^{*}+T = \bm{0}$, which means
+  that for all $x\in V$, $(T^{*}+T)x = 0$. Therefore, since
+  $V^{\bot} = \set{0}$, then for all $x\in V$
+  $\ipr{(T^{*}+T)x}{x} = 0$. Therefore, $\ipr{T^{*}x}{x}=-\ipr{Tx}{x}$.
+
+  Note that $\ipr{Tx}{x}= \ipr{x}{T^{*}x}$ by the derivation above,
+  and thus $\ipr{Tx}{x} = -\ipr{Tx}{x}$, which means that
+  $2\ipr{Tx}{x}=0$ and hence $\ipr{Tx}{x}=0$.
+\end{proof}
+\end{document}
