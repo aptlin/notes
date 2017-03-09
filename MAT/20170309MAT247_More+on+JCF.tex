@@ -1,0 +1,239 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{MAT247}{}{More on JCF}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Existence and Uniqueness of Jordan Canonical Form}
+
+\begin{theorem}
+  If a characteristic polynomial $f(t)$ of $T$ splits, then
+  \begin{enumerate}[label=\alph*)]
+  \item $V = \bigoplus_{i=1}^r K_{\lambda_i}$, where $\lambda_i$ for $i\in [1, r]\cap\NN$ are distinct eigenvalues.
+  \item $\dim K_{\lambda} = m_{\lambda}$ for any eigenvalue $\lambda$.
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  \hfill
+
+  First we show that $V = \sum_{i=1}^rK_{\lambda_i}$ by induction on $r$.
+
+  Let $W = \img (T-\lambda I)^{m_{\lambda}}$.
+
+  Since $\dim V = \dim K_{\lambda_1} +\dim W$, while
+  $K_{\lambda_1}\cap W = \set{0}$,
+
+  then $\dim(K_{\lambda_1}+W) = \dim(K_{\lambda_1})+\dim(W) = \dim V$,
+  and thus $V = K_{\lambda_1}\oplus W$.
+
+  Note hat $W$ is $T$-invariant and $T_{W}$ has eigenvalues
+  $\lambda_2,\dots, \lambda_r$.
+
+  If $x\in W$, $x = (T-\lambda I)^{m_{\lambda}}(y)$ for some $y\in
+  V$.
+
+  Therefore,
+  $Tx = T(T-\lambda I)^{m_{\lambda}}(y)=(T-\lambda
+  I)^{m_{\lambda}}T(y) \in W$.
+
+  Thus, $W$ is $T$-invariant.
+
+  If $Tv = T|_W(v) = \mu v$ and $v\neq 0$, then $\mu$ is an eigenvalue of $T$, then $\mu$ is an eigenvalue of $T$, and hence $\mu \in \set{\lambda_1, \dots, \lambda_r}$. If $\mu = \lambda_1$, then $v\in W\cap K_{\lambda_1} = \set{0}$  by the previous remark.
+
+  The generalised eigenspaces of $T|_W$ are
+  $K_{\lambda_2}, \dots, K_{\lambda_r}$. Notice that
+  $K_{\lambda}^W = K_{\lambda}\cap W$, where $K_{\lambda}^{W}$ is 
+
+  By Theorem 7.1(b), since
+  $(T-\lambda_1I)^{m_{\lambda_{1}}}:K_{\lambda_i}\to K_{\lambda_i}$
+  for all $i\neq 1$, then
+  $K_{\lambda_i} \suq \img((T-\lambda_1I)) = W$ for all $i\neq 1$, and
+  therefore $K_{\lambda_i}^W = K_{\lambda_i}\cap W = K_{\lambda_i}$ for all $i\neq 1$.
+
+  Thus, $K_{\lambda_1}^W = \set{0}$.
+
+  Now we apply the inductive hypothesis to $T_W: W\to W$ (the
+  characteristic polynomial splits and it has $r-1$ eigenvalues).
+
+  Then $W = \sum_{i=2}^rK^W_{\lambda_i} = \sum_{i=2}^rK_{\lambda_i}$, and hence
+  $V = K_{\lambda_1}+W  = \sum_{i=1}^rK_{\lambda_i}$.
+
+  Since $V = \sum _{i=1}^rK_{\lambda_i}$ and
+  $\dim V \leq \sum_{i=1}^r\dim K_{\lambda_i} \leq \sum_{i=1}^rm_i =
+  \dim V$,
+
+  and thus $\dim V = \sum_{i=1}^r \dim K_{\lambda_i}$ and
+  $\dim K_{\lambda_i} = m_i$, which means that
+  $V = \bigoplus_{i=1}^rK_{\lambda_i}$.
+\end{proof}
+
+Now we can fin a nice basis for each $K_{\lambda}$ separately.
+
+If $x \in K_{\lambda}$ and $x\neq 0$, there is a smallest $l \geq 1$
+such that $(T-\lambda I)^lx = 0$.
+
+We call a set
+$\set{(T-\lambda I)^{l-1}x, (T-\lambda I)^{l-2}x, \dots, (T-\lambda
+  I)x, x}$ a \textbf{cycle of generalised eigenvectors} corresponding
+to $\lambda$ of length $l$. Let's call $(T-\lambda I)^{l-1}$ an
+\textit{initial vector} and $x$ an \textit{end vector}.
+
+The initial vector is in $N(T-\lambda I) = E_{\lambda}$, and hence it
+is an eigenvector for $\lambda$.
+
+\begin{theorem}
+  \label{sec:exist-uniq-jord}
+  If $\gamma$ is a basis of $V$ which is a disjoint union of cycles
+  $\gamma_i$ for $1\leq i\leq r$ of generalised eigenvectors, let
+  $W_i=\spn(\gamma_i)$.
+
+  \begin{enumerate}[label=\alph*)]
+  \item $W_i$ is $T$-invariant and $[T_{W_i}]_{\gamma_i}$ is a Jordan block.
+  \item $[T]_\gamma$ is in JCF.
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  \hfill
+
+  \begin{enumerate}[label=\alph*)]
+  \item Fix $i$.
+
+    Suppose
+    \[\gamma_i = \set{(T-\lambda I)^{l-1}(x), \dots, (T-\lambda I)x,
+        x}.\]
+
+  Note that $W_i= \spn(\gamma_i)$, but $\gamma_i\suq \gamma$, so
+  $\gamma_i$ is linearly independent and thus a basis of $W_i$.
+
+  Let $v_j = (T-\lambda I)^{l-j}x$ for $1 \leq j \leq l$.
+
+  We know that
+
+  \begin{align}
+    (T-\lambda J)v_j &= (T-\lambda J)^{l-j+1}(x)\\
+                     &= (T-\lambda J)^{l-(j-1)}x\\
+                     &=
+                       \begin{cases}
+                         v_{j-1} \text{ if } j> 1\\
+                         0 \text{ if } j=1
+                       \end{cases}
+  \end{align}
+
+  Therefore,
+  \begin{equation*}
+    Tv_j =
+    \begin{cases}
+      \lambda v_j + v_{j-1}, \text{ if } j>1\\
+      \lambda v_j, \text{ if } j=1
+    \end{cases}.
+  \end{equation*}
+
+  So $Tv_j\in W_i$ for all $j$, and thus $W_i$ is $T$-invariant and
+  $[T_{W_i}]_{\gamma_i}$ is a Jordan block.
+\item Note that, by definition, $\gamma = \bigcup_{i=1}^r
+  \gamma_{i}$. The matrix representation $[T]_{\gamma}$ has Jordan
+  blocks on a diagonal, and thus $[T]_{\gamma}$ is in a Jordan
+  Canonical Form.
+\end{enumerate}
+\end{proof}
+
+\begin{theorem}
+  Suppose $\gamma_1,\dots, \gamma_r$ are cycles of generalised
+  eigenvalues corresponding to the \textbf{same} eigenvalue $\lambda$.
+
+  If the initial vectors are linearly independent, then the sets $\gamma_i$ are disjoint and $\gamma = \bigcup_{i=1}^r\gamma_i$ is linearly independent.
+\end{theorem}
+\begin{proof}
+  \hfill
+
+  Let $W=\spn \gamma$. From Theorem \ref{sec:exist-uniq-jord}, $W$ is $T$-invariant.
+
+  Let $U = T-\lambda I:W\to W$.
+
+  Note that $\gamma_i = \set{U^{l_i-1}x_i, \dots, Ux_i, x_i}$.
+
+  We proceed by induction on the number of vectors
+  $l_1+\dots+l_r$.
+
+  If $\sum_{i=1}^rl_i = 1$, there is a one-dimensional cycle which is linearly independent trivially.
+
+  Suppose $U^{l_1-1}(x_1), \dots, U^{l_r-1}x_r$, which are all in
+  $E_{\lambda}= \ker (U)$, are linearly independent, and then
+  $\dim \ker(U) \geq r$.
+
+  On the other hand,
+  $\gamma_i' = \set{U^{l_i-1}x_i, U^2x_i, Ux_i}$ is a cycle of length $\lambda_i-1$ contained in $\img U$.
+
+  The total number of vectors is $r$ fewer than before, so we can
+  apply induction to $\gamma_1', \dots, \gamma_r'$.  Therefore,
+
+  $\bigcup_{i=1}^r\gamma_r'$ is a linearly independent disjoint union.
+
+  Therefore,
+  $\dim \img(U)\geq \sum_{i=1}^r(l_i-1) = -r + \sum_{i=1}^rl_{i}$.
+
+  Hence, by the dimension theorem,
+  \begin{align}
+    d &= \dim \img U +\dim \ker U \geq (\sum_{i=1}^r\lambda_i -r)+r\\
+      &= \sum_{i=1}^rl_i\geq \abs{\gamma} \geq \dim W = d.
+  \end{align}
+
+  Thus, the equality holds, so $\abs{\gamma} = \sum l_i$, and thus
+  $\gamma$ is a disjoint union.
+
+  Therefore, $\abs{\gamma} = \dim W$ and thus $\gamma$ is a basis of
+  $W$, and thus it is linearly independent.
+\end{proof}
+
+
+
+
+\end{document}
