@@ -1,0 +1,269 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{BIO130}{}{Transport Proteins}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Transport Proteins}
+
+Transport proteins work together to transfer glucose from the
+intestine to the blood stream.
+
+The internal side of the lumen is covered by vili, increasing the
+surface area, within which epithelial cells are located. On each vili
+there are microvili, increasing the surface area even more.
+
+The basal and lateral sites of a vilus are very similar. Outside of
+vili blood or extracellular fluids are flowing.
+
+Glucose is thus goes from low concetration inside the lumen to the
+high concentration in the cytosol of the epithelial cell and then tho
+the low concentration in the extracellular fluid on the basolateral
+side of the epithelial cell, where GLUT uniporters and Na$^+$ and
+K$^+$ pumps are located.
+
+Transcellular transport of clucose requires the asymmetric
+distribution of membrane proteins. There are specific areas called
+tight junctions which restrict the location of transport proteins,
+keeping Na$^+$/glucose symporter on the apical membrane and GLUT2
+uniporter and Na$^+$/K$^+$ pum on the basolateral plasma membrane.
+
+Tight junctions also stop intercellular molecular movement.
+
+\section{ATP-Driven Pumps}
+
+There are three kinds of transport ATPases: P-type pumps, F-type(and
+V-type) proton pumps and ABC transporters.
+
+\subsection{F-type and V-type ATPase}
+
+F-type and V-type ATPases are structurally related, but have opposite
+modes of action.
+
+F-type ATPases (present in mitochondria, chloroplasts and bacteria)
+use the H$^+$ gradient to drive the synthesis of ATP. On the other
+hand, V-type ATPases (present in lysosomes and plant vacuoles) use ATP and pump H$^+$
+
+For example, ATP synthases use the H$^+$ electrochemical gradient to
+produce ATP (F-type), while H$^+$ pumps use ATP to pump H$^+$ against
+the electrochemical gradient (V-type) and acidify the lumen.
+
+\section{Membrane Potential}
+
+Membrane potential is the difference in electrical charge on two sides
+of the membrane, which is used by symporters and antiporters to carry
+out secondary active transport (in animals and plants). Moreover,
+membrane potential provides action potential in nerve cells.
+
+\subsection{Generation of Membrane Potential}
+
+K$^+$ leak channels play a makor role in membrane potential by
+securing an outward flow of K$^+$.
+
+Na$^{+}$/K$^{+}$ pump, on the other hand, has the following characteristics:
+\begin{itemize}
+\item Na$^+$ gradient with low cytosolic [Na$^+$]
+\item K$^+$ gradient with high cytosolic [K$^+$]
+\item Elecrogenic
+
+  \begin{itemize}
+  \item Net 1+ ion pumped out
+  \item Responsible for ~10\% of the membrane potential
+  \end{itemize}
+
+\end{itemize}
+
+In animal cells, ions in solution are present in pairs, with more (+)
+charge on the outside because of Na$^+$ and K$^+$ and more (-) charge
+on the inside due to Cl$^-$ and fixed anions. At equilibrium, the
+resting membrane potential can be measured, and is equal to -70 mV on
+average.
+
+\section{Intracellular Compartments}
+
+Cytosol usually assumes half the cell volume. Cytosol, where protein
+synthesis and degradation occur, is also the location of intermediary
+metabolism.
+
+\begin{definition}
+  An organelle is a subcellular compartment or large macromolecular
+  complex, often membrane-enclosed, that has a distinct structure,
+  composition, and function.
+\end{definition}
+
+\begin{description}
+
+\item[e.g.] nucleus, endoplasmic reticulum, Golgi apparatus, nucleolus
+
+\end{description}
+
+Rough endoplasmic reticulum is the location of synthesis of
+transmembrane, organellar and secreted proteins, while smooth
+endoplasmic reticulum is where fats and steroid hormones are metabolised.
+
+There are a lot more membranes in the cell than around the cell.
+
+We can compare liver hepatocytes and pancreatic exocrine cells.  A
+standard liver cell, liver hepatocyte, is involved with
+detoxification. Pancreatic exocrine cells secrete digestive
+enzymes. ERs constitute approximately 50\% of both cells. In liver
+hepatocyte there are significantly more SER, however.
+
+Percentage composition of cells varies from one cell to another.
+
+\subsection{Dynamics of Intracellular Compartments}
+
+Intracellular compartments exchange lipids and proteins. Together
+organelles form the endomembrane system.
+
+The endomembrane system is involved in biosynthetic/secretory pathways (biosynthesis (proteins and lipids are produced and shared with other organelles) and secretion (proteins, exocytosis)) and endocytic pathway (\textit{eg}. endocytosis).
+
+During exocytosis vesicle contents are delivered to extracellular space, while vesicle membrane becomes a part of the plasma membrane. During endocytosis, the plasma membrane forms the vesicle membrane, with vesical luminal contents coming from the extracellular space.
+
+\section{Vesicular Transport}
+
+\begin{definition}
+  A \textbf{vesicle} is a small, membrane-enclosed organelle in the
+  cytoplasm of a eukaryotic cell. Vesicles shuttle components back and fioth in the endomembrane system.
+\end{definition}
+
+Transmembrane proteins can select specific proteins to go inside a
+vesicle from the donor compartment to the recipient compartment.
+
+Specific proteins are targeted to different organells in the following
+steps. First, mRNA arrives in the cytoplasm and translation starts on
+ribosomes in the cytosol. A cytosolic protein is then translated in
+the cytosol and has no sorting signal.
+
+Mitochondria and chloroplasts have their own genome and ribosomes, but
+most proteins are nuclear-encloded.
+
+Nuclear-encoded proteins are translated in the cytosol and then
+targeted by a signal sequence, which imports them into the organelle post-translationally.
+
+Proteins remain unfolded in the cytosol by association with hsp70
+chaperones.
+
+The path of a secreted protein from translation to secretion can be described as follows.
+
+First, mRNA arrives in the cytoplasm and translation starts on
+ribosomes in the cytosol. While translation is still occuring,
+insertion of the protein into the endoplasmic reticulum starts, as
+directed by the signal sequence. In this way, \textbf{co-translational
+  translocation} occurs.
+
+SRP stops the translation on detection of the signal sequence, and
+taking the ribosome to the translocator by binding with the SRP
+receptor, which then associates with the plug in a translocus. In this
+way, the protein gets made while it moves into the ER lumen, and then
+a signal peptidase cuts off the signal after it has been used.
+
+Pancreatic cells make lots of secreted proteins. These cells can be
+used to follow the path of newly synthesised proteins. First, the
+cells are provided with a short pulse of radioactive amino acids. The
+path of these aminoacids can then be followed as they are incorporated
+into proteins. This technique is called a \textbf{pulse-chase
+  experiment}.
+
+Proteins move from the rough endoplasmic reticulum, proceed to the
+Golgi apparatus and then get to the secretory vesicles.
+
+The secretory pathway can be of two types:
+\begin{itemize}
+\item constitutive (continual production of secreted proteins)
+  \begin{description}
+
+  \item[e.g.] collagen
+
+  \end{description}
+  
+\item regulated (proteins are stored in secretory granules ready for export in response to a stimulus)
+  \begin{description}
+
+  \item[e.g.] neurotransmitters
+
+  \end{description}
+\end{itemize}
+
+
+\section{Protein Sorting Mechanisms}
+\begin{itemize}
+\item Gated (proteins move between the cytosol and nucleus through nuclear pore complexes)
+\item Transmembrane (a translocon protein is needed to transport specific proteins across a membrane)
+\item Vesicular (membrane-enclosed transport vesicles ferry proteins from one compartment to another)
+\end{itemize}
+
+\subsection{Signal Sequences}
+
+A signal sequence is a stretch of the amino acid sequence of a protein
+that directs the protein to the correct destination. Each signal
+sequence specifies a specific destination in the cell (to a nucleus,
+mitochondria, ER, peroxisomes, etc). Signal sequences are recognized
+by sorting receptors that take proteins to their destination.
+
+Signal sequences are often found at the N-terminus of the
+protein. However, some signal sequences are internal stretches of AA
+which remain part of the protein. For proteins with N-terminal signal
+sequences there are signal peptidases removing the signal sequence
+from the protein.
+
+Secreted proteins have N-terminal signal sequences.
+
+\section{Review}
+
+Sorting of a secreted protein proceeds as follows:
+
+\begin{itemize}
+\item translation starts on cytosolic ribosomes
+\item signal sequence of the amino-terminal end directs the protein to the ER (the signal sequence is hydrofobic)
+\item protein inserted throuch the membrane by the translocon lumen
+\end{itemize}
+
+\end{document}
