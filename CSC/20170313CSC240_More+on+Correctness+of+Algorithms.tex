@@ -1,0 +1,214 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{CSC240}{}{Correctness of Algorithms}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+\usepackage{program}
+\begin{document}
+
+Consider the algorithms of MERGESORT and QUICKSORT.
+
+QUICKSORT($A$)
+\begin{program}
+  \IF \abs{A}>1 \THEN 
+
+  |pivot|\gets A[i]
+
+  |partition | A | into multisets| 
+
+  L=\{\text{elements in } A < \text{ pivot}\}
+
+  E=\{\text{elements in } A = \text{ pivot}\}
+
+  G=\{\text{elements in } A > \text{ pivot}\}
+
+  |QUICKSORT| (L)
+  |QUICKSORT| (G)
+
+  A \gets L, E, G 
+
+  \FI 
+
+\end{program}
+
+Let $G(n)=$\textquote{For all arrays $A$ with $n$ elements from a totally ordered domain, if QUICKSORT($A$) is performed, $\dots$ unchanged.}
+
+We proceed by induction.
+
+Let $n\in\NN$ be arbitrary. 
+
+Let $A$ be an arbirtrary array with $n$ elements from a totally ordered domain.
+
+\begin{description}
+\item[Base Case] \hfill
+
+  If $n=0$ or $n=1$, the test on line 1 fails and thus $A$ is
+  unchanged and vacuously sorted. 
+\item[Inductive Step] \hfill
+
+Suppose $G(n')$ is true for all $n'\in \NN$ with $n'< n$.
+
+The test on line 1 succeeds.
+
+By partitioning, all elements in $L$ are less than all elements in $E$, which are less than all elements in $G$. A multiset of elements in $A$ is the union of the multiset of elements in $L, E, G$.
+
+$A[i]\in E$, so $\abs{L}$ and $\abs{G}$ are less than $\abs{A}$.
+
+By the IH, after QUICKSORT($L$) and QUICKSORT($G$) are performed $L$ and $G$ are  sorted in nondecreasing order and the multiset of elements in $L$ and $G$ are unchanged.
+
+After the assignment on line 6, $A$ is sorted in a non-decreasing order. All elements in $L$ are therefore less than all elements in $E$, which in turn are less than all elements in $G$, and thu multiset of elements in $A$ is unchanged. By generalisation, $P(n)$.
+
+By induction, for any $n\in\NN.P(n)$.
+\end{description}
+
+\section{Divide and Conquer Algorithms}
+
+\begin{itemize}
+\item divide the problem into smaller parts, often of roughly equal size
+\item solve each part independently
+\item combine the solutions for the parts into a solution for the whole problem
+\end{itemize}
+
+\subsection{Correctness of Iterative Algorithms}
+
+\begin{program}
+
+z\gets 0
+w \gets y
+\WHILE w \neq 0 \DO
+z \gets z+x
+w\gets w-1
+\OD
+\end{program}
+
+What are the values of the variables immediately after iteration $i$
+of the loop? ($w=y-i$, $z = ix$)
+
+Let $P(i)=$\textquote{if the loop is executed at least $i$ times, then
+  immediately afer the iteration $i$ we have $w=y-i$ and $z = ix$}.
+
+Note that, by convention, when we talk about the 0th iteration, we are
+talking about the state immediately before the 1st iteration.
+
+\begin{lemma}
+\label{sec:corr-iter-algor}
+Let $x, y \in\ZZ$. For all $i\in\NN$, we have $P(i)$.
+\end{lemma}
+
+\begin{proof}
+  \hfill
+
+Let $W_i$ and $z_i$ denote the values of $w$ and $z$ immediately after iteration $i$.
+
+\begin{description}
+\item[Base Case] \hfill
+
+$w_0 = y =y-0$ by line 2.
+
+$z_0 = 0 = 0\* x$ by line 1,
+
+so $P(0)$ is true.
+
+\item[Inductive Hypothesis] \hfill
+
+Let $i\geq 0$ and assume $P(i)$ is true.
+
+Then $w_i = y-i$ and $z_i = ix$.
+
+From lines 4 and 5, we have that $z_{i+1}=z_i+x$ and $w_{i+1}=w_i-1$,
+which by inductive hypothesis means that $z_{i+1}=(i+1) x$ and
+$w_{i+1}= y-(i+1)$, and hence $P(i+1)$ holds.
+
+By induction, we have that $\forall i\in\NN.P(i)$.
+\end{description}
+\end{proof}
+\begin{corollary}
+If the algorithm runs and halts, then at the end $z = xy$.
+\end{corollary}
+\begin{proof}
+  \hfill
+
+Suppose the loop halts immediately after the iteration $i$.
+
+From the termination condition of the loop on line 3 we have that
+$W_i= 0 $. By Lemma \ref{sec:corr-iter-algor},$w_i = y-i$ and
+$z_i = ix$, so $i=y$ and $z_{i} = xy$ .
+\end{proof}
+
+A \textbf{loop invariant} is a predicate that is true each time a
+particular place in the loop is reached (often the beginning or end).
+
+\begin{lemma}
+  $z = x(y-w)$ is a loop invariant which is true at the beginning and
+  end of every iterations.
+\end{lemma}
+
+\begin{proof}
+  \hfill
+
+  Initially, yrom lines 1 and 2 we can see that $z = 0$ and $w =y$, so
+  $x(y-w) = 0=z$.
+
+  Consider an arbirtrary iteration of the loop.
+
+  Let $w'$ and $z'$ denote the values of $w$ and $z$ before the
+  iterations. Let $w''$ and $z''$ denote their variable at the end of the iteration. 
+
+  Suppose the claim holds at the begining of the iteration so
+  $z'=x(y-w')$.
+
+  From lines 4 and 5, 
+
+  $w'' =w' - 1$ and $z''=z'+x$, so
+  $x(y-w'') = x(y-(w'-1)) = x(y-w') +x = z'+x = z''$, so the claim is
+  true at the end of the iterations.
+
+  By induction, $z = x(y-0)$ is true after every iteration.
+\end{proof}
+
+\end{document}

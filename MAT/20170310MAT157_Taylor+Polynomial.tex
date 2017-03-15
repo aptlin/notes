@@ -1,0 +1,136 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{MAT157}{}{Taylor Polynomial}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Taylor Polynomial}
+
+For $n\in\NN$, $a\in\SD(f)$ and an $n$-differentiable function $f$, we
+define a Taylor polynomial as
+\begin{equation*}
+  P_{n, a, f} = \sum_{i=0}^n \frac{f^{(i)}(a)}{n!}(x-a)^i.
+\end{equation*}
+
+We have already shown that $\lim_{x\to a } \frac{f(x) - P_{n, a, f}(x)}{(x-a)^n} = 0$.
+
+If $f$ is $n$-times differentiable at $x=a$, $P_{n,a, f}$ is well-defined.
+
+However, even if $f$ is not $n$-times differentiable, a polynomial $Q(x)$ can
+be found such that $\lim_{x\to a } \frac{f(x) - P(x)}{(x-a)^n} = 0$.
+
+In this situation, $f$ is said to agree mith $P$ up to order $n$.
+
+\begin{theorem}
+  If $P, Q$ are polynomials of degree less that or equal to $n$, and $P$ agrees with $Q$ up to order $n$, then $P = Q$.
+\end{theorem}
+
+\begin{proof}
+  \hfill
+
+  Let $f = P - Q$ be a polynomial of degree less than or equal to $n$.
+
+  Write $f(x) = a_0 + a_1(x-a) + \cdots +a_n(x-a)^n$. Note that
+  $\lim_{x\to a} \frac{f(x)}{(x-a)^n} = 0$ , and thus for all
+  $k\leq n$ we have $\lim_{x\to a} \frac{f(x)}{(x-a)^k} = 0$.
+
+  Therefore, we obtain that $\lim_{x\to a} f(x) = 0$, and thus $a_0 =0$.
+
+  By induction, $a_k= a_1$ for $k\in[0, n]\cap \NN$.
+\end{proof}
+
+\begin{corollary}
+  Suppose that  $f(x)$ is a $n$-times differentiable at $x=a$ and $P$ is a polynomial of degree less than or equal to $n$, which agrees with $f$ up to order $n$. Then $P = P_{n, a, f}$.
+
+  \begin{proof}
+    \hfill
+
+    Observe that $P(x)$ and  $P_{n, a, f}$ both agree with $f$ up to order $n$.
+
+    Therefore, 
+    \begin{equation*}
+      \lim_{x\to a} \frac{P(x)-f(x)}{(x-a)^n} + \frac{f(x)-P_{n, a, f}(a)}{(x-a)^n} = 0.
+    \end{equation*}
+
+    Then $\lim_{x\to a} \frac{P-P_{n, a, y}}{(x-a)^n} = 0$, which proves the result.
+
+  \end{proof}
+\end{corollary}
+
+Consider $\arctan x = \int_0^{k} \frac{1}{1+x^{2}}$ for $x\in(-1, 1)$.
+
+Note that $\frac{1}{1+t^2} = 1-t^2+t^4s-\cdots +(-1)^2p^{2n}$.
+
+Therefore,
+$\arctan x = \int_0^x
+\frac{1}{1+t^2}=\int_0^a(1-t^2+t^4+\dots+(-1)^{n}t^{2n} +
+\frac{(-1)^{n+1}t^{2n+2}}{1+t^{2}} \dif t$.
+
+Thus,
+
+\[\arctan x = x- \frac{x^3}{3!}+\frac{x^5}{5!} + \dots + (-1)^n \frac{x^{2n+1}}{2n+1} + \int_0^x \frac{(-1)^{n+1}t^{2n+2}}{1+t^2}\dif t\].
+
+The right hand side but for the last term \textit{should be} $P_{2n+1, 0, \arctan}$.
+
+This would hold if it agrees with $\arctan x$ up to order $2n+1$.
+
+Consider $\lim_{x\to 0} \frac{\frac{(-1)^{n+1}x^{2n+2}}{1+x^2}}{(2n+1)x^{2n}}$.
+
+Thus, taking an absolute value, we obtain that
+
+
+\begin{equation*}
+  \lim_{x\to 0} \frac{\frac{\abs{x}^{2n+2}}{1+x^2}}{(2n+1)\abs{x}^{2n}} = \lim_{x\to 0} \frac{\frac{\abs{x}^2}{1+x^2}}{2n+1} < \lim_{x\to 0} \frac{\abs{x}^2}{2n+1} = 0.
+\end{equation*}
+
+
+
+
+\end{document}

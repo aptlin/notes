@@ -1,0 +1,116 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{MAT157}{}{Taylor Approximation}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+Suppose $f(x)$ is given, and suppose 
+\begin{equation*}
+  f(x) = f(a) +R.
+\end{equation*}
+
+Thus, $R = f(x) - f(a) = \int_a^xf'(t)\dif t$. 
+
+Note that
+\begin{equation*}
+\int_a^x f'(t)\dif t = [f'(t)(t-x)]^x_a-\int_a^xf''(t)(t-x)\dif t =
+0-f'(a)(a-x)-\int_a^xf''(t)(t-x)\dif t.
+\end{equation*}
+
+Therefore, for $f(x) = fax) + R_1$ we obtain that 
+\[f(x)=f(a)+f'(x)(x-a) + \int_a^xf''(t)(x-t)\dif t.\]
+
+Similarly, for $R_2= \int_a^xf''(t)(x-t)\dif t$, we get that
+\begin{align}
+  f(x) &= f(a) +f'(a)(x-a) +\frac{f''(a)}{2}(x-a)^2+\int_a^xf'''(t)\frac{(x-t)^2}{2}\dif t.
+\end{align}
+
+We therefore can prove by induction that
+\begin{align}
+  f(x) &= f(a) +f'(a)(x-a) +\cdots+f^{(n)}(a)\frac{(x-a)^{n}}{n!}+\int_a^xf^{n+1}(t)\frac{(x-t)^n}{n!}\dif t, 
+\end{align}
+
+and thus $f(x) = P_n(x) +R_n(x)$ for $R_n(x) = \int_a^xf^{(n+1)}(t) \frac{(x-t)^n}{n!} \dif t$.
+
+
+If, for example, $f(x) = \sin x$, then for all $k\in\ZZ^+$ and for all
+$x\in D(f)$, then $\abs{f^{(k)}(x)}\leq 1$, and hence
+$\abs{R_n(x)}\leq \int_a^x \frac{(x-t)^n}{n!}\dif t =
+\frac{(x-a)^{n+1}}{(n-1)!}$. In this way, if we are to compute the
+approximation of $\sin(1)$ to within 0.001, then any $n\in\ZZ^+$ such
+that $(n+1)! > 1000$ will suffice.
+
+\subsection{Lagrange Form}
+
+Assume that a bound for $f^{(n+1)}$ is known on the interval from
+$a$ to $x$. Therefore, $m \leq f^{(n+1)}(t) \leq W$ for any $t$ between
+$a$ and $x$, which means that 
+\begin{align}
+  \abs{R_n(x)}&\leq \int_a^xM \frac{(x-t)^n}{n!}\dif t\\
+              &\leq M \frac{\abs{x-a}^{n+1}}{(n+1)!}.
+\end{align}
+
+If $f^{(n+1)}$ is continuous, then the IVT shows that there exists
+$z\in\RR$ between $a$and $x$ such that
+$R_n(x) = f^{(n+1)}(z) \frac{\abs{x-a}^{n+1}}{(n+1)!}$.
+
+Another way to see it is by looking at $P_{n+1}(x)$.
+
+This form of a remainder is called a \textbf{Lagrange form}.
+
+Suppose now that that $f(x) = e^x$.
+
+Then $R_n(1) = \frac{e^z}{(n+1)!}$ for some $z\in [0, 1]$.
+
+Since $\log(4) >1$, we know that $e< 4$, and thus $R_n(1) < \frac{4}{(n+1)!}$. 
+
+Therefore, $f(1) = 2 \nicefrac{2}{3}+R_3(1)$.
+
+\end{document}
