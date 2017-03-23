@@ -1,0 +1,86 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{Frank Thome - Perspectives in Arithmetic Statistics}{}{}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Analytic Perspectives in Arithmetic Statistics}
+
+Let $V = V(\ZZ)$ be a latics of binary quadratic forms $au^2+buv+cv^2$ such that $a, b, c\in \ZZ$.
+
+Note that there is an action of $\SL_2(\ZZ)$. 
+
+We also define a discriminant $\Disc(f) = b^2-4ac$.
+
+We know that $\Disc(g\circ f) = \Disc(f)$ for all $g\in\GL_2(\ZZ)$.
+
+Let $V' = \set{v\in V; \Disc(v) \neq 0}$.
+
+We also know that the action of $\GL_2(\CC)$ on $V'(\CC)$ has one orbit, $\GL_2(\RR)$ on $V(\FF)$ has two orbits, while actions of $\GL_{2}(\ZZ)$ and $\SL_2(\ZZ)$ on $V'(\ZZ)$ have infinitely many orbits!
+
+Therefore, there is \textsl{more information stored} in $\ZZ$.
+
+Let $h(D)$ be  the number of orbits of discriminant $D$. It can be shown that it is always finite and greater than one for $D \equiv 0, 1 \mod 4$.
+
+\textbf{Gauss' Conjecture (now Theorem)}: If $D < 0$ and $h(D) = 1$,
+then we have that $D\in \set{-3, -4, -7 , -8, -11, -19, -43, -67, -163}$.
+
+\begin{theorem}
+
+For each $D$, the set of equivalence classes of BQFs of $\Disc D$  forms an abelian group.
+\end{theorem}
+
+\begin{remark}
+$\Cl (D) \to \Cl(\theta)$ is an isomorphism such that
+$\theta = [1, \frac{D+\sqrt{D}}{2}]\suq
+\theta_Q(\sqrt{\theta_Q}(\sqrt{D})$.
+\end{remark}
+
+\end{document}

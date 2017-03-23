@@ -1,0 +1,99 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{MAT247}{}{Minimal Polynomial}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Review}
+
+We have show that a Jordan Canonical Form is unique using dot diagrams
+for $T_{K_{\lambda}}$ and any eigenvalue $\lambda$.
+
+For this purpose we have found a cycle basis for $K_{\lambda}$, and,
+ordering subbases by their sizes with the subbasis of greatest size
+being the first, we can construct a dot diagram, which has several
+nice properties.
+
+For example, the number of dots in the diagram is equal to the
+dimension of $K_{\lambda}$, and the number of dots in the first $s$
+rows is equal to the nullity of $(T-\lambda I)^s$.
+
+We now can finde a Jordan Canonical basis for the sequences such that,
+for example, $\ker (A-2i) = \spn{\cv{0;1;0;0}, \cv{0;0;0;1}}$.
+
+Taking $(A-3I) v= \cv{1;-1;-1}$, we can solve for $v$, and thus obtain a cycle basis. Having done that, the JCF is easily found.
+
+Suppose now a dot diagram is given. Starting in the top left, we
+obtain thatfor vectors $v_{1}$ and $v_2$ such that $(A-I)v_1 $ and
+$(A-I)v_2$ are in $\ker(A-I)\cap \img (A-I)$. We already saw that
+$\rank (A-I) = 2$, and hence these form a matrix.
+
+We now solve for $v_{1}$ and $v_{2}$ by noting that they are
+eigenvectors to obtain  $\cv{0;0;1;0;0}$ and $v_2=\cv{0;0;0;1;0}$.
+
+Extending $(A-I)v_{1}$, $(A-I)v_{2}$ to a basis of $\ker(A-I)$, eg by
+taking $v_3 =\cv{0;0;0;1;-1}$, we can see that $[L_{A}]_{\beta}$ is in
+JCF.
+
+We can therefore formulate a general strategy for finding  Jordan Canonical basis:
+
+\begin{itemize}
+\item Figure out dot diagrams
+\item For a fixed eigenvalue $\lambda$, working from left to right in
+  the 1st row of the dot diagram (among initial eigenvectorrs. 
+\item Solve for the end vectors by considering the system of the form $(T-\lambda I)^{l-1}v =$ initial vectors.
+\end{itemize}
+\begin{example}
+
+  For the first two initial vectors we have that $(T-\lambda I)^2v_1$
+  and $(T-\lambda)^2v_2 \in \ker(T-\lambda)\cap(\img(T-\lambda I)^{2})$.
+
+\end{example}
+\end{document}

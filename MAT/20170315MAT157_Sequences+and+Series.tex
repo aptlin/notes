@@ -1,0 +1,75 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{MAT157}{}{Sequences and Series}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Sequences and Series}
+
+\begin{definition}
+A sequence is a list of numbers $a_1, a_2, \dots ,a_n, \dots$.
+\end{definition}
+
+Sequences can be thought as a function from $\NN\to \RR$, with $na_n\in \RR$.
+
+\begin{definition}
+  Let $L$ be a number such that for any $\epsilon_{n} > 0$ there
+  exists $N$ such that $\abs{a_n-L} < \epsilon$ for all values of $n>N$.
+
+  If $\set{a_n}$ has a limit $L$, we say that it \textbf{converges} to $L$. If there is no limit, then a sequence is said to diverge.
+
+  Take $c_n=$For any $M>0$, there exists $N$ so that $c_n >M$ and for all $n> N$. In this case we say that $f(n)$diverges.
+
+  Consider now the sequence such that $h_n=1+ \frac{1}{n}$ if and only if $n$ is odd and $h_n=0$ if $n$ is even.
+
+  We define $\lim_{n\to \infty}h_m = L$, which means that for a given $\epsilon > 0$ there exists $N >0 $ such that $h_{n < L+\epsilon}$ forr $n> N$ and for any $\epsilon >0$ and $M$ there exists $n >M$ such that $\abs{h_n - L}< \epsilon$.
+\end{definition}
+
+\end{document}

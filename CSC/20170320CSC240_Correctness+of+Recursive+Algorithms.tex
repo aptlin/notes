@@ -1,0 +1,161 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{CSC240}{}{Correctness of Recursive Algorithms}}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+\usepackage{program}
+\begin{document}
+
+\section{Correctness of Recursive Algorithms}
+
+Consider an algorithm of integer multiplication (multiply an $m$-bit number $a$ and an $n$-bit number $b$).
+
+\begin{description}
+
+\item[Preconditions:] 
+\hfill
+
+\begin{itemize}
+\item $m, n$ are positive integers
+\item $-2^m < a < 2^{m}$ and $-2^n < b < 2^n$ for any $a, b\in\ZZ$.
+\end{itemize}
+\item[Postconditions:] return $a\times b$.
+\end{description}
+
+Suppose that $n$ and $m$ are even.
+
+Let $a'$, $a''$ be such that
+$a = a' \times 2^{\nicefrac{m}{2}} + a''$.
+
+Similarly, let $b'$, $b''$ be such that
+$b = b' \times 2^{\nicefrac{n}{2}} + b''$.
+
+Let $T(m, n)$ be the worst case time to perform this algorithm.
+
+Then
+$a\times b = ( a' \times 2^{\nicefrac{m}{2}} + a'') \times (b' \times
+2^{\nicefrac{n}{2}} + b'')$, and hence
+$T(m, n) = 4T(\nicefrac{m}{2}, \nicefrac{n}{2}) + c(m+n)$ for some
+constant $c$.
+
+When $m=n$, we obtain that $T(n, n) = 4T(\nicefrac{n}{2}, \nicefrac{n}{2}) + 2c n$.
+
+By Master Theorem, $T(\nicefrac{n}{2}, \nicefrac{n}{2}) \in \Omega (n^2)$.
+
+Consider now another algorithm:
+
+F($a, b, m, n$)
+
+\begin{program}
+\IF n =1
+\THEN \IF b = 0 \THEN | return | 0 
+\ELIF b = -1 \THEN | return | -a
+\ELSE | return | a 
+\FI
+\FI
+\IF m = 1
+\THEN \IF a = 0 \THEN | return | 0
+\ELIF a = -1 \THEN | return | -b
+\ELSE | return | b
+\FI
+\FI
+n' \gets n \div 2
+a' \gets a \div 2^{n'}
+a''\gets a \mod 2^{n'}
+m' \gets m \div 2
+b' \gets b \div 2^{m'}
+b''\gets b \mod 2^{m'}
+c \gets F(a', b', n-n', m')
+d \gets F(a'', b'', n', m')
+e \gets F(a'-a'', b'-b'', n-n', m-m')
+|return | c\times 2^{n'+m'} + (c+d-e) \times 2^{*} + d
+\end{program}
+
+Let $P(m, n) = $ \textquote{$\forall a\in\ZZ \forall b\in\ZZ$ if $-2^{n}< a < 2^n$ and $-2^m < b < 2^m$ then $F(a, b, m, n)$ halts and returns $a\times b$}.
+
+\begin{proof}
+  \hfill
+
+  Let $(m, n) \in \ZZ^m\times \ZZ^n$ be arbitrary. Assume $P(u, v)$ is
+  true for all $(u, v) \in\ZZ\times \ZZ$ such that $u<m$ and $v < n$.
+
+  If $n=1$, then $b$ is a $*$-bit integer, $b \in \set{-1, 0, 1}$.
+
+If $b = 0$, then $a\times b = 0$ which is return on line 2. If b$ = - 1$ then $a\times b = -a$, which is returned on line 3. 
+
+If $b=1$, then $a\times b = a$, which is returned on line 4. 
+
+When $m=1$, there is a similar argument. Therefore, $P(1, 1)$ is satisfied.
+
+Suppose $m, n > 1$.
+
+Then $1 \leq \floor{\nicefrac{n}{2}}\leq \ceiling{\nicefrac{n}{2}} < n$ and $1 \leq \floor{\micefrac{m}{2}}\leq \ceilimg{\micefrac{m}{2}} < m$.
+
+Note that $n' = \floor{\nicefrac{n}{2}}$ and $m-m' = \ceiling{\nicefrac{m}{2}}$, so $P(m', n')$ and $P(m'', n'')$ are true.
+
+Let $a, b$ be arbitrary integers with $-2^{m} < a < 2^{m}$ and $-2^{n} <b < 2^n$.
+
+Then $a = a'\times 2^{m'}+a''$ and $b= b'\times 2^{n'}+b''$, while
+$-2^{m'}<a''< 2^{m'}$ and $-2^{n'} < b' < 2^{n'}$.
+
+Similarly, we obtain that $-2^{m-m'}< a' < 2^{n-m'}$ and $-2^{n-n'}<b' < 2^{n-n'}$.
+
+Thus, $-2^{m-m'} < a' - a'' < 2 ^{m-m'}$ and
+$-2^{n-n'}< b'-b'' < 2^{n-n'} $.
+
+Then $c = a' \timess b'$ by $P(m-m', n-n')$ and line 15 and $d = a''\times b''$ by $P(m', n')$ and line 16.
+
+We also have $e = (a'-a'')\times(b'-b'')$ by $P(m-m', n-n')$ and line 17.
+
+\begin{description}
+
+\item[Exercise:] Continue the proof.
+
+\end{description}
+\end{proof}
+
+
+\end{document}

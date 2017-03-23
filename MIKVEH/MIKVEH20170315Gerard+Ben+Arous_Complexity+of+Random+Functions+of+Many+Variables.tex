@@ -1,0 +1,85 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{Gerard Ben Arous}{}{Complexity of Random Functions of Many Variables}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Complexity of Random Functions of Many Variables}
+
+A random smooth function of many variables can be exponentially
+complex. Kac-Rice formulae (see Adler Taylor or Azais-Wschebor), and
+the language of RMT, provide a bais mathematical tool to study the
+complexity of random functions.
+
+Random smooth functions on the sphere in high dimensions (also known as spherical Spin Glasses) is well understood via a simple modification of the Gaussian Orthogonal Ensemble, i.e. $N\times N$ real symmetric random matrices, where the entries are i.i.d Gaussian.
+
+The general question provides cues to important problems in statistics and machine learning.
+
+\subsection{Minimizing Cubics}
+
+Consider  a random homogeneous polynomial $f$. What is the minimum value of $f$ on $S^{N-1}$?
+
+Some algorithms, like a gradient descent, a stochastic gradient
+descent and Langevin dynamics, can minimize $f$. Will the allgorithm
+get to or near to the minimum or stay stuck above it? If it does get
+stuck, then where?
+
+We know that the minimun of $m_N$ is of order $\sqrt{N}$. A
+minimization algorithm will probably get stuck at the threshold
+$-E_{\infty}\sqrt{N}$, with $E_{\infty} \approx 1.633$, or slightly
+above it (see AISTATS 2015 for a stochastic gradient descent
+approach).
+
+To understand the problem fully, we need some geometric intuition. How does the function look like near its low points?
+
+\textit{(see Anna Choromanska, Mikael Henaff, etc)}
+
+]](see \subsection{}
+\end{document}

@@ -1,0 +1,160 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{MAT157}{}{Sequences and Series}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+\section{Sequences}
+
+Consider a function $f(x) = e^{-x}\cos(2x+1)$.
+
+We can use the Squeeze Theorem to show that $\lim_{x\to \infty}f(x) = 0$.
+
+Therefore, $\lim_{n\to \infty}a_n = 0$.
+
+\begin{theorem}
+  If $a_n = f(n)$, for some function $f(x)$ and
+  $lim_{x\to \infty} f(x) = L$, then $\lim_{n\to \infty} a_n = L$.
+\end{theorem}
+
+\begin{example}
+
+  Consider $a_{n} = a^n$ for some real constant $a$.
+
+  If $a > 0$, define $f(x) = a^x = e^{x\log a}$.
+
+  Since $\lim_{x\to \infty} e ^{x\log a} = \exp(\lim_{x\to \infty} x \log a) =
+  \begin{cases}
+    0, \text{ if } \log a < 0\\
+    \infty, \text{ if } \log a > 0
+  \end{cases}$, then \[\lim _{n\to \infty}a_{n} =
+  \begin{cases}
+    0, \text{ if } 0 < a \leq 1\\
+    \infty, \text{ if } a  > 1
+  \end{cases}\].
+
+If $a <0$,then $a_{n} = (-1)^n \abs{a}^n$, and hence $0$ if
+$\abs{a}< 1$. If $\abs{a}> 1$ or $a = -1$, then the sequence diverges.
+
+\end{example}
+
+\begin{example}
+
+  Suppose that $f(x) = \sin(\pi x)$. Then $a_n = f(n) = 0$, and thus
+  $\lim_{x\to \infty} a_n = 0$, but $\lim_{x\to \infty}\sin x $ does
+  not exists.
+
+\end{example}
+
+A sequence is said to be bounded if $\abs{a_n} < M$ and bounded above if $a_n< M$.
+
+A sequence is said to be strictly increasing if $a_n < a_{n+1}$ and nondecreasing if $a_n\leq a_{n+1}$.
+
+\begin{theorem}
+  If $\set{a_{n}}$ is bounded and nondecreasing, then $\set{a_n}$ converges.
+\end{theorem}
+
+\begin{proof}
+  \hfill
+
+  Let $L  = \sup a_n$.
+
+  Suppose some $\epsilon > 0$ is given.
+
+  Therefore, there exists $M$ such that $L-a_M< \epsilon$ .
+
+  But for any $n \geq M$, we have that $a_n\geq M$. So
+  $L - a_n\leq L-a_m <\epsilon$, which means that
+  $\lim_{n\to \infty}a_n = L$.
+\end{proof}
+
+Suppose now that $\lim_{x\to\alpha}f(x) = L$.
+
+If $\set{a_n}$ is a sequence, then the domain of $f(x)$ so that
+$a_n\neq \alpha$ for any $n\in\RR$ and
+$\lim_{x\to \infty}a_n = \alpha$, then $\lim_{n\to\alpha} f(a_n) = L$.
+
+More is true. If $\lim_{n\to\infty}f(a_n) = L$ for all sequences of the stated type, then $\lim_{x\to \alpha}f(x) = L$.
+
+Note that we can always find a nondecreasing or a nonincreasing subsequence.
+
+\begin{theorem}
+A bounded sequence always has a convergent subsequence.
+\end{theorem}
+
+\begin{proof}
+  \hfill
+
+Pick a nondecrueasing or nonincreasing subsequence. Since it is bounded, we know that it has a limit.
+\end{proof}
+
+\section{Series}
+
+In our current framework, $\sum_{i=1}^{\infty}$ does not make sense.
+
+We define the $n$th partial sumas $S_n = \sum_{i=1}^na_n$.
+
+If the sequence $\set{s_n}$ converges, say to $S$, then we say that
+$\sum_{n=1}^{\infty} a_n $ converges and
+$\sum_{n=1}^{\infty} a_n = S$.
+
+\subsection{Geometric Series}
+
+Remember that $\sum_{n=0}^{\infty}r^n= \frac{1-r^{n+1}}{1-r}$.
+
+Do these partial sums tend to a limit?
+
+If $\abs{r}< 1$, then $r^{n+1} \to 0$.
+
+So $\sum_{n=0}^{\infty}r^n = \frac{1}{1-r}$ converges.
+
+When $r = 1$ and $r=-1$, it diverges.
+
+
+\end{document}

@@ -211,4 +211,132 @@ particular place in the loop is reached (often the beginning or end).
   By induction, $z = x(y-0)$ is true after every iteration.
 \end{proof}
 
+To prove that an algorithm terminates, we need to show that some nonnegative integral quantity decreases each time through the loop.
+
+\begin{lemma}
+If $x\in \ZZ$, $y\in\NN$, and the algorithm runs, it eventually halts.
+\end{lemma}
+
+\begin{proof}
+  \hfill
+
+  Before the loop is executed, $w\gets y \in \NN$.
+
+  In each iteration of the loop, $w$ is decreased by 1, so it is a smaller natural number.
+
+  Hence $w$must eventually reach 0, which is the exiting condition of
+  the loop. Thus the loop terminates and the algorithm halts.
+\end{proof}
+
+\begin{proof}[\textit{More Formal}]
+  \hfill
+
+  Suppose the loop does not terminate.
+
+  Let $w_{i}$ be the value of $w$immediately before the $i$th
+  iteration of the loop.
+
+  In each iteration of the loop $w$ is decreased by 1, so $w_{i+1}< w_i$.
+
+  Since the loop does not terminate, we have $w_i \neq 0$.
+
+  Thus, if $w_i\in\NN$, then $w_{i+1}\in\NN$.
+
+  Also, we know that $w_1=y\in\NN$.
+
+  By induction, $w_1, w_2, w_{3, \dots}$ is a decreasing sequence of
+  natural numbers.
+
+  By the Well-Ordering Principle, the set of elements in this sequence
+  has a smallest element.
+
+  Suppose that $w_{j}$ is the smallest element.
+
+  But $w_{j+1}<w_{j}$, which contradicts the assumption that $w_j$ is
+  the smallest element. Thus, the loop eventually terminates.
+\end{proof}
+
+\begin{proof}
+  \hfill
+
+  Prove by induction that $w_i=y -i$.
+
+  Then $w_y = 0$, and so the algorithm terminates.
+\end{proof}
+
+Now we consider the algorithm of multiplication by shifting and addition.
+
+
+MULT(m, n)
+\begin{program}
+  x \gets m
+  y \gets n
+  z \gets 0
+  \WHILE x \neq 0 \DO
+  \IF x \mod 2 = 1
+  \THEN z \gets z+y
+  x \gets x | div | 2
+  y \gets y \* 2
+  \FI
+  \OD
+  |return | z
+\end{program}
+
+Preconditions: $m\in \NN$, $n\in \RR$
+
+Postconditions: $z=mn$
+
+To derive loop invariants, it is worthwhile to look at examples.
+
+Suppose $m=11 = 1011_2$, $n=20 = 10100_2$.
+
+Let $x, y \neq z$ denote the values of $x, y\neq z$ immediately after the iteration $i$.
+
+Therefore,
+
+\begin{equation*}
+\begin{matrix}
+  i & x_i & (x_i)_2 & x_i\mod 2 & y_i & z_i \\
+  0 & 11 & 1011 & 1 & 20 & 0\\
+  1 & 5  & 101  & 1 & 40 & 20\\
+  2 & 2  & 10   & 0 & 80 & 60\\
+  3 & 1  & 1    & 1 & 160 & 60\\
+  4 & 0  & 0    & 0 & 320 & 220
+\end{matrix} 
+\end{equation*}
+
+Let $m[k-1], \dots, m[0]$ denote the binary representation of $m$:
+\begin{equation*}
+m = \sum_{j=0}^{k-1}m[j]2^j.
+\end{equation*}
+
+Thus, $m[j]\in \{0, 1\}$ for $j=0, \dots, k-1$.
+
+Hence, $x_i = \sum_{i-i}^{k-1}m[j]2^{k-i}$ and $\floor{\nicefrac{m}{2}} = \floor{\sum_{j=0}^{k-1}m[j]2^{j-1}} = \sum_{i=1}^{k-1}m[j]2^{j-1}$.
+
+Note that $z_0 = 0$.
+
+Therefore, $z_{i+1} = z_i+m[i]\*n2^i$, and thus
+\begin{align}
+  z_{i+1} & = z_i+m[i]\*n2^i                                           \\
+          & = z_{i-1} + m[i-1]\* n 2^{i-1} + m[i]n2^{i}                \\
+          & = n\sum_{i=0}^{i}m[i]\*2^{i}                               \\
+          & = n(\sum_{j=0}^{k-1} m[j]2^j- \sum_{j=i+1}^{k-1}m[j]2^{j}) \\
+          & =n(m-x_{i+1}2^{i+1})                                           \\
+          & =nm-x_{i+1}y_{i+1}
+\end{align}
+
+\begin{corollary}[Partial Correctness]
+
+  Let $m\in\NN$ or $n\in\RR$.
+
+  If the algorithm MULT($m, n$) is run and it halts, then, when it
+  halts, $Z = nm$.
+\end{corollary}
+\begin{proof}
+  \hfill
+
+  From the termination condition of the loop $x=0$, so $z = nm -xy$, and by the result already obtained, $z = nm -xy = nm$.
+
+\end{proof}
 \end{document}

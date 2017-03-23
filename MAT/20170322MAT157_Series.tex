@@ -1,0 +1,132 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{MAT157}{}{Series}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+\section{Review}
+Suppose that $a_n \geq 0$, and let $s_n = \sum _{k=1}^na_k$.
+
+\begin{remark}
+Note that $a_n= s_n-s_{n-1}$.
+
+So if the series converges, then $\lim_{n\to \infty} a_n = \lim_{n\to\infty}(s_n- s_{n-1}) = 0$.
+\end{remark}
+
+\begin{theorem}
+If $\sum_{k=1}^{\infty} a_{k}$ converges, then $\lim_{n\to \infty} a_n = 0$.
+\end{theorem}
+\begin{remark}
+Note that the condition $\lim_{n\to\infty}a_n = 0$ is necessary but not sufficient.
+\end{remark}
+\section{Limit Comparison Test}
+
+We have already shown that if $a_i\leq b_i$ for all $i\in I$, then
+$\sum_{i\in I} a_{i}$ converges whenever $\sum_{i\in I}b_n$ converges.
+
+\begin{theorem}
+Suppose there exists a nonzero constant $c \in \RR$ and $N>0$ such
+that $\forall n \in N.(a_n \leq c b_n)$, then if $\sum_{n\in I} b_{n}$
+converges, then $\sum_{i\in I} a_{n}$ converges.
+
+\end{theorem}
+
+\begin{example}
+
+Consider $\sum_{n=1}^{\infty}\frac{1}{2n+1}$. 
+
+Since $\sum \frac{1}{n}$ diverges, so does $\sum \frac{1}{2n+1}$,
+because $\frac{1}{2n+1}> 3 \* \frac{1}{n}$ for $n > 1$.
+\end{example}
+
+\begin{corollary}
+ If $\lim_{in \to \infty} \frac{a_n}{b_n} = c \neq 0$, then $\sum a_n$ and $\sum b_{n}$ either both converge or both diverge.
+\end{corollary}
+
+\begin{proof}
+  \hfill
+
+If $\frac{a_n}{b_n} \to c$, then there exists $N\in\NN$ such that $\forall n\in N.\frac{a_n}{b_n} < c+1$ and hence the theorem applies.
+\end{proof}
+
+Consider $\sum_{n=1}^{\infty}\frac{1}{n^2}$. We can use the inerval test. Since $f'(x) = - \frac{2}{x^2} < 0$ , then $f$ is decreasing for $x > 0$.
+
+Note that
+$\int_{i=1}^{\infty} \frac{\dif x}{x^2} = \lim_{R\to \infty \int_1^R
+  \frac{\dif x}{x^2}}$, which is then equal to $1$. Since the integral converges, then the series converges.
+
+We call series in the form $\sum_{i=1}^{\infty}\frac{1}{n^{p}}$ a
+\textbf{$p$-series}.
+
+For $p>1$, almost exactly the same calulation show that $\int_{i=1}^{\infty} \frac{\dif x}{x^p}$ converges, then  $\sum \frac{1}{n^p}$ converges.
+
+\begin{example}
+
+Consider $a_n = \frac{1}{3^n+}$. 
+
+Then $\frac{a_{n+1}}{a_n} = \frac{1+ \frac{1}{3^{n}}}{3 + \frac{1}{7+\frac{1}{3^{n+1}}}}$.
+
+\end{example}
+
+\section{Ratio Test}
+\begin{theorem}
+If $\lim_{n\to \infty} \frac{a_{n+1}}{a_n}=r$ and 
+\begin{itemize}
+\item $r< 1$, then $\sum a_n$ converges
+\item $r> 1$, then $\sum a_n$ diverges
+\item $r = 1$, then the test is inconclusive.
+\end{itemize}
+
+\end{theorem}
+
+In the example above, $r=1$, and thus the sequence converges.
+
+We have seen that $\log x = \sum_{i=1}^n (-1)^{i+1}\frac{x^i}{i!}$.
+
+\end{document}

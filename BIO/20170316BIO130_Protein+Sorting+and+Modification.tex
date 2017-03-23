@@ -1,0 +1,250 @@
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{BIO130}{}{Protein Sorting and Modification}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Protein Sorting and Modification}
+
+Path of a transmembrane protein from translation to the plasma membrane (PM) proceeds as follows:
+\begin{itemize}
+\item cytosol $\to$ER
+  \begin{itemize}
+  \item translocation into the ER membrane (cotranslation translocation)
+  \item requires a signal sequence
+  \end{itemize}
+\item ER $\to$ Golgi
+  Glycolysation lipids and proteins go in the Golgi.
+\item Golgi $to$ PM
+\end{itemize}
+\subsection{Integral Membrane Protein}
+
+Synthesis of an integral membrane protein still involves SRP and SRP receptors.
+
+Hydrophobic transmembrane segment makes up the internal signal
+sequence.
+
+Orientation of the protein depends on the distribution of charges on the molecule. The more negatively charged side of the transmembrane segment is directed towards the ER lumen. 
+
+Translocator protein assumes a variety of configurations, and therefore allows for different ways of insertion.
+
+\subsection{Golgi Apparatus}
+
+The size of a Golgi apparatus
+
+Vesicles transpot proteins/lipits from the ER. The side which is close
+to the endoplasmic reticulum is called a \textit{cis side}.
+
+Each protein is inserted into the membrane in the ER in a specific
+manner. This protein assymetry is maintained through the vesical
+point even beyond the insertion by a translocon protein.
+
+\subsection{Lysosomes and Endosomes}
+
+% On endocytosis, something can get into the endosome.
+
+% Eventually, when the majority of what is endocytosed, they
+
+Early endocytosed material is found in the early endosome. Lysosomal proteins delivered in vesicles from the Golgi are usually degested and eventully become called as late endosome
+
+\subsection{Lysosomes are the main site of intracellular digestion}
+
+Lysosomes, acidified by a proton pump, contain approx 40 types of hydrolytic enzimes. Note that ATP and ADP contentrations matter in determination whether the protein is of $f$- or $v$-type ointo th
+
+Lysosomes are the main site of intracellular difeston. Low pH requirement of enzymes is necessary to protect the contents of cytosol itself.
+
+\subsection{Formation of Lysosomes}
+
+Lysosomal proteins from the ER and Golgi are incorporated into endosomes at different stages.
+
+Plant vacuoles, occupying 30-90\% of the cell volume,  are typically acidic.
+
+A large increase in the volume of a plant cell can happen without increasing the total volume.
+
+The turgor pressure is an internal pressure of the cell that pushes it against  the cell walls.
+
+\subsection{Peroxidsomes}
+
+This agent uses molecular oxygen to oxidise chain reactions.
+
+\section{Protein Sorting}
+
+There are two types of sorting: post-translation and co-translational. When in mitochondria or plastids, post-translational protein
+
+How does a nuclear protein get into the nucleus? Transport is gated, and the process proceeds via the nuclear pore complexes.
+
+\subsection{Gated Transport}
+
+Nuclear pore complexes provide selective transport of macromolecules,
+as well as free diffusion of small molecules (< 50000 daltons).
+
+% \subsection{Nuclear Import Signal Sequence}
+
+% \item A protein with an intact nuclear import signal is found in the nucleus
+
+
+\subsection{Estrogen Receptors}
+
+The Estrogen Receptor is a ligand-modulated regulator of
+transcription. When estradol is not present, then estrogen receptor is
+in the cytosol.  When estradiol enters the cell, it binds to the
+estrogen receptor. Ligand-bound ER moves into the nucleus thorugh
+NPCs. Estradiol then binds to nehancer sites in the genome and
+activates transcription of target genes.
+
+\section{Vesicles}
+
+\subsection{Cytoskeleton}
+
+\begin{itemize}
+\item Provides structural support
+\item Postions organelles
+\item Directs vesicular transport
+\item Involved in locomotion
+\item Required for cell divison
+\end{itemize}
+
+There are three types of filaments:
+
+\begin{itemize}
+\item microfilaments
+
+  Actin, diam = 5-9 nm
+\item intermediate filaments
+
+  intermediate filament proteints, diam = 10 nm
+
+  
+\item microtubules (13 of them form a hollow cylinder)
+
+  tubulin, diam =  25 nm
+\end{itemize}
+\subsubsection{Immunofluorescence}
+
+A techinque used to determine the location of proteins with in the
+cell. Cells are fixed, and a primary antibody is used binding
+specifically to the protein of interest. A secondary antibody binds to
+the first antibody and is covalently tagged with a fluorescent
+molecule. A fluorescence microscope is used to excite the fluorescent
+molecule and visualise the light emitted.
+
+\subsubsection{Limits of Light Microscopy}
+
+The light microscope has a resolution limit due to diffraction. With an electron microscope, where the wavelength of the beam is much shorter, the resolution is better by a factor of about 250.
+
+\subsection{Dynamics}
+
+For cell motility/crawling, the actin filaments must rapidly
+disassemble and reassemble at the leading edge.
+
+Most interphase microtubules radiate from one microtubule organising
+centre, and they are recognised to form the bipolar mitotic spindles
+in dividing cells.
+
+\subsection{Microtubules}
+
+Microtubules are involved in intracellular transport, sturctural
+support, cell organisation, mitosis processes and cell motility
+(flagella and cillia). Microtubules are made of tubulin, long hollow
+tubes, which are stiff and inextensible.
+
+The structure of microtubules is made of individual subunits of
+$\alpha$-tubuling and $\beta$-tubulin. Two closely related globular
+proteins form tubulin heterodimers. This regular arrangement of
+$\alpha$ and $\beta$ subunits give the microtubule polarity. It has a
+plus end $\beta$ and a minus end $\alpha$.
+
+\subsection{Microtubule Protofilaments}
+
+13 parallel protofilamets make up the hollow tubule. All the bonds
+between the individual subunits are non-covalent. The bonds between
+protofilaments are weaker than the bonds within each
+protofilament. Growth and disassembly of microtubules can occur at the
+ends.
+
+After the heterodimers have been in this structure for a while, GTP is cut to GDP.
+
+If there are GDP-bound heterodimers at the end, they will disassemble.
+
+In vitro, microtubule growth is faster at the plus end.
+
+\subsection{Tubulin Dimers}
+
+Free dimers are bound to GT. Tubulin subunits are enzymes that hydrolyse GTP. When this occurs in the filament, GDP is trapped in the tubulin subunits.
+
+The microtubule GTP cap stabilises the plus end, which is the faster growing end. The GTP cap stabilises the plus end and favours tubule growth. Dimers in the T form bind more strongly to other dimers in the tubule. Hydrolysis of bound GTP reduces the binding affinity of the subunit.
+
+% Eventualy the $T$-form end wil turn the .
+\subsection{Microtubules}
+In cells microtubules are nucleated at the MTOC (microtubule
+organising gentre). The centrosome is a MTOC which nucluates the
+formation of microtubules, with the minus end stabilised and the plus
+end dynamic.
+
+\subsection{$\gamma$-Tubulin ath the MTOC}
+
+$\gamma$-TuRCs is a complex of proteins forming a ring
+structure. $\gamma$-Tubulin binds the ring structure and acts as an
+attachment site for $\lambda/\beta$
+
+Nerve cells in the spinal cord can exted to the finger tips. These
+neurons can be more than a meter long.
+
+Kinesin and dyening are motor proteins that walk along microtubules.
+
+Dyenin movement is towards the cell body, while kinesin movement is towards the axon terminus.
+
+Organelles are assocated with microtubules, which are walked to specific location.
+
+\subsection{Movement of vesicles through the endomembrane system}
+
+The Golgi apparatus is also a MTOC but it's different from the centrosome.
+
+
+\end{document}

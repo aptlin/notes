@@ -1,0 +1,101 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{MAT157}{}{Irrationality of $e$}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Irrationality of $e$}
+
+Note that
+$e = 1+ \sum_{i=1}^n\frac{1}{i!}+ R_n(1) = 1+
+\sum_{i=1}^n\frac{1}{i!}+ \frac{e^t}{(n+1)!}$ for some $t\in[0, 1]$.
+
+Note that $e^{x}$ is increasing, and thus $e^t\leq e < 3$.
+
+Therefore, $R_n(1) \leq \frac{3}{(n+1)!}$.
+
+\begin{theorem}
+$e$ is irrational.
+\end{theorem}
+
+\begin{proof}
+  \hfill
+
+  Suppose that $e = \frac{a}{b}\in\QQ$.
+
+  Choose $n> b$, $n \geq 4$. Then
+  
+  \begin{equation*}
+    \frac{a}{b} = 1+ \sum_{i=1}^n{1}{i!} + R_n(1)
+  \end{equation*}
+
+  Therefore, $n! \frac{a}{b} = n! + n! \sum_{i=1}^{n} \frac{1}{i!}+ n! R_{n}$.
+
+  Therefore, $n!R_n \in \ZZ$.
+
+  But $R_n \leq \frac{3}{(n+1)!}$, and thus
+  $n!R_n \leq \frac{3}{n+1} \leq \frac{3}{5}$ and hence it is not an
+  integer.
+
+  Therefore, by contradiction, $e$ is irrational.
+\end{proof}
+
+\begin{theorem}
+$e$ is not algebraic.
+\end{theorem}
+
+\begin{proof}
+  \hfill
+
+Exercise.
+\end{proof}
+
+
+\end{document}

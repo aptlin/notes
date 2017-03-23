@@ -1,0 +1,247 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{MAT247}{}{Uniqueness of JCF}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Uniqueness of JCF}
+
+\subsection{Review}
+
+We have shown that, if $\lambda_i$ are $r$ distinct eigenvalues and $\FF$ is algebraically closed, then $V=\bigoplus_{i=1}^{r} K_{\lambda_i}$.
+
+For each $K_{\lambda}$, there is a basis of a disjoint union of cycles. The union $\beta = \bigcup_{i=1}^r \beta_{\lambda_i}$ is a basis of $V$ such that $[T]_{\beta}$ is in JCF.
+
+\begin{example}
+
+  Consider the matrix
+  $A = \begin{pmatrix}
+    2  & 2  & 3 \\
+    1  & 3  & 3 \\
+    -1 & -2 & -2
+  \end{pmatrix}$ for $\FF = \RR$ and $V = \FF^3$.
+
+  The characteristic polynomial $-(t-1)^3$ splits, and thus the only
+  eigenvalue is $1$. Hence, $V = K_1$.
+
+  We know that there is a basis which is a disjoint union of
+  cycles. There are three possibilities:
+
+  \begin{enumerate}
+  \item one cycle of length 3
+  \item two cycles of length 2 and 1 
+  \item three cycles of length 1
+  \end{enumerate} 
+
+  We compute the eigenspace:
+
+  \begin{align}
+    A-I = \begin{pmatrix}
+      1  & 2  & 3 \\
+      1  & 2  & 3 \\
+      -1 & -2 & -3
+    \end{pmatrix}, 
+  \end{align}
+
+  and thus $\rank(A-I) = 1$, which means that $\nll (A-I) = 2$.
+
+  Therefore, the third case is not possible, since in this case there must
+  be 3 linearly independent eigenvectors.
+
+  The first case is also not possible, since it implies that there
+  must be at least two linearly independent vectors in the range,
+  while $\nll (A-I) = 2$.
+  
+  Therefore, the second case applies.
+
+  Note that therefore the basis must be of the form $\{(A-I)y, y, z\}$.
+
+  Try $y = \cv{1;0;0}$. Therefore, $(A-I)y = \cv{1;1;-1}$.
+
+  Now take any vector $z\in \ker (A-I)$ that is orthogonal to the
+  initial vector $(A-I)y$, for example, $\cv{2;-1;0}$.
+
+  Therefore, $[A]_{\beta} =
+  \begin{pmatrix}
+    1 & 1 & 0\\
+    0 & 1 & 0\\
+    0 & 0 & 1 
+  \end{pmatrix}$.
+
+  \begin{remark}
+Note that $(A-I)^2 = 0$, since $(A-I)^2$ sends every basis vector $(A-I)y, y, z$ to $0$.
+  \end{remark}
+\end{example}
+
+We want to show that JCF is unique up to the reordering of blocks, given that the characteristic polynomial of $T \in \End(V)$ splits.
+
+For any eigenvalue $\lambda$ we can draw a dot diagram of $T_{K_{\lambda}}:K_{\lambda}\to K_{\lambda}$.
+
+Our plan is as follows:
+
+\begin{itemize}
+\item We can find a basis of $K_{\lambda}$ which is a disjoint union of cycles. Call this basis a \textbf{cycle basis} $\beta= \bigcup_{i=1}^r\beta_i$.
+\item We will order cycles by length $l_{1}\geq l_2 \cdots \geq l_r$, where $l_i$ is the length of $\beta_i$.
+\item Let the end vector of the cycle $\beta_{i}$ be $v_I$.
+\end{itemize}
+
+The dot diagram is then can be defined as follows
+
+\begin{equation*}
+  \begin{pmatrix}
+    \bullet (T-\lambda I)^{l_1-1}v_{1} & \bullet (T-\lambda I)^{l_2-1}v_2 & \dots & \bullet (T-\lambda I)^{l_r-1}v_{r}\\
+    \bullet (T-\lambda I)^{l_1-2}v_{1} & * & \dots & \vdots\\
+    \vdots & \vdots & \dots & \bullet v_r\\
+    \bullet (T-\lambda I)^2v_{1} & \bullet (T-\lambda I)^2v_2 & \dots & \\
+    \bullet (T-\lambda I)v_{1} & \bullet v_{2} & \dots & \\
+    \bullet v_1 & &\dots & 
+  \end{pmatrix}
+\end{equation*}
+
+The dot diagram consists only of the dots.
+
+We will show that the dot diagram of $T_{K_{\lambda}}$is unique, and does not depend on our choice of a cycle basis.
+
+% \begin{example}
+
+%   Possible diagrams when $\dim K_{\lambda} = 3$:
+
+% \end{example}
+
+\begin{theorem}
+
+  \label{thm-9}
+  For any $T \in \End(V)$ and $s\geq 1$ such that the characteristic
+  polynomial of $T$ splits, vectors corresonding to the dots in the
+  first $s$ rows of $[T]_{\beta}$ form a basis of
+  $\ker (T-\lambda I)^s$.
+\end{theorem}
+
+\begin{proof}
+  \hfill
+
+  Note that $\ker (T-\lambda I)^s \suq K_{\lambda}$.
+
+  Let $U = (T-\lambda I)^s \in \End(K_{\lambda})$, so that $\ker U = \ker (T-\lambda I)^s$.
+
+  In the dot diagram, $T-\lambda I$ moves up by one dot and sends the
+  first row to $0$. Therefore, $U = (T-\lambda I)^s$ moves up by $s$ dots and sends first $s$ rows to $0$.
+
+  Let $S_1, S_2$ be such that $S_1 = \set{x\in \beta; Ux = 0}$ and $S_2 = \set{x\in \beta; Ux \neq 0}$.
+
+  Then $U \in \Hom(S_2, \beta)$ is injective, because $U$ shifs up $s$ dots.
+
+  Therefore, the set $\set{Ux; x\in S_2}$ has a size of $\abs{S_2}$
+  and is linearly independent in $\img U$, which means that
+  $\dim \img U \geq \abs{S_2} $.
+
+  On the other hand, $S_1$ is linearly independent and is inside $\ker U$. Thus, $\nll U \geq \abs{S_1}$, which means that \[\dim K_{\lambda} = \rank U + \nll U \geq \abs{S_1}+\abs{S_2} = \beta = \dim K_{\lambda}.\]
+
+  By Rank-Nullity Theorem, $\nll U = \abs{S_1}$, and thus $S_1$ is a basis of $\nll U$.
+\end{proof}
+
+\begin{corollary}
+  $\dim E_{\lambda} = $ \# columns in the dot diagram
+\end{corollary}
+
+\begin{proof}
+  \hfill
+
+  Note that $E_{\lambda} = \ker (T-\lambda I)$.
+
+  Apllying the theorem for the case $s = 1$, we obtain that $\ker (T-\lambda I) $= \# dots in the first row.
+\end{proof}
+
+\begin{remark}
+  Note that $\dim E_{\lambda}$ is also equal to the number of cycles
+  in the cycle basis $\beta$ for $K_{\lambda}$, which is also equal to
+  the number of Jordan blocks in $[T|_{K_{\lambda}}]_{\beta}$.
+\end{remark}
+
+\begin{theorem}
+  Let $r_j$ be the number of dots in the $j$th row of the dot diagram of $T_{K_{\lambda}}$.
+
+  Then \[r_j = \rank (T- \lambda I)^{j-1} - \rank (T-\lambda I)^{j} = \ker (T-\lambda I)^j-\ker(T-\lambda I)^{j-1}.\]
+\end{theorem}
+
+\begin{proof}
+  \hfill
+
+  By Theorem \ref{thm-9}, $\ker (T-\lambda I)^{j}$ is the number of
+  dots in the first $j$ rows, which is equal to $\sum_{i=1}^jr_i$.
+
+  Applying the theorem again, we get that $\ker (T-\lambda I)^j-\ker(T-\lambda I)^{j-1}$.
+
+  By the Rank-Nullity Theorem, the rest follows.
+\end{proof}
+
+\begin{corollary}
+For any eigenvalue $\lambda$, the dot diagram for $T_{K_{\lambda}}$ is unique and thus does not depend on the choice of the cycle basis $\beta$.
+\end{corollary}
+
+\begin{corollary}
+  Suppose that $T \in \End(V)$ and the characteristic polynomial of $T$ splits.
+
+  Then the Jordan Canonical Form of $T$ is unique up to the reordering of blocks.
+
+  If $\beta, \gamma$ are bases of $V$ such that $[T]_{\beta}$ consists of the Jordan blocks $\set{J_{i}}_1^t$ and $[T]_{\gamma}$ consists of the Jordan blocks $\set{L_j}_1^{u}$, then $t=u$ and we can reorder $\set{J_{i}}_1^t$ to obtain $\set{L_j}_1^{u}$.
+\end{corollary}
+
+\begin{proof}
+  \hfill
+
+  Suppose that $[T]_{\beta}$ is in JCF, and
+  $\beta=\bigcup_{i=1}^{r} \beta_i$ is a cycle basis. Then the number
+  of times the $l\times l$ block with the eigenvalue $\lambda$ occurs
+  inside $[T]_{\beta}$ is equal to the number of cycles $\beta_{i}$,
+  which in turn equals to the number of columns of length $l$ in the dot diagram for $T_{K_{\lambda}}$, then this quantity is the same for $[T]_{\gamma}$.
+\end{proof}
+
+\end{document}

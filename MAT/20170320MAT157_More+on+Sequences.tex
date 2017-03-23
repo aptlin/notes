@@ -1,0 +1,147 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{MAT157}{}{More on Sequences}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{More on Sequences}
+
+\begin{definition}
+  A sequence $\set{a_n}$ is a \textbf{Cauchy sequence} if for all
+  $\epsilon > 0$ there exists $N\in \NN$ such that
+  $\abs{a_n-a_m} < \epsilon$ whenever $m, n > N$.
+\end{definition}
+
+\begin{theorem}
+A sequence is Cauchy if and only if it converges.
+\end{theorem}
+
+\begin{proof}
+  \hfill
+
+The converse follows easily from the definition of convergence and triangle inequality.
+
+Suppose now that $\set{a_n}$ is Cauchy.
+
+% Let $I_{m,n} = \begin{cases}
+%   (a_m, a_n), \text{ if $a_m$}\\
+% (a_n, a_m),\\
+% \set{a_n},
+% \end{cases}$ if $a_m $
+
+Consider $\lim_{n\to \infty} \sup a_n$, $\lim_{n\to\infty}\inf
+a_n$. We want to show that they exist and are equal to each other.
+
+Given $\epsilon > 0$, choose $N$ as above. Then
+$\abs{a_n-a_{n+1}} < \epsilon$ for any $n > N$. Thus
+$\abs{a_n-a_m} < 2\epsilon$ for any $m, n > N$.
+
+We know that $\abs{\lim_{n\to\infty} \sup a_n - a_{N+1}} < \epsilon$
+and $\lim \inf_{n\to \infty} a_n - a_{N+1} < \epsilon$.
+
+Therefore, $\abs{\lim \sup a_n - \lim \inf a_n} < 2\epsilon$, and thus
+$\lim \sup a_n = \lim \inf a_n$ and hence there exists $\lim a_n$
+exists.
+\end{proof}
+
+We now consider nonnegative series.
+
+We have defined the $n$th partial sum of a sequence as $s_n = \sum_{k=1}^na_k$. Note that they are non-decreasing, since $a_k\geq 0$.
+
+\begin{theorem}
+  If a sequence $\set{a_i}$ is nonnegative, then
+  $\sum_{n=1}^{\infty} a_n$ converges if and only if the partial sums
+  are bounded.
+\end{theorem}
+\begin{remark}
+There is no equivalent result for sequences that are not nonnegative. Take for example, the alternating sequence of $1$ and $-1$. Then $s_n$ are bounded, but there is no limit.
+\end{remark}
+
+\begin{theorem}
+Suppose that $0\leq a_n \leq b_n$ for all $n\in\NN$.
+
+If $\sum_{i=1}^{\infty}b_i$ converges, then $\sum_{i=1}^{\infty}a_i$ converges.
+\end{theorem}
+\begin{proof}
+  \hfill
+
+  Note that $S_k(\set{a_i}) \leq S_k(\set{b_i})$. 
+
+  Suppose that $\sum_{i=1}^{\infty}b_i$ converges and thus
+  $S_k(\set{b_i})$ is bounded.
+
+  Therefore, $S(\set{a_i})$ is bounded and hence
+  $\sum_{i=1}^{\infty} a_i$ converges.
+\end{proof}
+
+\begin{example}
+
+  $\sum_{n=1}^{\infty} \frac{1}{6\* 2^n + \cos (n)} \leq
+  \sum_{n=1}^{\infty} \frac{1}{5\*2^n}$ and thus
+  $\set{a_i = \frac{1}{6\* 2^n + \cos (n)}}$ converges.
+\end{example}
+
+Consider the graph of $f(x) = \frac{1}{x}$ and the corresponding harmonic series.
+
+Note that
+\[\sum_{i=1}^{\infty} \frac{1}{n} > \int_{i=1}^{\infty} \frac{\dif t}{t} = \lim_{R\to \infty}\int_{i=1}^R \frac{\dif t}{t} = \lim_{R\to \infty} \log (R).\]
+
+We can then define an \textbf{integral test}:
+
+\begin{definition}
+\hfill
+
+  Suppose $f$ is a non-increasing punction and $a_n = f(n)$. Then
+  $\sum_{i=1}^{\infty}a_n$ converges if and only if
+  $\int_{i=1}^{\infty} f(x) \dif x$ converges.
+\end{definition}
+
+We can still use this test as long as the hypothesis is satisfied after some ponts.
+\end{document}

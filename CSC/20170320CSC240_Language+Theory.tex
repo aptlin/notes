@@ -1,0 +1,154 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{CSC240}{}{Language Theory}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Language Theory}
+
+Let $\Sigma$ be a finite set of letters in the alphablet.
+
+We define $\Sigma^{*} = 2^{\Sigma}$.
+
+A \textbf{language} is a subset of $\Sigma^{*}$ over $\Sigma$.
+
+We define the following operations:
+
+\begin{description}
+
+\item[Concatenation:] 
+\hfill
+
+If $x,y \in \Sigma^{*}$, then $x:y \in \Sigma^{*}$. 
+
+For $L, L'\in \Sigma^{*}$, we have $L\*L' = \set{x:y; x\in L, y\in L'}$.
+\end{description}
+
+We call $x\in\Sigma^{*}$ a \textbf{proper prefix} of $y\in\Sigma^{*}$ if there
+exists a string $x'\in\Sigma^{*}$ such that $y = xx'$ and both $x$ and
+$x'$ are not $\lambda$.
+
+We call $x\in\Sigma^{*}$ a \textbf{proper suffix} of $y\in\Sigma^{*}$ if there
+exists a string $x'\in\Sigma^{*}$ such that $y = x'x$ and both $x$ and
+$x'$ are not $\lambda$.
+
+We call $x\in\Sigma^{*}$ a \textbf{substring} of $y\in\Sigma^{*}$ if there
+exist $x'\in \Sigma^{*}$ and $x''\in\Sigma^{*}$ such that
+$y = x' x x''$.
+
+\section{Regular Expressions}
+
+Let $\Sigma$ be a finite alphabet. The \textbf{set of regular
+  expressions} $R$ over $\Sigma$ is the inductively defined set of
+strings $R$ such that $\emptyset, \lambda \in R$ and $\Sigma \in R$. If
+$r, r' \in R$, then $r+r'$, $r\* r'$ and $r^{*}$ are in $R$.
+
+A \textbf{generalised regular expression} allows complementation and
+intersection, so that $r\cap r' \in R$, $r-r'$ and $\ol{r} \in R$.
+
+The language denoted by a regular expression is $d(r)$, where
+$\LL: R \to \set{L; L\suq \Sigma^{*}}$ is defined inductively as follows:
+\begin{itemize}
+\item $\LL(\emptyset) = \emptyset$
+\item $\LL(\lambda)   = \set{\lambda}$
+\item $\LL(a)         = \set{a}$ for each $a\in\Sigma$
+\item $\LL(r+r')      = \LL(r)\cup \LL(r')$
+\item $\LL(r-r')      = \LL(r)\*\LL(r')$
+\item $\LL(r^{*})     = (\LL(r))^{*}$
+\item $\LL(\ol{r}) = \Sigma^{*} - \LL(r)$
+\item $\LL(r-r') = \LL(r)-\LL(r')$
+\end{itemize} 
+
+\begin{description}
+
+\item[e.g.] $\LL(0^{*}(10^{*}10^{*})^{*})$ is the set of all strings over $\set{0, 1}$ with an even number of 1's.
+\end{description}
+
+\begin{claim*}
+  Let $ L =\LL(0(00)^{*}(11)^{*} +(00)^{*}1(11)^{*}) = \set{0^m1^n;\text{$m+n$ is odd}}$.
+\end{claim*}
+
+\begin{proof}
+  \hfill
+
+  Let $x\in L$ be arbitrary.
+
+  Then $x=0^m1^n$, where $m+n$ is odd.
+
+  First, suppose that $m$ is odd. Say $m = 2k+1$. Then $n$ is even, so
+  $n = 2 l$ for some $k, l \in \NN$.
+
+  Then $x=0^{2k+1}1^{2l} = 0 (00)^k(11)^l \in \LL(0(00)^{*})\*\LL((11)^{*}) = \LL(0(00)^{*}\*(11)^{*}) = \LL(r)$.
+
+  Suppose now that $m$ is even. The proof is similar.
+
+  Hence $L \suq \LL(r)$.
+
+  \textbf{Exercise:} Continue the proof.
+\end{proof}
+
+\section{Finite Automata}
+
+A \textbf{finite automata} is a determenistic finite state automation
+(abbreviated as DFA or DFSA) which has a finite set of states $Q$, a
+finite alphabet $\Sigma$, an initial state $q_0\in Q$, a set of final
+(also known as accepting) states and a state transition function
+$\delta:Q\times \Sigma \to Q$.
+
+An \textbf{extended transition function} $\delta^{*}: Q \times \Sigma^{*}\to Q$ is defined by $\delta^{*}(q, \lambda) =q$ for $q\in Q$ for all $a\in \Sigma$ and all $x\in \Sigma^{*}$ we have that $\delta^{*}(q, ax)= \delta^{*}(\delta(q, a), x)$.
+
+Equivalently, for all $x\in \Sigma^{*}$ and $a\in \Sigma$ we have $\delta^{*}(q, ax) = \delta(\delta^{*}(q, a), x)$.
+
+Let $A = (Q, \Sigma, \delta, q_0, f$, and denote
+$\set{x\in\Sigma^{*};\delta^{*}(q_0, x)\in f}$ as $\LL(A)$.
+
+
+
+\end{document}
