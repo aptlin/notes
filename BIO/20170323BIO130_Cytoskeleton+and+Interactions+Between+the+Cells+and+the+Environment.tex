@@ -1,0 +1,360 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{BIO130}{}{Cytoskeleton}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Cytoskeleton and Interactions Between the Cells and the Environments}
+
+\subsection{Review}
+
+Microfilaments/Actin filaments are involved in cell motility, contractile activity and cytoknesis. The motor protein used is myosin. 
+
+\subsection{Structure of Actin Filaments}
+
+Actin filaments are composed of actin monomer, with two protofilaments
+twisted in a right-handed helik. Actin filaments are polar due to the
+regular orientation of actin monomers in each protofilament.
+
+\subsection{Actin Monomers}
+
+\begin{itemize}
+\item Free monomers are bound to ATP, itself constricted in the centre of the protein. 
+
+\item Actin is an ATPase, and thus hydrolyses ATP. ADP remains bound after hydrolysis.
+
+\item ATP hydrolysis occurs more rapidly after actin monomers have been incorporated into the filament.
+
+\item Growth of the filament is faster at the plus end. 
+
+\item Actin filaments have an ATP cap.
+
+\item ATP hydrolysis decreases the strength of binding between monomers in the filament.
+\end{itemize}
+
+\subsection{Differences between Microtubules and Actin Filaments}
+
+Microtubules are heterodimers, actin filaments are monomers.
+
+Microtubules have GTP cap, while actin filaments have ATP cap.
+
+Microtubules bind to GTP, actin filaments to ATP.
+
+Microtubular T and D form heterodimers, T and D of actin filaments form monomers.
+
+In microtubules 13 parallel protofilaments forming a cylinder, in
+actin filaments 2 protofilaments twist around each other.
+
+\subsection{Actin Polymerisation In Vitro}
+
+Actin subunits in filaments all start as monomers. When salt is added,
+oligomers form and the lag phase is entered, while later an actin
+filament starts to grow in the growth phase. Then a steady state is
+reached, for which a continuous supply of ATP is required, with
+subunits of actin filaments coming on and off at the same rate.
+
+The concentration of monomers at which the equilibrium phase persists
+is denoted as $C_c$.
+
+Note that the plus end has a higher affinity for actin monomers than the minus end.
+
+Suppose that a high concentration of radioactive monomers is added to a seed of actin filament.
+
+There is a net addition on the plus and minus side, with more of it added on the plus end. 
+
+The actin filament gets longer, and thus the concentration of free
+monomers drops.
+
+There is still a net addition on the plus end, while the minus end
+stays about the same.
+
+The concetration drops again, and then the actin filament reaches the
+equilibrium phase.
+
+At this point, treadmilling occurs, and thus, while the old monomers
+belonging to the seed are still removed, eventually all the old
+monomers are lost in the D-form.
+
+% \subsection{Actin Motor Proteins}
+
+% Myosins have tails of the two heavy chains organised in a
+% coiled-coil. Heads of the heavy chains are associated with four light
+% chains (2 at each head). 
+
+% \subsection{Muscle Cell Contractile Apparatus}
+
+\subsection{Summary of Motor Proteins}
+
+\begin{itemize}
+\item Actin motor protein is Myosin II, plus end directed (as in muscles)
+\item Microtubule motor proteins are dynein, minus end directed, and kinesin, plus end directed (as used for intracellular transport)
+\end{itemize}
+
+They all couple ATP hydrolysis with conformational changes to generate
+force.
+
+All move in a specific direction along filaments that have polarity
+(plus/minus end).
+
+\subsection{Intermediate Filaments}
+
+Intermediate filaments are involved in structural support, they are
+tough, flexible and extensible.
+
+However, they are not found in plants, and not all animal cells have them. 
+
+These filaments are prominent in cells under great mechanical stress.
+\subsubsection{Intermediate FilamentStructure}
+
+Coiled coil dumer forms a staggered antiparallel tetramer without
+polarity and without known motor proteins.
+
+\subsubsection{Kerating Filaments in Epithelial Cells}
+
+Epithelial line surfaces, cavities and organs.
+
+Filaments in each cell are anchored at sites of cell-cell contact by
+desmosomes and provide mechanical strength.
+
+\subsection{Junctions}
+
+Cells interact with each other and the extracellular matrix to form
+tissues.
+
+One of such interactions is via \textbf{junctions}:
+\begin{itemize}
+\item Anchoring junctions
+\item Occluding junctions
+\item Channel-forming junctions
+\item Single-relaying junctions (synapse)
+\item Tight junctions.
+\item Occluding junctions
+\item Adherence junctions
+\item Gap junctios
+\item Desmosomes
+\end{itemize}
+
+In polarised epithelial cells (most mature epithelial cells are
+polarised epithelial cells).
+
+In polarised epithelial cells junctions are arrangad in a specific
+order. Other cells can also have junctions, but polarised epithelial
+cells have all of these junctions.
+
+\subsubsection{Tight Junctions}
+
+Tight junctions create a right seal bwtween cells by pveventiot of
+mixing with the extracellular envornments.
+
+Tight junctions act as fences in the membrane.
+
+% \subsection{Clauding and Occludin Proteins }
+
+% Intermembrane proteins can be  occluding and (cluing).
+
+% If the formation of edherents is blocked, then the tight junctions do not form properly.
+
+% Tight junctions can provide some mechanical strength.
+
+\subsubsection{Anchoring Junctions}
+
+\begin{itemize}
+\item Cell-cell anchoring junctions and desmosomes
+\item Cell-matrix anchoring junctions
+\end{itemize}
+
+Adhesion and anchor proteins link cytoskeletal filaments of neighbouring cells.
+
+Adhesion proteins are transmembrane proteins, with the extracellular
+domains interacting with adhesion proteins and extracellular
+matrix. Intracellular domains interact with anchor proteins.
+
+Anchor proteins link the adhesion proteins to cytoskeletal filaments. 
+
+\subsubsection{Adherens Junctions}
+
+Adherens junctions form the adhesion belt which encircles the inside
+of the plasma membrane. At adherens junctions cadherin proteins from
+neighbouring cells interact with each other.
+
+Actin is tethered to cadherin by anchor proteins.
+
+There are many types of cadherin proteins, and one type of cadherin
+protein will bind to the same type of cadherin proteins.
+
+\subsubsection{Adherens junction formation}
+
+Cadherin proteins become concentrated on touch.
+
+Interactions of cells with each other are not simply structural.
+
+Cells sort themeselvels into layers because difeferent cadherin
+proteins are expressed in each cell type. Cadherin form homotypic
+junctions, as shown by the classical experiment of \textit{sorting
+  out}, when mesoderm and ectoderm were mixed and then observed to
+self-assemble into layers.
+
+\subsubsection{Desmosomes and Hemidesmosomes}
+
+Link intermediate filaments provide the most sturctural strength. Desmosomes, in turn, provide the link to a neighbouring cells.
+
+The structure of desmosomes isdetermined by desmoglein and desmocollin adhesion proteins.
+
+Anchor proteins (plakoglobin, desmoplakin) link the adhesion proteins
+to intermediate filaments.
+
+\subsection{Channel Forming Junctions: Gap Junctions}
+
+These types of junctions allow for communcation between cells and are composed of connexin proteins.
+
+A gap junction is made up of connexin proteins, of which 6 come
+together to form connexons, of which there are two in the junction.
+
+Gap junctions often form plaques. 
+
+Gap junctions electrically and metabolically allow the passage of ions and metabolites at more than 1000 daltons, which involves the passage of cAMP, nucleotides, glucose and amino acids. Macromolecules and proteisns, however, do not go through.
+
+Gap junctions are gate, and can be in an open or closed state. One connexon on its own is usually closed. Adramatic increase in cytosolic Ca$^{2+}$ will close gap junctions.
+
+Why does Ca$^{2+}$ have such an effect?
+
+Suppose there are two cells with open gap junctions. Assume one cell
+membrane is destroyed, and thus the calcium ions from cytosole get in and thus its concentration becomes abnormally high, which make metabolites leak -- better close the gate.
+
+\subsection{Plant Cell Wall}
+
+Plant cells produce and deposit their cell wall. It is composed of
+cellulose and pectin, and more rigid than the animal tissues.
+
+% \subsubsection{Plasmodesmata}
+% Tissues are composed 
+
+
+Basal lamina (also called basemement membrane) is a specialised
+extracellular matrix, beneath which there is connective tissue.
+
+Epidermis is the epithelial tissue of a skin. % In epithelial tissue there is a basemement membrane
+
+Dermis is the connective tissue of a skin.
+
+\subsubsection{Epithelial vs Connective Tissue}
+
+In epithelial tissue there is a thin basal lamina, while there is
+plentiful extracellular membrane in connective tissue.
+
+Epithelial cells are attached to each other, while connective tissue
+cells are attached to the matrix.
+
+\subsubsection{Extracellular Matrix}
+
+\begin{itemize}
+\item Connective tissues 
+\item Not a static structure
+\item Different composition of ECM in tissues give them specific properties
+\end{itemize}
+
+Transmembrane proteins help cells interact with ECM.
+
+\subsubsection{Collagen}
+
+\begin{itemize}
+\item Resists pulling forces
+\item Secreted by fibroblasts, epithelial and smooth muscle cells
+% \item Fibriallar collacens gor
+\end{itemize}
+
+\subsubsection{Proteoglycans and Glycoproteins}
+
+In proteoglycans there is at least one sugar side ghan which is  a GAG. 
+
+Glycoproteins have any sugar attached.
+
+Thus, all proteoglycans are glycoproteins, but not all glycoproteins are proteoglycans.
+\begin{example}
+
+Aggrecan and decorin are proteoglycans of the ECM.
+
+Ribonuclease is a secreted glycoprotein.
+
+\end{example}
+
+Proteoglycans are space filling. 
+
+Glycosaminoglycans (GAG) is a long, linear, chains of a repeating
+disaccharide (at least one aminosugar) which are highly negatively
+charged (and thus attract Na$^+$ and water).
+
+An example of GAG is hyaluronan. 
+
+It is relatively simple, with a long chain of disaccharide subunits (up to 25000). They can be linked to aprotein but often they are not. Most GAG are synthesised inside the cell on proteins and then exocytosed. Hyaluronan is spun directly from the cell surface.
+
+Another example is elastin, networks of which stretch and relax like a rubber band. Other components (cross-links, which are often modified glyin) of the ECM provide strength preventing the spontaneous stretching.
+
+Fibronectin binds collagen and cell surface receptors. It is a dimer linked by disulfide bonds, with the RGD site being the cell binding site.
+
+Each protein is composed of several linked domains, ecah domain having a different structure.
+
+The basement membrane is a special type of ECM, and underlies all
+epithelia. It is thin, but the tissue of the basal lamina secretes ECW
+and influences cell polarity.
+
+Basal lamina surrounds muscles, fat cells and Schwann cells, playing the structural role. In the kidney it divides two cell sheets.
+
+The basement membrane is an attachment site for epithelial cells.
+
+Laminin organizes the basement membrane by interacting with other
+components of the ECM and integrin in the plasma membrane.
+
+A laminin protein is often in ECM and is involved in cell migration. It is p rimer of $\alpha$-laminin, $\beta$-laminin and $\gamma$-laminin. 
+
+Hemidesmosomes spot-weld epithelial cells to the basal lamin, with keratin filaments inside the cell linked to laminin in the ECM through interaction with the transmembrane protein integrin.
+
+Integrins interact with laminin to organize the basement membrane.
+\end{document}

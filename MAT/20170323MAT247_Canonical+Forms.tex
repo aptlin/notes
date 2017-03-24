@@ -1,0 +1,295 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{MAT247}{}{Canonical Forms}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Canonical Forms}
+
+\subsection{Review}
+\subsubsection{Strategy to Find the Intersection of Two Subspaces}
+
+Suppose $W_1 = \spn \set{x_1, \dots, x_k}$ and $W_2= \spn{y_1,\dots, y_l}$.
+
+We want to find all the solutions of 
+
+\begin{equation*}
+\sum_{i=1}^k\lambda_ix_i = \sum_{j=1}^l\mu_{j}y_j.
+\end{equation*}
+
+These form a homogeneous system of equations, and we know how to solve it!
+
+\subsubsection{Strategy for Finding Jordan Canonical Basis}
+
+Fix an eigenvalue $\lambda$ and find the dot diagram for $T|_{K_{\lambda}}$.
+
+\begin{enumerate}
+\item\label{item:1} First find $(T-\lambda I)^3v_1\in \ker(T-\lambda I)\cap (\img (T-\lambda I)^3)$.
+\item Solve for $v_1$, thus obtaining the first cycle.
+\item Extend to a basis $(T-\lambda I)^3v_1$, $(T-\lambda I)^2$,
+  $(T-\lambda I)^2v_3, \dots \in \ker (T-\lambda I)\cap \img(T-\lambda
+  I)^2$
+\item Repeat the procedure for $v_2, v_3, \dots $
+\end{enumerate}
+
+\section{Canonical Forms}
+
+\begin{theorem}
+Let $A, B \in M_{n\times n}(\FF)$  be such that their characteristic polynomial split.
+
+Then $A, B$ are similar if and only if they have the same JCF (up to the reordering of blocks).
+\end{theorem}
+\begin{remark}
+This is a useful method to test the similarity of matrices.
+\end{remark}
+
+\begin{proof}
+  \hfill
+
+First note the following observations:
+\begin{enumerate}
+\item  $A$ is similar to its Jordan Canonical form, because $[L_A]_{\beta} = J_A$ for some basis $\beta$.
+\item If $J_1$ and $J_2$ are matrices in JCF, then they are similar to each other.
+\item If $J_1, J_2$ are matrices in JCF corresponding to the same
+  linear transfromation, then they are similar to each other ( the basis can be reordered).
+\end{enumerate}
+
+Let $\sim:M_{n\times n}(\FF)\times M_{n\times n}(\FF)\to M_{n\times n}(\FF)$ denote the relation 
+
+By the first observation, $A$ is similar to $J_A$ and $B$ is similar to $J_{B}$.
+
+If $A, B$ are similar, then $A\sim B$, but $A\sim J_A$ and $B\sim J_{B}$, and hence $J_A\sim J_{B}$.
+
+Suppose, on the other hand, that $J_A\sim J_{B}$ are the same up to
+reordering of blocks, and thus $J_A$ and $J_{B}$ are similar to each other by the second observation.
+\end{proof}
+
+\section{Review of Polynomials}
+
+Let $\FF$ be a field.
+
+Let $\FF[x]$ denote the polynomials over $\FF$.
+
+We define a polynomial as a formal exrpession
+$a_nx^n+a_{n-1}x^{n-1}+\dots+a_1x+a_{0}$, where $a_i\in \FF$ and
+$n \geq 0$.
+
+Two polynomials are equal to each other if and only if all
+coefficients of the terms with the same power are equal.
+
+A polynomial $f(x)$ can be evaluated at any element $c\in\FF$ so that
+$f(c) = \sum_{i=1}^na_ic^i \in \FF$.
+
+Polynomials are not the same as polynomial-functions, because the
+polynomials may be equal while the correspnodingq polynomial-functions
+are not.
+
+For example, $f(x) = x^3-x$ over $\FF = \ZZ_2$ gives the zero function.
+
+\begin{definition}
+If $a_n\neq 0$, the degree of a polynomial is defined as $\deg f = n$.
+\end{definition}
+
+\begin{description}
+
+\item[e.g.] $\deg f = 0$ if and only if $f(x) = a_0\neq 0$.
+\item[Convention:] $\deg 0 = - \infty$
+\end{description}
+
+The following properties hold:
+
+\begin{itemize}
+\item $\deg(fg) = \deg(f) + \deg(g)$
+\item $\deg(f+g) \leq \max \set{\deg(f), \deg (g)}$
+\end{itemize}
+
+\begin{definition}
+If the leading coefficient $a_n$ is such that  $a_n=1$, $f(x)$ is said to be \textit{monic}.
+\end{definition}
+
+\subsection{Division Algorithm }
+
+If $f(x)$, $g(x) \in \SP(\FF)$ and $g(x)\neq 0$, then there exist $q(x)$ and $r(x) \in \SP(\FF)$ such that $f(x) = q(x)g(x) + r(x{}$ such that $\deg(r) < \deg(g)$.
+
+These $q, r$ can be found by long division.
+
+\begin{lemma}
+If $a\in\FF$ and $f(a)=0$, then $(x-a) | f(x)$.
+\end{lemma}
+\begin{proof}
+  \hfill
+
+We use the Factor Theorem. 
+
+Note that  $f(x)=f(x)(x-a)+r(a)$, where $\deg(r)\leq 0$, so $r$ is constant.
+
+We evaluate it at $a$: $f(a) = 0+ r(a)$, and hence $r(a) = 0$., which
+means that $r(x) = 0$.
+\end{proof}
+
+\begin{lemma}
+  If $a_1, \dots, a_{s} \in \FF$ are distinct zeroes of $f(x)$, then $\prod_{i=1}^s(x-a_i)|f(x)$.
+
+  Thus, $\deg f \geq s$, so $f(x)$ can have at most $\deg f$ zeroes.
+\end{lemma}
+
+\begin{definition}
+We say that $f\in \FF[x]$ is irreducible if $\deg f > 0$ and it cannot be written as a product of two polynomials of lesser positive degree.
+\end{definition}
+\begin{description}
+\item[e.g.] $x-a$ is irreducible for all $a\in\FF$. $x^2+1$ is irreducible over $\RR$.
+\end{description}
+
+More generally, a quadratic or cubic polynomial is irreducible if and only if there is no zero in $\FF$.
+
+For the polynomial of degree greater than or equal to 4.
+
+\begin{description}
+
+\item[e.g.] $(x^p-p)\in\FF[\QQ]$ is irreducible for all $p$ prime.
+
+\end{description}
+
+\begin{example}
+
+Over $\ZZ_2$, we know by plugging in $0$ and $1$ that $x^3+x+1$ is irreducible.
+
+However, since over $\ZZ_2$ we have $(a+b)^2=a^2+b^2$, then $x^4+x^2+1 = (x^2+x+1)^2$.
+\end{example}
+
+\begin{definition}
+Two nonzero polynomials are relatively prime if there is no polynomial of positive degree dividing both of them.
+\end{definition}
+
+\begin{example}
+
+Over $\ZZ_2$, we know that $x^3+x+1$ and $x^4+x^2+1$ are relatively prime, because $x^3+x+1$ is irreducible, and thus the only factor of positive degree is $x^3+x+1$. However, $(x^3+x+1) | x^4+x^2+1$, since the quotient would be linear (but $x^4+x^2+1$ has no zeroes).
+\end{example} 
+
+\begin{remark}
+In this way we see that distinct monic irreducible polynomials are relatively prime.
+\end{remark}
+
+\begin{theorem}
+  If $f(x)$ , $g(x)$ are relative prime, three exists $u(x)$ and
+  $v(x) \in\FF[x]$ such that $f(x)u(x) +g(x)v(x) = 1$.
+\end{theorem}
+
+\begin{lemma}
+Suppose that $f$ and $g$ are polynomials that are relatively prime and $f|gh$. Then $f|h$.
+\end{lemma}
+\begin{proof}
+  \hfill
+
+We know that $1= fu + gv$, and therefore $h = fuh + ghv$, which means that $f|h$.
+\end{proof}
+
+\begin{theorem}
+  If $\phi(x)$ is irreducible and $\phi(x) | f(x) g(x)$, then
+  $\phi(x) | f(x)$ or $\phi(x) | g(x)$.
+\end{theorem}
+
+\begin{theorem}[Unique Factorisation]
+  If $f(x)\neq 0$, we can write $f(x) = c\prod_{i=1}^{n_s}\phi_s(x)^{n_s}$, where $c\in \FF\setminus \set{0}$ and $\phi_i(x)$ are distinct monic irreducible polynomials with $n_i\geq 1$.
+
+  The factorisation is unique up to the ordering of the factors.
+\end{theorem}
+
+\begin{example}
+
+Factor into irreducible polynomials over $\FF = \ZZ_3$ $x^4+x^2+1 = x^4-2x^2+1 = (x^2-1)^2$.
+
+\end{example}
+
+\begin{remark}
+  If $f(x)\neq 0$ and $f(x) = c\prod_{i=1}^{n_s}\phi_s(x)^{n_s}$, then
+  the possible factors of $f(x)$ are $d\prod_{i=1}^{k_s}$ for
+  $0\leq k_i\leq n_i$ and $d\in \FF\setminus \set{0}$.
+\end{remark}
+
+\section{Minimal Polynomials}
+
+Let $V$ be a finite dimensional vector space over $\FF$.
+
+Suppose that $T \in \End(V)$ has a characteristic polynomial $f(t)$
+with $\deg(f) = \dim$.
+
+Recall that by Cayley-Hamilton Theorem we have that $f(T) = 0$.
+
+Note that, however, $f$ might not be monic, so we can rescale it in such a way that there exists a monic polynomial $g$ of degree $\dim V$ such that $g(T) = 0$.
+
+\begin{definition}
+  A minimal polynomial of $T$ is a monic polynomial of the least
+  degree such that $p(T) = 0$.
+\end{definition}
+\begin{remark}
+Note that $1 \leq \deg (p) \leq \dim V$.
+\end{remark}
+
+By Cayley-Hamilton Theorem, a minimal polynomial exists.
+
+\begin{description}
+
+\item[e.g.] If$\dim V = n$ and $T=I$, then $t-1$ is a minimal polynomial of $T$.
+
+\end{description}
+
+\begin{example}
+
+  For $V = \FF^2$, $A \in M_{2\times 2}(\FF) $ such that $\begin{pmatrix}
+1 &2 \\
+3 & 4
+\end{pmatrix}$, then the characteristic polynomial is a minimal
+polynomial, because $A-\lambda I \neq 0$ for all $c\in\FF$.
+
+\end{example}
+
+
+\end{document}
