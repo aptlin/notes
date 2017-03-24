@@ -1,0 +1,190 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{MAT157}{}{Series and Absolute Convergence}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Series and Absolute Convergence}
+
+\begin{definition}
+  A series $\sum_{n=1}^{\infty}a_n$ \textbf{converges absolutely} if
+  $\sum_{n=1}^{\infty}\abs{a_n}$ converges.
+\end{definition}
+
+A series which converges but does not converge absolutely is said to
+\textbf{converge conditionally}.
+
+\begin{theorem}
+If $s=\sum_{n=1}^{\infty}a_n$ converges absolutely,  then $s$ converges.
+\end{theorem}
+
+\begin{proof}
+  \hfill
+
+  Since $s$ converges absolutely, then $\sum_{n=1}^{\infty} \abs{a_n}$ converges.
+
+  Therefore, $\sum_{i=0}^{m-n} \abs{n+i} \to 0$ a $m,n \to \infty$.
+
+  But
+  $\abs{\sum_{i=1}^{m-n}a_{n+i}} \leq \sum_{i=1}^{m-n}\abs{a_{n+i}}$,
+  which means that $\sum_{i=1}^{m-n}a_{n+i}$ goes to 0.
+
+  Therefore, $\sum a_n$ converges.
+\end{proof}
+
+Write $a_n^+ = \begin{cases}
+  a_n \text{ if $a_n\geq 0$}\\
+  0 \text{ otherwise}
+\end{cases}$ and $a_n^- = \begin{cases}
+  a_n \text{ if $a_n\leq 0$}\\
+  0 \text{ otherwise}
+\end{cases}$.
+
+Then $\sum a_n = \sum a_n^+ +\sum a_n^-$.
+
+\begin{theorem}
+$\sum a_n$ converges absolutely if $\sum a_n^+$ and $\sum a_n^-$ converge absolutely.
+
+In this case, $\sum a_n = \sum a_n^+ +\sum a_n^-$ and $\sum \abs{a_n} = \sum a_n^+ -\sum a_n^-$.
+
+\end{theorem}
+
+\begin{example}
+
+Consider $\log 2 = 1-\frac{1}{2}+\frac{1}{3}-\frac{1}{4}+\dots$.
+
+We can \textit{rearrange} the series so that it converges to 17.
+
+Note that
+
+\begin{equation*}
+1+ \frac{1}{3}+\frac{1}{5}+\dots+\frac{1}{2n+1}-\frac{1}{2}-\frac{1}{4}-\dots+\frac{1}{2n+5}+\dots
+\end{equation*}
+
+Every term of the original series appears eventually in the rearranged series, and it converges to 17.
+
+Note that there is nothing special about the choice of 17 in this
+cas. Given any $A$, we can rearrange any conditionally convergent series to converge to $A$.
+
+\end{example}
+
+\begin{theorem}
+  If $\sum a_n converges$ absolutely, then any rearrangement converges
+  absolutely and the sums are equal.
+\end{theorem}
+
+\begin{remark}
+  The addition symbol in series is a misnomer. A series is a limit of
+  a sequence, not the sum in the usual sense.
+\end{remark}
+
+\begin{theorem}[Leibniz Theorem]
+If $a_1 > a_2 > a_3 > \dots > a_n > 0$ and $\lim_{n\to\infty}a_n = 0$, then $\sum_{i=1}^{\infty} (-1)^na_n$ converges.
+\end{theorem}
+
+\begin{example}
+
+  Take $\sum (-1)^{n+1}\frac{1}{n}$  and $\sum (-1)^{n+1}\frac{1}{n^2}$.
+
+  It can be shown that the first series converges unconditionally,
+  while the second converges conditionally.
+
+\end{example}
+
+\subsection{Power Series}
+
+Series in the form $\sum_{n=0}^{\infty}a_n(x-a)^n$ are called \textbf{power series}.
+
+For example, all Taylor series are power series.
+
+Take $s=\sum_{i=1}^{\infty} \frac{\abs{x}^2}{n!}$ and apply the Ratio Test:
+\begin{equation*}
+  \frac{\frac{\abs{x}^{n+1}}{(n+1)!}}{\frac{\abs{x}^n}{n!}} = \frac{\abs{x}}{n+1}\to 0.
+\end{equation*}
+
+Therefore, $s=\sum_{i=1}^{\infty} \frac{\abs{x}^2}{n!}$ converges
+absolutely and therefore converges.
+
+Consider now $\log (x+1) = \sum_{i=1}^n(-1)^{n+1}\frac{x^n}{n}$.
+
+Using the ratio test we obtain that 
+
+\begin{equation*}
+  \frac{(-1)^{n+2}\frac{x^{n+1}}{n+1}}{(-1)^n \frac{x^{n}}{n}}.
+\end{equation*}
+
+The sums convergewhen $\abs{x> 1}$, and diverges if $\abs{x< 1}$.
+
+What happens when $\abs{x}=1$?
+
+Take $x=1$.
+
+Then $\sum (-1)^{n+1}\frac{1}{n}$ converges to $\log 2$, at least
+conditionally, and $\sum_{i=1}^{\infty}(-1)^{n+1}\frac{(-1)^n}{n}$ diverges (harmonic series are obtained).
+
+\begin{theorem}
+  A power series $\sum a_n(x-a)^n$ converges absolutely on some
+  interval $(a-r, a+r)$ and diverges if $\abs{x-a}> r$ 
+
+  It may diverge, converge conditionall or converge absolutely at each endpoint.
+\end{theorem}
+
+\begin{remark}
+Note that $r$ might denote $\infty$, which would mean that it converges absolutely on $\RR$.
+\end{remark}
+
+\begin{example}
+
+Consider $\frac{1}{1+x^2} = 1-x^2+x^4-x^6+\dots$.
+
+Note that it converges on $(-1, 1)$ but not at $\pm 1$.
+
+\end{example}
+\end{document}
