@@ -190,7 +190,7 @@ Therefore, the minimal polynomial has a degree of $n$.
 \end{theorem}
 \begin{description}
 
-\item[e.g.] $T = \lambda I$ if and only if the minimal polynomial is $(t-\lambda)$
+\item[e.g.] $T = \lambda I$ if and only if the minimal polynomial is $\prod_{i=1}^s(t-\lambda_{i})$.
 
 \end{description}
 \begin{proof}
@@ -210,7 +210,58 @@ Therefore, the minimal polynomial has a degree of $n$.
   But $g(T)(x) = g(\lambda_i)(x)$, since $x$ is an eigenvector. But
   $g(\lambda_i) = 0$, and therefore $g(T) = 0$.
 
-  \textbf{Exercise:} Prove the other direction.
+  Suppose now that the minimal polynomial is
+  $\prod_{i=1}^s(t-\lambda_{i})$.
+
+  We proceed by induction on $s$.
+
+  If $s=1$, then $T- \lambda_1I = 0$ by Cayley-Hamilton's theorem and
+  thus $V = E_{\lambda_1}$.
+
+  Let $W = \img (T-\lambda_1I)$ and
+  $U = \ker (T-\lambda_1I) = E_{\lambda_1}$.
+
+  \begin{claim*}
+    $V = W \oplus U$
+  \end{claim*}
+  \begin{proof}
+    \hfill
+
+    If $x\in W$, then $x = (T-\lambda_1I)(y)$ for some $y \in V$, and
+    therefore \[\prod_{i=2}^s(T-\lambda_i)(x) = p(T)y = 0\] and hence
+    the minimal polynomial of $T|_W$ divides
+    $\prod_{i=2}^s(T-\lambda_i)$, which means that $\lambda_1$ is not
+    an eigenvalue of $T_W$, since $\lambda_1$ is not a root of the
+    minimal polynomial of $T|_{W}$.
+
+    Thus, $W\cap U = \set{0}$.
+
+    Note that
+    $\dim(U+W) = \dim U + \dim W - \dim(U\cap W) = \dim U+\dim W$, and
+    thus $U+W = V$. Therefore, $V = U \oplus W$.
+  \end{proof}
+
+  Note that $U = E_{\lambda_i}$, so any basis $\beta_1$ of $U$
+  consists of eigenvectors.
+
+  Moreover, the minimal polynomial of $T|_W$ divides $\prod _{i\in S}(T-\lambda_i)$ for some subset $S\suq \set{2, 3, \dots, s}$.
+
+  Since $\abs{S}<s$, we can apply strong induction to deduce that
+  $T|_W$ is diagonalisable, which means that $W$ has a basis $\beta$
+  consisting of eigenvectors.
+
+  Then $\beta_1\cup \beta_2$ is a basis of eigenvectors of $V$.
+
 \end{proof}
 
+\begin{corollary}
+  If a characteristic polynomial of $T$ splits, we can determine the
+  minimal polynomial of $T$ as follows: for each eigenvalue $\lambda$,
+  let $n_{\lambda}$ be the size of the largest Jordan block
+  corresponding to $\lambda$.
+
+  Then the minimal polynomial is
+  $\prod_{\lambda \text{ is an eigenvalue}}(t
+  -\lambda)^{n_{\lambda}}$.
+\end{corollary}
 \end{document}
