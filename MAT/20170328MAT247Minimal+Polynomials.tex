@@ -1,0 +1,216 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{MAT247}{}{Minimal Polynomials}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Minimal Polynomials}
+
+\subsection{Review}
+\begin{itemize}
+\item There is a factorisation of any non-zero polynomial into
+  distinct monic irreducible polynomials unique up to the ordering of
+  the factors.
+\item 
+
+Let $T \in \End(V)$ be arbitrary.
+
+Note that a \textit{minimal polynomial} of $T$ is a monic polynomial $p(t)$ of the least degree such that $p(T) = 0$.
+
+Cayley-Hamilton Theorem gives us an upper bound on the degree of a monic polynomial:
+
+\begin{equation*}
+\deg p(t) \leq \dim V
+\end{equation*}
+\end{itemize} 
+
+\subsection{Uniqueness of the Minimal Polynomial}
+
+\begin{theorem}
+Assume $p(t)$ is a minimal polyonmial of $T$.
+
+\begin{enumerate}[label=\alph*)]
+\item \label{item:1} If $g(t) \in \SP(\FF)$ is a ny polynomial such that $g(T) = 0$, then $p(t) | g(t)$
+\item $p(t)$ is the unique minimal polynomial
+\end{enumerate}
+\end{theorem}
+\begin{remark}
+  Note that \ref{item:1} implies by Cayley-Hamilton Theorem that $p(t) | f(t)$, where $f(t)$ is a characteristic polynomial.
+\end{remark}
+\begin{proof}
+  \hfill
+
+Using the division algorithm, we know that $g(t) = q(t)p(t) +r(t)$, where $\deg(r) < \deg (p)$.
+
+Plugging in $T$, we know that $g(T) = q(T) p(T) + r(T)$.
+
+Since $g(T) = 0$ and $p(T)$, then $r(T) = 0$.
+
+If $r(t) \neq 0$, it can be rescaled to be monic, but
+$\deg r < \deg p$, which contradicts that $p(t)$ is minimal, and hence
+we can deduce that $r(t) = 0$.
+
+Therefore, $r(t) = 0$, so $p(t) | g(t)$.
+
+Suppose now that $p'(t)$ is another minimal polynomial. Therefore, $\deg p'(t) = \deg p(t)$.
+
+Moreover, $p(T) = p'(T) = 0$, and thus $p(T) | p'(T)$. But $p$ and $p'$ have the same degree, and thus $p'(t) = cp(t)$ for $c\in \FF\setminus \set{0}$. Since $p$ and $p'$ are monic, then $c=1$, and hence $p(t) = p'(t)$.
+\end{proof}
+
+\begin{theorem}
+\label{sec:uniq-minim-polyn}
+The characteristic polynomial $f(t)$ and the minimal polynomial $p(t)$ have the same zeroes ni $\FF$.
+\end{theorem}
+
+\begin{proof}
+  \hfill
+
+  If a minimal polynomial $p(t)$ has a zero, since $p(t) | f(t)$, then $f(t)$ also has a zero.
+
+  Suppose now that $\lambda$ is a zero of $f(t)$, so $\lambda$ is an eigenvector of $T$.
+
+  Pick $x\neq 0$ such that $Tx = \lambda x$. Therefore, $p(T) x = 0$,
+  since $p$ is a minimal polynomial.
+
+  Since $x$ is an eigenvector, we get that $p(\lambda) x = 0$, and
+  since $x\neq 0$, then $p(\lambda) = 0$.
+\end{proof}
+
+\begin{corollary}
+  If the characteristic polynomial
+  $f(t) = (-1)^n\prod_{i=1}^n(t-\lambda_i)^{n_i}$, where $\lambda_i$
+  are the distinct eigenvalues, then the minimal polynomial is
+  $p(t) = \prod_{i=1}^n(t-\lambda_i)^{d_i}$, where
+  $1 \leq d_i \leq n_i$.
+\end{corollary}
+
+\begin{proof}
+  \hfill
+
+Use $p(t) | f(t)$ by Theorem \ref{sec:uniq-minim-polyn} and unique factorisation.
+
+\end{proof}
+
+\begin{example}
+
+Let $A$ be equal to 
+$
+\begin{pmatrix}
+2 & 2 & 3\\
+1 & 3 & 3\\
+-1 & -2 & -2
+\end{pmatrix}
+$ over $\FF= \QQ$. 
+
+We have already seen that $f(t) = -(t-1)^3$.
+
+Therefore, $p(t) = (t-1)^d$ for $1\leq d \leq 3$.
+
+The dot diagram is $
+\begin{pmatrix}
+\bullet & \bullet\\
+\bullet
+\end{pmatrix}
+$, which means that $A-I \neq 0$ and the nullity is 2.
+
+Therefore, $(A-I)^2= 0$.
+
+\end{example}
+
+\begin{theorem}
+  Suppose $\dim V = n$ and $V$ is the $T$-cyclic subspace generated by
+  $x\in V$. Then the minimal polynomial has a degree of $n$ and
+  $f(t) = (-1)^np(t)$.
+\end{theorem}
+
+\begin{proof}
+  \hfill
+
+We know that $\beta=\set{x, Tx, \dots, T^{n-1}x}$ is a basis of $V$.
+
+Suppose that $g(t)$ is a polynomial of degree less that $n$, so
+$g(t) = \sum_{i=0}^{n-1}a_{i}t^i$ for some $a_i \in \FF$.
+
+Then $g(T) = a_0I+ \sum_{i=1}^{n-1}a_iT^i$, and hence $g(T) = 0$,
+which means that $g(T)(x) = 0$, and thus $a_{n-1} = \cdots = a_0 = 0$,
+because $\beta$ is a basis. 
+
+Therefore, the minimal polynomial has a degree of $n$.
+\end{proof}
+
+\begin{theorem}
+  $T$ is diagonalisable if and only if them minimal polynomial of $T$ is of the form $\prod_{i=1}^{s} (t-\lambda_i)$, where $\lambda_i\in\FF$ are distinct.
+\end{theorem}
+\begin{description}
+
+\item[e.g.] $T = \lambda I$ if and only if the minimal polynomial is $(t-\lambda)$
+
+\end{description}
+\begin{proof}
+  \hfill
+
+  Suppose that $\lambda_1, \dots, \lambda_s\in\FF$ are  distinct eigenvalues of $T$.
+
+  Therefore, $V = \bigoplus_{i=1}^{s} E_{\lambda_i}$.
+
+  By Theorem \ref{sec:uniq-minim-polyn}, $g(t) = \prod_{i=1}^{s} (t-\lambda_i) | p(t)$.
+
+  We need to show that $g(t)$ is indeed a minimal polynomial.
+
+  It is enough to show that $g(T)(x) = 0$ for all $x\in E_{\lambda_i}$
+  for all possible $\lambda_i$.
+
+  But $g(T)(x) = g(\lambda_i)(x)$, since $x$ is an eigenvector. But
+  $g(\lambda_i) = 0$, and therefore $g(T) = 0$.
+
+  \textbf{Exercise:} Prove the other direction.
+\end{proof}
+
+\end{document}

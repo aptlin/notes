@@ -1,0 +1,141 @@
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+\documentclass[11pt]{scrartcl}
+\usepackage[beaue, pset, anon]{masty}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+% \usepackage[active,tightpage]{preview}
+% \PreviewEnvironment{tikzpicture}
+% \setlength\PreviewBorder{0pt}%
+	%
+\usepackage{pdfpages}
+\pSet{Alexander Illarionov -- 1003590937 -- CSC240 Pset VIII}
+
+\begin{document}
+\textbf{Administrativia}: no discussions, no extra material consulted
+
+\section{Problem}
+
+\begin{figure}[h]
+ \centering 
+\includegraphics[scale=1.0]{4.pdf},
+\end{figure}
+
+Consider the two-state DFA $M$ shown in the figure above.
+
+Let $L = \set{\set{a,b}^{*}; \text{ there is no run of length 2 }}$.
+
+Let 
+
+\begin{equation}
+P(x): \delta^{*}(q_0, x) = 
+\begin{cases}
+  q_1 \THEN & x \in \LL( b\set{ab}^{*}a + a \set{ba}^{*} = P_1)\\
+  q_{3} \THEN & x \in \LL( (b\set{ab}^{*}a + a \set{ba}^{*})aa\set{a}^{*}+\\
+  &\ \left(   (a\set{ba}^{*}b + b \set{ba}^{*}b)b \set{b}^ {*} a \set{ba}^ {*} aa \set{a}^ {*}\right) \*\\
+  &\ (\lambda + b \set{ab}^{*}b \set{b}^ {*} a \set{ba}^ {*} aa \set{a}^{*}) = P_{3})\\
+  q_4 \THEN & x \in \LL( P_{3}b \set{ba}^{*} = P_{4})\\
+  q_5 \THEN & x \in \LL( a\set{ba}^{*}b + b \set{ba}^{*} = P_5)\\
+  q_7 \THEN & x \in \LL( (P_5 + P_4)(bb \set{b}^{*})\\
+&\ (\lambda + \set{ab}^{*}(\lambda + aa \set{a}^{*}b \set{ab}^{*}bb \set{b}^{*})) = P_{7})\\
+  q_{8} \THEN & x \in \LL( P_7 a \set{ba}^{*})
+
+\end{cases}
+\end{equation}
+
+\begin{lemma}
+$M$ accepts the language $L$.
+\end{lemma}
+
+\begin{proof}
+  \hfill
+
+  We use structural induction on $x\in L$.
+
+\begin{description}
+\item[Base Case] \hfill
+
+  If $x = \lambda$, then there are zero characters in $x$ and hen   there are no ru. Thus, the claim holds in case $x= \lambda$.
+\item[Inductive Step] \hfill
+
+  Suppose the claim holds for $x=y$ and consider the case when $x= yt$
+  for some $\Sigma^{*}$ and $t\in \Sigma$, where
+  $\Sigma = \set{ a, b}$.
+
+  There are two cases: $t = a$ and $t=b$.
+
+  If $t = a$, then $\delta^{*}(q_0, ya) = \delta(\delta^{*}(q_0, y), a)$ by definition of $\delta^{*}$.
+
+  Looking at the mess of 8 cases and the diagram and considering the
+  inductive hypothesis, we see that none of the transitions introduces
+  a run of length 2, and hence the claim holds if $t = a$.
+
+  If $t = b$, then
+  $\delta^{*}(q_0, yb) = \delta(\delta^{*}(q_0, y), b)$ by definition
+  of $\delta^{*}$, and the similar reasoning holds.
+
+\item[Conclusion]
+  \hfill
+
+  By strong induction, $M$ accepts the language $L$.
+\end{description}
+\end{proof}
+
+To see why the regular expressions which define the languages in the
+equation (1) are indeed correct, the reader is referred to the
+diagram, even though the author fully admits that this reasoning in no
+way constitutes a proof.
+
+The main intuition is that the nodes $q_0$, $q_1$, $q_2$, $q_5$ and
+$q_6$ \textit{sort} the input string in such a way that it does not
+have a run of length 2 at the points defined by the first few regex
+terms. Then the process \textit{goes into the loop} by first allowing
+the runs of length greater than three and then ensuring that there are
+no runs of length 2, which is achieved by linking from $q_{4}$ and
+$q_8$ to the respective \textit{run-2 trimmers} ($q_{6}$ and $q_{2}$)
+as defined by the edges after the nodes $q_2$ and $q_6$, which then
+continue into the loop which consists of allowed states.
+\end{document}

@@ -1,0 +1,148 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{MAT157}{}{Power Series}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Power Series}
+
+\subsection{Review}
+
+Consider $f(x) = \sum_{n=0}^{infty}a_n(x-a)^n$.
+
+We have shown that $f(x)$ converges on an open interval $(a-r, a+r)$. Moreover, $f(x)$ converges uniformly on any closed subintreval $[a-s, a+s]$ such that $0 < s < r$.
+
+In particular, $f(x)$ is continuous on $(a-r, a+r)$.
+
+Our guess is that $f'(x) = \sum_{n=0}^{\infty}a_nn(x-a)^n$.
+
+\subsection{Weierstrass $M$-Test}
+
+\begin{theorem}
+Suppose that $\abs{f_n(x)} \leq M_n$ for all $x\in I$, where $I$ is some interval.
+
+Suppose also that $\sum_{n=0}^{\infty}M_n$ converges.
+
+Then $\sum_{n=0}^{\infty}f_n(x)$ converges absolutely and uniformly on $I$.
+\end{theorem}
+
+\begin{proof}
+  \hfill
+
+Proceed with the comparison test.
+\end{proof}
+\begin{lemma}
+If $f_n(x)$ is continuous for all $x\in D(f)$, then
+$\sum_{n=0}^{\infty}f_n(x)$ is continuous.
+\end{lemma}
+\begin{theorem}
+  Suppose $f_n(x) \to f(x)$ for all $x\in I$, and suppose that
+  $f_n(x)$ is differentiable for all $n\in\NN$ and $x\in I$. Suppose
+  also that $f_n'(x)$ converges uniformly to $g(x)$ on $I$ and $g(x)$ is continuous.
+
+  Then $g$ is differentiable and $g(x) = f'(x)$.
+\end{theorem}
+
+\begin{proof}
+  \hfill
+
+  \[\int_a^xg(t)\dif t = \int_a^x\lim_{n\to\infty}f_n'(t)\dif t = \lim_{n\to\infty}\int_a^xf_n'(t)\dif t,\] 
+
+  where the second equality holds because of uniform convergence.
+
+  Therefore, $\lim_{n\to\infty}(f_n(x) - f_n(a)) = f(x)-f(a)$, so
+  $f'(x) = g(x)$.
+\end{proof}
+
+For $f(x) = \sum_{n=0}^{\infty}(x-a)^n$, let
+$f_n(x) = \sum_{m=0}^na_m(x-a)^m$.
+
+Then by the ratio test we can guarantee that $f_n(x)\to f(x)$
+uniformly on $[a-s, a+s]$.
+
+Note that $f_n'(x) = \sum_{m=0}^na_mm(x-a)^{m-1}$, and $f'_m(x)$ converges uniformly to $f'(x)$.
+
+\begin{remark}
+\hfill
+
+  On the interval $(a-r, a+r)$, where $\sum_{n=0}^{\infty}a_n(x-a)^n$
+  converges absolutely, its behaviour is
+  $\sum_{n=1}^{\infty} n a_n(x-a)^{n-1}$ which also converges
+  absolutely.
+
+\end{remark}
+
+\begin{example}
+
+Consider $s(x) =\sum_{n=1}^{\infty} n^2x^{n}$.
+
+Let $a_n = n^2x^n$.
+
+Using the ratio test, we can see that
+\[\abs{\frac{a_{n+1}}{a_n}} = \abs{\frac{(n+1)^2x^{n+1}}{n^2x^n}} = \abs{x}\] as $n\to \infty$.
+
+Therefore, $s(x)$ converges for $\abs{x}< 1$.
+
+Note that $\frac{x}{(1-x)^2} = \sum_{n=1}^{\infty}nx^n$.
+
+Differentiating both sides, we obtain that
+$\frac{1+x}{(1-x)^2}= \sum_{n=1}^{\infty}n^2x^{n-1}$, and thus
+$\\frac{x+x^2}{(1-x)^2} = \sum_{n=1}^{\infty}n^2x^n$.
+
+\end{example}
+
+We can now construct a hierarchy of functions: $C^{\infty} $ $\su$ $\dots$ $\su$ Continuously Differentiable Functions $\su$ Differentiable Functions $\su$ Continuous Functions $\su$ Functions. 
+
+There is also another class, the class of \textit{analytic functions},
+with the corresponding power series convergent at each point.
+
+We know that there are functions in $C^{\infty}$ that are not
+analytic, for example, $e^{-\nicefrac{1}{x^{2}}}$.
+\end{document}

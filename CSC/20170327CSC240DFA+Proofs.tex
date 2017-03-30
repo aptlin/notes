@@ -1,0 +1,144 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{CSC240}{}{DFA Proofs}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{DFA Proofs}
+
+\begin{problem*}
+  Give a DFA that accepts the language
+  $\set{x\in\set{0, 1}^{*}; \text{ the second last letter of $x$ is
+      1}} = \LL((0+1)^{*}1(0+1)$.
+\end{problem*}
+
+\begin{soln}
+  \hfill
+
+  For $\delta^{*}(q_{00}, \lambda) q_{00}\not\in F$,
+  $\delta^{*}(q_{00}, 1) = q_{01}\not\in F$,
+  $\delta^{*}(q_{00}, 0) = q_{00}\not\in F$, we can prove by induction
+  that
+  \begin{align}
+&\forall n\in\NN.(n\geq 2 \THEN \\
+&(\forall x\in \set{0, 1}^n.\\
+    [(
+& \delta^{*}(q_{00}, x) = q_{00}\THEN 00 \text{ is a suffix of x}\\
+& \delta^{*}(q_{00}, x) = q_{01}\THEN 01 \text{ is a suffix of x}\\
+& \delta^{*}(q_{00}, x) = q_{10}\THEN 10 \text{ is a suffix of x}\\
+& \delta^{*}(q_{00}, x) = q_{11}\THEN 11 \text{ is a suffix of x}
+]))
+  \end{align}
+
+We can start as follows.
+
+Let $n \geq 2$.
+
+$\forall x\in \set{0, 1}^n. \delta^{*}(q_{00}, x)\in F \IFF \text{ the second last letter of $x$ is 1}$. 
+
+
+\end{soln}
+
+\section{Nondetermenistic Finite Automata (NFA)}
+
+An NFA is a 5-tuple $(Q, \Sigma, \delta, q_0, f)$, wher $Q$ is a finite set of states, $\Sigma$ is a finite alphabet, $q_0\in Q$ is an initial state, $F\suq Q$, and $\delta: Q\times \Sigma \to 2^{Q}$.
+
+Then we define $\delta^{*}(q, \lambda) = \set{\lambda}$. 
+
+For all $a\in \Sigma$, $x\in \Sigma^{*}$, $\delta^{*}(q, xa) = \bigcup \set{\delta(q', a); q'\in \delta^{*}(q, x)}$, or, equivalently, $\delta^{*}(q, ax) = \bigcup \set{\delta^{*}(q', x);q'\in \delta(q, a)}$.
+
+A string is accepted by a DFA if the path labelled by $x$ starting from $q_0$ ends in a final stat.
+
+$x$ is accepted by a NFA if there exists a path labelled by $x$
+starting from $q_0$ that ends in a final state $L(M) = \set{x\in \Sigma^{*}; \delta^{*}(q_0, x)\cap F \neq \emptyset}$.
+
+Every DFA $(Q, \Sigma, \delta, q_0, F$ can be easily transformed to an
+NFA $(Q, \Sigma, \delta, q_0, F)$ by defining $\gamma(q, a) = \set{\delta(q, a)}$. 
+\begin{ques*}
+
+Are there some languages that can be accepted by an NFA but not by a DFA?
+
+\end{ques*}
+\section{Subset Construction}
+
+\begin{theorem}
+For every NFA $M = (Q, \Sigma, \delta, q_0, F)$ there is a DFA $\wh{M} = (\wh{Q}, \Sigma, \wh{\delta}, \wh{q_0}, \wh{F})$ such that $\LL(M) = \LL(\wh{M})$.
+\end{theorem}
+
+\begin{proof}
+  \hfill
+
+Let $M = (Q, \Sigma, \delta, q_0, F)$ be an arbitrary NFA. 
+
+The DFA we construct keeps trakn of the possible states in which $M$ can be as it reads the input string.
+
+Let $\wh{M} = (\wh{Q}, \Sigma, \wh{\delta}, \wh{q_0}, \wh{F})$, where $\wh{Q} = 2^{Q}$, $\wh{q_0} = \set{ q_0}$. Note that $\wh{q_0}\in \wh{Q}$.
+
+For $Q'\in 2^Q$ and $a\in \Sigma$,
+$\wh{\delta}(Q', a) = \bigcup \set{\delta(q, a);q\in Q'}$.
+
+Let $\wh{F} = \set{Q' \in 2^Q; Q' \cap F = \emptyset}$.
+\end{proof}
+\begin{claim*}
+$\LL(M) = \LL(\wh{M})$.
+\end{claim*}
+\begin{proof}
+  \hfill
+
+  For all $w\in \Sigma^{*}$, let $Q(w) = $
+  \textquote{$\wh{\delta}^{*}(\set{q_0}, w) = \delta^{*}(q_0, w)$}.
+
+  $\forall w\in ~S^{*}. P(w)$ by induction on the length of $w$ or
+  structural induction on the string.
+\end{proof}
+
+
+
+\end{document}

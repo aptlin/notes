@@ -1,0 +1,176 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{CSC240}{}{Variants of NFAs}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Variants of NFAs}
+
+\subsection{Multiple Start States}
+
+Let $M = (Q, \Sigma, \delta, I, F)$, where $I\suq Q$ and $ I \neq \emptyset$.
+
+\begin{theorem}
+If $L = \LL(M)$, then there exists an NFA $N$ such that $\LL(N) = L$.
+\end{theorem}
+
+\begin{proof}
+  \hfill
+
+Suppose $M = (Q, \Sigma, \delta, I, F)$.
+
+We construct $M' = (Q\cup \set{q_0}, \Sigma, \delta', q_0, F')$, where
+$q_0\not \in Q$, and for each $a\in \Sigma$ we have $\delta'(q_0, a) = \bigcup \set{\delta(q, a); q\in I}$ and $\delta'(q, a) = \delta(q, a)$, and
+\begin{equation*}
+  F' = \begin{cases}
+    F, \text{ if } I\cap F = \emptyset\\
+    F\cup \set{q_0}, \text{ if } I\cap F \neq \emptyset.
+  \end{cases}
+\end{equation*}
+
+We prove then that $\LL(M) = \LL(M')$.
+\end{proof}
+
+\subsection{NFA with $\lambda$-Transitions}
+
+Let $M = (Q, \Sigma, \delta, q_0, F)$ and
+$\delta: Q \times (\Sigma\cup {\lambda} \to 2^Q)$.
+
+Let $\LL(M) = \set{x\in \Sigma^{*}; \text{ there is a path from $q_0$ to a final state such that $x$ is a concatenation of the labels on that path}}$.
+
+If $L = \LL(M)$, then there exists an NFA $N$ such that $L = L(N)$.
+
+For exery state $q\in Q$ let $E(q) = \set{q'; \text{ there is a path from $q$ to $q'$ labelled by $\lambda$}}$.
+
+In particular, $q\in E(q)$.
+
+Let $M' = (Q, \Sigma, \delta', E(q_0), F)$ and
+$\delta'(q, a) = \bigcup \set{E(q'); q' \in \delta(q, a)}$.
+
+\section{Closure Results}
+
+Suppose that $L_1, L_2 \in \Sigma^{*}$ are accepted by finite state automata. 
+
+Then $L_1\cup L_2$, $L_1\*L_2$, $\Sigma^{*}-L_1$, $L_1^{*}$, $L_1^{+}$, $L_1\cap L_2$ can also be accepted by finite automata.
+
+We prove now that this statement holds for any languages $L_1$ and $L_2$.
+
+Let $M_1=(Q, \Sigma, \delta, q_1, F_1)$ and $M_2=(Q, \Sigma, \delta, q_2, F_2)$, with $\LL(M_1) = L_1$ and $\LL(M_2) = L_2$.
+
+Assume $Q_1\cap Q_2 = \emptyset$.
+
+Let $M' = (Q,\Sigma, \delta_1, q, Q_1-F_1)$ (an NFA with interchanged accept and reject states). 
+
+Then $\LL(M') = \Sigma^{*} - L_1$.
+
+\begin{proof}
+  \hfill
+
+  Let $x\in \Sigma^{*}$. Then $x\in \LL(M')$ if and only if
+  $\delta_1^{*}(q_1, x) \in Q - F_1$, which holds if and only
+  if $\delta_1^{*}(q, x)\not \in F_1$, which is equivalent to
+  $x\not\in \LL(M)= L_1$, and thus $x\in \Sigma^{*} - L_1$.
+
+  If $M_1$ is an NFA, then it is possible that
+  $\delta_1^{*}(q_1, x)\cap F \neq \emptyset$ and
+  $\delta_1^{*}(q_1, x) \cap (Q_1-F)\neq \emptyset$.
+
+  \begin{description}
+
+  \item[Union] 
+\hfill
+
+Let $M' = (Q_1\cup Q_2, \Sigma, \delta, \set{q_1, q_2}, F_1\cup F_2)$
+and $\delta: (Q_1\cup Q_2)\times \Sigma \to Q\cup Q_2$.
+
+Then $\delta(q, a) = 
+\begin{cases}
+  \delta_1(q, a) \text{ if $q\in Q_1$ }\\
+  \delta_2(q, a) \text{ if $q\in Q_2$ }
+\end{cases}
+$
+
+Then $\LL(M') = \LL(M_1)\cup \LL(M_2)$.
+\item[Intersection] 
+\hfill
+
+Let $M' = (Q_1\times Q_2, \Sigma, \delta, (q_1, q_2), F_1\times F_2)$,
+thus creating an NFA consisting of two subNFA running in parallel.
+
+Then $\delta((q_1, q_2), a) = (\delta_1(q_1, a), \delta(q_2, a))$ for
+all $a\in \Sigma$ and $q_1\in Q_1$ and $q_2\in Q_2$.
+
+\item[Concatenation] 
+
+  Connect two NFAs by $\lambda$-transitions from the accepting
+  states in one connected to the initial state in another.
+\item[$L_1^{+}$]
+
+Connect the accepting states to the initial states with $\lambda$-transitions.
+\item[$L_1^*$] 
+
+If $\lambda \in L_1$, then $L_1^{*} = L_1^+$ if $\lambda \not \in L_1$.
+
+Connect the accepting states by $\lambda$-transitions to the old
+initial state, adding a new accepting initial state connected to the
+old initial state by the $\lambda$-transition.
+  \end{description}
+\end{proof}
+\begin{corollary}
+Every regular language can be accepted by a finite state automaton.
+\end{corollary}
+
+\begin{proof}
+  \hfill
+
+The proof proceeds by structural induction.
+\end{proof}
+
+\end{document}

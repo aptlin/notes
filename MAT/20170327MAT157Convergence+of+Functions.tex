@@ -1,0 +1,127 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{MAT157}{}{Convergence of Functions}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Convergence of Functions}
+
+
+Consider $\sum_{n=1}^{\infty}a_n(x-a)^n$.
+
+Suppose the series converges at $x=x_0$.
+
+The terms $a_n(x_0-a)^n$ must go to 0.
+
+So there exists $M\in\RR$ such that $\abs{a_n(x_0-a)^n}< M$ for all $n\in\NN$.
+
+Consider a pont $r$ such that $\abs{r-a}< \abs{x_0-a}$:
+
+\begin{align}
+\sum_{i=1}^{\infty}a_n(r-a)^n = \sum_{i=1}^{\infty}a_n(x_0-a)^n\* (\frac{r-a}{x_0-a})^n.
+\end{align}
+
+Then $\abs{a_n(r-a)^n} = \abs{a_n(x_0-a)^n(\frac{r-a}{x_0-a})^n} \leq M \abs{\frac{r-a}{x_0-a}}^n$.
+
+Thus, $\sum_{i=1}^{\infty}a_n(r-a)^n$ converges absolutely.
+
+Now consider the series as a function:
+\begin{equation*}
+f_{n}(x) = \sum_{n=0}^na_n(x-a)^n.
+\end{equation*}
+
+As $n$ goes to infinity, what is its derivative?
+
+Note that $f_n'(x) = \sum_{n=0}^{\infty}na_n(x-a)^{n-1}$.
+
+Then the ratio test says that $\frac{f_{n+1}'(x)}{f_n'(x)} = \frac{n+1}{n}\frac{a_{n+1}}{a_n}(x-a)$.
+
+Suppose $f_n(x) \to f(x)$ for all $x\in [a, b]$. Suppose that $f_n(x)$
+is continuous for all $n\in\NN$. 
+
+On $[0, 1]$, as $n\to \infty$, $x^n$ tends to zero for $x<1$ and to one for $x=1$.
+
+\begin{example}
+
+  Let $f_n(x) $ be such that $f_n(x) = \begin{cases}
+    n\leq x\leq n+1\\
+    \text{ otherwise}
+  \end{cases}$.
+
+Suppose now that $\lim_{n\to\infty}g_n(x) = 0$ for all $x\in\RR$ such that
+
+\begin{equation*}
+  \frac{1}{2}=\lim_{n\to\infty}\int_0^1 g_n(x) \dif x +\int_{0}^1\lim_{n=1}^{\infty}g_{n} = 0
+\end{equation*}
+\end{example}
+\begin{definition}
+  A sequence of functions $f_n$ \textit{converges uniformly} to $f(x)$ if, given $\epsilon > 0$, there exists $N\in\RR$ such that $\abs{f_n(x) - f(x)} < \epsilon$ for any $n > N$ and for any $x\in D(f)$.
+\end{definition}
+\begin{remark}
+We can also define postive convergence, if $\lim_{n\to\infty}f_n(x) = f(x)$ for all $x\in D(f)$.
+\end{remark}
+
+\begin{theorem}
+
+Suppose that $f_n$ and $f$ are integrable.
+
+If $f_n \to f$ uniformly on $[a, b]$, then $\lim_{n\to\infty}\int_a^bf_n(x) \dif x = \int_a^bf(x) \dif x = \int _a^b\lim_{n\to\infty}f_n(x) \dif x$. 
+\end{theorem}
+
+\begin{proof}
+  \hfill
+
+  Given $\epsilon > 0$, we can find $N$ such that $\abs{f_n(x) - f(x) < \frac{\epsilon}{b-a}}$ for all $x\in [a, b]$ and for all $n > N$.
+
+  Then $\abs{\int_a^bf_n(x) \dif x - \int_a^bf(x)\dif x} \leq \int_a^b \abs{f_n(x) - f(x)} \dif x < \frac{\epsilon}{b-a}\int_a^b \dif x = \epsilon$.
+\end{proof}
+
+
+\end{document}
