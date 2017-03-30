@@ -1,0 +1,128 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{Hector Pastor}{}{On the abc Conjecture}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{On the abc Conjecture}
+\subsection{Introduction}
+
+Problems that directly relate the additive and multiplicative structure in $\ZZ$ tend to look deceptively simple and harshly difficult. (Goldbach's conjecture, Twin prime conjecture, FLT)
+
+The abc conjecture gives a lower bound for $\rad$ of integer sums.
+
+In general, bounds of the form $c < f(\rad(abc))$ are far from trivial
+(see Mahler's theorem).
+
+More precisely, the abc conjecture states that for some $\epsilon >0$
+there is a constant $K_{\epsilon}$ such that for all coprime positive
+integers $a, b, c$ with $a+b = c$ we have
+$c < K_{\epsilon}\rad(abc)^{1+\epsilon}$.
+
+We know that the condition $\epsilon > 0$ is necessary.
+
+% We also know that there is no known 
+
+\subsection{Relevance}
+If the abc conjecture is true, it
+\begin{itemize}
+\item guarantees there  a \textit{simple} proof
+  of Falting's theorem (general equation $f(x, y) = 0$ with $f\in \QQ[x, y]$ with $\deg f \geq 4$ has only finitely many solutions in $\QQ$)
+\item gives a master key for ternary Diophantine equations
+\item gives many results in the theory of elliptic curves
+\item implies FLT for large exponents
+\item gives an asymptotic formula for counting squarefree values of polynomials $f(t)\in \ZZ[t]$ as we evaluate at $t=1, 2, \dots$, as shown by Granville (1998)
+\item warrants the infinitude of non-Wieferich primes ($p$ such that $p^2\nmid 2^{p-1} - 1$)
+\item power values imply power factoriation:
+
+  If abc($\QQ^{\leq k}$) holds, then for $k\geq 2$ there is a constant
+  $M = M(k)$ such that if a \textbf{monic} polynomial $f(t\in \ZZ[t])$
+  of \textbf{degree} $k$ satisfies the condition that $f(1)$, $f(2)$,
+  \dots, $f(M)$ are all powers of integers, then $f(x) = (t+b)^k$ for
+  some $b\in\ZZ$.
+\item gives applications to Erd\"os-Ulam problem about rational
+  distance sets:
+
+  A \textbf{rational distance set} $U\suq \RR^2$ is a set such that
+  for all $x, y \in U$ we have $\norm{x-y}_2\in \QQ$. For instance,
+  $\QQ$ in the $X$-axis is a rational distance set.
+
+
+\end{itemize}
+
+\subsection{Is the field of meromorphic functions \textit{easy}?}
+
+For $k$ a field with an absolute value, we write $\SM_k$ for the field of (possibly transcendental) meromorphic functions on $k$.
+
+Vojta formulated a conjecture in the 1980 by which number fields have arithmetic analogous to that of the fields.q
+
+For example, in case of curves, Faltings theorem is analogous to the
+Picard-Berkovich theorem.
+
+Vojta's dictionary is intimately related to the abc conjecture.
+
+\subsection{Elliptic Curves}
+
+\begin{definition}
+  An elliptic curve over $\QQ$ is a smooth, geometrically connected,
+  projective curve over $\QQ$ of genus $1$ with a distinguished
+  $\QQ$-rational point.
+\end{definition}
+
+There are two integers attached to every elliptic curve: $\Delta_E$,
+the absolute value of the minimal discriminant, and $N_E$, the
+conductor of $E$, where $N_E$ divides $\Delta_E$ and they have the
+same prime factors.
+
+It can be shown that all elliptic curves over $\QQ$ are modular (see
+Wiles et al).  The are some curves $X_0(N)$ over $\QQ$ such that each
+curve can be reconstructed from the given integer $N$. They are
+well-understood and support the modular theory.
+\end{document}
