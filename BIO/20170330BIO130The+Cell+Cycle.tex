@@ -1,0 +1,228 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{BIO130}{}{The Cell Cycle}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{The Cell Cycle}
+
+\subsection{Tubulin Dimers}
+
+Free dimers are bound to GTP (the ``T'' form).
+
+Tubulin subunits are enzymes that hydrolyse GTP.
+
+When the hydrolysis occurs in the filament GDP is trapped in the tubulin subunits (the ``D'' form)
+
+\subsection{Cell Division}
+
+Not all cells in the culture will be dividing at the same time.
+
+In fact, very few cells can be observed in the process of cell
+division at any given time.
+
+\subsection{Cell Cycle}
+
+\begin{description}
+
+\item[M phase] 
+The nucleus and cytoplasm divide:
+\begin{itemize}
+\item Mitosis (nuclear division)
+\item Cytokynesis (cytoplasmic division)
+\end{itemize}
+\item[Interphase] 
+The period between cell division:
+\begin{itemize}
+\item G1 phase
+\item S phase
+\item G2 phase
+\end{itemize}
+\end{description}
+\subsection{Cells in Multicellular Organisms}
+\begin{enumerate}
+\item Many mature cells do not divide.
+\begin{itemize}
+\item nerve cells, muscle cells, RBC
+\item As specialisation develops, the ability to divide is lost
+\end{itemize}
+\item Some cells only divide when given an appropriate stimulus
+\begin{itemize}
+\item liver cells
+\item when part of the liver is surgically romevd the remaining liver
+  cells start to divide to replace the lost tissue
+\end{itemize}
+\item Some cells normally divide on an ongoing basis.
+\end{enumerate}
+
+Cells that do not divide are in G0 (in the state of cell cycle exit).
+
+The cell-cycle control system delays later events until earlier events
+are complete (start checkponint, metaphase-to-anaphase
+transition). Problems with the cell-cycle control system cause
+chromosome segregation defects.
+
+If the environment is not favourable at some checkpoint, the cell
+cycle arrest occurs.
+
+\subsection{Prophase}
+
+\begin{itemize}
+\item replicated chromosomes condese
+\item Mitotic spindle assembly starts and requires centrosome
+  duplication and bipolar spindle assembly.
+\end{itemize}
+When a mitotic cell is fused with another cell in G1, some of the
+proteins will move over and condense G1 proteins.
+
+When a mitotic cell is fused with another cell in G2, then the S2
+chromosomes are also condensed.
+
+When a mitotic cell is fused with another cell in S phase, chromosomes
+are pulverized.
+
+\subsection{Chromosome Condensation}
+
+At the end of G2 the replicated chromosomes are dispersed and tangled.
+
+At the beginning of mitosis choromosomes condense to a condensin protein complex.
+
+The sister chromatids are resolved but remain associated due to the
+cohesin at the centromere.
+
+\subsection{Dynamic Microtubules}
+
+Dynamic microtubules are required for mitosis.
+
+In an interphase cell microtubules are arranged in a radial pattern. Minus ends are stabilised at the MTOC. 
+
+In prophase, bipolar mitotic spindle starts, which requires
+dissasembly and reassambly of microtubules.
+
+\subsection{Centrosome Structure}
+
+The centrosome MTC consists of a pair of centrioles organised at right
+angles to each other and composed by nine fibrils of three mictrotubules each.
+
+The centrosome MTOC is surrounded by $\gamma$-tubulin ring complexes.
+
+\subsection{Centrosome Duplication and Mitotic Spindle Assembly}
+
+Coentrosome duplication starts in $S$ phase, while the bipolar mitotic
+spindle assembly starts in M phase.
+
+Centrosome duplication occurs only once per cell cycle. Each centriole
+serves as a template for a new centriole.
+
+Complete mitotic spindle assembly requires nuclear envelope breakdown.
+
+\subsection{Nuclear Envelope Breakdown}
+
+Nuclear envelope breakdown occurs at the boundary between prophase and prometaphase.
+
+\begin{description}
+
+\item[Nuclear lamina] Meshwork of intreconnected nuclear lamin proteins
+\item[Lamin] A special class of intermediatefilaments that form a
+  two-dimensional lattice on the inner nuclear membrane.
+
+\end{description}
+
+Phosphorylation of lamins is thought to trigger nuclear envelope breakdown.
+
+\subsection{Prometaphase}
+
+Mitotic spindle assembly is completed. Chromosomes attach to spindle
+microtubules. Chromosome movement begins and ancompasses the
+microtubulene.
+
+\subsection{Mitotic Spindle Assembly}
+
+Requiremenets:
+\begin{itemize}
+\item Microtuble dynabics
+\item Microtubule motor protein activity (kinesins, dyenins)
+\end{itemize}
+
+\subsection{Metaphase}
+
+In metaphase, all chromosomes are aligned on the metaphase plate.
+
+\subsection{Metaphase-Anaphase Transition}
+
+Anaphase does not start until all the chromosomes are aligned on the
+metaphase plate.
+
+\subsection{Anaphase}
+
+Sister chromatids separate to form the two daughter chromosomes, and
+the cohesin is cleaved.
+
+They are pulled towards opposite poles, and kinetochore microtubules
+shorten.
+
+When anaphase is triggered a protease called separase is activated
+which cleaves the cohesin complex and allows sister chromatids to
+separate.
+
+\subsection{Cytokinesis}
+
+Cytoplasm is divided in two by a contractile ring of actin and myosin
+(in animal cells). The interphase microtubules reform in each daughter
+cell, which marks the end of the M-phase.
+
+Cytokinesis requires dynaic actin filaments. At the beginning of
+mitosis actin amd myosin arrays disassemble. They assemble at the
+contractile ring towards the ned of mitosis (starting in anaphase).
+
+In plant cells vesicles line up and fuse together.
+
+
+\end{document}
