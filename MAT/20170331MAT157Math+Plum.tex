@@ -1,0 +1,111 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{MAT157}{}{Math Plum}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Math Plum}
+
+Let $\set{x}$ be the distance from $x$ to the nearest integer.
+
+Consider $\frac{1}{10} \set{10 x}$.
+
+Note that this function scales the graph of $\set{x}$ down by the
+factor of $10$ in both directions.
+
+Define the following function:
+\begin{equation}
+  f(x) = \sum_{n=0}^{\infty}\frac{1}{10^n} \set{10^nx}.
+\end{equation}
+
+Note that $f(x)$ is well-defined by the Weierstrass $M$-test, since
+$\frac{1}{10^n} \set{10^nx} \leq \frac{1}{10^n}\frac{1}{2}
+$. Moreover, it converges uniformly and $f$ is continuous.
+
+However, $f$ is \textbf{not} differentiable \textbf{anywhere}.
+
+Consider $\frac{f(a+h)-f(a)}{h}$.
+
+We will find a sequence $\set{h_m}$ so that the sequence
+$\frac{f(a+h_m)-f(a)}{h_{m}}$ diverges, which would imly the
+difference quotient has no limit.
+
+Fix $a$ such that $0 < a < 1$, and let $a= 0.a_1a_2\dots$.
+
+Take $h_m = 
+\begin{cases}
+  10^{-m}, \text{ if $a_m \neq 4, 9$ }\\
+  -10^{-m}, \text{ if $a_m = 4, 9$}
+\end{cases}
+$ (think about why the nonuniqueness of decimal representation would not affect the overall argument).
+
+
+It is easy to see that $h_m\to 0$.
+
+Consider $\frac{f(a+h_m) - f(a)}{h_m}$:
+
+\begin{align}
+&= \pm 10 (f(a+h_m) - f(a))\\ 
+&= \pm 10^m (\sum_{n=0}^{\infty}10^{-n}(\set{10^n(a+h_m)} - \set{10^na})).
+\end{align}
+
+If $n \geq m$, then $10^nh_m=10^{n-m} \in \ZZ$, $\set{10^k(a+h_m)} = \set{10^na}$.
+
+So only finitely many terms are nonzero, and thus it equals $\sum_{n=0}^{m}\pm 10^{-n}(\set{10^n(a+b_{m}) - \set{10^na}})$
+
+If $0.a_{n+1}a_{n+2}\dots a_m  < \frac{1}{2}$, then 
+
+Thus,$\frac{f(a+h_m) - f(a)}{h_m}$, which is equal to
+$\pm 10^m\sum_{n=0}^m10^{n}(\pm 10^{n-m}) = \pm \sum_{n=0}^m\pm 1$.
+
+It is even if $m$ is odd, and $odd$ if $m$ is even. 
+
+Therefore, it does not converge.
+\end{document}
