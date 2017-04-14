@@ -1,0 +1,155 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{MAT247}{}{Computational Aspects of RCF}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Computational Aspects of RCF}
+
+\subsection{Review}
+
+Suppose $x\in V$, $x\neq 0$, and let $T \in \End(V)$.
+
+The $T$-annihilator of $x$ is a monic polynomial $p(t)$ of the least
+degree such that $p(T)x = 0$.
+
+
+Note that the characteristic polynomial of $T$, $f(t)$, can be
+represented in the form $(-1)^{\dim V}\prod_{i=1}^s\phi_s(t)^{m_s}$,
+so that $V = \bigoplus_{i=1}^sK_{\phi_i}$ and
+$\dim K_{\phi_i} = m_i\deg \phi_i$.
+
+Each $K_{\phi_i}$ has a basis $\beta_i$ which is a disjoint union of
+$T$-cyclic bases in the form $\set{x, Tx, \dots, T^{k-1}x}$.
+
+Let $\beta = \bigcup_{i=1}^s \beta_i$. Then $[T]_{\beta}$ is in RCF.
+
+\subsection{How to Find RCF}
+
+For each $K_{\phi_i}$ we can write a dot diagram consisting of
+representations of cycles inside some $\beta_i$.
+
+The $T$-annihilator of $x_j$ is $\phi_j(t)^{k_j}$ for some $k_j\in\ZZ^+$.
+
+Order these $x_j$'s so that $k_1\geq k_2\geq \dots \geq k_s$.
+
+Note that $\abs{\beta_{x_j}}=k_j\deg \phi_j $.
+
+Moreover, the number of dots in the first $s$ rows is
+$\frac{\nll \phi_i(T)^s }{\deg \phi_i} = \frac{\dim K_{\phi_i}}{\deg
+  \phi_i} = m_i$.
+
+\begin{example}
+
+  Suppose that $\FF = \ZZ_5$ and let $T \in \End(V)$ be such that the
+  characteristic polynomial of $T$ is $f(t)= (t^2+1)(t^2+2)(t^3+3)$.
+
+  Since $\FF = \ZZ_5$, then $f(t) = (t-2)(t+2)(t^2+2)(t^3+3)$.
+
+  Since $m_1=m_2=m_3=m_4=1$, we know that each dot diagram consists of only one dot.
+
+  Each $K_{\phi_i}$ has a $T$-cyclic basis, and a $T$-annihilator is
+  $\phi_i(t)$. 
+
+  Thus, the RCF is $
+  \begin{pmatrix}
+  C_{t-2}& & &\\
+  & C_{t+2} & &\\
+  & & C_{t^2+2} &\\
+  & & & C_{t^3+3}
+\end{pmatrix}
+$.
+\end{example}
+
+\begin{example}
+\label{sec:how-find-rcf}
+Suppose that $\FF = \ZZ_5$.
+
+Let $A = 
+\begin{pmatrix}
+1 & 1& 1& 0 &0\\
+2& 4 &2 &4 &0\\
+& & 2&1 &1\\
+& & 4&3 &0\\
+& & & &0
+\end{pmatrix}
+$.
+
+Then $f(t)= -(t^2+2)(t^2+2)t = -t(t^2+2)^2$.
+
+Note that $\phi_1(t)=t$ and $m_1=1$, while $\phi_2(t)=t^2+2$ and $m_2=2$.
+
+The number of dots in the first row is
+$\frac{\nll(A^{2}+2I)}{\deg \phi_2} = \frac{4}{2} =2$.
+
+So the dot diagram of $K_{\phi_2}$ consists of two dots in a row, which means that
+$R(A) = 
+\begin{pmatrix}
+0 & -2 & & &\\
+1 & 0 & & &\\
+& & 0 & -2 &\\
+& & 1  & 0 &\\
+& & & &0
+\end{pmatrix}
+$.
+
+\end{example}
+
+\subsection{How to Find a Rational Canonical Basis}
+
+In Example \ref{sec:how-find-rcf}, $K_{\phi_2} = \ker (A^2+2I)$ is
+$4$-dimensional, so each element $x\in K_{\phi_2}\setminus \set{0}$
+has $L_A$-annihilator $t^2+2$, so a $2$-dimensional $L_A$-cyclic
+subspace is generated.
+
+Pick any vector $x\in K_{\phi_2}\setminus \set{0}$ to obtain the first
+cycle, and pick any other vector not in the span of $\beta_x$ to get
+another cycle.
+\end{document}

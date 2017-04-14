@@ -1,0 +1,132 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{Leonid Monin}{}{Markov Triples}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Markov Triples}
+
+\begin{definition}
+A \textbf{Markov triple} is an integer solution of the quation $x^2+y^2+z^2 = 3xyz$.
+\end{definition}
+
+Note that the equation $x^2+y^2+z^2 = 3xyz$ is quadratic in each variable.
+
+In this sence, it can be rearranged, for example, to $x^2-(3bc)x+b^2+c^2=0$.
+
+Using the Vieta formula, we know that, if $a$ and $a'$ are two
+solutions, then $a+a' = 3bc$.
+
+Note that we can construct a tree of solutions starting with a trivial
+solution $(1, 1, 1)$: $(1, 1, 1) \to (1, 1, 2)\to(1, 2, 5)\to \dots$.
+
+\begin{ques*}
+
+  Are Markov triples determined by its maximal element?
+
+\end{ques*}
+
+\subsection{Approximations of Irrational Numbers $\alpha \in \RR\setminus \QQ$}
+
+\begin{theorem}
+  For any $\alpha \in \RR \setminus \QQ$ and $N\in\NN$, there exists
+  $\frac{p}{q}\in \QQ$ such that $\gcd(p, q)=1$ and $q < N$ and
+  $\abs{\alpha - \frac{p}{q}} < \frac{1}{q\* N} \leq \frac{1}{q^c}$
+  for some $ c\in\NN$.
+\end{theorem}
+\begin{corollary}
+  For each $\alpha\in \RR\setminus\QQ$, there exist infinitely many
+  $\frac{p}{q}$ such that
+  $\abs{\alpha - \frac{p}{q}} < \frac{1}{q^2}$.
+\end{corollary}
+\begin{definition}
+  $\alpha$ is \textbf{approximable} of degree $t$ if and only if there
+  exist infinitely many $\frac{p}{q}$ such that
+  $\abs{\alpha - \frac{p}{q}} < \frac{1}{q^t}$.
+\end{definition}
+
+\begin{theorem}
+  If $\alpha \in \RR$, $\epsilon > 0$ and there exist infinitely many
+  $\frac{p}{q}$ such that
+  $\abs{\alpha - \frac{p}{q}} < \frac{1}{q^{2+\epsilon}}$, then
+  $\alpha$ is transcendental.
+\end{theorem}
+\begin{remark}
+See also the works of Liouville, Thue, Siegel and Dyson.
+\end{remark}
+
+Let $L(\alpha)$ be a supremum of $\set{c; \text{ there exist infinitely many $\frac{p}{q}\in \QQ$ such that $\abs{\alpha- \frac{p}{q}} < \frac{1}{cq^2}$}}$.
+
+\begin{definition}
+  A \textbf{Lagrange spectrum} is the set
+  $\LL = \set{L(\alpha); \alpha \in \RR\setminus\QQ}$.
+\end{definition}
+
+Denote the set of integers which appear in Markov triples as $\SM$.
+
+\begin{theorem}
+  Consider $\LL_{<3} = \set{\frac{\sqrt{9m^2-4}}{m}; m\in \SM}$, and
+  let $\gamma_m = \frac{a_m+\sqrt{9m^2-4}}{b_m}$ for some integer
+  $a_m$ and $b_m$.
+\end{theorem}
+
+Thus, if 
+
+\[\inf Q = \inf_{\shortstack[l]{$x,y \in
+    \ZZ$\\$Q(x, y)\neq 0$}}\abs{Q(x, y)} =m,\]
+
+then 
+\begin{equation*}
+  \LL_{< 3} = \set{\frac{\Delta(Q)}{\inf Q}}_{< 3}\Delta(Q) = 9m^2-4.
+\end{equation*}
+
+\textit{See further}: multiplicative commutator, cluster algebra
+
+\end{document}

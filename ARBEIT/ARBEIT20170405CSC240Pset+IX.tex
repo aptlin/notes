@@ -1,0 +1,221 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{Alexander Illarionov -- 1003590937 -- CSC240 Pset IX}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+\textbf{Administrativia}: intermittent discussions with Arthur
+Rabinovich, Saminul Haque, Vincent Huang, Ming Feng Wan, extra
+material consulted:\\ \url{https://concurrency.cs.uni-kl.de/documents/ConcurrencyTheory_SS_2015/languages_week_10_11_12_13_14.pdf}
+\section*{Pset IX}
+
+For all $k\in \ZZ^+$, let $\Sigma_k = \set{1, \dots, k}$ and let
+$L_k = \set{x\in\Sigma_k^{*}; \exists a \in \Sigma_k. (\text{$a$ does
+    not occur in $x$})}$.
+
+\begin{problem*}
+  \hfill
+
+  For all $k\in \ZZ^+$, construct a nondeterministic finite automaton
+  $N_k$ with $k+1$ states such that $\LL(N_k) = L_k$.
+\end{problem*}
+\begin{soln}
+  \hfill
+
+  Let $k\in \ZZ^+$ be arbitrary, and denote the set $[1, k]\cap\ZZ^+$
+  as $I$.
+
+  Let $Q = \set{q_i; i\in I\cup \set{0}}$ be a set of $k$ states, let
+  $q_0$ be the initial state and and let $\Sigma = \Sigma_k$.
+
+  Consider a string ``123\dots k'' and its cycle shifts with the last
+  symbol truncated. Suppose we do not care about the ordering of the
+  first three digits and want to count how many unique combinations
+  there are. Since this is a problem of choosing $k-1$ elements out of
+  $k$ elements, we know that $\cv{k;k-1} = k$ is the number of
+  possible combinations. Since $\abs{Q} = k+1$, let
+  $\delta: Q\times \Sigma \to \SP(Q)$ be such that there are $k-1$
+  arrows from $q_0$ to each $q_j$ for $j\in I$ in such a way that this
+  transitions are labelled with numbers in $I-\set{j}$.
+
+  % \begin{center}
+  %   \begin{tabular}[h]{c c c c c c c}
+  %       	& 1 & 2 & \dots & j & \dots & k  \\
+  %     $q_0$	& $\set{q_1}$  &   &       &   &       &    \\
+  %     $q_1$	& $\set{q_1}$  &   &       &   &       &    \\
+  %     \vdots	&   &   &       &   &       &    \\
+  %     $q_j$	& $\set{q_j}$  &   &       &   &       &    \\
+  %     \vdots	&   &   &       &   &       &    \\
+  %     $q_{k}$	& $\set{q_k}$  &   &       &   &       &  
+  %   \end{tabular}
+  % \end{center}
+
+  Take $\set{q_i; i\in I}$ as the set of accept states.
+
+  In this way, we have defined a 5-tuple $(Q, \Sigma, \delta, q_0, F)$
+  which has $k+1$ states.
+
+  Note that this NFA represents $N_k$, since any string which includes
+  all elements from $\Sigma_k$ is rejected: there is no path which
+  transits through the edges labelled with all the integers in $I$, so
+  that $q_0$ plays a role of a \textit{sorting} state, after which the
+  entire set of allowed strings in one of $k$ \textit{branches} is
+  well-defined.
+
+  By generalisation, $\LL(N_k)=L_k$.
+\end{soln}
+\begin{problem*}
+  \hfill
+  Prove that every deterministic finite automaton $D_{k}$ such that
+  $\LL(D_k) = L_k$ has at least $2^k$ states.
+\end{problem*}
+
+\begin{soln}
+  \hfill
+
+  For any $n\in\ZZ^+$, let $P(n)=$ \textquote{Any finite state
+    automaton $D_{n}$ such that $\LL(D_n) = L_n$ has at least $2^n$
+    states}.
+
+  Note that $P(1)$ holds, since if $\Sigma_1 = \set{1}$ and there is
+  only one state in the DFA corresponding to $L_1$, then there it is
+  an initial and accepting note at the same time, while in nonempty
+  DFAs there is always a transition labelled with an element from the
+  chosen alphabet. Thus, there must be at least two states, as required.
+
+  Suppose now the claim holds for all positive integers less than some
+  $k\in\ZZ^{+}$. We prove that $P(k)$ holds, and thus there are at
+  least $2^k$ states in $D_k$.
+
+  Since we have already shown that $P(1)$ holds, without loss of
+  generality assume that $k\geq 2$.
+
+  Since $D_k$ is a DFA with the maximum length of the accepted string
+  equal to $k-1$, there exists a state $q_t$ such that there are $k$
+  transitions each leading to a candidate for an accepted string of
+  length $k-1$. Call these paths \textit{subbranches}. Since each such
+  a subbrunch accepts a string of length less than or equal to $k-1$,
+  we know by inductive hypothesis that each of them requires at least
+  $2^{k-1}$ states. Therefore, there are at least
+  $k\*2^{k-1} \geq 2\*2^{k-1}=2^k$ states required in total, which is
+  exactly the claim in case $n=k$.
+
+  Therefore, for all $n\in\ZZ^+$ we have $P(n)$ by strong induction.
+
+\end{soln}
+
+\begin{problem*}
+  \hfill
+
+Prove that the family of regular languages is closed under finite state transductions.
+\end{problem*}
+
+\begin{soln}
+  \hfill
+
+  We prove that, for all regular languages $R\suq \Sigma^{*}$ and all
+  functions $T: \Sigma^{*}\to \Gamma^{*}$ defined by finite state
+  transducers $(Q, \Sigma, \Gamma, \delta, \tau, q_0 )$,
+  $T (R) = \set{T(x);x \in R} \suq \Gamma^{*} \text{ is regular}$.
+
+  To prove it, we construct a nondeterministic finite automaton $N$
+  with $\lambda$ transitions, which, given a string $y\in \Gamma^{*}$
+  as input, guesses a string $x\in \Sigma^{*}$ one letter at a time,
+  checks that both $T (x) = y$ and $x \in R$, and, if so, accepts
+  $y$. The output $T$ generates as a result of reading one letter is
+  put into a buffer that is part of the state. In this way, we
+  construct $N$ which accepts $T(R)$.
+
+  First, let $R$ be an arbitrary regular language which is a subset of
+  $\Sigma^{*}$, suppose that $D$ is a corresponding DFA and let $M$ be
+  an arbitrary transducer from $\Sigma^{*}$ to $\Gamma^{*}$ in the
+  form $(Q, \Sigma, \Gamma, \delta, \sigma, q_0 )$, with $T$ an arbitrary transduction in $M$.
+
+  Let $q_0$, the initial state of $D$ be equal to $q'_0$, the initial
+  state of $N$.
+
+  We prove first that there exists an alphabet $Z$, homomorphisms
+  $\pi: Z^{*}\to \Sigma^{*}$ and $\tau: Z^{*}\to \Sigma^{*}$ and a
+  regular language $K \suq Z^{*}$ such that
+  $T=\set{(\pi(y), \tau(y));y\in K}$.
+
+  Let $Z$ be a set of all pairs which serve as labels of each
+  transduction of $T$.
+
+  In this way, $M$ can be interpreted as a DFA $D'$ over $Z$. Let $K$
+  be a language corresponding to $D'$.
+
+  For all $(x, y)\in Z$, define $\pi: Z^{*}\to \Sigma^{*}$ and
+  $\tau: Z^{*}\to \Sigma^{*}$ as $\pi((x,y)) = x$ and
+  $\tau((x, y)) = y$.
+
+  In this way, by construction, we obtain that any pair $(m, n)$ is in
+  $T$ if and only if there exists a sequence of states with
+  transductions $(x_1, y_1), \dots, (x_n, y_n)$ in $M$ such that
+  $ m =x_1\cdots x_n$ and $n = y_1\cdots y_n$, which is equivalent to
+  the sequence of states in D', since
+  $m = \pi((x_1, y_1)\cdots(x_n,y_n))$ and
+  $n = \tau((x_1,y_1)\cdots(x_n, y_{n}))$. Thus, there exists some
+  $t\in K$ with $\alpha(t) = m$ and $\beta(t) = n$.
+
+  Moreover, if $T = \set{(\pi(y), \tau(y));y\in K}$, every edge in a
+  finite-state automaton $D'$ accepting $K$ can be turned into an edge
+  in the corresponding finite-state transducer.
+
+  This means that transducers can be translated into the language of
+  DFA.
+
+  Since we have already proved that homomorphisms, inverse homomorphisms and intersections of regular languages preserve the regularity, we know that the family of regular languages is closed under finite state transductions.
+\end{soln}
+
+
+
+
+
+\end{document}

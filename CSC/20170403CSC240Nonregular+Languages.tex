@@ -1,0 +1,197 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{CSC240}{}{Nonregular Languages}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Nonregular Languages}
+
+Consider $L = \set{a^ib^i; a \geq 1}$.
+
+Suppose that $L$ is regular. 
+
+Therefore, there exists a DFA $(Q, \set{a, b}, \delta,q_0, F)$ which
+accepts $L$.
+
+Let $n = \abs{Q}$.
+
+Consider the states $q_{i} = \delta^{*}(q_0, a^i)$ for $i = 0, \dots, n$.
+
+By the pigeonhole principle, there exist $0 \leq i < j \leq n$ such
+that $q_i = q_j$.
+
+Then
+$\delta^{*}(q_0, a^ib^j) = \delta^{*}(\delta^{*}(q_0, a^i), b^j)$, and
+since $q_i = q_j$, then
+$\delta^{*}(q_0, a^ib^j) = \delta^{*}(\delta^{*}(q_0, a^j), b^j) =
+\delta^{*}(q_0, a^jb^j) \in F$, since $a^jb^j \in L$, which means that
+$a^ib^j\in L$. But $a^ib^j\not \in L$, since $i\neq j$, which is a
+contradiction. Thus, $L$ is not regular.
+
+Now we prove that $A = \set{a^mb^r; m\neq r}$ is not regular.
+
+Suppose $A$ is regular.
+
+Then $(\set{a, b}^{*} - A)\cap \LL(aa^{*}bb^{*})$ is also regular,
+because $\LL(aa^{*}bb^{*})$ is regular and $\set{a, b}^{*}-A$ is
+regular by closure under complementation. 
+
+But
+$(\set{a, b}^{*} - A)\cap \LL(aa^{*}bb^{*}) = \set{a^ib^i; i \geq 1}$,
+which is not regular, and thus we obtain a contradiction.
+
+Consider now
+$B = \set{a^ib^jc^h; i, j, h \geq 0 \AND i=1 \THEN j = h}$.
+
+Suppose that $B$ is regular.
+
+Then $B\cap \LL(abb^{*}cc^{*}) = \set{ab^jc^h; j =h \geq 1} = C$ is
+regular.
+
+Consider the homomorphism $T: \set{a, b, c} \to \set{a, b}^{*}$ such
+that $T(a) = \epsilon$, $T(b) = a$ and $T(c) = b$.
+
+Then $T(C) = \set{a^ib^i; i\geq 1}$ is regular since regular languages
+are close under homomorphism. But $T(C) = L$ is not regular, which is
+a contradiction. Thus, $B$ is not regular.
+
+\subsection{Pumping Lemma}
+
+\begin{lemma}
+  For every regular language $L\suq \Sigma^{*}$ there exists
+  $n\in\ZZ^+$ such that, for all $x\in L$, if $\abs{x}\geq n$, then
+  there exist $u, v$ and $w$ in $\Sigma^{*}$ such that
+  $v\neq \epsilon$, $\abs{uv}\leq n$, $x = uvw$ and for all $k\in \NN$
+  we have $uv^kw\in L$.
+\end{lemma}
+\begin{proof}
+  \hfill
+
+  Since $L$ is regular, it is accepted by some DFA
+  $M = (Q, \epsilon, \delta, q_0, F)$.
+
+  Let $n = \abs{Q}$, and suppose that $x = x_1\cdots x_m\in L$, where
+  $m \geq n$, is arbitrary.
+
+  Now we construct the states $q_i = \delta^{*}(q_0, x_1\cdots x_i)$
+  for $i\in [1, n]\cap \NN$.
+
+  By the pigeonhole principle, there exist $0 \leq i < j \leq n$ such
+  that $q_i = q_j$.
+
+  Let $u= x_1\cdots x_i$, $v = x_{i+1} \cdots x_j$ and
+  $w = x_{j+1}\cdots x_m$.
+
+  Note that $\delta^{*}(q_0, uv^k) = \delta^{*}(q_0, uv)$ for all
+  $k \geq 0$.
+
+  So
+  $\delta^{*}(q_0, uv^kw) = \delta^{*}(q_j, w) = \delta^{*}(q_0, uvw)
+  = \delta^{*}(q_0, x)\in F$.
+
+  Hence $uv^kw \in L = \LL(M)$.
+\end{proof}
+
+\begin{example}
+
+  Let $P = \set{z\in \set{0,1}^{*}; z = z^R}$ be a language of palindromes.
+
+  We prove that $P$ is not regular.
+
+  Suppose $P$ is regular. 
+
+  Then by the pumping lemma, there exists $n\in \ZZ^+$ such that for
+  all $x\in P$, $\set{x} \geq n$ implies that there exist
+  $u\in \set{0, 1}^{*}$, $v \in \set{0, 1}^{*}$ and
+  $w\in \set{0, 1}^{*}$ such that $v\neq \epsilon$ and
+  $\abs{uv}\leq n$, $x = uvw$ and for all $k\in \NN$ we have
+  $uv^kw\in P$.
+
+  Consider $x = 0^n 1 0^n\in P$.
+
+  There exist $u, v, w \in \set{0, 1}^{*}$ such that $v\neq \epsilon$
+  and $\abs{uv}\leq n$, $x = uvw$ and for all $k\in \NN$ we have
+  $uv^kw\in P$.
+
+  So $u = 0^i$, $v = 0^j$ for some $i\geq 0$ and $j\geq 0$ such that
+  $i+j \leq n$. Thus, $w = 0^{n-i-j}10^n$.
+
+  Consider $k=2$.
+
+  Then $uv^2w = 0^{i+2j+n-i-j}1 0^{n} = 0^{n+j}10^n\not\in P$, which is a contradiction.
+\end{example}
+
+\begin{example}
+
+  We prove that $L= \set{a^mb^r; m\neq r}$ is not regular.
+
+  Suppose that $L$ is regular.
+
+  Then it satisfies the pumping lemma.
+
+  Let $n\in \ZZ^{+}$ be the constant rom the pumping Lemma.
+
+  Consider $x = a^{n!}b^{(n+1)!}\in L$.
+
+  Then there exist $u, v, w\in \set{a, b}^{*}$ that satisfy the
+  conditions of the pumping lemma.
+
+  Let $u= a^i$, $v = a^j$ for some $i \geq 0, j > 0$ such that
+  $i+j \leq n$.
+
+  Let $k = 1+\frac{n\*n!}{j}$.
+
+  Then $uv^kw = a^mb^{(n+1)!}$, where $m = n!+(k-1)j = (n+1)!$.
+
+  Hence,$uv^kw\not \in L$.
+
+\end{example}
+
+\end{document}
