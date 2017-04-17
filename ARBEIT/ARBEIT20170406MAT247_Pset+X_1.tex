@@ -1,0 +1,135 @@
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+\documentclass[11pt]{scrartcl}
+\usepackage[beaue, pset, anon]{masty}
+\pSet{\hw{MAT247}{X}{1}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\begin{theorem*}
+  \hfill
+
+  Suppose that the characteristic polynomial of $T \in \End(V)$ splits. 
+
+  Let $\lambda_1, \lambda_2, \dots, \lambda_k$ be the distinct
+  eigenvectors of $T$ and let $p_i$ be the size of the largest Jordan
+  block corresponding to $\lambda_i$ in a Jordan canonical form of
+  $T$.
+
+  The minimal polynomial of $T$ is
+
+  \begin{equation*}
+    p(t) = \prod_{i=1}^k(t-\lambda_i)^{p_i}.
+  \end{equation*}
+
+\end{theorem*}
+
+\begin{proof}
+  \hfill
+
+  Since the characteristic polynomial of $T \in \End(V)$ splits, $V = \bigoplus_{i=1}^k K_{\lambda_i}$.
+
+  For $i\in[1, k]\cap \NN$, consider $T|_{K_{\lambda_i}}$.
+
+  % Since $K_{\lambda_i}$ is $T$-invariant, $T|_{K_{\lambda_i}} \in \End(K_{\lambda_i})$.
+
+  Let $v$ be an initial vector such that a cycle
+  $\gamma = \set{v, (T-\lambda_iI)v, \dots, (T-\lambda_iI)^{p_i-1}v}$
+  corresponds to the longest column in the dot diagram for
+  $K_{\lambda_i}$.
+
+  Let $G_i = \spn \gamma$.  
+
+  Since $(T-\lambda_i I)^{p_i}v = 0 \in G_i$, we deduce that $G_i$ is
+  $(T-\lambda_iI)|_{G_i}$-invariant, since any linear transformation is defined
+  uniquely by its action on a basis.
+
+  Note that $[(T-\lambda_iI)|_{G_{i}}]_{\beta}$ is $
+  \begin{pmatrix}
+    0 & \dots & & 0\\
+    1 & & & 0\\
+    \vdots &\ddots & & \vdots\\
+    0 &\dots & 1 & 0
+  \end{pmatrix}
+  $. 
+
+  Repeatedly using Laplacian expansion along the last row, we see that
+  the characteristic polynomial of $(T-\lambda_i I)|_{G_i}$, $g(t)$,
+  is such that $g(t) = (-1)^{p_i}t^{p_i}$. By Cayley-Hamilton Theorem,
+  $(T-\lambda_i I)^{p_i}|_{G_i} = 0$.
+
+  We now show that, in fact, $(T-\lambda_i I)^{p_i} v= 0$ for any
+  $v\in K_{\lambda_i}$.
+
+  Indeed, since there exists a cycle basis $\beta_i$ of
+  $K_{\lambda_i}$ and $\gamma$ is a cycle with the greatest length,
+  all the other cycles of $\beta_i$ have the length of less than or
+  equal to $p_i$. Thus, by definition of a cycle, for any vector
+  $v\in K_{\lambda_i}$, since $(T-\lambda_i I)$ is linear and
+  homogeneous, then there exists $m\in\ZZ^+$ such that $m \leq p_i$
+  and $(T-\lambda_i I)^mv = 0$. In particular, since
+  $(T-\lambda_i I)(0)=0$, we know that $(T-\lambda_i I)^{p_i}v = 0$
+  for all $v\in K_{\lambda_i}$.
+
+  Let $g_i(x) = (x-\lambda_i)^{p_i}$. Let $g(x) = \prod_{i=1}^kg_i$.
+
+  Note that the absolute value of the leading coefficient of $g(x)$ is
+  $1$.
+
+  Note that $g(T) = 0$, from Theorem E.4, the fact that
+  $V = \bigoplus_{i=1}^k K_{\lambda_i}$ and $g_i(x) = 0$ for all
+  $x\in K_{\lambda_i}$.
+
+  By Theorem 7.12, $p(t)$ divides $g(t)$.
+
+  Therefore, there exists $c\in\FF$ such that $g(t) = cp(t)$. Since
+  $g(t)$ and $p(t)$ are monic up to the sign, we see that $c = 1$.
+
+  Hence,     $p(t) = \prod_{i=1}^k(t-\lambda_i)^{p_i}$.
+\end{proof}
+\end{document}

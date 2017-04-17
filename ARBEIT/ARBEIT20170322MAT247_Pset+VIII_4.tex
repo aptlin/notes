@@ -1,0 +1,131 @@
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+\documentclass[11pt]{scrartcl}
+\usepackage[beaue, pset, anon]{masty}
+\pSet{\hw{MAT247}{VIII}{4}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+\section{Problem}
+
+\begin{problem*}
+Suppose $n \ge 1$ and $V = F^n$. Find a linear transformation $T : V \to V$ such that $V$ has a basis consisting of just one cycle of generalised eigenvectors. Write down such a basis (for your T).
+\end{problem*}
+\begin{soln}
+  \hfill
+
+Suppose $V = F$.
+
+Let $T = I$. Then $(1)$ is an eigenvector, and thus $(T-I)(1) = 0$. Moreover, $\set{1}$ is a basis, and it consists of one cycle.
+\end{soln}
+
+\begin{problem*}
+Suppose that $S : V \to V$ satisfies $S^r = 0$ for some integer $r \ge 1$. Show that the characteristic polynomial $f(t)$ of $S$ is $(-1)^n t^n$, where $n = \dim V$. 
+\end{problem*}
+
+\begin{lemma}
+Suppose that $S : V \to V$ satisfies $S^r = 0$ for some integer $r \ge 1$. Then $S^{\dim V} = 0$.
+\end{lemma}
+\begin{proof}
+  \hfill
+
+  Since $S$ is nilpotent, we know that $K_0(S) = V$, by definition of
+  a generalised eigenspace.  Therefore, by Theorem proved in the last
+  assignment (because there exists $r$ such that
+  $\rank S^{r+1} = \rank S$), we know that $S^{\dim V} = 0$.
+\end{proof}
+
+\begin{soln}
+  \hfill
+
+  Choose a basis of $\ker S$. Extend it to a basis of $\ker
+  S^{2}$. Repeating the procedure, finally obtain a basis $\beta$ of
+  $V$. Note that such a basis exists, because $S^{\dim V} = 0$ and
+  thus the process terminates.
+
+  Consider $[S]_{\beta}$. Since the first elements in $\beta$ by
+  construction are in $\ker S$, we know that at least the first column
+  of $[S]_{\beta}$ consists of all zeroes.
+
+  The next subset of elements belongs to $\ker S^2$. Suppose
+  $v\in\ker S^2$. Then $S v \in \ker S$, because $S(Sv) = 0$, and thus
+  $\ker S^2 \suq \ker S$ and $Sv$ can be represented as a linear
+  combination of the basis elements of $\ker S$, and thus all the
+  corresponding nonzero entries lie above the diagonal. Repeating the
+  procedure, we see that all the elements in $[S]_{\beta}$ lie above
+  the diagonal. Since $S^{\dim V} = 0$, we know that the process
+  terminates.
+
+  Hence, there is a matrix representation such that $[S]_{\beta}$ is
+  upper-triangular with the diagonal entries all equal to zero, which
+  by Laplacian expansion means that the characteristic polynomial is
+  equal to $(-1)^{\dim V}t^n$, as required.
+\end{soln}
+
+\begin{problem*}
+Suppose that $S : V \to V$ satisfies $S^r = 0$ for some integer $r \ge 1$ and suppose that $\text{nullity}(S) = 1$. Find a Jordan canonical form of S.
+\end{problem*}
+
+\begin{soln}
+  \hfill
+
+  By the previous problem, we know that there is a basis $\beta$ of
+  $V$ such that $[S]_{\beta}$ is upper triangular with all the values
+  on the diagonal equal to 0. Therefore, all the eigenvalues of $S$
+  are equal to 0.
+
+  Since $\nll S = 1$, we know that there is only one element in
+  $\ker S$. Since if $v\in \ker S^2$, thus $Sv\ in\ker S$ , and we
+  know that there is only one possible nonzero entry, right above the
+  diagonal. Similarly, for $v\in \ker S^3$, $Sv\in\ker S^2$, and the
+  same reasoning applies.
+
+  Therefore, JCF of $S$ is a single Jordan block with the zeroes on
+  the diagonal.
+\end{soln}
+
+\end{document}

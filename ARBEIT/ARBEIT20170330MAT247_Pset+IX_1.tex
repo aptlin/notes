@@ -1,0 +1,359 @@
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+\documentclass[11pt]{scrartcl}
+\usepackage[beaue, pset, anon]{masty}
+\pSet{\hw{MAT247}{IX}{1}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Problem}
+
+\begin{problem*}
+\hfill
+
+Suppose that $\FF = \CC$ and $A = \left(\begin{matrix}
+    3 \\
+    1&4 \\
+    -1 & 1 & 3 \\
+    2&0&1&3 \\
+    &&&&4\\ &&&&2&3
+\end{matrix}\right)$, 
+
+  where all empty matrix entries are zeros.
+
+  Find a Jordan canonical form for $A$ and find a basis of of $K_3$
+  that is a disjoint union of cycles of generalised eigenvectors of
+  $L_A$.
+\end{problem*}
+\begin{soln}
+  \hfill
+
+  Since $(A-\lambda I)^T = A^T - \lambda I^T = A^T - \lambda I$ and $\det(A-\lambda I) = \det(A-\lambda I)^T$, we have that $A^T$ and $A$ have the same eigenvalues.
+
+  Since $A^T$ is upper-triangular while $\FF = \CC$, all the
+  eigenvalues are on the eigenvalues.
+
+  Using the Laplacian expansion on $A$ to obtain the characteristic
+  polynomial of $A^T$ and $A$, we obtain that $f(t) = (t-3)^4(t-4)^2$.
+
+  Note that 
+  \begin{align}
+(A-3I) &= 
+  \begin{pmatrix}
+    0  & 0 & 0 & 0 & 0 & 0 \\
+    1  & 1 & 0 & 0 & 0 & 0 \\
+    -1 & 1 & 0 & 0 & 0 & 0 \\
+    2  & 0 & 1 & 0 & 0 & 0 \\
+    0  & 0 & 0 & 0 & 1 & 0 \\
+    0  & 0 & 0 & 0 & 2 & 0
+  \end{pmatrix}\\
+    \shortstack[l]{
+$R_3 \to \frac{1}{2}(R_3+R_2)$ \\
+$R_6 \to R_6-2R_{5}$}
+\ &\ras 
+  \begin{pmatrix}
+    0  & 0 & 0 & 0 & 0 & 0 \\
+    1  & 1 & 0 & 0 & 0 & 0 \\
+    0 & 1 & 0 & 0 & 0 & 0 \\
+    2  & 0 & 1 & 0 & 0 & 0 \\
+    0  & 0 & 0 & 0 & 1 & 0 \\
+    0  & 0 & 0 & 0 & 0 & 0
+  \end{pmatrix}\\
+R_2\to R_2-R_{3}
+\ &\ras 
+  \begin{pmatrix}
+    0  & 0 & 0 & 0 & 0 & 0 \\
+    1  & 0 & 0 & 0 & 0 & 0 \\
+    0 & 1 & 0 & 0 & 0 & 0 \\
+    2  & 0 & 1 & 0 & 0 & 0 \\
+    0  & 0 & 0 & 0 & 1 & 0 \\
+    0  & 0 & 0 & 0 & 0 & 0
+  \end{pmatrix}\\
+R_4\to R_4-R_{2}
+\ &\ras 
+  \begin{pmatrix}
+    0  & 0 & 0 & 0 & 0 & 0 \\
+    1  & 0 & 0 & 0 & 0 & 0 \\
+    0 & 1 & 0 & 0 & 0 & 0 \\
+    0  & 0 & 1 & 0 & 0 & 0 \\
+    0  & 0 & 0 & 0 & 1 & 0 \\
+    0  & 0 & 0 & 0 & 0 & 0
+  \end{pmatrix}
+\label{eq:1}
+  \end{align}
+
+Therefore, $\rank(A-3I) = 4$, and thus $\nll (A-3I) = 2$, which means that there are 2 columns in the dot diagram.
+
+Moreover, 
+
+  \begin{align}
+(A-3I)^2 &= 
+  \begin{pmatrix}
+    0  & 0 & 0 & 0 & 0 & 0 \\
+    1  & 1 & 0 & 0 & 0 & 0 \\
+    -1 & 1 & 0 & 0 & 0 & 0 \\
+    2  & 0 & 1 & 0 & 0 & 0 \\
+    0  & 0 & 0 & 0 & 1 & 0 \\
+    0  & 0 & 0 & 0 & 2 & 0
+  \end{pmatrix}
+  \begin{pmatrix}
+    0  & 0 & 0 & 0 & 0 & 0 \\
+    1  & 1 & 0 & 0 & 0 & 0 \\
+    -1 & 1 & 0 & 0 & 0 & 0 \\
+    2  & 0 & 1 & 0 & 0 & 0 \\
+    0  & 0 & 0 & 0 & 1 & 0 \\
+    0  & 0 & 0 & 0 & 2 & 0
+  \end{pmatrix}\\
+  &= \label{eq:2}
+  \begin{pmatrix}
+    0  & 0 & 0 & 0 & 0 & 0 \\
+    1  & 1 & 0 & 0 & 0 & 0 \\
+    1 & 1 & 0 & 0 & 0 & 0 \\
+    -1  & 1 & 0 & 0 & 0 & 0 \\
+    0  & 0 & 0 & 0 & 1 & 0 \\
+    0  & 0 & 0 & 0 & 2 & 0
+  \end{pmatrix}\\
+    \shortstack[l]{
+$R_3\to R_3-R_2$\\
+$$ \\
+$R_4 \to \frac{1}{2}(R_4+R_2)$\\
+$R_6 \to R_6-2R_{5}$}
+\ &\ras 
+  \begin{pmatrix}
+    0  & 0 & 0 & 0 & 0 & 0 \\
+    1  & 1 & 0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 0 & 0 \\
+    0  & 1 & 0 & 0 & 0 & 0 \\
+    0  & 0 & 0 & 0 & 1 & 0 \\
+    0  & 0 & 0 & 0 & 0 & 0
+  \end{pmatrix}
+  \end{align}
+
+which means that $\nll (A-3I)^2= 3$.
+
+Since $3-2 = 1$, there is only one dot in the second row of the dot diagram, which means that the second column must have only one dot.
+
+Therefore, the blocks are $3\times 3$ and $1\times 1$.
+
+Consider now 
+
+\begin{align}
+(A- 4I) &=
+  \begin{pmatrix}
+    -1  & 0 & 0 & 0 & 0 & 0 \\
+    1  & 0 & 0 & 0 & 0 & 0 \\
+    -1 & 1 & -1 & 0 & 0 & 0 \\
+    2  & 0 & 1 & -1 & 0 & 0 \\
+    0  & 0 & 0 & 0 & 0 & 0 \\
+    0  & 0 & 0 & 0 & 2 & -1
+  \end{pmatrix}\\
+  \shortstack[l]{ 
+$R_1\to R_1+R_2$\\
+$R_3\to R_3+R_2$\\
+$R_4\to R_4-2R_2$ }
+\ &\ras 
+  \begin{pmatrix}
+    0  & 0 & 0 & 0 & 0 & 0 \\
+    1  & 0 & 0 & 0 & 0 & 0 \\
+    0 & 1 & -1 & 0 & 0 & 0 \\
+    0  & 0 & 1 & -1 & 0 & 0 \\
+    0  & 0 & 0 & 0 & 0 & 0 \\
+    0  & 0 & 0 & 0 & 2 & -1
+  \end{pmatrix}\\
+\end{align}
+
+Thus, $\nll(A-4I) = 2$, and therefore there are two columns in the corresponding dot diagram.
+
+\begin{align}
+(A- 4I)^{2} &=
+  \begin{pmatrix}
+    -1  & 0 & 0 & 0 & 0 & 0 \\
+    1  & 0 & 0 & 0 & 0 & 0 \\
+    -1 & 1 & -1 & 0 & 0 & 0 \\
+    2  & 0 & 1 & -1 & 0 & 0 \\
+    0  & 0 & 0 & 0 & 0 & 0 \\
+    0  & 0 & 0 & 0 & 2 & -1
+  \end{pmatrix}
+  \begin{pmatrix}
+    -1  & 0 & 0 & 0 & 0 & 0 \\
+    1  & 0 & 0 & 0 & 0 & 0 \\
+    -1 & 1 & -1 & 0 & 0 & 0 \\
+    2  & 0 & 1 & -1 & 0 & 0 \\
+    0  & 0 & 0 & 0 & 0 & 0 \\
+    0  & 0 & 0 & 0 & 2 & -1
+  \end{pmatrix}\\
+&=
+  \begin{pmatrix}
+    1  & 0 & 0 & 0 & 0 & 0 \\
+    -1  & 0 & 0 & 0 & 0 & 0 \\
+    3 & -1 & 1 & 0 & 0 & 0 \\
+    -5  & 1 & -2 & 1 & 0 & 0 \\
+    0  & 0 & 0 & 0 & 0 & 0 \\
+    0  & 0 & 0 & 0 & -2 & 1
+  \end{pmatrix}\\
+  \shortstack[l]{ 
+$R_2\to R_1+R_2$\\
+$R_3\to R_3-3R_1$\\
+$R_4\to R_4+5R_1$ }
+\ &\ras 
+  \begin{pmatrix}
+    1  & 0 & 0 & 0 & 0 & 0 \\
+    0  & 0 & 0 & 0 & 0 & 0 \\
+    0 & -1 & 1 & 0 & 0 & 0 \\
+    0  & 1 & -2 & 1 & 0 & 0 \\
+    0  & 0 & 0 & 0 & 0 & 0 \\
+    0  & 0 & 0 & 0 & -2 & 1
+  \end{pmatrix}\\
+R_4 \to R_4 + R_3\ &\ras
+  \begin{pmatrix}
+    1  & 0 & 0 & 0 & 0 & 0 \\
+    0  & 0 & 0 & 0 & 0 & 0 \\
+    0 & -1 & 1 & 0 & 0 & 0 \\
+    0  & 0 & -1 & 1 & 0 & 0 \\
+    0  & 0 & 0 & 0 & 0 & 0 \\
+    0  & 0 & 0 & 0 & -2 & 1
+  \end{pmatrix}
+\end{align}
+
+Thus, $\nll(A-4I)^2 = 2$, and there are two $2-2=0$ dots in the second row of the dot diagram, which means that there are two $1\times1$ Jordan blocks corresponding to $\lambda = 4$.
+
+Hence, $[A]_{\beta} = 
+\begin{pmatrix}
+    4  & 0 & 0 & 0 & 0 & 0 \\
+    0  & 4 & 0 & 0 & 0 & 0 \\
+    0  & 0 & 3 & 1 & 0 & 0 \\
+    0  & 0 & 0 & 3 & 1 & 0 \\
+    0  & 0 & 0 & 0 & 3 & 0 \\
+    0  & 0 & 0 & 0 & 0 & 3 \\
+\end{pmatrix}$.
+
+To find a cycle basis for $K_3$, note that
+
+\begin{align}
+\label{eq:3}
+(A-3I)^3 & =
+ \begin{pmatrix}
+    0    & 0 & 0 & 0 & 0 & 0 \\
+    1    & 1 & 0 & 0 & 0 & 0 \\
+    -1   & 1 & 0 & 0 & 0 & 0 \\
+    2    & 0 & 1 & 0 & 0 & 0 \\
+    0    & 0 & 0 & 0 & 1 & 0 \\
+    0    & 0 & 0 & 0 & 2 & 0
+  \end{pmatrix}
+  \begin{pmatrix}
+    0    & 0 & 0 & 0 & 0 & 0 \\
+    1    & 1 & 0 & 0 & 0 & 0 \\
+    1    & 1 & 0 & 0 & 0 & 0 \\
+    -1   & 1 & 0 & 0 & 0 & 0 \\
+    0    & 0 & 0 & 0 & 1 & 0 \\
+    0    & 0 & 0 & 0 & 2 & 0
+  \end{pmatrix}              \\
+         & =
+  \begin{pmatrix}
+    0    & 0 & 0 & 0 & 0 & 0 \\
+    1    & 1 & 0 & 0 & 0 & 0 \\
+    1    & 1 & 0 & 0 & 0 & 0 \\
+    1   & 1 & 0 & 0 & 0 & 0 \\
+    0    & 0 & 0 & 0 & 1 & 0 \\
+    0    & 0 & 0 & 0 & 2 & 0
+  \end{pmatrix}.
+\end{align}
+
+By the equation (\ref{eq:1}) we have that $u=v=w=y=0$, and
+$\ker (A-3I)$ is spanned by $\cv{0;0;0;1;0;0}$ and $\cv{0;0;0;0;0;1}$.
+
+We know that there are two cycles, one of length 1 and the other of length 3.
+
+Therefore, there exists $p = \cv{u;v;w;x;y;z}\in V$ such that $(T-3I)^3=0$ but $(T-3I)^2\neq 0$.
+
+In this way, from (\ref{eq:2}), at least one of $u+v$, $-u+v$ or $y$ is
+nonzero, while from (\ref{eq:3}) $u+v = 0$ and $y = 0$. Therefore, $v\neq 0$, $y=0$ and $u=-v$.
+
+Hence, $p = \cv{u;-u;w;x;0;z}$.
+
+Take $p = \cv{-1;1;2;0;0}$.
+
+Then $(A-3I)p = \cv{0;0;2;0;0;0}$, which is an eigenvalue of $(A-3I)^2$, because $(A-3I)^3p = 0$.
+
+$(A-3I)^2p = \cv{0;0;0;2;0;0}$, which is an eigenvalue of $(A-3I)$, because $(A-3I)^3p =0$. 
+
+If there exist $a_1, a_2, a_3$ such that
+\begin{equation*}
+  a_1\cv{-1;1;2;0;0;0} +a_2\cv{0;0;2;0;0;0} +a_3\cv{0;0;0;2;0;0} = 0,
+\end{equation*}
+
+then from the first row we have that $a_1 = 0$, from the fourth we obtain that $a_3=0$, and thus $a_2=0$, which means that $p$ generates a cycle basis of length $3$.
+
+Now, take $q = \cv{0;0;0;0;0;1}$. We have already shown that it is an
+eigenvector of $(A-3I)$. Since it is also not in the span of the cycle
+basis generated by $p$, because each element of such a basis has the
+last row equal to zero, while $\dim K_3 = 4$ from the characteristic
+polynomial, then we have an independent list of the right length, and thus a Jordan canonical basis $\beta$ for $\dim K_3$:
+\begin{equation*}
+  \beta =\set{\cv{-1;1;2;0;0;0}, \cv{0;0;2;0;0;0}, \cv{0;0;0;2;0;0}, \cv{0;0;0;0;0;1}}
+\end{equation*}
+
+
+
+
+
+% Now we find $(A-3I)^3p\in \ker(T-3I)^2\cap \img(T-3I)^3$.
+
+% Both of these vectors, if  $(A-3I)^3$ is applied, yield 0.
+
+% Take $p = \cv{1;-1;1;1;0;1}$. Then $p$ is an eigenvector of $(A-3I)^3$ such that $(A-3I)^3p = 0$.
+
+% We check $(A-3I)p = \cv{0;0;-2;3;0;0}$
+
+
+
+% Now we want to find $p$ such that $p \in$
+\end{soln}
+
+
+\end{document}

@@ -1,0 +1,559 @@
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+\documentclass[11pt]{scrartcl}
+\usepackage[beaue, pset, anon]{masty}
+\pSet{\hw{MAT247}{VII}{1}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Problem I}
+\begin{lemma}
+  \label{sec:problem-i}
+  $\ker T^m = \ker T^{m+1}$ for some $m\in\ZZ^+$ if and only if
+  $\ker T^m=\ker T^{m+k}$ for any $k\in\ZZ^+$.
+\end{lemma}
+\begin{proof}
+  \hfill
+
+  Take $k\in \ZZ^+$.
+
+  From Problem III, we know that $\ker T^{m+k}\suq \ker T^{m+k+1}$.
+
+  Suppose now that $v\in \ker T^{m+k+1}$. Therefore,
+  $T^{m+1}(T^kv) =0$, and thus $T^kv\in \ker T^{m+1} = \ker T^m$.
+
+  Thus, $T^{m+k}v = 0$, and hence $v\in\ker T^{m+k}$.
+
+  The other direction is trivially obtained by setting $k=1$.
+\end{proof}
+
+\begin{lemma}
+  \label{sec:problem-i-1}
+  If $n=\dim V$, then $\ker T^n=\ker T^{n+1}$.
+\end{lemma}
+\begin{proof}
+  \hfill
+
+  Let $v\in V$ be arbitrary.
+  
+  % From Problem III, we know that $\ker T^n\in \ker T^{n+1}$.
+
+  By way of contradiction, suppose that  $\ker T^n\neq \ker T^{n+1}$.
+
+  Therefore, by Lemma \ref{sec:problem-i}, we get that $\ker T\neq \ker T^2\neq \cdots \suq \ker T^{n+2}$. We also know that $\ker T\suq \ker T^2\suq \cdots\suq T^{n+1}$, and thus there must be at least $n+1$ vectors spanning $\ker T^{n+1}\suq V$, which is a contradiction, since $n = \dim V$.
+
+  Thus, $\ker T^n = \ker T^{n+1}$.
+\end{proof}
+
+\begin{lemma}
+  \label{sec:problem-i-2}
+ $K_{\lambda}(T)= \ker(T-\lambda I)^{\dim V}$.
+\end{lemma}
+
+\begin{proof}
+  \hfill
+
+  By definition of $K_{\lambda}(T)$, $\ker(T-\lambda I)^{\dim V}\suq K_{\lambda}(T)$.
+
+  Suppose now that $v\in K_{\lambda}(T)$. Thus, there exists a positive integer $m$ such that $v \in (T-\lambda I)^{m}$. 
+
+  % We show that
+  % $\rank (T-\lambda I)^{\dim V} = \rank (T-\lambda I)^{\dim V+1}$.
+
+  % Since $\img (T-\lambda I)$ is $(T-\lambda I)$-invariant, we obtain
+  % the fact that $\img (T-\lambda I)^{\dim V+1}\suq \img(T-\lambda I)^{\dim V}$.
+
+  By Lemma \ref{sec:problem-i-1} we know that $\ker T^{\dim V}=\ker T^{\dim V+1}$.
+
+  Therefore, by the Rank-Nullity Theorem,
+  $\rank T^{\dim V} = \rank T^{\dim V+1}$.
+
+  Thus, by Problem III,
+  $K_{\lambda}T = \ker(T-\lambda I)^{\dim V}$.
+\end{proof}
+Suppose that $\FF = \ZZ_2$.
+
+Consider $A = \left(
+  \begin{matrix}
+    1 & 1 & 1 & 1 \\
+    1 & 1 & 1 & 1 \\
+    0 & 0 & 1 & 1 \\
+    0 & 1 & 1 & 1 \\
+  \end{matrix}
+\right), B = \left(
+  \begin{matrix}
+    1 & 1 & 0 \\
+    0 & 1 & 1 \\
+    1 & 0 & 1 \\
+  \end{matrix}
+\right)$ over $\FF$.
+
+\begin{problem*}
+  \hfill
+  
+  Find all eigenspaces and all generalised eigenspaces of the linear
+  transformations $L_A, L_B$.
+\end{problem*}
+\begin{soln}
+  \hfill
+
+  We show that for $L_A$ $E_0=\spn\cv{0;0;1;1}$ and  $K_0= \spn\set{\cv{0;0;1;1}, \cv{1;0;1;0}}$, 
+
+  while $E_1=\spn\cv{1;1;1;0}$ and $K_1=\spn\set{\cv{1;1;1;0}, \cv{0;0;0;1}}$.
+
+  For $L_B$, 0 is the only eigenvalue and $E_0=K_0=\spn\cv{1;1;1}$.
+
+  We calculate the characteristic polynomial of $A$ by the repeated
+  Laplacian expansion along the first column:
+  \begin{align}
+    \det(A-t I) &= (1-t)\det 
+                  \begin{pmatrix}
+                    1-t & 1 & 1\\
+                    0   & 1-t & 1 \\
+                    1 & 1 & 1-t
+                  \end{pmatrix} - \det
+                            \begin{pmatrix}
+                              1 & 1 & 1 \\
+                              0 & 1-t & 1\\
+                              1 & 1 & 1-t
+                            \end{pmatrix}\\
+                &= (1-t)[(1-t)((1-t)^2-1)+t)] - [(1-t)^2-1+t]\\
+                &= (1-t)[(1-t)((1-t)^2-1)+t)] + t(1-t)\\
+                &= (1-t)[(1-t)^3-1+t+t] +t(1-t)\\
+                &= (1-t)[(1-t)^3-1+3t]\\
+                &= (1-t)[(1-3t+3t^3-t^3-1+3t]\\
+                &= (1-t)[(1-3t+3t^2-t^3-1+3t]\\
+                &= (1-t)[3t^2-t^3]\\
+                &= -t^2(1-t)(t-3)\\
+                &= -t^2(1-t)(t-1)\\
+                &= t^2(t-1)^2\\
+  \end{align}
+
+  Note that $\cv{0;0;1;1}$ is an eigenvector of $A$ with the
+  corresponding eigenvalue of $0$, since $1+1 = 0$. To find other
+  possible eigenvectors $\cv{u;v;w;x}$, we solve the system of
+  equations:
+  
+  \begin{align}
+    \begin{cases}
+      u+v+w+x & = 0 \\
+      w+x     & = 0 \\
+      v+w+x   & = 0
+    \end{cases}.
+  \end{align}
+
+  Thus, $u+v = 0$, $w+x=0$ and $v = 0$. Therefore, $u=0$, and thus
+  $w+x = 0$, which is possible if either $w=1=x$ or $w=0=x$. Thus,
+  $\cv{0;0;1;1}$ is the only eigenvector of $E_0$.
+  
+  Suppose now that $\lambda = 1$ is also an eigenvalue. Therefore, 
+  
+  \begin{align}
+    \begin{cases}
+      u+v+w+x & = u \\
+      u+v+w+x & = v \\
+      w+x     & = w \\
+      v+w+x   & = x
+    \end{cases}.
+  \end{align}
+
+  Therefore, $u=v$, $x=0$ and $w+v = 0$, and the eigenvector must be
+  of the form $\cv{u;u;-u;0}$. Therefore, $u \neq 0$, and thus $u=1$,
+  and $\cv{1;1;1;0}$ is the only eigenvector in $E_{1}$.
+
+  Note now that by Cayley-Hamilton Theorem
+  $A^2(A-I)^2=A^4-2A^3+A^{2} = A^4+A^2=0$ (since $2=0$). 
+
+  Therefore, since $-1 = 1$, we get that $A^2=A^4$.
+
+  Note also that $A^2 =
+  \begin{pmatrix}
+    1+1 & 1+1+1 & 1+1+1+1   & 1+1+1+1 \\
+    1+1 & 1+1+1 & 1+1+1+1   & 1+1+1+1 \\
+    0   & 1     & 1+1       & 1+1     \\
+    1   & 1+1   & 1 + 1 + 1 & 1 + 1 + 1
+  \end{pmatrix} = 
+  \begin{pmatrix}
+    0 & 1 & 0 & 0\\
+    0 & 1 & 0 & 0\\
+    0 & 1 & 0 & 0\\
+    1 & 0 & 1 & 1
+  \end{pmatrix}
+  $.
+
+  If $\cv{u;v;w;x}$ is an eigenvector of $A^2$ with the corresponding eigenvalue $\lambda$, we obtain the following system of equations:
+  \begin{align}
+    \begin{cases}
+      v     & = \lambda u \\
+      v     & = \lambda v \\
+      v     & = \lambda w \\
+      u+w+x & = \lambda x
+    \end{cases}.
+  \end{align}
+
+  Therefore, if the eigenvalue is $0$, then $v=0$. Since then
+  $u, w, x$ are not all zero, there exists at least one nonzero
+  entry. Since $u+w+x=0$, there must be exactly two nonzero entries,
+  and there are three options: $\cv{0;0;1;1}$, $\cv{1;0;1;0}$ and
+  $\cv{1;0;0;1}$. Since $\cv{0;0;1;1}+\cv{1;0;1;0} = \cv{1;0;0;1}$, any pair of these vectors spans $\ker A^2=\ker A^4$.
+
+  Consider now $(A-I)^2$:
+
+  \begin{align}
+    \begin{pmatrix}
+      0                 & 1   & 1   & 1   \\
+      1                 & 0   & 1   & 1   \\
+      0                 & 0   & 0   & 1   \\
+      0                 & 1   & 1   & 0   \\
+    \end{pmatrix}
+    \begin{pmatrix}
+      0                 & 1   & 1   & 1   \\
+      1                 & 0   & 1   & 1   \\
+      0                 & 0   & 0   & 1   \\
+      0                 & 1   & 1   & 0   \\
+    \end{pmatrix}       & = 
+                    \begin{pmatrix}
+                      1 & 1   & 1+1 & 1+1 \\
+                      0 & 1+1 & 1+1 & 1+1 \\
+                      0 & 1   & 1   & 0   \\
+                      1 & 0   & 1   & 1+1
+                    \end{pmatrix}\\
+                        & =
+                          \begin{pmatrix}
+                            1 & 1   & 0 & 0 \\
+                            0 & 0 & 0 & 0 \\
+                            0 & 1   & 1   & 0   \\
+                            1 & 0   & 1   & 0
+                          \end{pmatrix}
+  \end{align}
+
+  If $\cv{u;v;w;x}$ is an eigenvector of $(A-I)^2$ with the
+  corresponding eigenvalue $0$, we obtain the following system of
+  equations:
+  \begin{align}
+    \begin{cases}
+      u+v & = 0 \\
+      v+w & =0  \\
+      u + w & = 0
+    \end{cases}
+  \end{align}
+
+  Therefore, $u=v=w$ and there are four cases:
+\begin{itemize}
+\item   $u=v=w=1$, $x=1$
+\item $u=v=w=0$, $x=1$
+\item   $u=v=w=1$, $x=0$
+\item $u=v=w=0$, $x=0$
+\end{itemize}
+
+The fourth case gives us a zero vector, which is not an eigenvector.
+
+The first case gives us $\cv{1;1;1;1}$ such that
+$\cv{1;1;1;1} = \cv{0;0;0;1}+\cv{1;1;1;0}$, and this this vector is in
+the span of the vectors given in the second and third case. Thus, $\cv{0;0;0;1}, \cv{1;1;1;0}$ span $\ker (T-I)^2$.
+
+  Consider now $(A-I)^3$:
+  \begin{align}
+    (A-I)^2(A-I)                & = \begin{pmatrix}
+      1                         & 1 & 0   & 0   \\
+      0                         & 0 & 0   & 0   \\
+      0                         & 1 & 1   & 0   \\
+      1                         & 0 & 1   & 0
+    \end{pmatrix}
+                      \begin{pmatrix}
+                        0       & 1 & 1   & 1   \\
+                        1       & 0 & 1   & 1   \\
+                        0       & 0 & 0   & 1   \\
+                        0       & 1 & 1   & 0   \\
+                      \end{pmatrix}             \\
+                                & =
+                            \begin{pmatrix}
+                              1 & 1 & 1+1 & 1+1 \\
+                              0 & 0 & 0   & 0   \\
+                              1 & 0 & 1   & 1+1 \\
+                              0 & 1 & 1   & 1+1
+                            \end{pmatrix}       \\
+                                & =
+                                  \begin{pmatrix}
+                                    1 & 1 & 0 & 0\\
+                                    0 & 0 & 0 & 0\\
+                                    1 & 0 & 1 & 0\\
+                                    0 & 1 & 1 & 0
+                                  \end{pmatrix}
+  \end{align}
+
+  Note that the associated system of equations for an eigenvector with
+  an eigenvalue 0 is exactly the same as for $(A-I)^2$, and hence
+  $\ker (A-I)^2= \ker(A-I)^3$, which by Lemma \ref{sec:problem-i}
+  means that $\ker(A-I)^{\dim V} =\ker (A-I)^2= 0$. Therefore, by
+  Lemma \ref{sec:problem-i-2} and previous remarks, we have
+  $\cv{0;0;0;1}$ and $\cv{1;1;1;0}$ span $K_1$.
+
+
+
+%   % if $\lambda = 1$, then $v = u$, $v=w$ and $2v+x=x$, which means that
+%   % $v=u=w=0$. Considering the remarks in the last paragraph, we get
+%   % that $\cv{0;0;0;1}$ is the only eigenvector of $A^2$ corresponding
+%   % to $\lambda=1$.
+
+%   Consider $A^3$:
+
+%   \begin{align}
+%     A^3       & = 
+%           \begin{pmatrix}
+%             1 & 1+1+1 & 1 & 1 \\
+%             1 & 1+1+1 & 1 & 1 \\
+%             1 & 1     & 1 & 1 \\
+%             1 & 1+1   & 1 & 1
+%           \end{pmatrix}       \\
+%               & = 
+%                 \begin{pmatrix}
+%                   1 & 1     & 1 & 1 \\
+%                   1 & 1     & 1 & 1 \\
+%                   1 & 1     & 1 & 1 \\
+%                   1 & 0     & 1 & 1
+%                 \end{pmatrix}
+%   \end{align}
+
+%   We obtain the following system of equations for the eigenvector
+%   $\cv{u;v;w;x}$ with the eigenvalue of 0:
+
+%   \begin{align}
+%     \begin{cases}
+%       u+v+w+x & = 0 \\
+%       u+w+x   & = 0
+%     \end{cases}
+%   \end{align}.
+
+
+
+% Then $v=0$, and $u+w+x=0$, which we have already seen how to solve.
+
+% Consider $A^4$:
+% \begin{align}
+%   A^4                                 & =
+%                                         \begin{pmatrix}
+%                                           1                           & 1     & 1       & 1       \\
+%                                           1                           & 1     & 1       & 1       \\
+%                                           1                           & 1     & 1       & 1       \\
+%                                           1                           & 0     & 1       & 1
+%                                         \end{pmatrix}
+%                                                                                           \begin{pmatrix}
+%                                                                                             1         & 1     & 1       & 1       \\
+%                                                                                             1         & 1     & 1       & 1       \\
+%                                                                                             0         & 0     & 1       & 1       \\
+%                                                                                             0         & 1     & 1       & 1%                           \end{pmatrix}                           \\
+%                                       & = 
+%         \begin{pmatrix}
+%           1+1                         & 1+1+1 & 1+1+1+1 & 1+1+1+1 \\
+%           1+1                         & 1+1+1 & 1+1+1+1 & 1+1+1+1 \\
+%           1+1                         & 1+1+1 & 1+1+1+1 & 1+1+1+1 \\
+%           1                           & 1+1   & 1+1+1   & 1+1+1
+%         \end{pmatrix}                                             \\
+%                                       & = 
+%                                 \begin{pmatrix}
+%                                   0 & 1 & 0 & 0\\
+%                                   0 & 1 & 0 & 0\\
+%                                   0 & 1 & 0 & 0\\
+%                                   1 & 0 & 1 & 1
+%                                 \end{pmatrix}                     
+% \end{align}
+
+% Therefore, for the eigenvector $\cv{u;v;w;x}$ with the eigenvalue of 0
+% we obtain that $v =0$ and $u+w+x=0$, which is exactly the case already
+% covered.
+
+
+
+Since $\dim V = 4$, by Lemma \ref{sec:problem-i-2} we can be sure that
+there are no eigenvectors in $K_{\lambda}$ other than those already
+found.
+
+Now we consider $B$, calculating its characteristic polynomial:
+\begin{align}
+  \det(B-tI)               & = (1-t)\det 
+               \begin{pmatrix}
+                 1-t       & 1                        \\
+                 0         & 1-t
+               \end{pmatrix} + \det 
+                     \begin{pmatrix}
+                       1   & 0                        \\
+                       1-t & 1
+                     \end{pmatrix}                    \\
+                           & = (1-t)^3+ 1             \\
+                           & = (2-t)((1-t)^2-(1-t)+1) \\
+                           & =-t(t^2-t+1)
+\end{align}
+
+Suppose $\cv{u;v;w}$ is an eigenvector of $B$ with a corresponding
+eigenvalue $\lambda$. From the characteristic polynomial we see that
+$\lambda = 0$ is the only eigenvalue of $T$. Therefore,
+
+\begin{align}
+  \begin{cases}
+    u+v = 0\\
+    v+w = 0\\
+    u+w = 0
+  \end{cases}.
+\end{align}
+
+Hence, $v=u=w$, and since the vector is an eigenvector, than
+$v = u=w\neq 0$, and hence $\cv{1;1;1}$ is the vector spanning $E_0$ of $B$.
+
+Consider $B^2$:
+
+\begin{align}
+  B^2                       & = 
+        \begin{pmatrix}
+          1                 & 1   & 0   \\
+          0                 & 1   & 1   \\
+          1                 & 0   & 1
+        \end{pmatrix}
+                  \begin{pmatrix}
+                    1       & 1   & 0   \\
+                    0       & 1   & 1   \\
+                    1       & 0   & 1
+                  \end{pmatrix}         \\
+                            & =
+              \begin{pmatrix}
+                1           & 1+1 & 1   \\
+                1           & 1   & 1+1 \\
+                1+1         & 1   & 1
+              \end{pmatrix}             \\
+                            & = 
+                        \begin{pmatrix}
+                          1 & 0   & 1   \\
+                          1 & 1   & 0   \\
+                          0 & 1   & 1
+                        \end{pmatrix}
+\end{align}
+
+Because $B^2$ can be optained by first swapping the first and the third row and then by swapping the second and the new third row, we see that they have the same characteristic polynomial. Solving the system of equations as above, we obtain that $\cv{1;1;1}$ is its eigenvector.
+
+% Now, note that                  
+% \begin{align}
+% B^3                                             & = 
+%                                     \begin{pmatrix}
+%                                       1         & 1   & 0 \\
+%                                       0         & 1   & 1 \\
+%                                       1         & 0   & 1
+%                                     \end{pmatrix}
+%                               \begin{pmatrix}
+%                                 1               & 0   & 1 \\
+%                                 1               & 1   & 0 \\
+%                                 0               & 1   & 1
+%                               \end{pmatrix}               \\
+%                                                 & =
+%                                           \begin{pmatrix}
+%                                             1+1 & 1   & 1 \\
+%                                             1   & 1+1 & 1 \\
+%                                             1   & 1   & 1+1
+%                                           \end{pmatrix}\\
+%                                                       & =
+%                                                         \begin{pmatrix}
+% 0 & 1 &1\\
+% 1 & 0 & 1\\
+% 1 & 1 & 0
+% \end{pmatrix}
+% \end{align} 
+
+Therefore, $\ker B = \ker B^2$, and by Lemma \ref{sec:problem-i} we
+have that $\ker B = \ker B^{\dim W}$, where $W$ is such that
+$L_B \in \End(W)$, which by Lemma \ref{sec:problem-i-2} means that $K_0$ is spanned by $\cv{1;1;1}$.
+
+% Consider now $(B-I)^3 = B^3-3B^2+3B-I$. 
+
+% From the characteristic polynomial and using Cayley-Hamilton Theorem we obtain that $B^{3}-B^2+B = 0$. 
+
+% Therefore, $(B-I)^3 = B^2-B-3B^2+3B -I = -2B^2+2B-I = -I = I$, and
+% hence $K_1 = \set {0;e}$.
+
+\end{soln}
+\begin{lemma}
+  For $L_A \in \End(V)$, $V = K_{0}\oplus K_1$.
+\end{lemma}
+\begin{proof}
+  \hfill
+
+  From the computations above, we see that for the found bases of
+  $K_0$ and $K_1$, denoted by $\beta_0$ and $\beta_1$ respectively,
+  $\beta = \beta_0\cup\beta_1$ is a basis of $V$, since $\beta$ has
+  the length of $4$ and is linearly independent. To prove the latter
+  claim, suppose that there exist $a_1, \dots, a_4\in \ZZ_2$ such that
+  \begin{align}
+    a_1\cv{0;0;1;1}+a_2\cv{1;0;1;0}+a_3\cv{1;1;1;0}+a_4\cv{0;0;0;1} = 0.
+  \end{align}
+
+Therefore, 
+\begin{equation*}
+  \begin{cases}
+    a_2+a_3     & =0  \\
+    a_3         & = 0 \\
+    a_1+a_2+a_3 & = 0 \\
+    a_1+a_4     & = 0
+  \end{cases},
+\end{equation*}
+and thus $a_3=a_2=a_1=a_4=0$, which means that $\beta$ is linearly
+independent.
+
+Therefore, $\beta$ is a basis of $V$. Since
+$\beta_0\cap\beta_1=\emptyset$ and thus $K_0\cap K_1=\set{0}$, we can
+see that $V = K_0\oplus K_1$.
+\end{proof}
+
+Note that for the given $L_B \in \End(W)$, we cannot decompose $W$ into the eigenspaces of $L_{B}$, because there is only eigenspace with the dimension 1, while $\dim W = 3$.
+
+Note also that, by the calculations above, for $L_{A}$ the
+characteristic polynomial is $t^2(t-1)^{2}$, and thus
+$\dim K_0(L_A) = 2$ and $\dim K_1(L_A)=2$ match the algebraic
+multiplicities. Similarly, for $L_{B}$, the characteristic polynomial
+is $-t(t^2-t+1) = t(t^2+t+1)$, which does not split (the determinant
+of the second factor is$\delta=-3<0$), and thus $\dim K_0(L_B) = 1$
+also matches the algebraic multiplicity.
+
+\end{document}

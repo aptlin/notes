@@ -1,0 +1,119 @@
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+\documentclass[11pt]{scrartcl}
+\usepackage[beaue, pset, anon]{masty}
+\pSet{\hw{MAT247}{VIII}{1}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+\section{Problem}
+
+\begin{problem*}
+  Suppose that the characteristic polynomial is $-t^3(t-1)^2$. Find
+  all possible Jordan canonical forms up to similarity.
+\end{problem*}
+\begin{soln}
+  \hfill
+
+  Note that there are two possible eigenvalues, 0 and 1, with the
+  corresponding multiplicities of 3 and 2. The size of the Jordan
+  blocks is dependent on the size of the cycle corresponding to a
+  particular eigenvector. We count the partitions of             
+  
+  Note that possible partitions of 3 which are unique up to reordering
+  are $1+1+1$, $1+2$, and $3$. For 2, it is 1+1 and 2. Therefore,
+  there are 6 possible Jordan canonical forms unique up to similarity:
+
+  \begin{align}
+    &\begin{pmatrix}
+      1 & 0 & 0 & 0 & 0\\
+      0 & 1 & 0 & 0 & 0\\
+      0 & 0 & 0 & 0 & 0\\
+      0 & 0 & 0 & 0 & 0\\
+      0 & 0 & 0 & 0 & 0
+    \end{pmatrix},
+    \begin{pmatrix}
+      1 & 0 & 0 & 0 & 0\\
+      0 & 1 & 0 & 0 & 0\\
+      0 & 0 & 0 & 1 & 0\\
+      0 & 0 & 0 & 0 & 1\\
+      0 & 0 & 0 & 0 & 0
+    \end{pmatrix},
+    \begin{pmatrix}
+      1 & 0 & 0 & 0 & 0\\
+      0 & 1 & 0 & 0 & 0\\
+      0 & 0 & 0 & 0 & 0\\
+      0 & 0 & 0 & 0 & 1\\
+      0 & 0 & 0 & 0 & 0
+    \end{pmatrix},\\
+    &\begin{pmatrix}
+      1 & 1 & 0 & 0 & 0\\
+      0 & 1 & 0 & 0 & 0\\
+      0 & 0 & 0 & 0 & 0\\
+      0 & 0 & 0 & 0 & 0\\
+      0 & 0 & 0 & 0 & 0
+    \end{pmatrix},
+    \begin{pmatrix}
+      1 & 1 & 0 & 0 & 0\\
+      0 & 1 & 0 & 0 & 0\\
+      0 & 0 & 0 & 1 & 0\\
+      0 & 0 & 0 & 0 & 1\\
+      0 & 0 & 0 & 0 & 0
+    \end{pmatrix},
+    \begin{pmatrix}
+      1 & 1 & 0 & 0 & 0\\
+      0 & 1 & 0 & 0 & 0\\
+      0 & 0 & 0 & 0 & 0\\
+      0 & 0 & 0 & 0 & 1\\
+      0 & 0 & 0 & 0 & 0
+    \end{pmatrix}
+  \end{align}
+
+
+\end{soln}
+
+\end{document}

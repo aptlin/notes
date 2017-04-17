@@ -1,0 +1,247 @@
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+\documentclass[11pt]{scrartcl}
+\usepackage[beaue, pset, anon]{masty}
+\pSet{\hw{MAT247}{VIII}{3}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\begin{problem*}
+Suppose that $V = M_{2\times 2}(\FF)$ with $\FF = \ZZ_{5}$.
+
+Let $T \in \End(V)$ be such that $TA = 
+A \begin{pmatrix}
+1 & 0\\
+2 & 1
+\end{pmatrix}$.
+
+Find a basis of $V$ that consists of a disjoint union of cycles of generalized eigenvalues. Find a Jordan canonical form.
+\end{problem*}
+
+\begin{soln}
+  \hfill
+
+Let $B = 
+\begin{pmatrix}
+1 & 0\\
+2 & 1
+\end{pmatrix}
+$ and let $A = 
+\begin{pmatrix}
+a & b\\
+c & d
+\end{pmatrix}$ for some $a, b, c, d \in \ZZ_{5}$.
+
+Note that 
+\begin{align}
+\det(B-\lambda I) &= (1-\lambda)^2.
+\end{align}
+
+Let $f(t)=(1-t)^2$. 
+
+By Cayley-Hamilton Theorem, we know that $f(B) = 0$.
+
+Consider $f(T)$:
+\begin{align}
+  f(T)(A) &= (I - 2T+T^2)A\\
+          &= A - 2T(A) +T^2(A)\\
+          &= A - 2AB + T(AB)\\
+          &= A - 2AB + AB^2\\
+          &= A(1-2B+B^2)\\
+          &= Af(B)\\
+          &= 0.
+\end{align}
+
+Since (2)-(7) holds for any $A$, then $f(T)(A)$ is the zero homomorphism.
+
+% Note that $T^2A = T(TA) = AB^2$.
+
+% $B^2= \begin{pmatrix}
+% 1 & 0\\
+% 2 & 1
+% \end{pmatrix}
+% \begin{pmatrix}
+% 1 & 0\\
+% 2 & 1
+% \end{pmatrix}=
+% \begin{pmatrix}
+% 1 & 0\\
+% 4 & 1
+% \end{pmatrix}
+% $.
+
+Let $A = 
+\begin{pmatrix}
+a & b\\
+c & d
+\end{pmatrix}$ for some $a, b, c, d\in \FF$.
+
+Therefore, if $T(A) = AB=\lambda A$, then
+\begin{equation*}
+  \begin{cases}
+a+2b &= \lambda a\\
+c+2d &= \lambda c\\
+b & = \lambda b\\
+d & = \lambda d.
+  \end{cases}
+\end{equation*}
+
+Therefore, from the equation 4, since $\lambda \neq 0$ (because  then $a=b=c=d = 0$), we have $\lambda = 1$.
+
+Hence, $b = d = 0$, and thus 
+$\begin{pmatrix}
+1 & 0\\
+0 & 0
+\end{pmatrix}$ and
+$\begin{pmatrix}
+0 & 0\\
+1 & 0
+\end{pmatrix}$ span $\ker (T-I)$.
+
+
+
+We have shown that $T^2-2T+I = 0$, and therefore $T^2= 2T - I$ and $(T-I)^2=0$ for any $A$, which means that $\ker (T-I)^2 = V$.
+
+Therefore, $
+\begin{pmatrix}
+0 & 1\\
+0 & 0
+\end{pmatrix}$ and $
+\begin{pmatrix}
+0 & 0\\
+0 & 1
+\end{pmatrix}$ are generalised eigenvectors.
+
+Since $\nll (T-I) = 2$, we know that there are exactly two Jordan blocks in the corresponding Jordan canonical form.
+
+Now we find a cycle basis.
+
+Note that $T \begin{pmatrix}
+a & b\\
+c & d
+\end{pmatrix}= 
+\begin{pmatrix}
+a+2b & b\\
+c+2d & d
+\end{pmatrix}
+$.
+
+Take $v = 
+\begin{pmatrix}
+0 & 1 \\
+0 & 0
+\end{pmatrix}$.
+
+Then $(T- I)v = Tv - Iv = 
+\begin{pmatrix}
+2 & 1\\
+0 & 0
+\end{pmatrix} - \begin{pmatrix}
+0 & 1\\
+0 & 0
+\end{pmatrix}= 
+  \begin{pmatrix}
+2 & 0\\
+0 & 0
+\end{pmatrix}$, which is in $E_{1}$, and thus
+$p=\begin{pmatrix}
+2 & 0\\
+0 & 0
+\end{pmatrix}$ and 
+$v=\begin{pmatrix}
+0 & 1\\
+0 & 0
+\end{pmatrix}$ form a cycle.
+
+Take now $w =
+\begin{pmatrix}
+0 & 0\\
+0 & 1
+\end{pmatrix}$.
+
+Then $(T- I)w = Tw - Iw = 
+\begin{pmatrix}
+0 & 0\\
+2 & 1
+\end{pmatrix} - \begin{pmatrix}
+0 & 0\\
+0 & 1
+\end{pmatrix}= 
+  \begin{pmatrix}
+0 & 0\\
+2 & 0
+\end{pmatrix}$, which is in $E_{1}$, and thus
+$q=\begin{pmatrix}
+0 & 0\\
+2 & 0
+\end{pmatrix}$ and 
+$ w= \begin{pmatrix}
+0 & 0\\
+0 & 1
+\end{pmatrix}$ form a cycle.
+
+It is easy to see that $\beta = \set{p, v, q, w}$ is linearly
+independent and has the length of 4, which is equal to $\dim
+W$. Therefore, $\beta$ is a cycle basis and hence
+
+
+\begin{equation*}
+  [A]_{\beta} = 
+  \begin{pmatrix}
+    1 & 1 & 0 & 0\\
+    0 & 1 & 0 & 0\\
+    0 & 0 & 1 & 1\\
+    0 & 0 & 0 & 1
+  \end{pmatrix}.
+\end{equation*}
+
+\end{soln}
+
+
+
+\end{document}

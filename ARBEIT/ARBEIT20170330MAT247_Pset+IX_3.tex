@@ -1,0 +1,529 @@
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+\documentclass[11pt]{scrartcl}
+\usepackage[beaue, pset, anon]{masty}
+\pSet{\hw{MAT247}{IX}{3}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+\allowdisplaybreaks
+\begin{document}
+
+\begin{problem*}
+\hfill
+
+Suppose that $\lambda\in F$ and that
+$J = \left(\begin{matrix} \lambda & 1 \\ 0 &
+    \lambda\end{matrix}\right)$.  
+
+Prove by induction that
+$J^n = \left(\begin{matrix} \lambda^n & n \lambda^{n-1} \\ 0 &
+    \lambda^n\end{matrix}\right)$ for all $n \ge 1$.
+\end{problem*}
+
+\begin{proof}
+  \hfill
+
+  Let $P(n)=$\textquote{$
+    J^n = \begin{pmatrix} 
+      \lambda^n & n\lambda^{n-1} \\
+      0         & \lambda^n
+    \end{pmatrix}
+$}.
+
+In case $n=1$, the claim holds, since 
+$    J = \begin{pmatrix} 
+      \lambda^1 & 1\*\lambda^{1-1} \\
+      0         & \lambda^1
+    \end{pmatrix}
+$. Thus, $P(1)$ is true.
+
+Suppose now $P(k)$ holds for some $k\in\ZZ^+$.
+
+Therefore, 
+$
+    J^k = \begin{pmatrix} 
+      \lambda^k & k\lambda^{k-1} \\
+      0         & \lambda^k
+    \end{pmatrix}
+$.
+
+Note that, by inductive hyptothesis,
+\begin{align}
+J J^k                                         & = 
+        \begin{pmatrix} 
+      \lambda^k                               & k\lambda^{k-1}                     \\
+      0                                       & \lambda^k
+    \end{pmatrix}\left(\begin{matrix} \lambda & 1                                  \\ 0 & 
+    \lambda\end{matrix}\right)                                                     \\
+                                              & = 
+  \begin{pmatrix}
+    \lambda^k\lambda +k\lambda^{k-1}\* 0      & 1\*\lambda^k+k\lambda^{k-1}\lambda \\
+    0\* \lambda+\lambda^k\* 0                 & 0\*1 + \lambda^k\lambda
+  \end{pmatrix}\\
+&=
+  \begin{pmatrix}
+\lambda^{k+1} & (k+1)\lambda^{k}\\
+0 & \lambda^{k+1}
+  \end{pmatrix},
+\end{align}
+which is exactly the claim in case $n=k+1$. Therefore, $P(k+1)$ holds.
+
+Since the claim is also true in case $n=1$, then $\forall n \in \ZZ^+. P(n)$ is true by induction.
+\end{proof}
+
+\begin{problem*}
+\hfill
+
+Suppose
+$A = \left(\begin{matrix} 0 & 1 & 1 \\ 2 & 1 & -1 \\ -6 & -5 & -3\end{matrix}\right)$
+over $F = \mathbb Q$. 
+
+Find an invertible matrix $Q$ such that $Q^{-1} A Q$ is in Jordan canonical form.
+\end{problem*}
+
+\begin{soln}
+  \hfill
+
+Note that $A-tI = 
+\begin{pmatrix}
+-t & 1 & 1\\
+2 & 1-t & -1\\
+-6 & -5 & -3 - t
+\end{pmatrix}
+$.
+
+Expanding along the first row, we see that
+
+\begin{align}
+\det(A-tI) &= 
+-t 
+             \begin{pmatrix}
+1-t & -1\\
+-5 & -3-t
+             \end{pmatrix}
+-
+     \begin{pmatrix}
+2 & -1\\
+-6 & -3-t
+     \end{pmatrix}
++
+     \begin{pmatrix}
+2 & 1-t\\
+-6 & -5
+\end{pmatrix}\\
+           &= -t \left(   (1-t) (-3-t) - 5\right)-\left( -6-2t-6 \right)+\left( -10+6-6t \right)\\
+           &= t(1-t)(3+t)+5t+2(t+3)+ 6 -4 -6t\\
+           &= -\left( (t^2-t)(t+3)-6-7t-6+6t+4 \right)\\
+           &= - \left( t^3+2t^2-3t-8-t \right)\\
+           &= - \left( t^3 + 2t^2 -4t -8\right)\\
+           &=-\left(   t^ 2 (t+2) -4 (t+2)\right)\\
+           &=-(t-2)(t+2)^2
+\end{align}
+
+Thus, $\lambda = 2$ and $\lambda= -2$ are the only eigenvalues.
+
+Consider $A-2I$:
+
+\begin{align}
+A-2I  & =
+ \begin{pmatrix}
+   -2 & 1   & 1  \\
+   2  & -1 & -1 \\
+   -6 & -5  & -5
+ \end{pmatrix}\\
+\end{align}
+
+Now we solve $(A-2I)| 0$:
+
+\begin{align}
+R_1\to R_1+R_2, R_3\to -\frac{1}{8}(R_{3}+3R_2)\ |      &\ras
+        \begin{matreq}{ccc|c}
+0 & 0 & 0 & 0\\
+2 & -1 & -1 & 0\\
+0& 1 & 1 & 0
+        \end{matreq}\\
+R_2\to \frac{1}{2}(R_2+R_3) \ &\ras
+        \begin{matreq}{ccc|c}
+0 & 0 & 0 & 0\\
+1 & 0 & 0 & 0\\
+0 & 1 & 1 & 0
+        \end{matreq}
+\end{align}
+
+Therefore, $\cv{0;1;-1}$ spans $E_2$, and there is one column in the dot diagram
+corresponding to $K_2$.
+
+Consider $A+2I$:
+
+\begin{align}
+A+2I  & =
+ \begin{pmatrix}
+   2 & 1   & 1  \\
+   2  & 3 & -1 \\
+   -6 & -5  & -1
+ \end{pmatrix}\\
+\end{align}
+
+Now we solve $(A+2I)| 0$:
+
+\begin{align}
+R_2\to \frac{1}{4}(R_1+R_2), R_3\to \frac{1}{2}(R_{3}+3R_1)\ |      &\ras
+        \begin{matreq}{ccc|c}
+   2 & 1   & 1 & 0 \\
+   1  & 1 & 0  & 0\\
+   0 & -1  & 1 & 0
+        \end{matreq}\\
+R_1\to (R_1-R_2) \ &\ras
+        \begin{matreq}{ccc|c}
+   0 & -1   & 1 & 0 \\
+   1  & 1 & 0  & 0\\
+   0 & -1  & 1 & 0
+        \end{matreq}\\
+R_3\to (R_3+R_1) \ &\ras
+        \begin{matreq}{ccc|c}
+   0 & -1   & 1 & 0 \\
+   1  & 1 & 0  & 0\\
+   0 & 0  & 0 & 0
+        \end{matreq}
+\end{align}
+
+Therefore, $\cv{1;-1;-1}$ spans $E_{-2}$, and there is one column in the dot diagram
+corresponding to $K_{-2}$. 
+
+Since the algebraic multiplicity of $-2$ is $2$ and it is equal to
+$\dim K_{-2}$, we know there must be a cycle of length two containing
+an element $v\in V$ such that $(A+2I)v= \cv{1;-1;-1}$ and $v$ is a
+generalised eigenvector in $K_{-2}$.
+
+We now solve $A+2I\ | \cv{1;-1;-1}$:
+
+\begin{align}
+A+2I\  | \cv{1;-1;-1}  & =
+  \begin{matreq}{ccc|c}
+   2 & 1   & 1  & 1\\
+   2  & 3 & -1 & -1\\
+   -6 & -5  & -1 & -1
+  \end{matreq}\\
+R_2\to \frac{1}{4}(R_1+R_2), R_3\to \frac{1}{2}(R_{3}+3R_1)\ &\ras
+  \begin{matreq}{ccc|c}
+   2 & 1   & 1  & 1\\
+   1  & 1 & 0 & 0\\
+   0 & -1  & 1 & 1
+  \end{matreq}\\
+R_1\to \frac{1}{2}(R_1-R_3) \ &\ras
+        \begin{matreq}{ccc|c}
+   1 & 1   & 0  & 0\\
+   1  & 1 & 0 & 0\\
+   0 & -1  & 1 & 1
+        \end{matreq}\\
+R_1\to \frac{1}{2}(R_1-R_2) \ &\ras
+        \begin{matreq}{ccc|c}
+   1 & 1   & 0  & 0\\
+   0  & 0 & 0 & 0\\
+   0 & -1  & 1 & 1
+        \end{matreq}
+\end{align}
+
+Therefore, if $v = \cv{x;y;z}$, then $x+y = 0$ and $-y+z = 1$.
+
+Therefore, if $x= \tau$, then $v = \cv{\tau;-\tau;1-\tau} = \cv{0;0;1}+\tau\cv{1;-1;-1}$.
+
+Now consider $(A+2I)^2$:
+
+\begin{align}
+(A+2I)^2 &= 
+ \begin{pmatrix}
+   2 & 1   & 1  \\
+   2  & 3 & -1 \\
+   -6 & -5  & -1
+ \end{pmatrix}
+ \begin{pmatrix}
+   2 & 1   & 1  \\
+   2  & 3 & -1 \\
+   -6 & -5  & -1
+ \end{pmatrix}\\
+&= 
+  \begin{pmatrix}
+0 & 0 & 0\\
+16 & 14 & 0\\
+-20 & -16 & 0
+  \end{pmatrix}
+\end{align}
+
+Note that $(A+2I)^2 \cv{0;0;1}= 0$, which means that $\cv{0;0;1}$ is a generalised eigenvector.
+
+Since $\dim K_{-2} = 2$, $(T+2I)\cv{0;0;1} = \cv{1;-1;-1}$ and
+$\beta = \set{\cv{0;0;1},\cv{1;-1;-1}}$ is linearly independent
+(if there exist $a_1\in \FF$, $a_2\in\FF$ such that 
+
+\begin{equation*}
+a_1\cv{0;0;1}+a_2\cv{1;-1;-1} = 0,
+\end{equation*}
+
+then from the first row $a_2= 0$ and from the third $a_1=a_2= 0$), then $\beta$ spans $K_{-2}$.
+
+Since the characteristic polynomial of $A$ splits, then
+$V = K_2\oplus K_{-2}$.
+
+Let $\gamma = \set{\cv{0;1;-1}, \cv{1;-1;-1}, \cv{0;0;1}}$. Since
+$\set{\cv{0;1;-1}}$ is a basis of $K_2$, while $\beta$ is a basis of
+$K_{-2}$, since $V = K_2\oplus K_{-2}$, we have that $\gamma$ is a
+cycle basis of $V$.
+
+Therefore, $[A]_{\gamma}$ is in Jordan Canonical Form, and therefore,
+by the change-of-basis formula, $Q = 
+\begin{pmatrix}
+0 & 1 & 0\\
+1 & -1 & 0\\
+-1 & -1 & 1
+\end{pmatrix}$.
+
+Expanding along the first row, we obtain that $\det [A]_{\gamma} = -\det 
+\begin{pmatrix}
+1 & 0\\
+-1  & 1
+\end{pmatrix} = -1
+$. 
+
+Therefore, $Q$ is invertible.
+
+We find $Q^{-1}$ by row-reduction:
+
+\begin{align}
+  \begin{matreq}{ccc|ccc}
+0 & 1 & 0 & 1 & 0 & 0\\
+1 & -1 & 0 & 0 & 1 & 0\\
+-1 & -1 & 1 & 0 & 0 & 1
+  \end{matreq} &\\
+R_1\to R_1 + R_2\ |\ &\ras
+  \begin{matreq}{ccc|ccc}
+1 & 0 & 0 & 1 & 1 & 0\\
+1 & -1 & 0 & 0 & 1 & 0\\
+-1 & -1 & 1 & 0 & 0 & 1
+  \end{matreq} &\\
+\shortstack{$R_2\to -(-R_1 + R_2)$\\
+$R_3\to R_{1}+R_{3}$}\ |\ &\ras
+  \begin{matreq}{ccc|ccc}
+1 & 0 & 0 & 1 & 1 & 0\\
+0 & 1 & 0 & 1 & 0 & 0\\
+0 & -1 & 1 & 1 & 1 & 1
+  \end{matreq} &\\
+R_2\to R_2 + R_3\ |\ &\ras
+  \begin{matreq}{ccc|ccc}
+1 & 0 & 0 & 1 & 1 & 0\\
+0 & 1 & 0 & 1 & 0 & 0\\
+0 & 0 & 1 & 2 & 1 & 1
+  \end{matreq} &\\
+\end{align}
+
+Therefore, $Q^{-1} = 
+\begin{pmatrix}
+1 & 1 & 0\\
+1 & 0 & 0\\
+2 & 1 & 1 
+\end{pmatrix}$.
+\end{soln}
+
+\begin{problem*}
+  \hfill
+
+Using the previous parts, compute $A^n$ for any $n \ge 1$. 
+\end{problem*}
+
+\begin{soln}
+  \hfill
+
+  From the previous discussion of the dot diagram, the Jordan
+  Canonical Form for a basis $\gamma$ is as follows:
+
+  \begin{align}
+[A]_{\gamma} &= 
+               \begin{pmatrix}
+                 2 & 0 & 0\\
+                 0 & -2 & 1\\
+                 0 & 0 & -2
+               \end{pmatrix}
+  \end{align}
+
+
+  Let $P = 
+\begin{pmatrix}
+2 & 0 & 0\\
+0 & 0 & 0\\
+0 & 0 & 0
+  \end{pmatrix}$ and $R=
+  \begin{pmatrix}
+0 & 0 & 0\\
+0 & -2 & 1\\
+0 & 0 & -2
+\end{pmatrix}$.
+
+Note that $P^n = 
+\begin{pmatrix}
+2^n & 0 & 0\\
+0 & 0 & 0\\
+0 & 0 & 0
+\end{pmatrix}
+$, because the only nonzero entry is obtained by multiplying the first
+row with the first column.
+
+Moreover, $PR = 
+\begin{pmatrix}
+2 & 0 & 0\\
+0 & 0 & 0\\
+0 & 0 & 0
+  \end{pmatrix}
+  \begin{pmatrix}
+0 & 0 & 0\\
+0 & -2 & 1\\
+0 & 0 & -2
+\end{pmatrix} = 0
+$ 
+
+and $RP = 
+  \begin{pmatrix}
+0 & 0 & 0\\
+0 & -2 & 1\\
+0 & 0 & -2
+\end{pmatrix}
+\begin{pmatrix}
+2 & 0 & 0\\
+0 & 0 & 0\\
+0 & 0 & 0
+  \end{pmatrix}
+= 0$. Therefore, $P$ and $R$ commute.
+
+Since $[A]_{\gamma} = P+R$, then $A^n = P^n +  \sum_{i=1}^{n-1}(P^{n-i}R^{i}) + R^{n}$ by Binomial Theorem, which is applicable since $P$ and $R$ commute.
+
+The middle sum is equal to $0$, because $PR = RP = 0$. 
+
+We now calculate $R^n$.
+
+We claim that  $R^n = 
+\begin{pmatrix}
+0 & 0 & 0\\
+0 & (-2)^{n} & n(-2)^{n-1}\\
+0 & 0 &(-2)^n
+\end{pmatrix}$.
+
+The claim holds in case $n = 1$.
+
+Suppose that the claim holds in case $n = k$.
+
+Then $R^k = 
+\begin{pmatrix}
+0 & 0 & 0\\
+0 & (-2)^{k} & k(-2)^{k-1}\\
+0 & 0 &(-2)^k
+\end{pmatrix}$ and thus
+
+\begin{align}
+R^{k+1} = R^kR &= 
+\begin{pmatrix}
+0 & 0 & 0\\
+0 & (-2)^{k} & k(-2)^{k-1}\\
+0 & 0 &(-2)^k
+\end{pmatrix}
+  \begin{pmatrix}
+0 & 0 & 0\\
+0 & -2 & 1\\
+0 & 0 & -2
+\end{pmatrix}\\
+& = 
+  \begin{pmatrix}
+0 & 0 & 0\\
+0 & (-2)^{k+1} & (-2)^k+k(-2)^{k}\\
+0 & 0 & (-2)^{k+1}
+  \end{pmatrix}\\
+&=
+  \begin{pmatrix}
+0 & 0 & 0\\
+0 & (-2)^{k+1} & k+1(-2)^{k+1 - 1}\\
+0 & 0 &(-2)^k+1
+  \end{pmatrix},
+\end{align}
+
+which is exactly the claim in case $n = k+1$, similarly to the result in the problem 1.
+
+Let $m_{21} = \cv{0;0}$, $m_{12}= (0,0)$. Then $R = \begin{pmatrix}
+0 & m_{12}\\
+m_{21} & J
+\end{pmatrix}$ in the notation of the first problem.
+
+From the discussion above, 
+
+$R^n =
+ \begin{pmatrix}
+0 & m_{12}\\
+m_{21} & J^{n}
+\end{pmatrix}$ by induction.
+
+Therefore, $[A]_{\gamma}^n = 
+\begin{pmatrix}
+2^n & 0 & 0\\
+0 & (-2)^n & n(-2)^{n-1}\\
+0 & 0 & (-2)^n
+\end{pmatrix}$ and thus, since by the change-of-basis formula  we have $[A]_{\gamma} = Q^{-1}A Q$ , and thus
+\begin{equation*}
+A^{n} = \begin{pmatrix}
+0 & 1 & 0\\
+1 & -1 & 0\\
+-1 & -1 & 1
+\end{pmatrix}
+\begin{pmatrix}
+2^n & 0 & 0\\
+0 & (-2)^n & n(-2)^{n-1}\\
+0 & 0 & (-2)^n
+\end{pmatrix}
+\begin{pmatrix}
+1 & 1 & 0\\
+1 & 0 & 0\\
+2 & 1 & 1 
+\end{pmatrix}.
+\end{equation*}
+\end{soln}
+
+\end{document}

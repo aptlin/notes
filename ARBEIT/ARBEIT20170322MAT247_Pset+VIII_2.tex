@@ -1,0 +1,233 @@
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+\documentclass[11pt]{scrartcl}
+\usepackage[beaue, pset, anon]{masty}
+\pSet{\hw{MAT247}{VIII}{2}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+\section{Problem}
+\begin{problem*}
+Suppose a matrix $A$ is given:
+
+\begin{equation*}
+  A =
+  \begin{pmatrix}
+    6 & 3 & -4\\
+    -1 & 1 & 1\\
+    3 & 2 & -1
+  \end{pmatrix}
+\end{equation*}
+
+Find a cycle basis (as defined in the lectures) and a Jordan canonical
+form of $A$.
+\end{problem*}
+
+\begin{soln}
+  \hfill
+
+First we find a characteristic polynomial:
+
+\begin{align}
+\det(A-\lambda I) &= \det 
+  \begin{pmatrix}
+    6-\lambda & 3 & -4\\
+    -1 & 1-\lambda & 1\\
+    3 & 2 & -1 - \lambda
+  \end{pmatrix}\\
+&= 
+(6-\lambda)((1-\lambda)(-1-\lambda)-2)\\
+&\ + (3(-1 - \lambda) +8)\\
+&\ + 3(3+4(1-\lambda))\\
+&= (6-\lambda)((\lambda-1)(\lambda+1)-2)\\
+&+ \ (-3\lambda+5)\\
+&+ \ 3(-4\lambda+7)\\
+&= (6-\lambda)(\lambda^2-3) -3\lambda+5-12\lambda+21\\
+&=-\lambda^3 +6\lambda^2+3\lambda-18-15\lambda+26\\
+&=-\lambda^3 +6\lambda^2 - 12\lambda+8\\
+&=-\lambda^3+3\*2\lambda^{2}-3\*4\lambda+2^3\\
+&=-(\lambda-2)^3
+\end{align}
+
+Thus, 
+
+\begin{align}
+\ker(A-2I) &=
+             \ker\begin{pmatrix}
+               4 & 3 & -4\\
+               -1 & -1 & 1\\
+               3 & 2 & -3
+             \end{pmatrix}.
+\end{align}
+
+Suppose that $v=\cv{x;y;z}$ is an eigenvector. Hence, 
+\begin{equation*}
+  \begin{cases}
+    4x+3y-4z &= 0\\
+    -x-y+z &= 0\\
+    3x+2y-3z &= 0
+  \end{cases}
+\end{equation*}
+
+Note that 
+\begin{align}
+\begin{matreq}{ccc|c}
+4 & 3 & - 4 & 0\\
+-1 & -1 & 1 & 0\\
+3 & 2 & -3 & 0
+\end{matreq} &\\
+  \text{$R_3-R_2 \to R_{3}$ }&\ras
+             \begin{matreq}{ccc|c}
+               4 & 3 & - 4 & 0\\
+               -1 & -1 & 1 & 0\\
+               4 & 3 & - 4 & 0\\
+             \end{matreq}\\
+  \text{$R_1-R_3 \to R_3$ }&\ras
+             \begin{matreq}{ccc|c}
+               4 & 3 & - 4 & 0\\
+               -1 & -1 & 1 & 0\\
+               0 & 0 & 0 & 0
+             \end{matreq}\\
+  \text{$R_1+4R_2\to R_{2}$ }&\ras
+             \begin{matreq}{ccc|c}
+               1 & 0 & - 1 & 0\\
+               0 & -1 & 0 & 0\\
+               0 & 0 & 0 & 0
+             \end{matreq}
+\end{align}
+
+Hence, $y=0$ and $x=z$, which means that $\cv{1;0;1}$ spans $E_2$. Since $E_2$ is one-dimensional, there is only one Jordan block corresponding to $\lambda = 2$ by Corollary to Theorem 7.9, and the dot diagram has only one column.
+
+Note that 
+
+\begin{align}
+  (A-2I)^2 &=             
+           \begin{pmatrix}
+             4 & 3 & -4\\
+             -1 & -1 & 1\\
+             3 & 2 & -3
+           \end{pmatrix}
+           \begin{pmatrix}
+             4 & 3 & -4\\
+             -1 & -1 & 1\\
+             3 & 2 & -3
+           \end{pmatrix}\\
+           &=
+           \begin{pmatrix}
+             1 & 1 & -1\\
+             0 & 0 & 0\\
+             1 & 1 & -1
+           \end{pmatrix}
+\end{align}
+
+
+
+% Note that $\rank (A-2I)^2 = 1$, because there is only one nonzero row
+% in the row-reduced matrix of $(A-2I)^2$, while $\rank (A-2I) = 2$ (see
+% eq. (18)). Therefore there is $2-1 = 1$ dot in the second row of the
+% dot diagram corresponding to $A$.
+
+Hence, if $u = \cv{x;y;z}$ is an eigenvector in $\ker(A-2I)^2$, then
+$x+y = z$. 
+
+We are trying to find $x, y, z$ such that $(A-2 I)u = \cv{1;0;1}$.
+
+Therefore, $4x+3y-4z = 1$, $-x-y+z = 0$, $3x+2y-3z = 1$.
+
+Thus, $12x+9y-12z = 3$ nd $12x+8y-12z = 4$. 
+
+Therefore, $y=-1$, and thus $z= x-1$. 
+
+Take $u = \cv{1;-1;0}$.
+
+% Since there is only one dot in the second row of the dot diagram, there must be an eigenvector which is in $\img (A-2I)^2$ and not in $\ker(A-2I)$ or $\ker(A-2I)^2$. Take $u =\cv{0;0;1}$, and note that it is not in $E_2$ and $(A-2I)^2u = \cv{-1;0;1}$.
+
+Now take an orthogonal vector to $u$, for example, $w = \cv{1;1;0}$.
+
+Let $\beta = \set{\cv{1;0;1}, \cv{0;1;1}, \cv{1;1;0}}$. If $\beta$ is linearly independent, then it is a cycle basis, because $\dim V = 3$. We prove now that it is linearly independent. 
+
+Suppose that there exist $a_1$, $a_2$ and $a_3$ such that the linear combination of the corresponding vectors in $\beta$ is 0. Then
+\begin{equation*}
+  \begin{cases}
+a_1+a_2+0a_3 &= 0\\
+0a_1+a_2+a_3 &= 0\\
+a_1+0a_2+a_3&=0
+  \end{cases}.
+\end{equation*}
+
+From the second and third equation we obtain that $a_1 = -a_3$. From
+the third and first equation we get that $a_2=a_3$. From the second
+equation we get that $a_3=0$, hence $a_1=a_2=a_3=0$, and thus $\beta$
+is linearly independent.
+
+Moreover, 
+
+\begin{align}
+(A-2I)^3 &=
+           \begin{pmatrix}
+             4 & 3 & -4\\
+             -1 & -1 & 1\\
+             3 & 2 & -3
+           \end{pmatrix}
+           \begin{pmatrix}
+             1 & 1 & -1\\
+             0 & 0 & 0\\
+             1 & 1 & -1
+           \end{pmatrix}\\
+           &=
+             \begin{pmatrix}
+               0 & 0 & 0\\
+               0 & 0 & 0\\
+               0 & 0 & 0
+             \end{pmatrix},
+\end{align}
+
+and thus $w$ is an generalised eigenvector of $A$.
+
+Therefore, $\beta$ is a cycle basis.
+\end{soln}
+\end{document}

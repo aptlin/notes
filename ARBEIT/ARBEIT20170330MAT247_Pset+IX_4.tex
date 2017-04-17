@@ -1,0 +1,186 @@
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+\documentclass[11pt]{scrartcl}
+\usepackage[beaue, pset, anon]{masty}
+\pSet{\hw{MAT247}{IX}{4}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\begin{problem*}
+  \hfill
+
+  Suppose that $A \in M_{n\times n}(\FF)$ is such that its
+  characteristic polynomial splits.
+
+  Then $A$ and $A^t$ have the same Jordan canonical form and
+  $A\sim A^t$.
+
+
+\end{problem*}
+
+\begin{soln}
+  \hfill
+
+  Let $A \in M_{n\times n}(\FF)$ be such that its characteristic
+  polynomial $f(t)$ splits.
+
+  Note that for any $\lambda\in \FF$,
+  $(A-\lambda I)^t = A^t -\lambda I^t = A^t - \lambda I$.
+
+  Therefore, $\det(A^t- \lambda I) = \det (A - \lambda I)$, and thus
+  the characteristic polynomial of $A^t$ is $f(t)$.
+
+  Thus, $A^t$ has the same eigenvalues as $A$.
+
+  % Let $\Lambda$ be the set of distinct eigenvalues of $A$ and $A^t$.
+
+  Let $K_{\lambda}$ be a generalised eigenspace of $A$ corresponding
+  to an eigenvalue $\lambda$ and $K'_{\lambda_{i}}$ be a generalised
+  eigenspace of $A^t$ corresponding to $\lambda$.
+
+  % Since $A$ and $A^t$ have the same characteristic polynomial, by
+  % Theorem 7.4 we know that $\dim K_{\lambda} = \dim K'_{\lambda}$.
+
+  Note that
+  $((A- \lambda I)^r)^t = ((A-\lambda I)^t)^r = (A^t-\lambda I)^r$,
+  where the first equality holds since for any $P$ and $Q$ in
+  $M_{n\times n}(\FF)$ we know that $(PQ)^t = Q^tP^t$ and the second
+  follows from the discussion above.
+
+  For any matrix $C \in M_{n\times n}(\FF)$, we know that
+  $\rank C = \rank C^t$.
+
+  Therefore,
+  $\rank (A-\lambda I)^r = \rank ((A-\lambda)^{r})^t = \rank
+  (A^t-\lambda I)^r$ for any $r\in\NN$.
+
+  In particular, $\rank (A^t-\lambda I) = \rank (A-\lambda I)$, and
+  thus from the rank-nullity theorem we obtain that
+  $\nll (A^t-\lambda I) = \nll (A-\lambda I)$, which means that the
+  dot diagrams of $A^t-\lambda I$ and $A-\lambda I$ have the same
+  number of columns. Moreover, we can deduce that for $r \geq 2$, we
+  have 
+  \[\rank(A-\lambda I)^{r-1} - \rank (A-\lambda I)^r = \rank (A^t-\lambda I)^{r-1} - \rank (A^t- \lambda I)^r,\] 
+
+  and thus each row in the dot diagrams of $(A-\lambda I)$ and
+  $(A^t-\lambda I)$ have the same number of dots, which means that
+  $(A-\lambda I)$ and $(A^t-\lambda I)$ have the same dot diagram.
+
+  Since this dot diagram corresponds to a unique Jordan canonical form
+  (up to reordering of blocks), we infer that $A$ and $A^t$
+  have the same JCF. 
+
+  Denote this JCF as $J$.
+
+  Since by the change of basis formula there exist invertible matrices
+  $B$ and $B'$ such that $A = B^{-1}JB $ and $A^t = B'^{-1}JB'$, we
+  deduce that $J = BAB^{-1} = B'A^tB'^{-1}$. 
+
+
+
+  
+
+  % From Theorem 2
+
+  % We also know that $\rank(A-\lambda I) = \rank (A- \lambda I)^t$, and
+  % thus $\rank (A-\lambda I) = \rank(A^t - \lambda I)$.
+
+  % For $r\in[1, n]\cap \NN$, we prove by induction on $r$ that
+  % $\rank (A-\lambda I)^r = \rank (A^t -\lambda I)^r$.
+
+  % We have already shown that the claim holds in case $r = 1$.
+
+  % Suppose now that it holds for all $1 \leq r \leq k-1$.
+
+  % In particular,
+  % $\rank (A-\lambda I)^{k-1} = \rank (A^t-\lambda
+  % I)^{k-1}$. Therefore, by the rank-nullity theorem we know that $\nll $
+
+
+%   Since the characteristic polynomial of $A$ and $A^t$ splits, by
+%   Theorem 7.3 there exists a basis $\alpha$ of $V$ consisting of the
+%   generalised eigenvectors of $A$ and a basis $\beta$ of $V$ consisting of the
+%   generalised eigenvectors of $A^t$, corresponding to the distinct eigenvalues in
+%   $\Lambda$ so that 
+%   \begin{equation*}
+% V= \bigoplus_{\lambda_i\in \Lambda} K_{\lambda_i} = \bigoplus_{\lambda_i\in \Lambda} K'_{\lambda_i},
+%   \end{equation*}
+%   where $K_{\lambda_i}$ are the generalised eigenspaces corresponding
+%   to $A$ and $K'_{\lambda_{i}}$ are the generalised eigenspaces
+%   corresponding to $A^t$.
+
+
+
+
+
+  % We now show that for each eigenvalue $\lambda$ we have
+  % $\ker(A-\lambda I)^n = \ker (A^t-\lambda I)^n$.
+
+  % and $r\in[1, n]$ we have
+  % $\ker (A^t-\lambda I)^r = \ker (A-\lambda I)^r$.
+
+  % Consider the case when $r = 1$.
+
+  % Suppose first that $v\in \ker (A-\lambda I)$. Therefore,
+  % $(A-\lambda I) v= 0$, and $(A-\lambda I)|_{\ker (A-\lambda I)} = 0$.
+
+  % Therefore,
+  % $((A-\lambda I)|_{\ker (A-\lambda I)})^t = (A-\lambda I)^t|_{\ker
+  %   (A-\lambda I)} = 0^t = 0$, which, from the previous discussion,
+  % means that $(A^t-\lambda I)|_{\ker (A-\lambda I)} =0$ and thus
+  % $\ker(A-\lambda I)\suq \ker (A^t-\lambda I)$.
+
+  % Suppose now that $v\in \ker (A^t-\lambda I) = \ker ((A-\lambda I)^t)$.
+
+  % Hence, $(A-\lambda I)^tv = 0$
+
+  Thus, $A = B^{-1}B'A^tB'^{-1}B$. Since $(B'^{-1}B)^{-1} = B^{-1}B'$,
+  taking $Q = B'^{-1}B$ we see that $A = Q^{-1}A^tQ$, and thus $A\sim A^t$.
+\end{soln}
+
+\end{document}

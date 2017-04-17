@@ -1,0 +1,226 @@
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+\documentclass[11pt]{scrartcl}
+\usepackage[beaue, pset, anon]{masty}
+\pSet{\hw{MAT247}{VII}{3}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Problem III}
+
+Suppose $T \in \End(V)$.
+
+\begin{lemma}
+  \label{sec:problem-iii}
+  $\ker T \suq \ker T^2 \suq \cdots \suq \ker T^k \suq \ker T^{k+1} \suq \cdots$
+\end{lemma}
+
+\begin{proof}
+  \hfill
+
+  Suppose $v \in \ker T$. Therefore, $Tv = 0$, and hence
+  $T^2v = T(0) = 0$, an thus $Tv\in\ker T^2$.
+
+  Now, assume $\ker T^{k-1} \suq \ker T^k$ for some $k\in\ZZ^+$, and
+  let $v\in \ker T^k$ be arbirtrary. Thus,
+  $T^{k+1}v = TT^kv = T(0) = 0$, and hence $v\in \ker
+  T^{k+1}$. Therefore, $T^k\suq T^{k+1}$.
+
+  Hence,
+  $\ker T \suq \ker T^2 \suq \cdots \suq \ker T^k \suq \ker T^{k+1}
+  \suq \cdots$ by induction.
+
+\end{proof}
+
+\begin{lemma}
+  \label{sec:problem-iii-2}
+  If $\rank T^m = \rank T^{m+1}$ for some $m\geq 0$,
+
+  then $\rank T^m = \rank T^k$ and $\ker T^m = \ker T^k$ for any $k \geq m$.
+\end{lemma}
+
+\begin{proof}
+  \hfill
+
+  Suppose $\rank T^m = \rank T^{m+1}$ for some $m\geq 0$.
+  
+
+  We want to prove that for any $k\in\ZZ^+$,
+  $\rank T^{m+k} = \rank T^{m+k+1}$.
+
+  Since $\img T^{m+k}$ is $T$-invariant, because $\img T$ is
+  $T$-invariant and $\img T^{m+k}\suq \img T$, then
+  $\img T^{m+k+1}\suq \img T^{m+k}$.
+
+  Similarly, since $\img T^{m+1}\suq \img T^m$ and
+  $\rank T^m = \rank T^{m+1}$, then $\img T^m = \img T^{m+1}$.
+
+  Suppose now that $u \in \img T^{m+k}$. Therefore, there exists
+  $x\in V$ such that $T^{m+k}x = u$.
+
+  Hence, $T^m(T^kx) = u$, and then $u \in \img T^m=\img T^{m+1}$.
+
+  Thus, there exists $w\in V$ such that $T^{m+1}w = u = T^{m+k}x$, so
+  that $T^m(T^kx-w) = 0$ and $T^kx-w \in \ker T^m$.
+
+  From Lemma \ref{sec:problem-iii}, we have
+  $\ker T^m\suq \ker T^{m+1}$, and thus $T^{m+1}(T^kx-w) = 0$. Hence,
+  $T^{m+k+1}x=T^{m+1}w = u$. Therefore, $u\in \img T^{m+k+1}$, and
+  thus $\img T^{m+k+1}=\img T^{m+k}$. Since $\img T^m=\img T^{m+1}$,
+  by transitive law we obtain that for any $n\geq m$ we have
+  $\img T^m = \img T^n$ and $\rank T^m = \rank T^n$.
+
+  % Since $\img T^m$ is $T^m$-invariant, then for any $k\geq m$ we have
+  % $\img T^k \suq \img T^m$.
+
+  % Let $v \in \img T^m$ be arbitrary. We prove now that $v$ is also in
+  % $\img T^k$.
+
+  % We proceed by induction on $l = k-m$ to prove that $v\in\img T^{k-m}$.
+
+  % Suppose first $l =0$, and thus $k=m$. Then $v\in\img T^k$ and thus
+  % $\img T^k = \img T^m$.
+
+  % Suppose now $l \geq 1$.
+
+  % Since $T^{k-m}v \in \img T^{k-m}$, 
+
+  % By Lemma \ref{sec:problem-iii}, we have that
+  % $\ker T^m\suq \ker T^{m+1}$.
+
+  Now we prove that for any $k\in\ZZ^+$, $\ker T^{m+k+1} = \ker T^{m+k}$.
+
+  Take arbirtrary $k\in \ZZ^+$.
+
+  By the rank-nullity theorem, $\dim V = \rank T^{m+k}+\nll
+  T^{m+k}$. Since we have already shown that
+  $\img T^{m+k+1} = \img T^{m+k}$, while
+  $\dim V = \rank T^{m+k+1} +\nll T^{m+k+1}$ , we see that
+  $\nll T^{m+k} = \nll T^{m+k+1}$. Since also
+  $\ker T^{m+k}\suq \ker T^{m+k+1}$ by Lemma \ref{sec:problem-iii}, we
+  see that $\ker T^{m+k} = \ker T^{m+k+1}$, which means that for any
+  $n\geq m$ we have $\ker T^m =\ker T^{n}$.
+\end{proof}
+
+\begin{lemma}
+  \label{sec:problem-iii-5}
+  $\rank (T-\lambda I)^m = \rank (T-\lambda I)^{m+1}$ for some $m \geq 0$ if and only if $K_{\lambda}= \ker (T-\lambda I)^m$.
+\end{lemma}
+
+\begin{proof}
+  \hfill
+
+  Note that, by definition of $K_{\lambda}$, for any $m \in \ZZ^+$,
+  $\ker (T-\lambda I)^m \suq K_{\lambda}$.
+
+  Suppose first that
+  $\rank (T-\lambda I)^m = \rank (T-\lambda I)^{m+1}$.
+
+  Let $v\in K_{\lambda}$ be arbitrary. Therefore, there exists
+  $k\in \ZZ^+$ such that $x\in \ker(T-\lambda I)^k $.
+
+  If $k \leq m$, by Lemma \ref{sec:problem-iii} we have that
+  $\ker (T-\lambda I)^k\suq \ker (T-\lambda I)^m$, and therefore
+  $v\in \ker (T-\lambda I)^m$.
+
+  If $k > m$, by Lemma \ref{sec:problem-iii-2} we have that $\ker (T-\lambda I)^m = \ker (T-\lambda I)^k$, and thus $v\in \ker (T-\lambda I)^m$.
+
+  Therefore, $\ker (T-\lambda I)^m = K_{\lambda}$.
+
+  Suppose now that $K_{\lambda} = \ker(T-\lambda I)^m$.
+
+  From Lemma \ref{sec:problem-iii},
+  $\ker (T-\lambda I)^m = K_{\lambda}\suq \ker(T-\lambda I)^{m+1}$. By
+  definition of $K_{\lambda}$, we have
+  $\ker(T\lambda I)^{m+1}\suq K_{\lambda}$. Therefore,
+  $\ker (T-\lambda I)^m = \ker (T-\lambda I)^{m+1}$, and thus we
+  obtain $\nll (T-\lambda I)^m = \nll (T-\lambda I)^{m+1}$.
+
+  By the rank-nullity theorem, we also know that
+  $\rank (T-\lambda I)^m = \dim V - \nll (T-\lambda I)^m$ and
+  $\rank (T-\lambda I)^{m+1} = \dim V - \nll (T-\lambda
+  I)^{m+1}$.
+
+  Thus, $\rank (T-\lambda I)^m = \rank (T-\lambda I)^{m+1}$, proving
+  the implication to the left.
+\end{proof}
+
+\begin{lemma}
+  $T$ is diagonalisable if and only if the characteristic polynomial
+  of $T$ splits and $\rank (T-\lambda I) = \rank (T-\lambda I)^2$ for
+  all eigenvalues $\lambda$.
+\end{lemma}
+
+\begin{proof}
+  \hfill
+
+  Suppose first that $T$ is diagonalisable. Therefore, we know by
+  Theorem 5.6 that the characteristic polynomial of $T$
+  splits.
+
+  Moreover, by Corollary to Theorem 7.4, $E_{\lambda} =
+  K_{\lambda}$.
+
+  Thus, $K_{\lambda} = E_{\lambda}$, and hence
+  $K_{\lambda} = \ker (T-\lambda)$ for any eigenvalue $\lambda$.
+
+  By Lemma \ref{sec:problem-iii-5}, we therefore obtain that
+  $\rank(T-\lambda I) = \rank(T-\lambda I)^2$ for any eigenvalue
+  $\lambda$.
+
+  Suppose now that the characteristic polynomial
+  of $T$ splits and $\rank (T-\lambda I) = \rank (T-\lambda I)^2$ for
+  all eigenvalues $\lambda$.
+
+  By Lemma \ref{sec:problem-iii-5},
+  $K_{\lambda} = \ker(T-\lambda I) = E_{\lambda}$ for any eigenvalue
+  $\lambda$. Also, since the characteristic polynomial splits, by
+  Corollary to Theorem 7.4 we obtain that $T$ is diagonalisable.
+\end{proof}
+
+
+\end{document}

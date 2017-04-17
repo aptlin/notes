@@ -1,0 +1,327 @@
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+\documentclass[11pt]{scrartcl}
+\usepackage[beaue, pset, anon]{masty}
+\pSet{\hw{MAT247}{X}{3}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+  Suppose that $\FF = \ZZ_2$ and $A=
+  \begin{pmatrix}
+    0 & 1 & 0 & 1\\
+    1 & 0 & 1 & 0\\
+    0 & 1 & 1 & 1\\
+    1 & 0 & 1 & 1
+  \end{pmatrix}
+$.
+\begin{problem*}
+  \hfill
+
+Find a rational canonical form $R$ of $A$.
+
+\end{problem*}
+
+\begin{soln}
+  \hfill
+
+  First we find a characteristic polynomial of $A$.
+
+  Note that 
+  \begin{equation*}
+A- tI = 
+  \begin{pmatrix}
+    -t & 1 & 0 & 1\\
+    1 & -t & 1 & 0\\
+    0 & 1 & 1-t & 1\\
+    1 & 0 & 1 & 1-t
+  \end{pmatrix}.
+  \end{equation*}
+
+  Using the Laplacian expansion along the first column, we see that
+  \begin{align}
+\det(A-tI) =& -t \det
+             \begin{pmatrix}
+               -t & 1 & 0\\
+               1 & 1-t & 1\\
+               0 & 1 & 1-t
+             \end{pmatrix}\\
+                       &- \det
+                       \begin{pmatrix}
+                         1 & 0 & 1\\
+                         1 & 1-t & 1\\
+                         0 & 1 & 1-t
+                       \end{pmatrix}- \det
+                                 \begin{pmatrix}
+                                   1 & 0 & 1\\
+                                   -t & 1 & 0\\
+                                   1 & 1-t & 1
+                                 \end{pmatrix}\\
+    =& -t \left( -t[(1-t)^2-1] - [1-t-0] \right)\\
+            & - \left( (1-t)^2-1 -1(0-1)\right)\\
+            &- \left( 1 + (-t(1-t)-1) \right)\\
+    =& -t(-t(-t)(2-t) +t-1) -\left( (-t) (2-t) +1\right)+t-t^2\\
+    =& -t(2t^2-t^3+t-1) -(-2t+t^2+1)+t-t^2\\
+    =&\ t^4-2t^3-t^2+t+2t-t^2-1+t-t^2\\
+    =&\ t^4-2t^3-3t^2+4t-1\\
+    =&\ t^4-3t^3+t^2+t^3-4t^2+4t-1\\
+    =&\ t^2(t^2-3t+1)+ t^3-3t^2+t -t^2+3t-1\\
+    =&\ t^2(t^2-3t+1)+t(t^2-3t+1) - (t^2-3t+1)\\
+    =&\ (t^2-3t+1)(t^2+t-1)
+  \end{align}
+
+  Since $\FF = \ZZ_2$, then $f(t) = \det(A-tI) = (t^2+t+1)^2$.
+
+  Note that 
+
+  \begin{align}
+    A^2 = 
+  \begin{pmatrix}
+    0 & 1 & 0 & 1\\
+    1 & 0 & 1 & 0\\
+    0 & 1 & 1 & 1\\
+    1 & 0 & 1 & 1
+  \end{pmatrix}
+  \begin{pmatrix}
+    0 & 1 & 0 & 1\\
+    1 & 0 & 1 & 0\\
+    0 & 1 & 1 & 1\\
+    1 & 0 & 1 & 1
+  \end{pmatrix}\\
+=
+\begin{pmatrix}
+1 + 1 & 0 & 1+1 & 1\\
+0 & 1+1 & 1 & 1 + 1\\
+1 + 1 & 1 & 1+1+1 & 1+1\\
+1 +1 & 1 +1 & 1 +1 & 1 + 1 +1
+\end{pmatrix}\\
+=
+\begin{pmatrix}
+0 & 0 & 0 & 1\\
+0 & 0 & 1 & 0\\
+0 & 1 & 1 & 0\\
+1 & 0 & 0 & 1
+\end{pmatrix},
+  \end{align}
+and thus 
+\begin{align}
+A^2 + A + I &= 
+\begin{pmatrix}
+0 & 0 & 0 & 1\\
+0 & 0 & 1 & 0\\
+0 & 1 & 1 & 0\\
+1 & 0 & 0 & 1
+\end{pmatrix}
++
+  \begin{pmatrix}
+    0 & 1 & 0 & 1\\
+    1 & 0 & 1 & 0\\
+    0 & 1 & 1 & 1\\
+    1 & 0 & 1 & 1
+  \end{pmatrix}
++
+                \begin{pmatrix}
+                  1 & 0 & 0 & 0\\
+                  0 & 1 & 0 & 0\\
+                  0 & 0 & 1 & 0\\
+                  0 & 0 & 0 & 1
+                \end{pmatrix}\\
+            &=
+ \begin{pmatrix}
+   1 & 1 & 0 & 0\\
+   1 & 1 & 0 & 0\\
+   0 & 0 & 1 & 1\\
+   0 & 0 & 1 & 1
+ \end{pmatrix}.
+\end{align}
+
+Since $A^2+A+I \neq 0$, while the only divisor of the the minimal
+polynomial $p(t)$ is $t^2+t+1$, we deduce that
+$p(t)=f(t) = (t^2+t+1)^2 = t^4+t^2+1$.
+
+Therefore, there exists a canonical basis $\beta$ such that
+\begin{equation*}
+[A]_{\beta} = R =
+\begin{pmatrix}
+0 & 0 & 0 & 1\\
+1 & 0 & 0 & 0\\
+0 & 1 & 0 & 1\\
+0 & 0 & 1 & 0
+\end{pmatrix},
+\end{equation*}
+where the signs were omitted since $-1 = 1$.
+
+\end{soln}
+
+\begin{problem*}
+  \hfill
+
+Find an invertible matrix $Q$ such that $R = Q^{-1}AQ$.
+\end{problem*}
+
+\begin{soln}
+  \hfill
+
+First we find the basis of $K_{\phi}$, where $\phi = t^2+t+1$.
+
+Note that, by Theorem 7.18, since $p(t) = (t^2+t+1)^2$ and $t^2+t+1$
+is irreducible, then $K_{\phi} = \ker \phi(A)^2$.
+Since $\phi A = 
+ \begin{pmatrix}
+   1 & 1 & 0 & 0\\
+   1 & 1 & 0 & 0\\
+   0 & 0 & 1 & 1\\
+   0 & 0 & 1 & 1
+ \end{pmatrix}
+ $, we know that $phi(A)^2 = 0$ and thus
+ $\ker \phi(A)^2 = V = K_{\phi}$.
+
+ We now look for the cycle basis of $K_{\phi}= V$, which has a length
+ of $\dim V = 4$.
+
+ Take $v = \cv{1;0;0;0}$.
+
+ Therefore, $Av = \cv{0;1;0;1}$, $A(Av) = A^2v = \cv{0;0;0;1}$ and
+ $A^3v = \cv{1;0;1;1}$. 
+
+ Let
+ $\beta = \set{\cv{1;0;0;0}, \cv{0;1;0;1}, \cv{0;0;0;1},
+   \cv{1;0;1;1}}$.
+
+ Note that, since $\phi(A)^2x = 0$ for any $x\in \beta$, then
+ $\spn \beta \suq K_{\phi}$.
+
+ We now prove that $\beta$ is linearly independent:
+ \begin{align}
+   \begin{matreq}{cccc|c}
+1 & 0 & 0 & 1 & 0\\
+0 & 1 & 0 & 0 & 0\\
+0 & 0 & 0 & 1 & 0\\
+0 & 1 & 1 & 1 & 0
+   \end{matreq}
+  &\ras\\
+   R_1\to R_1-R_3, R_4\to R_4-R_{2}-R_{3}  \ &\ras
+   \begin{matreq}{cccc|c}
+1 & 0 & 0 & 0 & 0\\
+0 & 1 & 0 & 0 & 0\\
+0 & 0 & 0 & 1 & 0\\
+0 & 0 & 1 & 0 & 0
+   \end{matreq}.
+ \end{align}
+
+ Therefore, $\beta$ is linearly independent. 
+
+ Since $\abs{\beta} = 4$ and $\spn \beta \suq K_{\phi}$, then $\beta$
+ is a cyclic basis of $K_{\phi} = V$.
+
+Let $Q = 
+\begin{pmatrix}
+1 & 0 & 0 & 1\\
+0 & 1 & 0 & 0\\
+0 & 0 & 0 & 1\\
+0 & 1 & 1 & 1
+\end{pmatrix}$.
+
+We invert $Q$:
+\begin{align}
+  \begin{matreq}{cccc|cccc}
+1 & 0 & 0 & 1 & 1 & 0 & 0 & 0\\
+0 & 1 & 0 & 0 & 0 & 1 & 0 & 0\\
+0 & 0 & 0 & 1 & 0 & 0 & 1 & 0\\
+0 & 1 & 1 & 1 & 0 & 0 & 0 & 1
+  \end{matreq}
+ &\ras\\
+  \shortstack[l]{$R_1\to R_1-R_3$, \\
+$R_4\to R_4-R_{2}-R_{3}$  }
+  \ &\ras
+  \begin{matreq}{cccc|cccc}
+1 & 0 & 0 & 0 & 1 & 0 & 1 & 0\\
+0 & 1 & 0 & 0 & 0 & 1 & 0 & 0\\
+0 & 0 & 0 & 1 & 0 & 0 & 1 & 0\\
+0 & 0 & 1 & 0 & 0 & 1 & 1 & 1
+  \end{matreq}\\
+R_3 \lra R_4 \ &\ras 
+  \begin{matreq}{cccc|cccc}
+1 & 0 & 0 & 0 & 1 & 0 & 1 & 0\\
+0 & 1 & 0 & 0 & 0 & 1 & 0 & 0\\
+0 & 0 & 1 & 0 & 0 & 1 & 1 & 1\\
+0 & 0 & 0 & 1 & 0 & 0 & 1 & 0
+  \end{matreq}
+\end{align}
+
+Thus, $Q^{-1} = 
+\begin{pmatrix}
+1 & 0 & 1 & 0\\
+0 & 1 & 0 & 0\\
+0 & 1 & 1 & 1\\
+0 & 0 & 1 & 0
+\end{pmatrix}
+$.
+
+By the change-of-matrix formula, we know that $R = Q^{-1}A Q$, since
+$\beta$ is a cycle basis of $K_{\phi}$ and thus a rational canonical
+basis.
+\end{soln}
+\begin{problem*}
+  \hfill
+
+Find an $L_A$-invariant subspace $W\suq \FF^4$ of dimension 2.
+\end{problem*}
+\begin{soln}
+  \hfill
+
+  Let $\gamma = \set{\cv{0;0;0;1}, \cv{1;0;1;1}}\suq \beta$, and let $T = L_A$.
+
+  Note that $\gamma$ is linearly independent, since $\beta$ is linearly independent.
+
+  Let $W = \spn \gamma$.
+
+  Since $T\cv{0;0;0;1} = \cv{1;0;1;1} \in W$ and
+  $T \cv{1;0;1;1} = \cv{0;0;0;0} \in W$, then $W$ is $T$-invariant
+  ($T$ is defined by its action on a basis).
+\end{soln}
+
+\end{document}

@@ -1,0 +1,107 @@
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+\documentclass[11pt]{scrartcl}
+\usepackage[beaue, pset, anon]{masty}
+\pSet{\hw{MAT247}{VII}{2}}
+\usepackage{lineno}
+% ----------------------------------------------------------------------
+% Page setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom commands
+% ----------------------------------------------------------------------
+
+% alignment
+
+\newcommand*{\LongestHence}{$\Rightarrow$}% function name
+\newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+\newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+\newcommand*{\LongestText}{\defi}%
+
+\newlength{\LargestHenceSize}%
+\newlength{\LargestNameSize}%
+\newlength{\LargestValueSize}%
+\newlength{\LargestTextSize}%
+
+\settowidth{\LargestHenceSize}{\LongestHence}%
+\settowidth{\LargestNameSize}{\LongestName}%
+\settowidth{\LargestValueSize}{\LongestValue}%
+\settowidth{\LargestTextSize}{\LongestText}%
+
+% Choose alignment of the various elements here: [r], [l] or [c]
+
+\newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+\newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+\newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+\newcommand{\lr}[1]{line~\lineref{#1}}
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Problem II}
+
+\begin{lemma}
+  If $T$ is diagonalisable and $W\suq V$ is a $T$-invariant subspace,
+  then the restriction $T|_W$ is also diagonalisable.
+\end{lemma}
+
+\begin{proof}
+  \hfill
+
+  Since $T$ is diagonalisable, the characteristic polynomial of $T$
+  splits.
+
+  Let $f(t)$ be a characteristic polynomial of $T$. By Cayley-Hamilton
+  Theorem, $f(T) = 0$. Therefore, we obtain that $f(T)|_W=0$, which by
+  homogeneity of $T$ and from the fact that $W$ is $T$-invariant means
+  that $f(T|_W) = 0 = g(T)$. Since $f(T)$ splits, the characteristic
+  polynomial of $T|_W$ also splits.
+
+  % Therefore, we know that $E_{\lambda}=K_{\lambda}$ for any eigenvalue
+  % $\lambda$ of $T$, which means that $\dim E_{\lambda} = K_{\lambda}$,
+  % and thus
+  % Since $T$ is diagonalisable, there exists a basis of eigenvectors
+  % $\gamma = \set{v_1, \dots, v_n}$, where $n = \dim V$.
+  % For $k=\dim W$, relabelling the basis elements if necessary, let
+  % $\beta = \set{v_1, \dots, v_k}\suq \gamma$ be a basis of $W$. Note
+  % that $v_1, \dots, v_k$ are eigenvectors of $T|_W$ by definition of
+  % $T|_W$.
+
+  We now show that for every eigenvalue $\mu$ of $T|_W$, the condition
+  $E_{\mu}|_W=K_{\mu}|_W$ must hold, where $E_{\mu}|_W$ is an
+  eigenspace and $K_{\mu}|_W$ is a generalised eigenspace
+  corresponding to the eigenvalue $\mu$ of $T|_W$.
+
+  Consider an eigenvalue $\mu$ of $T|_W$. Since $g(T)$ splits, at
+  least one $\mu$ and a corresponding eigenvector $v_{\mu}\in E_{\mu}$ exist.
+
+  Since
+  $K_{\mu}|_W=\set{v;v\in \ker (T|_W-\mu I)^m \text{ for some }
+    m\in\ZZ^{+}}$, then $E_{\mu}|_W\suq K_{\mu}|_{W}$ by definition.
+
+  Suppose now $w\in K_{\mu}|_W$. Note that
+  $K_{\mu}|_W = K_{\mu}\cap W$, and thus $w\in K_{\mu}$ and $w\in
+  W$. Since $f(T)$ splits, then $K_{\mu} = E_{\mu}$. Therefore,
+  $w\in E_{\mu}$. Since $W$ is $T$-invariant, then
+  $w\in E_{\mu}\cap W = E_{\mu}|_W$. Thus,
+  $K_{\mu}|_W\suq E_{\mu}|_W$, and hence $K_{\mu}|_W =
+  E_{\mu}|_W$. Because $g(T)$ splits, we conclude that $T|_W$ is
+  diagonalisable.
+  
+\end{proof}
+
+
+\end{document}
