@@ -43,7 +43,7 @@
 \newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
 
 \newcommand{\R}[1]{\label{#1}\linelabel{#1}}
-\newcommand{\lr}[1]{line~\lineref{#1}}
+
 
 % ----------------------------------------------------------------------
 % Launch!
@@ -105,7 +105,7 @@ a contradiction. Thus, $B$ is not regular.
 \subsection{Pumping Lemma}
 
 \begin{lemma}
-  For every regular language $L\suq \Sigma^{*}$ there exists
+  For every regular language $L \suq \Sigma^{*}$ there exists
   $n\in\ZZ^+$ such that, for all $x\in L$, if $\abs{x}\geq n$, then
   there exist $u, v$ and $w$ in $\Sigma^{*}$ such that
   $v\neq \epsilon$, $\abs{uv}\leq n$, $x = uvw$ and for all $k\in \NN$
@@ -118,12 +118,12 @@ a contradiction. Thus, $B$ is not regular.
   $M = (Q, \epsilon, \delta, q_0, F)$.
 
   Let $n = \abs{Q}$, and suppose that $x = x_1\cdots x_m\in L$, where
-  $m \geq n$, is arbitrary.
+  $m > n$, is arbitrary.
 
   Now we construct the states $q_i = \delta^{*}(q_0, x_1\cdots x_i)$
-  for $i\in [1, n]\cap \NN$.
+  for $i\in [1, m]\cap \NN$.
 
-  By the pigeonhole principle, there exist $0 \leq i < j \leq n$ such
+  By the pigeonhole principle, there exist $0 \leq i < j \leq m$ such
   that $q_i = q_j$.
 
   Let $u= x_1\cdots x_i$, $v = x_{i+1} \cdots x_j$ and
@@ -160,7 +160,7 @@ a contradiction. Thus, $B$ is not regular.
   and $\abs{uv}\leq n$, $x = uvw$ and for all $k\in \NN$ we have
   $uv^kw\in P$.
 
-  So $u = 0^i$, $v = 0^j$ for some $i\geq 0$ and $j\geq 0$ such that
+  So $u = 0^i$, $v = 0^j$ for some $i\geq 0$ and $j > 0$ such that
   $i+j \leq n$. Thus, $w = 0^{n-i-j}10^n$.
 
   Consider $k=2$.
