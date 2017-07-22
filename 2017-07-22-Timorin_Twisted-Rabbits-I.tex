@@ -1,0 +1,210 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{Timorin}{1}{Twisted Rabbits}}
+  \usepackage{lineno}
+  % ----------------------------------------------------------------------
+  % Page setup
+  % ----------------------------------------------------------------------
+
+  \pagenumbering{gobble}
+
+  % ----------------------------------------------------------------------
+  % Custom commands
+  % ----------------------------------------------------------------------
+
+  % alignment
+
+  \newcommand*{\LongestHence}{$\Rightarrow$}% function name
+  \newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+  \newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+  \newcommand*{\LongestText}{\defi}%
+
+  \newlength{\LargestHenceSize}%
+  \newlength{\LargestNameSize}%
+  \newlength{\LargestValueSize}%
+  \newlength{\LargestTextSize}%
+
+  \settowidth{\LargestHenceSize}{\LongestHence}%
+  \settowidth{\LargestNameSize}{\LongestName}%
+  \settowidth{\LargestValueSize}{\LongestValue}%
+  \settowidth{\LargestTextSize}{\LongestText}%
+
+  % Choose alignment of the various elements here: [r], [l] or [c]
+
+  \newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+  \newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+  \newcommand{\lr}[1]{line~\lineref{#1}}
+
+  % ----------------------------------------------------------------------
+  % Launch!
+  % ----------------------------------------------------------------------
+
+  \begin{document}
+
+  \section{Twisted Rabbits}
+
+  Twisted rabbits have arised in the study of discrete dynamic systems.
+
+  \subsection{Introduction}
+  \begin{definition}
+    The \textit{Douady rabbit} is a fractal defined by
+    $P_{c}(z) = z^{2} + c$ such that 0 is periodic with the period 3,
+    which means that $P_{c}P_{c}P_{c}(0) = 0$, and $P_{c} \neq 0$.
+
+    Thus, $(c^{2} + c)^{2} + c = 0$, which means that
+    $c^{3} + 2 c^{2} + c + 1 = 0$. We require that $\img c > 0$.
+  \end{definition}
+
+  The mapping $P_{c}$ of a point defines its orbit, which is a set
+  $\set{z, P_{c}(z), P_{c}(P_{c}(z)) = P^{\circ 2}_{c}(z), \dots}$.
+
+  Only a finite area of the complex plane does not approach infinity
+  exponentially fast. This set is called a \textbf{Julia set}.
+
+  \begin{definition}
+    A filled Julia set is a set
+    $K(P_{c}) = \set{z; P_{c}^{\circ n}(z)\not \to \infty}$.
+  \end{definition}
+
+  To proceed, we will need a concept of a Jordan curve, which is
+  obtained when a circle is mapped continuously to a plane in such a
+  way that the mapped points do not coincide.
+
+  The \textit{body} of a rabbit looks like a circle. It also has a
+  pair of \textit{ears}. Then a scaled copy of itself looks like a
+  pair of paws. A fractal structure is obtained. Our rabbit is an
+  example of a filled Julia set. Note that no ears of any degree
+  intersect each other.
+
+  The zero point is located at the centre.
+
+  Let's $v = P_{c}(0) = c$ and $w = P^{\circ 2}_{c}(0) = P_{c}(v)$. We
+  can see that $0\mapsto v \mapsto w \mapsto 0$.
+
+  Since the derivative at zero is zero, all the neighbouring points
+  on mapping get even closer.
+
+  It is worthwhile to note that the picture shows the dynamic
+  behaviour of the system. Thus, all the points get eventually into
+  the periodic cycle of $0, v, w$, which act as attractors. There is
+  also a stable point $\alpha$, to which the ears are attached, and
+  around which all the points jump around. If $\alpha$ is omitted, our
+  rabbit would fall apart into three parts.
+
+  Another important point is $\beta$, which is a limit of the images
+  of $0$.
+
+  Drawing a rabbit is an easy and relatively fast programming task,
+  which is partially due to the fast exponential runaway of the mapped
+  points.
+
+  Now, we introduce a concept of a \textit{Thurston lamination}.
+
+  Draw a unit circle. Now we take points and assign the angle measure,
+  which, for our purposes, would range from $(0, 1]$. First, take $0$,
+  and assign the angle of $1$. Then mark the points with the angles
+  from $\frac{1}{7}$ to $\frac{6}{7}$.
+
+  Denote a map doubling the angle as $\sigma_{2}$.
+
+  Connect the points with angles $\frac{1}{7}$, $\frac{2}{7}$ and
+  $\frac{4}{7}$ with lines, from $\frac{1}{7}$ to $\frac{2}{7}$, from
+  $\frac{2}{7}$ to $\frac{4}{7}$, and from $\frac{4}{7}$ to
+  $\frac{1}{7}$.
+
+  To obtain the representation of a rabbit on a circle, we need to
+  find an equivalence relation which is invariant with respect to our
+  mapping.
+
+  We map our triangle to a new triangle connecting the points with
+  angles of $\frac{1}{14}, \frac{9}{14}$ and $\frac{11}{14}$.
+
+  Our goal is to construct the images of our triangles so that they do
+  not intersect. We can prove that it can always be achieved.
+
+  There is also a \textit{stripe} defined by the images, which lacks
+  triangles covering the entire stripe.
+
+  \begin{note*}
+    A filled Julia set is connected.
+  \end{note*}
+
+  In this way, we obtain a countable number of triangles in the unit
+  circle.
+
+  \subsection{Relatives}
+
+  What happens if we take other values of $c$?
+
+  If, for example, $\img(c) < 0$, we obtain an antirabbit, which can
+  be identified by the order of the ears.
+
+  If, however, $\img(c_{*}) = 0$, then we obtain an \textit{aeroplane}.
+
+  To study the aeroplane, we construct a Cantor set, which is a
+  segment with a countable number of disjoint open intervals omitted
+  in such a way that there is no interval left at the end. Cantor sets
+  are also identified as \textit{Cantor dust}. In particular, we build
+  a Cantor necklace, where circles are inserted into the omitted
+  intervals, and then another necklaces grow on the circles
+  themselves.
+
+  Again, let's draw a unit circle and divide it into seven parts.
+
+  In the case of the aeroplane, however, we would not get triangles in
+  the lamination. First, we connect the points with angles
+  $\frac{1}{7}$ and $\frac{6}{7}$, then with angles $\frac{2}{7}$ and
+  $\frac{5}{7}$, and finally with $\frac{3}{7}$ and $\frac{4}{7}$. The
+  critical stripe is obtained in the region defined by the chords
+  connecting $\frac{2}{7}$ and $\frac{5}{7}$, and $\frac{3}{14}$ and
+  $\frac{11}{14}$. The difference of the lamination of the aeroplane
+  from the lamination corresponding to the rabbit is that the number
+  of chords is uncountable.
+
+  \subsection{Generalisations}
+
+  The mapping that we used for the rabbit plays an important role.
+  However, to prove results in complex analysis, only the intrinsic
+  properties of the mapping are used, not the explicit equation. This
+  is due to the fact that the form of the equation does not tell much
+  about the topological properties of the system obtained.
+
+  This is why we use such tools like Thurston laminations.
+
+  The mapping $z^{2} + c$ can be viewed as the mapping of the sphere
+  $S^{2}$ into itself.
+
+  The preimage of a small disc in the topological sense (an area bound
+  by a Jordan curve) consists of several discs, on which the mapping
+  is $z \mapsto z^{k}$, where $k \in \ZZ^{+} $.
+
+  Suppose that we take a map $f$ between two discs, and we define two
+  homeomorphisms conserving the orientation, $\phi_{1}$ and
+  $\phi_{2}$, on each of the discs.
+
+  Note that $z^{2} + c$ is a branched covering.
+
+  All branch coverings have critical points, of which there is a
+  finite amount.
+
+  To proceed, we need a concept of a postcritically finite branched
+  covering, which is a set of orbits of the critical points:
+  
+  \begin{equation*}
+    P(f) = \cup \text{ orbits of all critical points}.
+  \end{equation*}
+
+  The theory of postcritically finite branched coverings was actively
+  studied by Thurston, and led to important results in Thurston theory.
+
+\end{document}

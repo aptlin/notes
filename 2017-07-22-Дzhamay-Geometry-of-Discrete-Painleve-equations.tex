@@ -1,0 +1,195 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{Dzhamay}{2}{Geometry of Discrete Painleve Equations}}
+  \usepackage{lineno}
+  % ----------------------------------------------------------------------
+  % Page setup
+  % ----------------------------------------------------------------------
+
+  \pagenumbering{gobble}
+
+  % ----------------------------------------------------------------------
+  % Custom commands
+  % ----------------------------------------------------------------------
+
+  % alignment
+
+  \newcommand*{\LongestHence}{$\Rightarrow$}% function name
+  \newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+  \newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+  \newcommand*{\LongestText}{\defi}%
+
+  \newlength{\LargestHenceSize}%
+  \newlength{\LargestNameSize}%
+  \newlength{\LargestValueSize}%
+  \newlength{\LargestTextSize}%
+
+  \settowidth{\LargestHenceSize}{\LongestHence}%
+  \settowidth{\LargestNameSize}{\LongestName}%
+  \settowidth{\LargestValueSize}{\LongestValue}%
+  \settowidth{\LargestTextSize}{\LongestText}%
+
+  % Choose alignment of the various elements here: [r], [l] or [c]
+
+  \newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+  \newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+  \newcommand{\lr}[1]{line~\lineref{#1}}
+
+  % ----------------------------------------------------------------------
+  % Launch!
+  % ----------------------------------------------------------------------
+
+  \begin{document}
+
+  \section{Geometry of Discrete Painleve Equations}
+
+  \subsection{Revision}
+
+  We have discussed the QRT mapping, which is $\phi^{2}$, where $\phi$ looks as follows:
+  
+  \begin{equation*}
+    \begin{cases}
+      \ol{x} = \frac{(x-a)(x-a^{-1})}{y(x+a)(x+a^{-1})}\\
+      \ol{y} = x
+    \end{cases}
+  \end{equation*}
+
+  The inverse of $\phi$ is then:
+
+  \begin{equation*}
+    \begin{cases}
+      \ul{x} = y\\
+      \ul{y} = \frac{(y-a)(y-a^{-1})}{x(y+a)(y+a^{-1})}
+    \end{cases}
+  \end{equation*}
+
+  We can draw the picture for the dynamics as a map. For this,
+  introduce the coordinates induced by $x, y, X=\frac{1}{x}$ and
+  $Y = \frac{1}{y}$. Then we can draw points with the respective
+  coordinates cycling over $a$, $a^{-1}$, $-a$ and $-a^{-1}$.
+
+  Now, take $x = u + a$, $y = u\* v$. This gives us the following:
+  \begin{align}
+    \ol{x} = \frac{u(u+a-a^{-1})}{uv(u+2a)(u+a+a^{-1})}.
+  \end{align}
+
+  Note that, if we account for $u = 0$, we can eliminate $u$ from both
+  sides.
+
+  \subsection{Blowing Up}
+
+  Suppose that $(0, 0)$ is a centre.
+
+  Draw a graph of $y$ over $x$. Note that a point $(a, b)$ lies on the
+  linkes $x=a$ and $y = b$.
+
+  Let $k = \frac{b}{a}$. We can fully and redundantly describe the
+  system by a triple $(a, b, k)$.
+
+  Thinking in a projective space, $k = [\zeta_{0}:\zeta_{1}]$, we
+  obtain that $x$ corresponds to $[0:1]$ and $y$ to $[1:0]$.
+
+  In this way, we can talk in terms of triples $x, y; \zeta$.
+
+  We can blow-up the point in such a way that
+  $\frac{y}{x} = \frac{\zeta_{0}}{\zeta_{1}}$, with
+  $S = \set{x\zeta_{0} = y\zeta_{1}}$.
+
+  The blow-up makes a point correspond to a line, with all the
+  variables having a respective counterpart.
+
+  We can also make a transformation $x = u = UV$ and $y = uv = V$ to
+  make the picture easier.
+
+  Now, let's look at the plane with a point and its blown-up counterpart,
+  which can be described by the \textit{exceptional divisor}.
+
+  A bijection of line $L$ through the point on the plane crossing the
+  blown-up counterpart is descibed by a divisor $L-E$. Now, let's look
+  at a line with the divisor $M-E$, making $L \* M = 1$. What can we
+  say about the lines $(L-E)(M-E)$? They are stretched,
+  $(L-E)(M-E) = 0$, which means that
+  $L\* M - E\* M - L\* E + E\* E = 0$. We already know that
+  $L\* M = 1$. From the intersections, we can also eliminate $E\*M$
+  and $L\* E$, which are equal to 0, and thus $E\* E = 0$.
+
+  Let's denote the points of intersections as $P_{1}$ to $P_{8}$,
+  starting on the line $x=0$ and going in the clockwise direction.
+  Their blown-up counterparts are denoted in a similar way with
+  $E_{1} \to E_{8}$, but with the corresponding coordinate surfaces of
+  $H_{x} - E_{1} - E_{2}$, $X$, and $H_{y} - E_{5} - E_{6}$, where $X$
+  is a QRT surface.
+
+  Now, define
+  $Pic(X) = \spn_{\ZZ}\set{\CH_{X}, \CH_{y}, \varepsilon_{1}, \dots,
+    \varepsilon_{\gamma}}$, where $\CH_{X} \* \CH_{Y} = 1$ and
+  $\varepsilon_{i}\*\varepsilon_{i} = -1$.
+
+  The coordinate surfaces have indices of intersection of $-2$.
+
+  We introduce mappings on the Picard lattice
+  $\phi_{*}:Pic(X) \to Pic(\ol{X})$ and
+  $\phi^{*}: Pic(\ol{X}) \to Pic(X)$.
+
+  A vertical line, by the formula above, goes to the horizontal image.
+
+  If, however, $y$ is constant, then we obtain
+  $ k(\ol{y}+a)(\ol{y}+a^{-1})\ol{x} - (\ol{y}-a)(\ol{y}-a^{-1}) = 0$.
+
+  Thus, $\CH_{x} \mapsto \ol{\CH_{y}}$ and
+  $\CH_{y} \mapsto \ol{\CH_{x}} + 2 \ol{\CH_{y}} - \varepsilon_{1} -
+  \varepsilon_{2} - \varepsilon_{3} - \varepsilon_{4}$.
+
+  \begin{exercise}
+
+    \begin{align}
+      \phi_{0}: &\CH_{x}\mapsto \ol{\CH_{y}}\\
+                & \ol{\CH_{x}} + 2\ol{\CH_{y}} -\ol{\varepsilon_{1234}}\\
+                & \varepsilon \mapsto \ol{\varepsilon_{0}}\\
+                & \varepsilon_{2} \mapsto \ol{\varepsilon_{5}}\\
+                & \varepsilon_{3} \mapsto \ol{\varepsilon_{8}}\\
+                & \varepsilon_{4} \mapsto \ol{\varepsilon_{7}}\\
+                & \varepsilon_{5} \mapsto \ol{\CH_{y}} - \ol{\varepsilon_{1}}\\
+                & \varepsilon_{6} \mapsto \ol{\CH_{y}} - \ol{\varepsilon_{2}}\\
+                & \varepsilon_{7} \mapsto \ol{\CH_{y}} - \ol{\varepsilon_{3}}\\
+                & \varepsilon_{8} \mapsto \ol{\CH_{y}} - \ol{\varepsilon_{4}}
+    \end{align}
+
+  \end{exercise}
+
+  $\phi$ is not $QRT$. Let's write QRT:
+  
+  \begin{equation*}
+    \begin{cases}
+      \ol{\ol{x}} = \frac{(\ol{x} - \ol{a})(\ol{x} \ol{a}^{-1})}{\ol{y}(\ol{x}+\ol{a}(\ol{x} + \ol{a}^{-1}))}\\
+      \ol{\ol{y}} = \ol{x} = \frac{(x-a)(x-a^{-1})}{y(x+a)(x+a^{-1})}
+    \end{cases}
+  \end{equation*}
+
+  Let's turn to the Painleve  equations:
+  
+  \begin{equation*}
+    q - P_{VI} = q- P(\frac{A_{3}^{(1)}}{D_{5}^{(1)}}),
+  \end{equation*}
+
+  where $q = \frac{b_{2}b_{4}b_{5}b_{6}}{b_{1}b_{2}b_{7}b_{8}}$.
+  For some $f$ and $g$,
+  \begin{equation*}
+    \begin{cases}
+      \ol{f} = \frac{\ol{b_{7}}\ol{b_{8}}}{f} \frac{(\ol{g} -
+        \ol{b_{1}})(\ol{g}-\ol{b_{2}})}{(\ol{g} - \ol{b}_{3})(\ol{g} -
+        \ol{b_{4}})}\\
+      \ol{g} = \frac{b_{3}b_{4}}{g} \frac{(f-b_{5})(f-b_{6})}{(f-b_{7})(f-b_{8})}.
+    \end{cases}
+  \end{equation*}  
+\end{document}

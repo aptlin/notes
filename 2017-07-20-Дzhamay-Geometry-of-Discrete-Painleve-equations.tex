@@ -1,0 +1,201 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{Dzhamay}{1}{Geometry of Discrete Painleve Equations}}
+  \usepackage{lineno}
+  % ----------------------------------------------------------------------
+  % Page setup
+  % ----------------------------------------------------------------------
+
+  \pagenumbering{gobble}
+
+  % ----------------------------------------------------------------------
+  % Custom commands
+  % ----------------------------------------------------------------------
+
+  % alignment
+
+  \newcommand*{\LongestHence}{$\Rightarrow$}% function name
+  \newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+  \newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+  \newcommand*{\LongestText}{\defi}%
+
+  \newlength{\LargestHenceSize}%
+  \newlength{\LargestNameSize}%
+  \newlength{\LargestValueSize}%
+  \newlength{\LargestTextSize}%
+
+  \settowidth{\LargestHenceSize}{\LongestHence}%
+  \settowidth{\LargestNameSize}{\LongestName}%
+  \settowidth{\LargestValueSize}{\LongestValue}%
+  \settowidth{\LargestTextSize}{\LongestText}%
+
+  % Choose alignment of the various elements here: [r], [l] or [c]
+
+  \newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+  \newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+  \newcommand{\lr}[1]{line~\lineref{#1}}
+
+  % ----------------------------------------------------------------------
+  % Launch!
+  % ----------------------------------------------------------------------
+
+  \begin{document}
+
+  \section{Geometry of Discrete Painleve Equations}
+
+  \subsection{Discrete Integrable Systems}
+
+  Suppose there is a parameter $t:\ZZ \to X$, where $X$ is the
+  configuration space. We will denote the $n$th step $x_{n}$ as $x$,
+  and let $x_{n-1}$ be denoted as $\ul{x}$ and $x_{n+1}$ as $\ol{x}$.
+
+  We will look at the mapping from $\mathbf{x}$ to $\mathbf{\ol{x}}$, from $(x, y)$ to $(\ol{x}, \ol{y})$.
+
+  Moreover, we will require that $\ol{x} = \frac{p(x, y)}{q(x,y)}$. We
+  will require that a similar condition holds for $\ol{y}$. This kind
+  of relation is described as a \textit{birational mapping}.
+
+  \subsection{QRT}
+  
+  Now, let's consider a biquadratic curve $\Gamma$, where $\Gamma$ is
+  a set of zeros of some polynomial $p(x, y) \in \CC[x, y]$. Since
+  this polynomial is bivariate, there are two characteristics of its
+  degree, which can be described as $(\deg_{x} p, \deg_{x} p)$.
+
+  Suppose that
+  $p(x, y) = a_{00}x^{2}y^{2} + a_{10}xy^{2} + a_{20} y^{2} +
+  a_{01}x^{2}y + \dots + a_{22}$.
+
+  Note that this polynomial can be written in the matrix form%
+  
+  \begin{equation}
+    p(x, y) = X^{T}AY = \vv{x^{2}; x; 1} \begin{pmatrix}
+      a_{00} & a_{01} & \dots\\
+      \vdots & & \vdots\\
+      \dots & & a_{22}
+    \end{pmatrix} \cv{y^{2}; y; 1}.
+  \end{equation}
+
+  Consider two involutions $r_{x}$ and $r_{y}$, so that
+  $r_{x}^{2} = r_{y}^{2} = \id$.
+
+  The transformation QRT is then $r_{x} \circ r_{y}$.
+
+  It is worthwhile to note that $\Gamma$ is isomorphic (?) to a torus,
+  which in turn is isomorphic to $\CC / \Lambda$ (cf. Hans Dustermaat
+  2010).
+
+  Moreover, we can explicitly state the form of $r_{x}$ and $r_{y}$
+  by applying standard methods of solving a quadratic to $p(x, y)$.
+
+  Now, let $A$ and $B$ be two complex $3\times 3$ matrices.
+
+  We can study \textit{bundles}, families of curves defined by
+  $\Gamma_{A}$ and $\Gamma_{B}$. Thus,
+  $\lambda_{0}XAY + \lambda_{1}X^{T}BY = 0$.
+
+  Suppose we choose a point in plane. Then there exists a curve which
+  contains this point and cuts $\Gamma_{A}$ and $\Gamma_{B}$ at the
+  points of intersections, called base points, so that we obtain
+  $[\lambda_{0}: \lambda_{1}] = -[X_{*}^{T}BY_{*}:X_{*}^{T}AY_{*}]$.
+  This mapping is QRT.
+
+  Now, suppose that $r_{y}$ is such that it maps $(x_{*}, y_{*})$ to
+  $(x_{*}, y_{*}')$. Then
+  $y_{*}' = \frac{f_{1}(x_{*}) y_{*} -
+    f_{0}(x_{*})}{f_{2}(x_{*})y_{*}-f_{1}(x_{*})}$, where
+  $f_{0}, f_{1}$ and $f_{2}$ are such that
+  $(X^{T}A\times X_{*}^{T}B) = \langle f_{0}(x_{*}), f_{1}(x_{*}),
+    f_{2}(x_{*})\rangle$. Then $QRT = r_{x} \circ r_{y} = \phi \circ \phi$,
+  where $\phi = \sigma \circ r_{y}$ and $\sigma$ maps $(x, y; A, B)$
+  to $(y,x; A^{T}, B^{T})$.
+
+  Considering the previous comments, we can now the form for $\phi$:
+
+  \begin{equation}
+    \ol{x}  = \frac{f_{1}(x)y-f_{0}(x)}{f_{2}(x)y - f_{1}(x)}\\
+    \ol{y}= x
+  \end{equation}
+
+  \subsection{Technical Details}
+
+  Consider a mapping $\CC\times \CC \to \PP_{\CC}'\times \PP_{\CC}'$,
+  where $\PP_{\CC}'$ is the Riemann sphere. In this context we talk
+  about the equivalence classes $\CC^{2} - \set{(0, 0)} / \sim$,
+  where $(x_{0}, x_{1}) \tilde (\mu x_{0}, \mu x_{1})$, and
+  $\mu \neq 0$.
+
+  To treat the subject matter properly, we also need a concept of a
+  \textit{divisor}.
+
+  Let $X$ be an algebraic variety. Then
+  $\Div(X) = \spn_{\ZZ}\set{\text{continuous algebraic varieties of
+      codimension 1}}$.
+
+  In our case, $X = \PP_{\CC}'$. Then we can evaluate
+  $D = \sum_{i=1}^{n} a_{i} \set{p_{i}}$, where $a_{i} \in \ZZ$.
+
+  Let's find a divisor of a rational function
+  $f = 3 \frac{(x-1)^{2}(x+2)}{(x-i)(x+4)(x-5)}$. A divisor of $f$,
+  $(f)$, is then $(f) = 2\set{1}+{-2} - \set{i} - \set(-4) - \set{5}$.
+
+  Suppose now that $f(x) = x(x-1)$. Let $X = \frac{1}{x}$. Then
+  $f(x) = \frac{1}{X}(\frac{1}{X} - 1)$. Notice that the degree of a
+  divisor is 0. Indeed, it is zero always on the Riemann sphere.
+
+  Let $X = \PP' \times \PP'$. If we look at its classes, we can define a Picard lattice as follows:
+  
+  \begin{equation}
+    Pic(X) = Cl(X) = \spn{\CH_{x}, \CH_{y}}, 
+  \end{equation}
+  where $[H_{x}] = \SH_{x}$ and $[H_{y}] = \SH_{y}$.
+
+  For example, the class $[p(x, y) = X^{T} A Y]$ is equivalent to $ 2\SH_{x} + 2\SH_{y}$.
+
+  We can also look at the intersection forms. For example,
+  $\SH_{x} \cdot \SH_{y} = 1$ and
+  $\SH_{x} \cdot \SH_{x} = 0 = \SH_{y} \cdot \SH_{y}$.
+
+  It is also worthwhile to note that $(2\SH_{x} + 2\SH_{y})^{2} = 8$.
+
+  \subsection{Concrete Example}
+
+  Suppose $A = \begin{pmatrix}
+    0 & 0 & 0\\
+    0 & 1 & 0\\
+    0 & 0 & 0
+  \end{pmatrix}$ and $B = \begin{pmatrix}
+    1 & \alpha & 1 \\
+    \alpha & 0 & - \alpha\\
+    1 & -\alpha & 1
+  \end{pmatrix}$.
+
+  Then $\phi = \begin{cases}
+    \ol{x} = \frac{(x-a)(x-a^{-1})}{y(x+a)(x+a^{-1})}\\
+    \ol{y} = x
+  \end{cases}$.
+
+  Then for $A$ we can write that $x_{0}x_{1}y_{0}y_{1} = 0$, and for
+  $B$ we have
+  $x^{2}y^{2}+\alpha(x^{2}y + xy^{2})+ (x^{2}+y^{2}) - \alpha(x+y) + 1
+  = 0$ , which can be rewritten as
+  $(xy+a^{-1}(x+y) - 1)(xy+a(x+y) - 1) = 0$.
+
+  We can also write $\phi^{-1}: \begin{cases}
+    \ul{x} = y\\
+    \ul{y} = \frac{(y-a)(y-a^{-1})}{x(y+a)(y+a^{-1})}.
+  \end{cases}$
+
+  
+
+\end{document}

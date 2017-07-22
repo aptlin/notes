@@ -1,0 +1,147 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{Razborov}{1}{Inverse Problems of Arithmetic Combinatorics}}
+  \usepackage{lineno}
+  % ----------------------------------------------------------------------
+  % Page setup
+  % ----------------------------------------------------------------------
+
+  \pagenumbering{gobble}
+
+  % ----------------------------------------------------------------------
+  % Custom commands
+  % ----------------------------------------------------------------------
+
+  % alignment
+
+  \newcommand*{\LongestHence}{$\Rightarrow$}% function name
+  \newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+  \newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+  \newcommand*{\LongestText}{\defi}%
+
+  \newlength{\LargestHenceSize}%
+  \newlength{\LargestNameSize}%
+  \newlength{\LargestValueSize}%
+  \newlength{\LargestTextSize}%
+
+  \settowidth{\LargestHenceSize}{\LongestHence}%
+  \settowidth{\LargestNameSize}{\LongestName}%
+  \settowidth{\LargestValueSize}{\LongestValue}%
+  \settowidth{\LargestTextSize}{\LongestText}%
+
+  % Choose alignment of the various elements here: [r], [l] or [c]
+
+  \newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+  \newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+  \newcommand{\lr}[1]{line~\lineref{#1}}
+
+  % ----------------------------------------------------------------------
+  % Launch!
+  % ----------------------------------------------------------------------
+
+  \begin{document}
+
+  \section{Inverse Problems of Arithmetic Combinatorics}
+
+  Take a set of $n$ elements $A$. It does not really matter what the
+  elements are -- only the size of the set is key.
+
+  Consider a finite abelian group $A$. Suppose that for any $a\in \ZZ$,
+  $a\neq 0$, the sum of $n$ $a$'s is not equal to zero.
+
+  Now, let's think about Minkowski sums of the set $A$ with itself.
+  What can we say about its size?
+
+  Trivially, we can bound $\abs{A+A}$ as
+  $\abs{A} \leq \abs{A+A} \leq \abs{A}^{2}$.
+
+  \begin{theorem}
+    $\abs{A+A} \geq 2 \abs{A} - 1$.
+  \end{theorem}
+
+  \begin{proof}
+    \hfill
+
+    Write two columns representing elements as hinges, with one hinge
+    over another if an element is bigger than the other. Imagine a
+    stick lying on these hinges. Assume first that the stick lies on
+    the lowest hinge. Each time another element is added on the right
+    to the element on the left, the stick goes up.
+
+  \end{proof}
+
+  \begin{theorem}[Cauchy-Davenport's Theorem]
+    Suppoe that two sets $A$ and $B$ are given such that
+    $A, B \suq \ZZ_{p}$, where $p$ is prime. Then
+    $\abs{A+B} \geq \min(\abs{A} + \abs{B} - 1, p)$.
+  \end{theorem}
+
+  Now, denote $\sigma[A] = \frac{\abs{A+A}}{\abs{A}}$ as $\sigma(A)$.
+  Then
+  $\sigma[A] \leq 3 \ra \exists P (\abs{P} = 2 \abs{A} | A \suq P))$.
+
+  We can construct Freiman isomorphisms, such that
+  $a_{1} + a_{2} \neq a_{3} + a_{4} \lra \phi(a_{1}) + \phi(a_{2})
+  \neq \phi(a_{3}) + \phi(a_{4})$, while
+  $a_{1} + \dots + a_{8} = a_{9} + \dots + a_{16}$.
+
+  In this way, we construct sets with the low value of $\sigma$, so
+  that $\sigma[A] \leq \frac{2^{d}}{\rho}$ and
+  $\frac{\abs{A}}{Q} \geq \rho$ by taking a parallelopiped, choosing a
+  dense subset and projecting onto the integer lattice.
+
+  \begin{theorem}[Freiman's Theorem]
+    Suppose that $K>0$ is a constant.
+
+    Let $A\suq \ZZ$ and $\sigma[A] \leq K$. Then $A\suq Q$, and $Q$ is
+    a $\delta(K)$-dimensional arithmetic progression, where $\delta$
+    is some function, and $\abs{A} \geq \rho(K) \abs{Q}$.
+  \end{theorem}
+
+  For applications of Freiman's theorem, see Rouge inqualities,
+  stating that, if $\sigma[A] \leq K$, then $\abs{A-A}$,
+  $\abs{A+A - A}$, $\dots$, $\abs{mA-nA} \leq K^{m+n}\abs{A}$.
+
+  Another important result was obtained by Bogolyubov:
+
+  \begin{lemma}[Bogolyubov's Lemma]
+    For any $A$ there exists a generalised arithmetic progression $Q$
+    such that $Q\suq 2A - 2A$ and $\abs{Q} \ geq \rho \abs{2A-2A}$.
+  \end{lemma}
+
+  \subsection{Discrete Fourier Transformation}
+
+  Consider homomorphisms in the form $\chi: \ZZ_{p} \to \CC^{*}$ such
+  that $\chi(a+b) = \chi(a)\chi(b)$, $\chi(1) = \xi$, and
+  $\chi(0) = 1 = \xi^{p}$.
+
+  Then $\chi_{m}(a) = e^{\frac{2 \pi ami}{p}}$.
+
+  Take $f:\ZZ_{p} \to \CC$. We have
+  $\wh{f}(\chi) = \frac{1}{p} \sum_{a\in \ZZ_{p}} f(a)\chi(a)$.
+
+  Define $\mathbf{1}_{A}(a = \begin{cases}
+    1, a\in A\\
+    0, a\not\in A
+  \end{cases})$.
+
+  Parseval's inequality states that
+  $Spec_{\alpha}(A) \leq \alpha^{2}$, while
+  $\wh{1}_{A}(\chi) \geq \alpha$.
+
+  Now, let's consider convolutions of characteristic functions.
+  $(f * g)(z) = \sum_{x+y = z} f(x)g(y) $.
+
+  For example, if f and g are probability distributions, then their convolution is also a probability distribution.
+
+\end{document}

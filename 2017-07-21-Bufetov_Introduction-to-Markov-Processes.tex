@@ -1,0 +1,226 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{Bufetov}{2}{Introduction to Markov Processes}}
+  \usepackage{lineno}
+  % ----------------------------------------------------------------------
+  % Page setup
+  % ----------------------------------------------------------------------
+
+  \pagenumbering{gobble}
+
+  % ----------------------------------------------------------------------
+  % Custom commands
+  % ----------------------------------------------------------------------
+
+  % alignment
+
+  \newcommand*{\LongestHence}{$\Rightarrow$}% function name
+  \newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+  \newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+  \newcommand*{\LongestText}{\defi}%
+
+  \newlength{\LargestHenceSize}%
+  \newlength{\LargestNameSize}%
+  \newlength{\LargestValueSize}%
+  \newlength{\LargestTextSize}%
+
+  \settowidth{\LargestHenceSize}{\LongestHence}%
+  \settowidth{\LargestNameSize}{\LongestName}%
+  \settowidth{\LargestValueSize}{\LongestValue}%
+  \settowidth{\LargestTextSize}{\LongestText}%
+
+  % Choose alignment of the various elements here: [r], [l] or [c]
+
+  \newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+  \newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+  \newcommand{\lr}[1]{line~\lineref{#1}}
+
+  % ----------------------------------------------------------------------
+  % Launch!
+  % ----------------------------------------------------------------------
+
+  \begin{document}
+
+  \section{Introduction to Markov Processes}
+
+  Suppose we have a two-state Markov chain, and there is a rabbit in
+  one of the states waiting and hopping with the time distributed
+  exponentially. Thus, $\PP(\text{waiting time} > t) = e^{-\beta t}$.
+
+  What is the probability that by the time $t$ the rabbit will hop
+  from the state 0 to the state 1?
+
+  By the law of total probability we obtain:
+  
+  \begin{equation*}
+    p_{01}(t) = \int_{0}^{t}\beta e^{-\beta s}p_{11}(t-s)\dif s.
+  \end{equation*}
+
+  Similarly,
+  
+  \begin{equation*}
+    p_{10}(t) = \int_{0}^{t}\delta e^{-\delta s}p_{00}(t-s)\dif s.
+  \end{equation*}
+
+  To proceed, we recall the definition of the Laplacian
+  transformation.
+
+  Suppose $\phi: [0, +\infty) \to \RR$. Then:
+
+  \begin{equation*}
+    (\CL\phi)(\lambda) = \int_{0}^{+\infty}e^{-\lambda s}\phi(s) \dif s.
+  \end{equation*}
+
+  We state that $\CL \phi(\lambda)$ uniquely defines $\phi$.
+
+  Thus, we can write:
+
+  
+  \begin{equation*}
+    \Phi(t) = \int_{0}^{t}A(s)B(t-s) \dif s.
+  \end{equation*}
+
+  How can we write $\CL\Phi$ in terms of $\CL A$ and $\CL B$?
+
+  To do this, we introduce a substitution $u = t - s$:
+
+  
+  \begin{equation*}
+    \CL \Phi = \int_{0}^{+\infty}\int_{0}^{+\infty}-e^{-\lambda u}e^{\lambda t}A(s)B(u)ds du.
+  \end{equation*}
+
+  Note that $\CL(\beta e^{-\beta s}) = \frac{\beta}{\beta+\lambda}$.
+
+  Therefore, taking the Laplacian transformation of the system we have seen before, 
+
+  $\begin{cases}
+    \frac{1}{\lambda} \CL p_{00}(\lambda) = \frac{\beta}{\beta+\lambda}\CL p_{11}(\lambda)\\
+    \frac{1}{\lambda}(\lambda) = \frac{\delta}{\delta+\lambda} p_{00}(\lambda).
+  \end{cases}$
+
+  \subsection{Derivation of Kolmogorov's Equations}
+
+  \textit{See also the Kolmogorov-Chapman inequality.}
+
+  Let $p_{ij}(t)$ be a Markov semigroup which is continuous at 0.
+
+  Note that $p_{ij}(t+s) = \sum_{k\in S}p_{ik}(t)p_{kj}(s)$.
+
+  Moreover,
+  \begin{equation*}
+    p_{ii}(t+s) \geq p_{ii}(t)p_{ii}(s),
+  \end{equation*}
+
+  and $\lim_{t\to 0} \frac{1- p_{ii}(t)}{t} = C(i) = - q_{ii}$, which
+  means that the chain is stable.
+
+  We know that $p_{ii}(t) + \sum_{j\in S\setminus i} p_{ij}(t) = 1$ .
+
+  Suppose that $i$ is a stable state. We can deduce that
+  $\forall j \limsup_{t\to 0}\frac{p_{ij}(t)}{t} < + \infty$.
+
+  Note also that $p_{ii}(t) \geq e^{-c(i) t}$, and
+  \begin{equation*}
+    c(i) = -q_{ii} = \lim_{t\to 0}\frac{1-p_{ii}(t)}{t}.
+  \end{equation*}
+
+  Moreover,
+
+  \begin{equation*}
+    p_{ij}(n\delta) \geq \sum_{k=0}^{n-1}(p_{ii}(\delta))^{k}p_{ij}(\delta)p_{jj}((n-k-1)\delta),
+  \end{equation*}
+
+  and
+
+  \begin{equation*}
+    \frac{p_{ij}(n\delta)}{n\delta} \geq \frac{p_{ij}(\delta)}{\delta}e^{-c(i)n\delta}.
+  \end{equation*}
+
+  Therefore, $p_{ii}(k\delta) \geq (p_{ii}(\delta))^{k}$.
+
+  Take $n\delta = t$. Thus, $q_{ij} = \limsup_{t\to 0} \frac{p_{ij}(t)}{t}$.
+
+  Furthermore,
+  $\frac{p_{ij}(t)}{t} \geq q_{ij}e^{-c(i)t}\inf p_{jj}(\tau)$.
+
+  Hence, $\liminf_{t\downarrow 0} \frac{p_{ij}(t)}{t} = q_{ij}$.
+
+  Since $1 - p_{ii}(t) = \sum_{j\in S\setminus i} p_{ij}(t)$, we obtain
+  that $-q_{ii} \geq \sum_{j\in S\setminus i} q_{ij}$. The proof is left
+  as an exercise.
+
+  The state is called regular if
+  $q_{ii} = - \sum_{j\in S\setminus i}q_{ij}$.
+
+  Now we are ready to prove the  Kolmogorov backward equation.
+
+  Note that
+  \begin{equation*}
+    \frac{\dif }{\dif t}p_{ij}(t) = \sum_{k\in S}q_{ik}p_{kj}(t).
+  \end{equation*}
+
+  It is worthwhile to note that the state is non-istantaneous and
+  regular.
+
+  Now,
+  \begin{equation*}
+    \frac{p_{ij}(t+h) - p_{ij}(t)}{h} =\sum_{k\in S} \frac{p_{ik}(h) - \delta_{ik}}{h} p_{kj}(t),
+  \end{equation*}
+
+  which follows directly from the Kolmogorov-Chapman Equations.
+
+  Also,
+
+  \begin{equation*}
+    \frac{p_{ij}(t+h) - p_{ij}(t)}{h} - \sum q_{ik}p_{kj}(t) =\sum_{k\in S} \frac{p_{ik}(h) - q_{ik}}{h} p_{kj}(t),
+  \end{equation*}
+
+  and there exists such $N$ that $N \su S$ is finite and
+
+  \begin{equation*}
+    \sum_{k\in S\setminus \set{N}}\left(\frac{p_{ik}(h)}{h} - q_{ik}\right)p_{kj}(t) = \sum_{k\in S} \frac{p_{ik}(h) - q_{ik}}{h} p_{kj}(t).
+  \end{equation*}
+
+  Now, we compute
+
+  \begin{equation*}
+    \frac{\sum_{k\in S\setminus N} p_{ik}(h)}{h} + \frac{\sum_{l \in N\setminus \set{i}}p_{il}(h)}{h} + \frac{1-p_{ii}(h)}{h} = 0.
+  \end{equation*}
+
+  Moreover,
+  $\frac{\sum_{l \in N\setminus \set{i}}p_{il}(h)}{h} = \sum_{l \in N
+    \setminus \set{i}}q_{il} + d_{2}(h) + q_{ii} + d_{1}(h)$.
+
+  Note that $\abs{\frac{\sum_{l \in N\setminus \set{i}}p_{il}(h)}{h}} < \epsilon$ if $h$ is small enough.
+
+  \subsection{Forward Kolmogorov Equation}
+
+  It can be shown that
+  
+  \begin{equation*}
+    \frac{\dif }{\dif t} p_{ij}(t) = \sum_{k\in S} p_{ik}(t)q_{kj}.
+  \end{equation*}
+
+  Thus,
+
+  \begin{equation*}
+    \frac{p_{ij}(t+h) - p_{ij}(t)}{h} = \sum_{k\in S}p_{ik}(t) \left( \frac{p_{kj}(h) - \delta_{kj}}{h}\right).
+  \end{equation*}
+
+  Differentiating both sides term by term, we obtain:
+  
+  \begin{equation*}
+    \frac{\dif }{\dif t}p_{ij}(t) = \sum_{k\in S}p_{ik}(t)q_{kj}.
+  \end{equation*}
+
+\end{document}

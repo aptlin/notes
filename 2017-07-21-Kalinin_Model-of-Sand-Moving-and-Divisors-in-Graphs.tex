@@ -1,0 +1,205 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{Kalinin}{1}{Model of Sand Moving and Divisors in Graphs}}
+  \usepackage{lineno}
+  % ----------------------------------------------------------------------
+  % Page setup
+  % ----------------------------------------------------------------------
+
+  \pagenumbering{gobble}
+
+  % ----------------------------------------------------------------------
+  % Custom commands
+  % ----------------------------------------------------------------------
+
+  % alignment
+
+  \newcommand*{\LongestHence}{$\Rightarrow$}% function name
+  \newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+  \newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+  \newcommand*{\LongestText}{\defi}%
+
+  \newlength{\LargestHenceSize}%
+  \newlength{\LargestNameSize}%
+  \newlength{\LargestValueSize}%
+  \newlength{\LargestTextSize}%
+
+  \settowidth{\LargestHenceSize}{\LongestHence}%
+  \settowidth{\LargestNameSize}{\LongestName}%
+  \settowidth{\LargestValueSize}{\LongestValue}%
+  \settowidth{\LargestTextSize}{\LongestText}%
+
+  % Choose alignment of the various elements here: [r], [l] or [c]
+
+  \newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+  \newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+  \newcommand{\lr}[1]{line~\lineref{#1}}
+
+  % ----------------------------------------------------------------------
+  % Launch!
+  % ----------------------------------------------------------------------
+
+  \begin{document}
+
+  \section{Model of Sand Moving and Divisors in Graphs}
+
+  \subsection{Introduction}
+
+  \begin{definition}
+    Let $\Gamma$ be a finite connected subgraph.
+
+    Define a \textbf{boundary} $\delta \Gamma$ as a set of vertices which
+    neighbours do not belong to $\Gamma$.
+
+    Define a \textbf{state} as $\phi: \Gamma \to \ZZ_{\geq 0}$ over a set of
+    vertices.
+
+    If $v\in \Gamma \setminus \delta \Gamma, \phi(v) \geq 4$, then we can
+    make a \textbf{toppling} $\phi \to \phi'$ such that:
+    \begin{align}
+      &\phi'(v) = \phi(v) - 4\\
+      &\phi'(w) = \phi(w) + 1, \text{ if } W \sim V, \text{ where $\sim$ means that $W$ is a neighbouring subgraph}\\
+      & \phi'(w) = \phi(w) \text{ otherwise}
+    \end{align}
+
+    \textbf{Relaxation} of $\phi$ is a sequence of topplings while they are possible.
+  \end{definition}
+
+  \begin{exercise}
+
+    Relaxation always ends.
+
+  \end{exercise}  
+
+
+  \begin{exercise}
+
+    Order of topplings does not matter, so that the relaxation is
+    unique.
+
+  \end{exercise}
+
+  Denote the result of the relaxation as $\phi^{0}$.
+
+  \begin{definition}
+    The function of topplings is a function
+    $F: \Gamma  \to \ZZ_{\geq 0}$ mapping $\phi$
+    to $\phi^{0}$.
+
+    Let $F(v)$ denote the number of topplings in $v$.
+  \end{definition}
+
+  \begin{exercise}
+
+    Prove that $F$ is well-defined.
+
+  \end{exercise}
+
+  \begin{exercise}
+
+    $\phi^{0} = \phi + \Delta F$.
+
+  \end{exercise}
+
+  \begin{definition}
+    $(\Delta F)(i, j) = F(i+1, j) + F(i-1, j) + F(i, j-1) + F(i,
+    j+1) - 4 F(i, j)$.
+  \end{definition}
+
+  \begin{exercise}
+
+    The toppling function $F$ is a dot-wise minimal function among
+    functions $G: \Gamma \to \ZZ_{\geq 0}$ such that
+    $\phi + \Delta G \leq 3$.
+
+  \end{exercise}
+
+  \begin{note*}
+    A dot-wise minimal function $F$ is such that
+    $F(v) = \min(G(v) \text{ for all $G$})$ and
+    $\phi + \Delta G \leq 3$ is satisfied.
+  \end{note*}
+
+  \begin{definition}
+    Let $\<k\>$ denote the state in which each node has $k$ sand grains.
+    Denote the maximally stable state as $\< 3\>$.
+  \end{definition}
+
+  \begin{definition}
+    The state $\phi$ is \textbf{revertible} if there exists $\psi \geq 0$ such
+    that $\phi = (\< 3 \> + \psi)^{0}$, where $+$ is defined dot-wise.
+  \end{definition}
+
+  \begin{definition}
+    $\phi \oplus \psi = (\phi + \psi)^{0}$.
+  \end{definition}
+  \begin{theorem}
+    Revertible states with the operation $\oplus$ form a group, so
+    that $(\phi \oplus \psi) + \beta = \phi \oplus (\psi + \beta)$,
+    $\psi + \phi = \phi + \psi$, there exists $\phi \oplus e = \phi$,
+    and there exist inverse elements.
+  \end{theorem}
+
+  \begin{note*}
+    $\<0\>$ is not the unit element in the sand group.
+  \end{note*}
+
+  \subsection{Model on a Random Graph}
+
+  Suppose that $\Gamma$ is a random graph, where $I$ is a special vertex of $\Gamma$ called a \textit{dump}.
+
+  The dump is $\delta \Gamma$ pulled into one node.
+
+  Suppose that $\Gamma$ is in relaxation, and there are no topplings in a dump.
+
+  Let's measure the frequency of change over the area of the sand
+  avalanche. The graph would be linear and declining with the growing
+  area. This phenomenon is called \textit{self-organised criticality}.
+
+  \subsection{Forbidden Configurations}
+
+  \begin{example}
+
+    In a revertible state there cannot be a graph with two states
+    without any topplings, which can be seen as follows.
+
+    Look at the node of the last toppling, which can be either in the
+    vertex 1 or vertex 2 to obtain a contradiction.
+
+  \end{example}
+
+  \begin{definition}
+    Suppose that $D \su \Gamma$. The state $\phi$ on $D$ i called
+    forbidden, if $\phi(v)$ is less than the number of neighbours of $v \in D$.
+  \end{definition}
+
+  \begin{exercise}
+
+    Prove that a revertible state does not contain forbidden
+    configurations.
+
+  \end{exercise}
+
+  \begin{exercise}
+
+    The unit in the sand group is equal to
+    $(\< 8 \> - \<8\>^{0})^{0}$. 
+
+  \end{exercise}
+
+  To prove the theorem, take a state $\phi$, add itself and relax.
+  Repeat the procedure for all the nodes. This procedure will
+  eventually cycle over some nodes. Now, take another state $\psi$,
+  and add it to one of the cycle nodes. How can you proceed?
+
+\end{document}

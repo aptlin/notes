@@ -1,0 +1,144 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{Bufetov}{3}{Introduction to Markov Processes III}}
+  \usepackage{lineno}
+  % ----------------------------------------------------------------------
+  % Page setup
+  % ----------------------------------------------------------------------
+
+  \pagenumbering{gobble}
+
+  % ----------------------------------------------------------------------
+  % Custom commands
+  % ----------------------------------------------------------------------
+
+  % alignment
+
+  \newcommand*{\LongestHence}{$\Rightarrow$}% function name
+  \newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+  \newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+  \newcommand*{\LongestText}{\defi}%
+
+  \newlength{\LargestHenceSize}%
+  \newlength{\LargestNameSize}%
+  \newlength{\LargestValueSize}%
+  \newlength{\LargestTextSize}%
+
+  \settowidth{\LargestHenceSize}{\LongestHence}%
+  \settowidth{\LargestNameSize}{\LongestName}%
+  \settowidth{\LargestValueSize}{\LongestValue}%
+  \settowidth{\LargestTextSize}{\LongestText}%
+
+  % Choose alignment of the various elements here: [r], [l] or [c]
+
+  \newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+  \newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+  \newcommand{\lr}[1]{line~\lineref{#1}}
+
+  % ----------------------------------------------------------------------
+  % Launch!
+  % ----------------------------------------------------------------------
+
+  \begin{document}
+
+  \section{Introduction to Markov Processes III}
+
+  We have already seen that
+  $\frac{\dif p_{ij}}{\dif t} = \sum_{k\in S} q_{ik} p_{kj}(t)$.
+
+  Moreover,
+  $p_{ij}(t) = (\exp(tQ))_{ij} =
+  \sum_{k=0}^{\infty}\frac{t^{k}Q^{k}}{k!}$.
+
+  Thus, $\frac{\dif }{\dif t} P = QP$.
+
+  We can rewrite the first equation above as follows:
+  \begin{equation*}
+    \frac{\dif  p_{ij}}{\dif t} = -c(i)p_{ij}(t) + \sum_{k\neq i}q_{ik}p_{kj(tQ)}.
+  \end{equation*}
+
+  Let's solve the equation in the form
+  $\frac{\dif }{\dif t}p = - cp(t)+g $. We obtain $p = Re^{-ct}$,
+  where $\frac{\dif R}{\dif S} = ge^{cS}$. Thus,
+  $R = \int_{0}^{t}ge^{cs}\dif s$, where
+  $p = \int_{0}^{t}ge^{c(s-t)}\dif s$. Hence,
+  
+  \begin{equation*}
+    p_{ij}(t) = \delta_{ij}e^{-ct} + \int_{0}^{t}e^{c(s- t)}(\sum_{k\neq i}q_{ik}p_{kj}(s))\dif s.
+  \end{equation*}
+
+  Thus, we can write
+  
+  \begin{equation*}
+    p_{ij}(t) = \delta_{ij}e^{- c(i)t} + \int_{0}^{t}e^{c(i)(s-t)}(\sum_{k\neq i} q_{ik}p_{kj}(s))\dif s
+  \end{equation*}
+
+  Let's construct explicitly a solution of this equation with a
+  specific probabilistic meaning. Then we will check that the solution
+  satisfies the Kolmogorov-Chapman equation, and discuss the
+  uniqueness of solutions.
+
+  The method of finding a solution is that of sequential approximations:
+
+  \begin{align}
+    p_{ij}^{(0)}(t) &= \delta_{ij}e^{-c(i)t}\\
+    p_{ij}^{(n+1)}(t) &= \delta_{ij}e^{-c(i)t} + \int_{0}^{t}e^{c(i)(s-t)}\sum_{k\neq i}q_{ik}p_{kj}^{(n)}(s)\dif s
+  \end{align}
+
+  Note that $p_{ij}^{(n+1)}(t) \geq p_{ij}^{(n)}(t)$, which can be shown by induction.
+
+  Thus,
+  $p_{ij}^{(n+1)}(t) - p_{ij}^{(n)}(t) = \ol{p_{ij}}(t) = \lim_{n\to
+    \infty}p_{ij}^{(n)}(t)$, which means that
+  \begin{equation*}
+    p_{ij}^{(n+1)}(t) - p_{ij}^{(n)}(t) = \int_{0}^{t}e^{c(i)(s-t)}\sum_{k\neq i}q_{ik}(p_{kj}^{(n)}(s) - p_{kj}^{(n-1)}(s)) \dif s.
+  \end{equation*}
+
+  For all $i$, we have $\sum_{j}p_{ij}^{(n)}(t) \leq 1$ and
+  $\sum_{j}\ol{p_{kj}}(t) \leq 1$.
+
+  Let $\wh{p_{ij}}$ be a solution. We know that
+  $\wh{p_{ij}} \geq \ol{p_{ij}}$, given that
+  $\wh{p_{ij}} \geq p_{ij}^{(n)}$.
+
+  The constructed solution is therefore minimal. Therefore, in the
+  non-explosive case, when $\sum_{j}\ol{p_{ij}} = 1$, the solution is
+  unique.
+
+  Remember that $p_{ij}^{(0)} = \delta_{ij}e^{-c(i)t}$, and thus
+  $p_{ij}^{(1)}(t) = \delta_{ij}e^{-c(i)t} + \int_{0}^{t}
+  e^{c(i)(s-t)}q_{ij}e^{-c(j)s}\dif s$.
+
+  Hence, $p_{ij}^{(2)}(t) = \delta_{ij}e^{-c(i)t} + \int_{0}^{t} e^{c(i)(s-t)-c(j)s}q_{ij}$.
+
+  In general, 
+  \begin{equation*}
+    p_{ij}^{n}(t) = \delta_{ij}e^{-c(i)t} + \sum_{i\neq k_{1}, k_{1}\neq k_{2}, \dots, k_{r-2} \neq k_{r-1} }q_{ik_{1}}q_{ik_{2}}\dots q_{r-1}\times I,
+  \end{equation*}
+
+  where
+  $I = \int \dots \int \exp(- c(i)s_{1} - c(k_{1}) s_{2} -
+  \set{s_{1}+\dots+s_{r} <t} - \dots - c(k_{r-1})s_{r} - c(j)(t- s_{1}
+  - \dots - s_{r})) ds_{1}\dots ds_{r}$.
+
+  Let $\Lambda = \delta_{ij}c(i)$, $\Pi = \set{p_{ij}}, \pi_{ij} = \frac{q_{ij}}{c(i)}$.
+
+  Then
+  $P(t) = e^{-t\Lambda} + \sum_{r = 1+ s_{1}+\dots +s_{r} <
+    t}^{\infty}\int e^{-s_{1}\Lambda}\Lambda\Pi \dots e^{-(t - s_{1} -
+    \dots - s_{r})\Lambda}ds_{1}\dots ds_{r}$.
+
+  
+
+  
+\end{document}

@@ -1,0 +1,256 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{Losev}{1}{Introduction to Representation Theory}}
+  \usepackage{lineno}
+  % ----------------------------------------------------------------------
+  % Page setup
+  % ----------------------------------------------------------------------
+
+  \pagenumbering{gobble}
+
+  % ----------------------------------------------------------------------
+  % Custom commands
+  % ----------------------------------------------------------------------
+
+  % alignment
+
+  \newcommand*{\LongestHence}{$\Rightarrow$}% function name
+  \newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+  \newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+  \newcommand*{\LongestText}{\defi}%
+
+  \newlength{\LargestHenceSize}%
+  \newlength{\LargestNameSize}%
+  \newlength{\LargestValueSize}%
+  \newlength{\LargestTextSize}%
+
+  \settowidth{\LargestHenceSize}{\LongestHence}%
+  \settowidth{\LargestNameSize}{\LongestName}%
+  \settowidth{\LargestValueSize}{\LongestValue}%
+  \settowidth{\LargestTextSize}{\LongestText}%
+
+  % Choose alignment of the various elements here: [r], [l] or [c]
+
+  \newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+  \newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+  \newcommand{\lr}[1]{line~\lineref{#1}}
+
+  % ----------------------------------------------------------------------
+  % Launch!
+  % ----------------------------------------------------------------------
+
+  \begin{document}
+
+  \section{Introduction to Representation Theory}
+
+  \subsection{Definitions}
+  Let $G$ be a group.
+
+  \begin{definition}
+    A \textit{representation} of the group $G$ is fully defined by a
+    homomorphism $\rho: G \to GL(V)$, where $GL(V)$ is the set of
+    automorphisms.
+
+    Let $V$ be a representation of $G$. If $g\in G$, $v\in V$, then we
+    write $gv = \rho(g)v$ and $g_{V} = \rho(g)$.
+
+    A \textit{subrepresentation} $U \su V$is a subspace $gu \in U$ for $u \in U$.
+
+    If $V_{1}$ and $V_{2}$ are representations of $G$, then
+    $V_{1}\oplus V_{2}$ is a representation
+    $g(v_{1}, v_{2}) = (gv_{1}, gv_{2})$.
+
+    A homomorphism of representations $V_{1 \to V_{2}}$ is a linear
+    transformation $\phi: V_{1} \to V_{2}$ such that
+    $\phi(gv_{1}) = g\phi(v_{1})$.
+
+    Denote the space of linear transformations $V_{1} \to V_{2}$ as
+    $\Hom(V_{1}, V_{2})$, and the space of homomorphisms
+    as $\Hom_{G}(V_{1}, V_{2})$.
+    
+  \end{definition}
+  \begin{example}
+
+    If $G = S_{n}$, then $V = \CC^{n}$ is a representation of $G$.
+    
+    $V_{1} = \set{x, \cdots, x; x\in\CC} $ is a subrepresentation.
+
+  \end{example}
+
+  \subsection{Group Algebra}
+
+  \begin{definition}
+    Let $G$ be a finite group. A group ring
+    $G \su \ZZ G = \set{\sum_{g\in G}x_{g}g; x_{g} \in \ZZ}$ is a set
+    of additions and multiplications of the basis elements -- as in G.
+  \end{definition}
+
+  Suppose a group algebra $\CC G$ is given, so that $\ZZ G \su \CC G$.
+  Then the representation of the algebra $\CC G$ is a homomorphism
+  $\rho: \CC G \to \Hom(V, V)$.
+
+  \subsection{Complete Representability (?)}
+
+  Let $G$ be a finite group, and suppose that $V$ denotes a finite
+  representation.
+
+  A representation $V$ is irreducible, if any subrepresentation is
+  $\set{0}, V$.
+
+  A representation $V$ is almost reducible, if for all
+  subrepresentations $U\su V$ there exists a subrepresentation
+  $U'\su V$ such that $V = U\oplus U'$.
+
+  Note that if $V$ is almost reducible, then $V$ is isomorphic to the
+  direct sum of irreducible representations.
+
+  \begin{theorem}[Maschke's Theorem]
+    All representations mod $\CC$ are almost reducible.
+  \end{theorem}
+
+  \begin{proof}
+    \hfill
+
+    Suppose that the inner product is Hermitian, and let $U\ su V$
+    be a subspace. Then $U \oplus U^{\perp} = V$.
+
+    We say that $\ipr{\cdot}{\cdot}$ is $G$-invariant, if for all
+    $g\in G$ and $u, v \in V$ we have $(gu, gv) = (u, v)$.
+
+    If $\ipr{\cdot}{\cdot}$ is $G$-invariant and $U$ is a
+    subrepresntation, then $U^{\perp}$ is a subrepresentation.
+
+    It is enough to show that there exists a $G$-invariant Hermitian
+    dot product.
+
+    Let $\ipr{\cdot}{\cdot}$ be an arbitrary dot product.
+
+    Then
+    $\ipr{\cdot}{\cdot}_{inv}: (u, v)_{inv} = \sum_{h\in G}(hu, hv)$.
+
+    We check the invariance: $(gu, gv)_{inv} = \sum_{h\in G}(hgu, hgv) = \sum_{h\in G}(hu, hv) = (u, v)_{inv}$.
+    
+  \end{proof}
+
+  \begin{lemma}[Schur's Lemma]
+    If $G$ is a finite group, and $U, V$ are irreducible
+    representations. If $U$ is not isomorphic to $V$, then
+    $\Hom_{G}(U, V) = 0$. Moreover,
+    $\Hom_{G}(V,V) = \set{x \cdot \id V; x\in \CC}$.
+  \end{lemma}
+
+  \begin{proof}
+    \hfill
+
+    Let $\phi \in \Hom_{G}(U, V)$. Then $\ker \phi \su U$,
+    $\img \phi \su V$ are subrepresentations.
+
+    Note that $u\in\ker \phi$ if and only if $\phi(u) = 0$, which is
+    equivalent to $\phi(gu) = 0$ and $gu \in \ker \phi$.
+
+    Thus, if $\phi\neq 0$, then
+    $\ker \phi \neq U = \set{0}, \img \phi = V $. Hence, $\phi$ is an
+    isomorphism.
+
+    Let $x$ be an eigenvalue of $\phi$, so that $\phi - x \id_{V}$ is
+    irrevertible, and thus equal to $0$.
+  \end{proof}
+
+  Therefore, if $U, V$ are representations and $U$ is irreducible,
+  then the multiplicity of $U$ in $V$ is $\dim \Hom_{G}(V, U)$.
+
+  Note that the proof of Schur's lemma holds for all irreducible $V$,
+  and thus
+  $\Hom_{G}(V_{1}\oplus V_{2}, U) = \Hom_{G}(V_{1}, U) \oplus
+  \Hom_{G}(V_{2}, U)$, which means that it holds for all $V$.
+
+  \begin{example}
+
+    Let $V = \CC G$. Then the multiplicity of $U$ in $\CC G$ is equal
+    to $\dim \Hom_{G}(\CC G, U)$.
+  \end{example}
+
+  Let $F \in \CC G$ and $F = \sum_{g} x_{g} g$. Suppose
+  $x_{g} = x_{hgh^{-1}}$ for all $h, g \in G$. Then for all
+  irreducible $V$ $F_{V}$ is a constant operator.
+
+  \begin{proof}
+    \hfill
+
+    For all $h\in G$, $Fh = hF$. Thus,
+    $F = hFh^{-1} = \sum_{g\in G}x_{g}(hgh^{-1}) = \sum_{g}
+    x_{hgh^{-1}}(hgh^{-1})$.
+
+    Note that $F_{v}$ is a homomorphism of representations. Thus,
+    $Fh = hF \ra V\to V$. $F_{V}h_{v} = h_{V}F_{V}$, which happens if
+    and only if $F_{V} \in \Hom_{G}(V, V)$.
+  \end{proof}
+
+  \subsection{Characters}
+
+  Suppose that $G$ is a finite group and $V$ is a finite-dimensional
+  representation. A \textit{character} $\ch_{V}: G \to \CC$ is such that
+  $\ch_{V}(g) = \tr(g_{V})$.
+
+  \begin{example}
+
+    Let $\CC$ be a trivial representation.
+
+    Then $\ch_{\CC}(g) =1$,
+    $\ch_{\CC G}(g) =
+    \begin{cases}
+      \abs{G}, g = e\\
+      0, \text{ otherwise }
+    \end{cases}$, where the last case is justified by the fact that
+    there are no diagonal matrix elements of $h\mapsto gh$.
+
+  \end{example}
+  
+  Note that $\ch_{V_{1}\oplus V_{2}} = \ch_{V_{1}} + \ch_{V_{2}}$.
+
+  \begin{lemma}
+    $\ch_{V}(hgh^{-1}) = \ch_{V} (g)$.
+  \end{lemma}
+
+  \subsection{Orthogonality of Characters}
+
+  Let $Cl(G) = \set{f: G \to \CC | f(hgh^{-1}) = f(g)}$. Note that
+  $\ch_{V} \in Cl(G)$.
+
+  Recall that the Hermitian dot product
+  $(F_{1}, F_{2}) = \frac{1}{\abs{G}}\sum_{g\in
+    G}\ol{F_{1}(g)}F_{2}(g)$.
+
+  \begin{theorem}
+    Characters of irreducible representations is an orthonormal basis of $Cl(G)$.    
+  \end{theorem}
+
+  For representations $U, V$, we have $(ch_{U}, ch_{V}) = \dim \Hom_{G}(U, V)$.
+
+  If $F \in Cl(G)$, then $F = \sum_{g\in G} F(g) g \in \CC G$.
+  Moreover, if $V$ is irreducible, then we know that $F_{V} = x\cdot \id_{V}$.
+
+  Thus, $x = \frac{\abs{G}}{\dim V}(\ol{F}, \ch_{V})$.
+
+  To prove this, note that 
+  \begin{align}
+    x &= \frac{\tr(F_{V})}{\dim V} \\
+      &= \frac{1}{\dim V} \sum_{g\in G} F(g)\tr(g_{v})\\
+      &= \frac{1}{\dim V} \sum F(g) \ch_{V}(g)\\
+      &= \frac{\abs{G}}{\dim V}(\ol{F}, \ch_{V}).
+  \end{align}
+
+  Proving the theorem, we can use Schur's lemma and previous comments
+  to show that a basis is orthonormal.
+
+\end{document}

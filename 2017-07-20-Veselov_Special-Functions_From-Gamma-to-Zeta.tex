@@ -1,0 +1,213 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{A.P.Veselov}{1}{Special Functions: From Gamma to Zeta}}
+  \usepackage{lineno}
+  % ----------------------------------------------------------------------
+  % Page setup
+  % ----------------------------------------------------------------------
+
+  \pagenumbering{gobble}
+
+  % ----------------------------------------------------------------------
+  % Custom commands
+  % ----------------------------------------------------------------------
+
+  % alignment
+
+  \newcommand*{\LongestHence}{$\Rightarrow$}% function name
+  \newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+  \newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+  \newcommand*{\LongestText}{\defi}%
+
+  \newlength{\LargestHenceSize}%
+  \newlength{\LargestNameSize}%
+  \newlength{\LargestValueSize}%
+  \newlength{\LargestTextSize}%
+
+  \settowidth{\LargestHenceSize}{\LongestHence}%
+  \settowidth{\LargestNameSize}{\LongestName}%
+  \settowidth{\LargestValueSize}{\LongestValue}%
+  \settowidth{\LargestTextSize}{\LongestText}%
+
+  % Choose alignment of the various elements here: [r], [l] or [c]
+
+  \newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+  \newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+  \newcommand{\lr}[1]{line~\lineref{#1}}
+
+  % ----------------------------------------------------------------------
+  % Launch!
+  % ----------------------------------------------------------------------
+
+  \begin{document}
+
+  \section{A.P.Veselov (ULoughborough): Special Functions: From Gamma to Zeta}
+  \subsection{The Story of $\zeta$}
+
+  Integrable systems and special functions share at least one property
+  -- they have not been properly defined. In particular, special
+  functions are those which were considered as special by (?) Watson
+  and Whittaker.
+
+  Almost all the special functions arise from the study of
+  differential equations, but $\Gamma$ and $\zeta$ are important
+  exceptions.
+
+  We will need two formulaes: the sum of consecutive $n-1$ integers,
+  equal to $\frac{n(n-1)}{2}$, and the sum of the squares of
+  consecutive $n-1$ integers, equal to $\frac{n(n-1)(2n-1)}{6}$.
+  Moreover,
+  $S_{m}(n) = \sum_{j=1}^{n-1}j^{m} = \frac{1}{m+1}(B_{m+1}(n) -
+  B_{m+1})$, where $B_{m+1}$ is Bernoulli's constant. (?)
+
+  It is worthwhile to note a function with a range of wonderful
+  properties:
+
+  \begin{equation}
+    \frac{te^{tx}}{e^{t}-1} = \sum_{k=0}^{\infty}\frac{B_{k}(x)}{k!}t^{k},
+  \end{equation}
+
+  where $B_{k}(x) = \sum_{j=0}^{k}C_{k}^{j}B_{k}x^{kj}$ and
+  $C=(B+x)^{k}$. From this equation we can derive that
+  $B_{m}(x) = (-1)^{m}B_{m}(1-x)$, which is symmetric around
+  $x=\frac{1}{2}$.
+  
+  In 1689 Jacob Bernoulli formulated Basel's problem, which, however,
+  was already known to Wallis in 1668. The problem required to find
+  what the limit of $\sum_{i=0}^{\infty} \frac{1}{i^{2}}$ is. Euler
+  was obsessed with the problem, calculating the limit up to 20
+  significant figures, eventually finding the answer --
+  $\frac{\pi^{2}}{6}$.
+
+  Bernoulli's numbers have a special significance. Let's list the
+  first few of them -- $B_{0} = 1$, $B_{1} = -\frac{1}{2}$,
+  $B_{2} = \frac{1}{6}$, $B_{3} = B_{5} = \dots = 0$,
+  $B_{4} = -\frac{1}{30} = B_{8}$, $B_{6} = \frac{1}{42}$,
+  $B_{10} = \frac{5}{66}$, $B_{12} = - \frac{691}{2730}$.
+
+  The exciting fact is that we, knowing Bernoulli's numbers, can
+  represent $\zeta$ in a particularly nice form:
+  
+  \begin{equation}
+    \zeta(2k) = (-1)^{k-1}\frac{(2\pi)^{2k}}{2(2k)!}B_{2k}.
+  \end{equation}
+
+  Euler knew that $\zeta(s) = \sum_{n=1}^{\infty} \frac{1}{n^{s}}$,
+  where $s > 1$ to guarantee the convergence. However, he was also
+  adept at seeing connections between different representations, and
+  derived that
+
+  \begin{equation}
+    \zeta(s) = \prod_{p\in \PP}\frac{1}{1-\frac{1}{p^{s}}} = \prod(1+\frac{1}{p^{s}} + \frac{1}{p^{2s}} + \dots).
+  \end{equation}
+
+  What did Riemann add to the definition of the $\zeta$ function?
+
+  In 1859, Riemann analytically continued its definition to
+  $s = \sigma + it \in \CC$.
+
+  
+
+  \subsection{The Story of $\Gamma$}
+
+  In January 1730 Goldbach wrote a letter to Euler stating his idea of
+  generalising the factorial function for non-integer numbers. Euler,
+  in turn, constructed such a function for $x > 0$:
+
+  
+  \begin{equation}
+    \Gamma(x) = \int_{0}^{\infty}t^{x-1}e^{-t}\dif t,
+  \end{equation}
+
+  which has a nice property that $\Gamma(x+1) = x\Gamma(x)$.
+
+  We can analytically continue the function to negative real numbers
+  by using this property. Moreover, there exists a \textit{formula of completion}:
+
+  
+  \begin{equation}
+    \Gamma(x)\Gamma(1-x) = \frac{\pi}{\sin(\pi x)},
+  \end{equation}
+
+  which follows from the fact that
+  $\frac{1}{\Gamma(x)\Gamma(1-x) = x
+    \prod(1-\frac{x^{2}}{k^{2}}) = \frac{\sin \pi x}{\pi}}$.
+
+  From this, we can deduce that $(-\frac{1}{2})! = \sqrt(\pi)$, which
+  helps us compute the Gaussian integral
+  $I = \int_{-\infty}^{\infty}e^{-x^{2}}\dif x = \sqrt(\pi)$.
+
+  Moreover, calculating the area of a unit ball, we obtain
+  $Vol S^{n-1} = \frac{2(\sqrt{\pi})^{N}}{\Gamma(\frac{N}{2})} = N
+  Vol(B^{N})$.
+
+  \subsection{Connection between $\zeta$ and $\Gamma$}  
+
+  How do $\zeta$ and $\Gamma$ relate?
+  
+  A beatiful connection can be derived --
+  $\Gamma(s)\zeta(s) = \int_{x=0}^{\infty} \frac{x^{s-1}}{e^{x} - 1}
+  \dif x$.
+
+  The idea for the proof is as follows. First, note that
+
+  \begin{equation}
+    \frac{1}{e^{x}- 1} = \frac{1}{e^{x}(1-e^{-x})} = \sum_{k=1}^{\infty}e^{-kx},
+  \end{equation}
+
+  which means that
+  $\sum_{k=1}^{\infty} \int_{x=0}^{\infty}x^{s-1}e^{-kx} \dif x$, and
+  thus, if $t = kx$, then the equation can be rewritten as
+  $(\infty_{t=0}^{\infty}t^{s-1}e^{-t}\dif
+  t)(\sum_{k=1})^{\infty}\frac{1}{k^{s}}$.
+
+  Moreover,
+  $\zeta(s) = \frac{\Gamma(1-s)}{2\pi i}\int \frac{z^{s-1}}{e^{-z}-1}
+  dz$. This analytically continued function is meromorphic, with the
+  pole at $s = 1$.
+
+  The symmetry of $zeta(s)$ is striking, and allows us to infer immediately its trivial zeros:
+
+  \begin{equation}
+    \zeta(s) = (2^{s}\pi^{s-1}\sin(\frac{\pi s}{2}) \Gamma(1-s) \zeta(1-s)).
+  \end{equation}
+
+  Trivial zeros occur when $\sin (\frac{\pi s}{2}) = 0$, and thus
+  $s = -2k$, $k\in \NN$.
+
+  Moreover, we can deduce that
+  $\zeta(-n) = (-1)^{n} \frac{B_{n+1}}{n+1}$.
+
+  \subsection{Around the Riemann Hypothesis}
+
+  Empirical evidence from direct calculation have shown that all the
+  non-trivial zeros of the Riemann zeta function lie on the critical
+  line with $\Re = \frac{1}{2}$.
+
+  If we look at the original work by Riemann, he noted that the first
+  few dozen non-trivial zeros do not come in pairs.
+
+  One of the applications which a resolution of the Riemann Hypothesis
+  would bring is the illumination of how primes are distributed. The
+  Prime Number Theorem states that $\pi(x) \sim \frac{x}{\log x}$,
+  where $\pi(x)$ is the prime-counting function, yielding the number
+  of primes less than or equal to $x$, and $f(x) \tilde g(x)$ means
+  that $\lim_{x \to \infty} \frac{f(x)}{g(x)} = 1$.
+
+  Chebyshev have shown that, for $\psi(x) = \sum \log p$, where
+  $p^{k} \leq x$ and $p\in \PP$, the Prime Number Theorem is
+  equivalent to the theorem that $\psi(x) \tilde x$.
+
+  If the Riemann Hypothesis holds, then the approximation given by the
+  PNT is the best possible.
+\end{document}

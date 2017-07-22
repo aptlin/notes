@@ -1,0 +1,163 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{Denis Volk}{1}{Brain Maths}}
+  \usepackage{lineno}
+  % ----------------------------------------------------------------------
+  % Page setup
+  % ----------------------------------------------------------------------
+
+  \pagenumbering{gobble}
+
+  % ----------------------------------------------------------------------
+  % Custom commands
+  % ----------------------------------------------------------------------
+
+  % alignment
+
+  \newcommand*{\LongestHence}{$\Rightarrow$}% function name
+  \newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+  \newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+  \newcommand*{\LongestText}{\defi}%
+
+  \newlength{\LargestHenceSize}%
+  \newlength{\LargestNameSize}%
+  \newlength{\LargestValueSize}%
+  \newlength{\LargestTextSize}%
+
+  \settowidth{\LargestHenceSize}{\LongestHence}%
+  \settowidth{\LargestNameSize}{\LongestName}%
+  \settowidth{\LargestValueSize}{\LongestValue}%
+  \settowidth{\LargestTextSize}{\LongestText}%
+
+  % Choose alignment of the various elements here: [r], [l] or [c]
+
+  \newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+  \newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+  \newcommand{\lr}[1]{line~\lineref{#1}}
+
+  % ----------------------------------------------------------------------
+  % Launch!
+  % ----------------------------------------------------------------------
+
+  \begin{document}
+
+  \section{Brain Maths}
+
+  Modern neuroscience focuses on neurons. Neurons generate
+  electricity for communication.
+
+  There are about $10^{11}$ neurons on average in a human brain. Each
+  neuron consists of two main parts -- a body and an axon. The body
+  also have synapses attached to its surface which serve asa
+  communication device for other neurons. Synapses, in turn, connect
+  to dendrites of other neurons.
+
+  The body of a neuron has a membrane acting like a capacitor storing
+  electricity for communication. We will denote the potential
+  difference that the body stores as $\Delta V$.
+
+  Neurons communicate by utilising spikes in the potential difference.
+  An average neuron has a period of relaxation after each spike of 100
+  mV over 5 ms.
+
+  The usual method of measuring the output of a neuron is as follows:
+  electrodes are inserted inside the body which then measures the
+  potential difference.
+
+  How can a neuron control the potential difference?
+
+  Membrane contains proteins which act as channels migrating
+  electrically charged ions like $K^{+}, Na^{+}, Ca^{2+} $ and
+  $Cl^{-}$. There are two aspects affecting the flow of ions --
+  electric gradient and osmosis. The flow would be unrestricted but
+  for pumps also present in the membrane. These pumps utilise internal
+  energy to manage the change in potential difference.
+
+  Each pump or channel is affected by the potential difference between
+  the inside and the outside of the cell, concentration of charged
+  ions and neuromediators present in the surroundings.
+
+  The spikes result from the sudden opening of channels and the action
+  of pumps. It is worthwhile to note that the action of pumps is much
+  slower than that of channels.
+
+  There are several types of spikes. Some neurons give a one-off
+  spike, another rattle a sequence and then sleep, while the other
+  neurons give off spikes on the periodical basis.
+
+  How can such a complicated machinery work with such efficiency? How
+  can we predict what effect each spike would bring upon the other
+  neurons?
+
+  Each neuron has around $10^{4}$ synapses, which receive the signal
+  along the axons from the body and then transfer the charge to
+  dendrites communicating with other neurons.
+
+  One of the first models assumed that each neuron processes all the
+  received signals ${I_{i}}$ from the dendrites with some weights
+  ${w_{i}}$ assigned, which then bring about post-synaptic effects.
+  If, however, the signal was greater than some well-defined barrier
+  $\wh{I}$, it was thought to give off a spike itself to communicate
+  the message to other neurons:
+  \begin{equation}
+    \sum w_{i} I_{i} > \wh{I}
+  \end{equation}
+
+  This, however, turned out to be far from what really happens in a
+  brain.
+
+  First of all, the barrier $\wh{I}$ is fuzzy -- there is a middle
+  range at which a neuron operates optimally.
+
+  Secondly, there are latencies in spikes.
+
+  Thirdly, spikes are all different, and dependent on the input
+  signal.
+
+  Finally, some neurons give off semi-spikes, while others do not.
+
+  Experiments have shown that if we transfer a current meant to
+  decrease the potential difference, neurons give off rebound spikes.
+
+  If we give a fast periodic impulse, some neurons give off a spike
+  which is a sum of the outputs that would occur for each individual
+  pulse. Some neurons were responsive to the frequency of the received
+  impulse.
+
+  To explain this largely unpredictable behaviour, several tentative
+  fixes were introduced. One example is classification of neurons into
+  resonators and integrators.
+
+  To build a model of a neuron, we need to identify main parameters.
+
+  First, denote the potential difference as $V$, and the fraction of
+  channels and pumps of particular type $i$ open as
+  $x_{1}, \dots, x_{M}$, where
+  $\dot{x_{i}} = g_{i}(V, x_{1}, \dots, x_{M})$. The current through
+  the membrane would be $C\dot{V} = I + f(V, x_{1}, \dots, x_{M})$,
+  where $C$ is the capacitance of the membrane, $I$ is the total
+  magnitude of external currents, and $f$ represents the total
+  magnitude of currents coming through the internal means.
+
+  The main purpose of the model is to simulate the actions of a real
+  neuron. However, if parameters are shuffled in without any
+  consideration, obtained models are most often unrepresentative of
+  any physical neuron. To account for this problem, we can study a toy
+  model, which includes only one equation:
+  
+  \begin{equation*}
+    C\dot{V} = I + f(V)
+  \end{equation*}
+
+  
+\end{document}

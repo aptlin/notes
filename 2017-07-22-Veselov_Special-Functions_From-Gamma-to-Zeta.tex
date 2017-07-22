@@ -1,0 +1,202 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{Veselov}{2}{Special Functions: From Gamma to Zeta II}}
+  \usepackage{lineno}
+  % ----------------------------------------------------------------------
+  % Page setup
+  % ----------------------------------------------------------------------
+
+  \pagenumbering{gobble}
+
+  % ----------------------------------------------------------------------
+  % Custom commands
+  % ----------------------------------------------------------------------
+
+  % alignment
+
+  \newcommand*{\LongestHence}{$\Rightarrow$}% function name
+  \newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+  \newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+  \newcommand*{\LongestText}{\defi}%
+
+  \newlength{\LargestHenceSize}%
+  \newlength{\LargestNameSize}%
+  \newlength{\LargestValueSize}%
+  \newlength{\LargestTextSize}%
+
+  \settowidth{\LargestHenceSize}{\LongestHence}%
+  \settowidth{\LargestNameSize}{\LongestName}%
+  \settowidth{\LargestValueSize}{\LongestValue}%
+  \settowidth{\LargestTextSize}{\LongestText}%
+
+  % Choose alignment of the various elements here: [r], [l] or [c]
+
+  \newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+  \newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+  \newcommand{\lr}[1]{line~\lineref{#1}}
+
+  % ----------------------------------------------------------------------
+  % Launch!
+  % ----------------------------------------------------------------------
+
+  \begin{document}
+
+  \section*{Special Functions: From Gamma to Zeta II}
+
+  Consider an equation $x^{2} + y^{2} + z^{2} = 3xyz$, where $x, y, z \in \NN$.
+
+  Solutions to this equation are called \textit{Markov triples}.
+
+  $(1, 1, 1), (1, 1, 2)$ and $(1, 2, 5)$ are one of the solutions.
+
+  Define an involution $\tau: (x, y, z) \to (x, y, 3y - z)$ mapping a
+  Markov triple to a Markov triple. Why?
+
+  Note the following:
+
+  \begin{align}
+    z^{2} - 3xyz + x^{2}+y^{2} &= 0\\
+    z_{1}+z_{2} &= 3xy\\
+    z_{2} &= 3xy - z_{1}
+  \end{align}
+
+  \begin{theorem}[Markov]
+    All Markov triples are obtained from $(1, 1, 1)$ by application of
+    $\tau$ and permutations.
+  \end{theorem}
+
+  For example,
+  $(1, 1, 1) \overset{\tau}{\to} (1, 1, 2) \to (1, 2, 1)
+  \overset{\tau}{\to} (1, 2, 5)$.
+
+  Note that this procedure can be represented as a tree. This tree is
+  spacial, with the numbers written in the complement of the tree,
+  rather than the nodes themselves.
+
+  The building unit of a tree consists of $z$ between two branches,
+  connected to another two branches. Over the edge connecting two
+  branches there is $x$, and $y$ is under the branch, while the other
+  branch encloses $3xy - z$.
+
+  It is easy to spot Fibonacci numbers in the resulting tree. In fact,
+  every second number is Fibonacci, which is left as an exercise.
+
+  \subsection{Tropicalisation}
+
+  Tropicalisation is a transformation replacing each operator in the
+  expression according to a predefined rules: $+$ is replaced with
+  $\max$, $\times$ with $+$ and $/$ with $-$.
+
+  Tropicalised equation for Markov triples is thus
+  $\max(2a, 2b, 2c) = a+b+c$. Without loss of generality, suppose that
+  $c$ is maximal, and thus we obtain that $a+b = c$.
+
+  What kind of a tree do we obtain from a tropicalised Markov equation?
+
+  The surprising fact is that in this case the step-by-step results of
+  the Euclidean algorithm are represented by the tree, because the
+  building unit consists of three branches connected to one note, with
+  $a$, $b$ and $a+b$ in its complement.
+
+  \subsection{Quantisation}
+
+  The modern approach applies the same principles to matrices.
+
+  For example, take the rule $AB = C$ for 2-by-2 matrices $A$ and $B$,
+  with the inital matrices $\begin{pmatrix}
+    3 & 4\\
+    2 & 3
+  \end{pmatrix}$ and $\begin{pmatrix}
+    1 & 1\\
+    1 & 2
+  \end{pmatrix}$, which generate the commutator of $\SL_{2}(\ZZ)$.
+
+  In this case, the Cohn tree (1953) is obtained.
+
+  The Markov numbers less than 1000, which constitute Markov triples,
+  are 1, 2, 5, 13, 29, 34, 89, 169, 194, 233, 433, 610, 985. Zognev
+  has shown that $m_{n} \sim \frac{1}{3}e^{c \sqrt{n}}$.
+
+  \begin{description}
+
+  \item[Unicity Conjecture (Frobenius, 1913)]
+    Each Markov triple is uniquely defined by its maximal element.
+  \end{description}
+
+  \subsection{Wonders of Markov Triples}
+  Markov has shown that the set of Markov triples is equivalent to the
+  set of the most irrational numbers up to an equivalence class. In
+  other words,
+  
+  \begin{equation*}
+    (x, y, z) \lra d = \frac{b}{x} + \frac{y}{xz} - \frac{3}{2} + \frac{\sqrt{9z^{2}-4}}{2z}, 
+  \end{equation*}
+  where $by - ax = z$.
+
+  For example, if we consider $(1, 1, 1)$, we obtain $b - a = 1$,
+  $b = 1$, $a=0$, and thus $d = \frac{1+\sqrt{5}}{2}$.
+
+  For $(1, 1, 2)$, we get $d = 1 + \sqrt{2}$, which is called the
+  silver ratio.
+
+  For $(1, 2, 5)$, we obtain $\frac{9+\sqrt{221}}{10}$
+
+  How can we measure how irrational a number is?
+
+  One of the ways requires the notion of the Markov constant.
+
+  Define
+  $\mu(\alpha) = \inf \set{c: \abs{\alpha - \frac{p}{q}} <
+    \frac{c}{q^{2}} \text{ for infinitely many $\frac{p}{q}$}}$.
+
+  \subsubsection{Markov Spectrum}
+
+  Note that $\mu(\alpha) > \frac{1}{3}$ is equivalent to
+  $\mu(\alpha) = \frac{m}{\sqrt{9m^{2}-4}}$, where $m\in M$.
+
+  Markov managed to study the spectrum successfully for some
+  $\mu > \frac{1}{3}$. The spectrum was also classified for $\mu$ from
+  0 to Freiman's constant. What happens between Freiman's constant and
+  $\frac{1}{3}$ is not yet known.
+
+  \subsubsection{Second Wonder}
+  Gorshkov (1953) and Cohn (1955) studied a punctured
+  $\ZZ_{3}$-symmetric torus $T^{2}_{*}$ with a hyperbolic metric, with
+  a complete puncture. The result was that the lengths of simple
+  closed geodesics is in the form $\frac{2}{3} \cosh m$, where
+  $m\in M$.
+
+  It was also established that real Markov's surface $x^{2} + y^{2} + z^{2} = xyz$, where
+  $x, y, z >0$, is a Teichm\"uller space of punctured tori.
+  
+
+  \subsubsection{Third Wonder}
+
+  Rudakov (1988) has established that the set of Markov triples can be
+  put into the correspondence with the unique vector bundles on
+  $\PP^{2}$.
+  
+  \subsubsection{Fourth Wonder}
+
+  Kontsevich, Manin (1994) and Dubrovin(1996) have established that
+  the generating function for $N_{d}$, which is the number of
+  solutions of rational curves of degree $d$, containing $3d-1$ points
+  on $\PP^{2}$, satisfies the Painleve (?) equation PVI with the Markov initial conditions.
+
+  \subsubsection{Fifth Wonder}
+
+  Prokhorov, Hacking (2010) have show that the set of Markov triples
+  is equivalent to the toric degeneration of $\PP^{2}$, weighted
+  projective plane $\PP^{2}(x, y, z)$, where $(x, y, z)$ is a Markov
+  triple.
+\end{document}
