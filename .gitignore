@@ -1,0 +1,6 @@
+*.aux
+*.bcf
+*/auto
+*.log
+*.out
+*.run.xml
