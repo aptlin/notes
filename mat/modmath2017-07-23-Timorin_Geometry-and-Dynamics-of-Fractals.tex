@@ -1,0 +1,163 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{Timorin}{2}{Geometry and Dynamics of Fractals}}
+  \usepackage{lineno}
+  % ----------------------------------------------------------------------
+  % Page setup
+  % ----------------------------------------------------------------------
+
+  \pagenumbering{gobble}
+
+  % ----------------------------------------------------------------------
+  % Custom commands
+  % ----------------------------------------------------------------------
+
+  % alignment
+
+  \newcommand*{\LongestHence}{$\Rightarrow$}% function name
+  \newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+  \newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+  \newcommand*{\LongestText}{\defi}%
+
+  \newlength{\LargestHenceSize}%
+  \newlength{\LargestNameSize}%
+  \newlength{\LargestValueSize}%
+  \newlength{\LargestTextSize}%
+
+  \settowidth{\LargestHenceSize}{\LongestHence}%
+  \settowidth{\LargestNameSize}{\LongestName}%
+  \settowidth{\LargestValueSize}{\LongestValue}%
+  \settowidth{\LargestTextSize}{\LongestText}%
+
+  % Choose alignment of the various elements here: [r], [l] or [c]
+
+  \newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+  \newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+  \newcommand{\lr}[1]{line~\lineref{#1}}
+
+  % ----------------------------------------------------------------------
+  % Launch!
+  % ----------------------------------------------------------------------
+
+  \begin{document}
+
+  \section{Geometry and Dynamics of Fractals}
+
+  \subsection{Douady Rabbit as a Branched Covering $S^{2} \to S^{2}$}
+  
+  We can show that the number of preimages of non-critical points does
+  not depend on the choice of a non-critical point. The number of
+  these preimages is called a \textit{degree} of a covering.
+
+  For our Douady rabbit, the degree is 2.
+
+  We have noted previously that a Douady rabbit is a postcritically
+  finite branched covering, which means that all rabbit points
+  eventually fall into a cyclic orbit. These kind of mappings are
+  called \textit{Thurston mappings}.
+
+  Note that we can look at rational mappings as a postcritically
+  finite branched covering. Can we say anything useful with this method?
+
+  \subsection{Dehn Twist}
+
+  \begin{definition}
+    Dehn twist is a homeomorphism $S^{2} \to S^{2}$ of a curve which
+    is identity outside of its annulus $A$.
+  \end{definition}
+
+  We have noted several important points in a Douady rabbit: 0, $v, w$
+  such that $0 \mapsto v \mapsto w \mapsto 0$. The mapping $\tau$
+  defined earlier is a Dehn twist with respect to the annulus
+  containing the ears with $v$ and $w$.
+
+  Define $f = \tau^{\circ m}\circ P_{c}$. Note that $f$ is a
+  postcritically finite branched covering. Thurston theory allows us
+  to affirm that the topological dynamics of such a mapping is
+  equivalent to the polynomial topological dynamics.
+
+  \subsection{Thurston and a Twisted Rabbit}
+
+  Consider the critical values of a Douady rabbit. We know that the
+  point at infinity is mapped to itself, while the other three points
+  ($0, v, w$) cycle over each other. The graph representation of these
+  mappings is called a \textit{critical portrait}.
+
+  It can be shown that a Thurston mapping with such a critical
+  portrait is \textit{topologically equivalent} to a rational
+  function, which also means that it is topologically equivalent
+  to a polynomial.
+
+  We say that two Thurston mappings $f$ and $g$ are topologically
+  equivalent, if there is a diagram such that
+  $(S^{2}, P(f)) \overset{f}{\to} (S^{2}, P(f))$,
+  $(S^{2}, P(g)) \overset{g}{\to} (S^{2}, P(g))$,
+  $(S^{2}, P(f)) \overset{\phi_{1}}{\to} (S^{2}, P(g))$, and
+  $(S^{2}, P(f)) \overset{\phi_{2}}{\to} (S^{2}, P(g))$, where $P(f)$
+  is a postcritical set, and $\phi_{1}$ and $\phi_{2}$ are dually
+  oriented homeomorphisms. Note that $\phi_{1}$ can be continuously
+  deformed into $\phi_{2}$ without changing
+  $\phi_{1}|_{P(f)} = \phi_{2}|_{P(f)}$.
+
+  We will show that twisting a Douady rabbit only once yields an
+  aeroplane.
+
+  Douady and Hubbard wanted to know to what the critical portrait for a
+  Douady rabbit is equivalent. Bartholdi and Nekrashevych gave an answer.
+
+  Let $m = \sum_{k=0}^{N}a_{k}4^{k} > 0$ denote the number of Dehn
+  twists, with $a_{k}\in \set{0, 1, 2, 3}$. If there are $a_{k}$ equal
+  to $1$ or $2$, we get an aeroplane. Otherwise, we obtain a Douady
+  rabbit.
+
+  How can we see an aeroplane in a twisted rabbit?
+
+  To a Douady rabbit corresponds the following tree of invariance.
+  Place $\alpha$ at the centre, with edges going to the nodes labelled
+  with $0, v, w$. Note that $v$ is a critical value. Add a point at
+  infinity as a node, which is also critical. We draw an edge from $0$
+  to $\infty$. Label the edge from $0$ to $\alpha$ as $A$, from
+  $\alpha$ to $v$ as $B$, from $\alpha$ to $w$ as $C$, and from $0$ to
+  $\infty$ as $D$. The mapping for a Douady rabbit is then
+  $A \to B \to C \to A$ and $D\to BAD$.
+
+  We can also represent these points on a real line. For this, mark
+  the points from left to right in the order $v$, $0$, $w$, $\infty$,
+  and denote the segments from $v$ to $0$ as $\wh{A}$, from $0$ to $w$
+  as $\wh{B}$, and from $w$ to $\infty$ as $\wh{C}$. Then
+  $\wh{A} \to \wh{A}\wh{B}, \wh{B} \to \wh{A}$, and from
+  $\wh{C} \to \wh{B}\wh{C}$.
+
+  If we twist a Douady rabbit once, then a different tree is obtained.
+  Edges $B'$, $C'$ and $D'$ correspond to the positions of the edges
+  $B$, $C$ and $D$, while the edge $A_{*}$ will twist over the nodes $v$
+  and $w$ and connect to the node $\alpha'$, corresponding to the
+  point $\alpha$.
+
+  Now, we want to construct a new tree $T^{*}$ such that $T^{*} \to T$
+  and $P(f) \su V(T^{*})$, where $V$ is a set of nodes of $T^{*}$.
+
+  The preimage of an edge $B$ is an edge $C$, and we draw it first.
+  The edge $A$ is mapped to $B$, so we can also draw it. $C^{*}$
+  would, however, go underneath the preimages of $B$ and $A$ to
+  $\alpha$. To make the tree connected, we introduce an edge $-A$ from
+  $w$ to $\alpha$. We draw the final edge $D^{*}$ underneath all the
+  edges already drawn, from $w$ to $\infty$. The tree $T^{*}$ is
+  invariant up to a homotopy.
+
+  \begin{note*}
+  Nekrashevych theory allows us to bypass the explicit drawing-out of
+  the twists by utilising algebraic methods.
+  \end{note*}
+  
+\end{document}

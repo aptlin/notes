@@ -1,0 +1,295 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{Arzhantsev}{1}{Additive Actions and Hassett-Tschinkel Correspondence}}
+  \usepackage{lineno}
+  % ----------------------------------------------------------------------
+  % Page setup
+  % ----------------------------------------------------------------------
+
+  \pagenumbering{gobble}
+
+  % ----------------------------------------------------------------------
+  % Custom commands
+  % ----------------------------------------------------------------------
+
+  % alignment
+
+  \newcommand*{\LongestHence}{$\Rightarrow$}% function name
+  \newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+  \newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+  \newcommand*{\LongestText}{\defi}%
+
+  \newlength{\LargestHenceSize}%
+  \newlength{\LargestNameSize}%
+  \newlength{\LargestValueSize}%
+  \newlength{\LargestTextSize}%
+
+  \settowidth{\LargestHenceSize}{\LongestHence}%
+  \settowidth{\LargestNameSize}{\LongestName}%
+  \settowidth{\LargestValueSize}{\LongestValue}%
+  \settowidth{\LargestTextSize}{\LongestText}%
+
+  % Choose alignment of the various elements here: [r], [l] or [c]
+
+  \newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+  \newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+  \newcommand{\lr}[1]{line~\lineref{#1}}
+
+  % ----------------------------------------------------------------------
+  % Launch!
+  % ----------------------------------------------------------------------
+
+  \begin{document}
+
+  \section{Additive Actions and Hassett-Tschinkel Correspondence}
+  \subsection{Compactification of Affine Space}
+  Let $A^{n} = \set{(x_{1}, \dots, x_{n}); x\in\RR \Or x\in\CC}$.
+
+  We would like to devise a good representation of the infinite plane
+  with the compact set.
+  
+  One of the ways is to use a projective sphere.
+
+  Suppose that a plane is given. Choose a point on the plane, and
+  construct a sphere touching the plane at the chosen point. Then we
+  build a correspondence between the plane and the sphere by throwing
+  linkes from the north pole at the points on the plane.
+
+  The other method is to construct a projective space, in which points
+  of $\RR^{2}$ correspond to the lines in the projective space passing
+  through a selected point $p$ without intersecting.
+
+  In this way, we obtain a projective space
+  $\PP^{n} = \set{[z_{0}:z_{1}:\dots:z_{n}]}$ such that:
+  \begin{itemize}
+  \item $\set{z_{0}, \dots, z_{n}} \neq (0, \dots, 0)$
+  \item $(z_{0}, \dots, z_{n}) \sim (\lambda z_{0}, \dots, \lambda z_{n})$ for all $\lambda \neq 0$
+  \end{itemize}
+
+  The third method involutes $\RR^{2}$ in a torus.
+
+  There is a wealth of papers on the problem of describing fully the
+  compactifications of $\AA^{n}$. See, for example, Hirzebruch (1954).
+  \subsection{Actions}
+
+  Suppose that a group $G$ acts on a set $X$, $G\times X \to X$, so that $(g, x) \mapsto gx$:
+  \begin{enumerate}
+  \item $ex = x$ for all $x\in X$
+  \item $(g_{1}g_{2})x = g_{1}(g_{2}x)$  
+  \end{enumerate}
+  \begin{example}
+
+    Let $X = \AA^{n}$, $G=(A^{n}, +) = \GG_{a}^{n}$. Suppose that the action is that of a translation:
+    \begin{equation*}
+      (a_{1}, \dots, a_{n})(x_{1}, \dots, x_{n}) = (x_{1} + a_{1}, \dots, x_{n} + a_{n}).
+    \end{equation*}
+
+
+  \end{example}
+
+  \begin{definition}
+    An orbit of $x\in X$, denotes as $Gx$, is a set $\set{gx; g\in G}$.
+  \end{definition}
+
+  The action of a group is called \textit{transitive} if $X = Gx$.
+
+  \begin{problem*}
+    \hfill
+
+    Describe all the equivariant completions of a space $\AA^{n}$,
+    i.e. open involutions $\AA^{n} \hookrightarrow X$, such that the action of
+    parallel translations $\GG_{a}^{n}\times \AA^{n} \to \AA^{n}$ is
+    completed to $\GG_{a}^{n}\times X \to X$, which is defined by some
+    polynomial.
+  \end{problem*}
+
+  \begin{example}
+
+    Suppose that we are given an action
+    $\GG_{a}^{n}\times \PP^{n} \to \PP^{n}$ such that
+    
+    \begin{equation*}
+      (a_{1}, \dots, a_{n}) \circ [z_{0}:z_{1}:\dots:z_{n}] = [z_{0}: z_{1}+a_{1}z_{0}:\dots:z_{n}+a_{n}z_{0}].
+    \end{equation*}
+
+    If $z_{0} = 1$, the action is that of a parallel translation.
+
+    If z$_{0} = 0$, points are stationary.
+  \end{example}
+
+  \begin{example}
+
+    Suppose that we have an action
+    $\GG_{a}^{2}\times \PP^{2} \to \PP^{2}$ such that
+
+    \begin{equation*}
+      (a_{1}, a_{2})\circ [z_{0}:z_{1}:z_{2}] = [z_{0}: z_{1}+a_{1}z_{0}:z_{2}+a_{2}z_{0}].
+    \end{equation*}
+
+    \begin{exercise}
+
+      Check that
+      $(a_{1}, a_{2})[z_{0}:z_{1}:z_{2}] =
+      [z_{0}:z_{1}+a_{1}z_{0}:z_{2}+a_{1}z_{1}+(\frac{a_{1}^{2}}{2}+a_{2})z_{0}]$
+      is alo an action, but different from the action above.
+
+    \end{exercise}
+
+
+  \end{example}
+
+  \subsection{Finite-Dimensional Algebras}
+
+  Suppose that $A$ is a finite-dimensional vector space over $\RR$ or $\CC$ and that
+  bilinear \textit{multiplication} $\AA \times \AA \to A$ is defined
+  such that $(a, b)\mapsto ab$.
+
+  We require the multiplication to be asociative, commutative, and
+  have a unit element $1$ in $A$ such that $1\*a = a\* 1 = a$.
+
+  Vector spaces $\RR, \CC$ and $\CC\oplus \dots \oplus \CC$ are
+  several examples of such a vector space.
+
+  Suppose that $I\suq A$ is a subspace such that for all $a\in A$ and
+  $b\in I$ we have $ab \in I$. $I$ is an example of an \textit{ideal}.
+
+  \subsection{Quotient Algebra}
+
+  We define a quotient space as $A\setminus I = \set{a+I; a\in A}$
+  with the operation of multiplication defined so that
+  $(a+I)(b+I) = ab+I$.
+
+  For example,
+  $\CC[x, y]\setminus (x^{3}, xy, y^{2}) =
+  \set{\alpha_{0}:1+\alpha_{1}x+\alpha_{2}y + \alpha_{3}x^{2}}$.
+
+  \begin{problem*}
+    \hfill
+
+    Classify all finite-dimensional algebras over $\CC$.
+  \end{problem*}
+
+  \begin{example}
+
+    All such algebras are in the form $\CC[x_{1}, \dots, x_{n}]\setminus I$.
+
+  \end{example}
+
+  \begin{definition}
+    An ideal $I \su A$ is called maximal, if $I\suq J \suq A$ implies
+    that $I = J$ or $J = A$.
+  \end{definition}
+
+  \begin{definition}
+    Algebra is defined as \textit{local} if in $A$ there exists a
+    unique maximal ideal.
+  \end{definition}
+
+  \begin{example}
+
+    $\CC[x, y]\setminus (x^{3}, xy, y^{2})$ defined earlier is local.
+
+  \end{example}
+
+  \begin{definition}
+    $a\in A$ is called revertible, if there exists $b \in A$ such that
+    $ab = 1$.
+  \end{definition}
+
+  \begin{definition}
+    $a\in A$ is called nilpotent, if there exists $m > 0$ such that
+    $a^{m} = 0$.
+  \end{definition}
+
+  \begin{problem*}
+    \hfill
+
+    For algebras over $\CC$, prove that
+    \begin{itemize}
+    \item if $a$ is nilpotent, then $1+a$ is revertible
+    \item if $A$ is local, then it is representable in the form
+      $\<1\> \oplus \GM$, where $\GM$ is a maximal ideal in $A$, all
+      $a\in \GM$ is nilpotent and $a\in A\setminus \GM$ is revertible.
+    \item Show that all finite-dimensional algebras can be uniquely
+      decomposed into the direct sum of local algebras.
+    \end{itemize}
+  \end{problem*}
+
+  If we look at the number of algebras of particular dimension, we get
+  the following picture:
+
+  \begin{itemize}
+  \item for $\dim A = 1$, the only algebra is $\CC$.
+  \item for 2, the only algebra is $\CC[x]\setminus (x^{2})$
+  \item for 3, there are two algebras: $\CC[x]\setminus (x^{3})$ and
+    $\CC[x, y]\setminus (x^{2}, xy, y^{2})$
+  \item for 4, there are 4 algebras
+  \item for 5, we get 9 algebras
+  \item for 6, there are 25 numbers
+  \item for $\geq 7$, there is an infinite number of algebras
+  \end{itemize}
+
+  \subsection{Hassett-Tschinkel Correspondence}
+
+  Hassett and Tschinkel (1999) have shown that, over $\CC$ the set of
+  equivariant completions $A^{n} \hookrightarrow \PP^{n}$ is
+  equivalent to the set of local associative commutative algebras with
+  unity of dimension $n+1$.
+
+  Define $\exp(a)$ for $a\in A$ as
+  
+  \begin{equation*}
+    \exp(a) = 1 + \frac{a}{1!} + \frac{a^{2}}{2!} + \dots
+  \end{equation*}
+
+  If $a$ is nilpotent, then we obtain a polynomial.
+
+  \begin{exercise}
+
+    $\exp(a)\exp(b) = \exp(a+b)$.
+
+  \end{exercise}
+
+  \begin{proof}[Proof ($\la$)]
+    \hfill
+
+    Suppose that $A$ is a local algebra with an action
+    $\GG_{a}^{n}\times \PP^{n} \to \PP^{n}$ such that
+    $\PP^{n} = \PP(A)$ and $\GG_{a}^{n} = \exp(\GM) = 1+\GM$.
+
+    \begin{exercise}
+
+      Continue the proof.
+
+    \end{exercise}
+  \end{proof}
+
+  The proof in the other direction requires the notion of cyclic
+  modules, representation theory and Lie algebras.
+
+  % \begin{proof}[$\ra$]
+  %   \hfill
+
+  %   $A^{n}\hookrightarrow \PP^{n} = \PP(V)$, where
+  %   $\dim V = n+1$.
+
+  %   Thus, $\GG_{a}^{n} \curverightarrow V$ is linear.
+
+    
+    
+  % \end{proof}
+
+  
+
+  
+\end{document}

@@ -1,0 +1,209 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{Kalinin}{2}{Model of Sand Moving and Divisors in Graphs}}
+  \usepackage{lineno}
+  % ----------------------------------------------------------------------
+  % Page setup
+  % ----------------------------------------------------------------------
+
+  \pagenumbering{gobble}
+
+  % ----------------------------------------------------------------------
+  % Custom commands
+  % ----------------------------------------------------------------------
+
+  % alignment
+
+  \newcommand*{\LongestHence}{$\Rightarrow$}% function name
+  \newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+  \newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+  \newcommand*{\LongestText}{\defi}%
+
+  \newlength{\LargestHenceSize}%
+  \newlength{\LargestNameSize}%
+  \newlength{\LargestValueSize}%
+  \newlength{\LargestTextSize}%
+
+  \settowidth{\LargestHenceSize}{\LongestHence}%
+  \settowidth{\LargestNameSize}{\LongestName}%
+  \settowidth{\LargestValueSize}{\LongestValue}%
+  \settowidth{\LargestTextSize}{\LongestText}%
+
+  % Choose alignment of the various elements here: [r], [l] or [c]
+
+  \newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+  \newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+  \newcommand{\lr}[1]{line~\lineref{#1}}
+
+  % ----------------------------------------------------------------------
+  % Launch!
+  % ----------------------------------------------------------------------
+
+  \begin{document}
+
+  \section{Sandpile Model and Divisors in Graphs}
+  \subsection{Revision}
+  \begin{soln}[1]
+    \hfill
+
+    Let $N = \sum_{v \in \Gamma} \phi(v)$. Note that at the point
+    closest to the boundare less than or equal to $N+1$ topplings. For
+    the point second closest to the boundary the number of topplings
+    is bounded from above by $4(N+1)$. As we move closer and closer to
+    the centre, we can define a bound, which means that the total
+    number of topplings is finite.
+
+  \end{soln}
+
+  % \begin{soln}[3]
+  %   \hfill
+  %   Let $F = \min \set{G; \phi + \Delta G \leq 3}$.
+
+  %   We prove that $F \geq \min$ and $F\leq min$.
+
+  %   Note that $0 = F_{0} \leq F_{1} < \dots < F_{n} = F$ and
+  %   $F_{0} \equiv G$, while $\phi(v) \geq 4$.
+  % \end{soln}
+  \begin{exercise}
+
+    Let $\phi$ be a revertible state. Then there exists $\psi$ such
+    that $\phi = (\< 100 \> + \psi)^{0}$.
+
+  \end{exercise}
+  \begin{exercise}
+
+    If for $\phi$ there exists $\psi$ such that
+    $(3+ \psi)^{0} = \phi$, then for all $\beta$ there exists $\psi$
+    such that $\phi = (\beta + \psi)^{0}$.
+
+  \end{exercise}
+  \begin{soln}[4]
+    \hfill
+
+    We are proving that a revertible state does not have forbidden
+    configurations.
+
+    Let $v$ be a vertex in $D$ of final toppling in the relaxation
+    leading to $\phi$, where $\phi$ is revertible.
+
+    Then $D\setminus v$ from the previous step is also in a forbidden
+    state, which is a contradiction.
+
+  \end{soln}
+
+  \subsection{Decomposition of Relaxations into Waves}
+  Think about the following statement, and try to make it work:
+  \begin{theorem}[ill-defined]
+  Let $\phi$ be stable. Then
+  $(\phi + \delta_{v})^{0} = (W_{v})^{\infty}\phi + \delta_{v}$, where
+  $\delta_{v} = \begin{cases}
+    1 \text{ in } v\\
+    0 \text{ otherwise }
+  \end{cases}$ $w_{v}$ is a \textit{wave operator} at $v$, defined by
+  the equation $w_{v}\phi = \begin{cases}
+    \phi\to \phi + \delta\\
+    \text{ toppling in } v \text{ if possible } \to \phi\\
+    \phi' - \delta_{v} \to \text{ relaxation }
+  \end{cases}$, and $v$ is a vertex in
+  $\Gamma \setminus \delta\Gamma$.
+  \end{theorem}
+
+  \begin{note*}
+    If $v$ has a neighbouring vertex with $c\geq 3$ grains, then the
+    definition of $w_{v}$ is as noted above. Otherwise,
+    $w_{v}\phi = \phi$.
+  \end{note*}
+
+  \begin{exercise}
+
+    When $\phi$ is mapped to $w_{v}\phi$, there is either 1 or no
+    topplings at each vertex.
+
+  \end{exercise}
+
+  \subsection{Discrete Harmonic Functions}
+
+  Recall that $\Delta F(v) = \sum_{w\sim v} F(w) - \deg(v)F(v)$.
+
+  \begin{exercise}
+
+    If $F:\ZZ^{2} \to \ZZ_{\geq 0}$ is harmonic (i.e.
+    $\Delta F = 0$),then $F$ is a constant.
+
+  \end{exercise}
+
+  \begin{exercise}
+
+    If $F: \ZZ^{2} \to \RR$ is harmonic, then $F$ is a constant.
+
+  \end{exercise}
+
+  \begin{exercise}
+
+    Compute $\Delta F(i, j)$, where $F$ is a linear function such that
+    $F(i, j) = A_{i} + B_{j} + C$, $F(i, j) = ij$,
+    $F(i, j) = \frac{1}{2}(i(i+1)+j(j+1))$, $[\frac{1}{3}i^{2}]$, and
+    $[\frac{1}{3}(i^{2}+j^{2}+7ij + i)]$.
+
+  \end{exercise}
+
+  \begin{exercise}[Mega]
+
+    Find all
+    $F(i, j) = [\alpha i^{2} + \beta j^{2} + \gamma ij + \dots +
+    \delta i + \lambda j + \mu]$ such that $0 \leq \Delta F \leq 3$.
+
+  \end{exercise}
+
+  \subsection{Riemann-Roch's Formula}
+  \begin{definition}
+    Let $D$ and $D'$ be divisors.
+
+    We say that $D \sim D'$ if there exists a function $F$ from the
+    set of nodes to $\ZZ$ such that $D-D' = \Delta F$.
+  \end{definition}
+
+  \begin{definition}
+    A divisor $D = \sum a_{i}v_{i}$ over the edges $\set{v_{i}}$ is
+    called \textit{effective}, if $a_{i} \geq 0$.
+  \end{definition}
+
+  \begin{definition}
+    Let $D$ be a divisor.
+
+    A rank $r(D)$ is defined as $\max_{\text{effective divisors $D'$
+        of degree $s$}} s$, if $D-D' \sim \text{effective divisor}$,
+    and $- 1$ otherwise.
+  \end{definition}
+
+  \begin{theorem}
+    Suppose that a graph $G$ is given. Let $g$ be the genus of $G$,
+    which is the number of edges minus the number of nodes plus 1.
+
+    Then
+    
+    \begin{equation*}
+      r(D) - r(k-D) = d - g + 1,
+    \end{equation*}
+
+    where $D$ is a divisor, which is a formal sum in the form
+    $D = \sum a_{i}v_{i}$, with $a_{i} \in \ZZ$ and $\set{v_{i}}$ are
+    the nodes of $G$, and $d = \sum a_{i}$ is the degree of a divisor,
+    and $K$ is also a divisor in the form
+    $k = \sum_{r\in G}(\deg v - i) v$.
+
+  \end{theorem}
+
+  \subsection{Key Words}
+  \textit{discrete Laplacian, discrete harmonic functions}
+\end{document}
