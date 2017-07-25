@@ -1,0 +1,144 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{Gasnikov}{1}{Introduction to Gradient Descent}}
+  \usepackage{lineno}
+  % ----------------------------------------------------------------------
+  % Page setup
+  % ----------------------------------------------------------------------
+
+  \pagenumbering{gobble}
+
+  % ----------------------------------------------------------------------
+  % Custom commands
+  % ----------------------------------------------------------------------
+
+  % alignment
+
+  \newcommand*{\LongestHence}{$\Rightarrow$}% function name
+  \newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+  \newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+  \newcommand*{\LongestText}{\defi}%
+
+  \newlength{\LargestHenceSize}%
+  \newlength{\LargestNameSize}%
+  \newlength{\LargestValueSize}%
+  \newlength{\LargestTextSize}%
+
+  \settowidth{\LargestHenceSize}{\LongestHence}%
+  \settowidth{\LargestNameSize}{\LongestName}%
+  \settowidth{\LargestValueSize}{\LongestValue}%
+  \settowidth{\LargestTextSize}{\LongestText}%
+
+  % Choose alignment of the various elements here: [r], [l] or [c]
+
+  \newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+  \newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+  \newcommand{\lr}[1]{line~\lineref{#1}}
+
+  % ----------------------------------------------------------------------
+  % Launch!
+  % ----------------------------------------------------------------------
+
+  \begin{document}
+
+  \section{Introduction to Gradient Descent}
+
+  \subsection{Introduction}
+  
+  Modern methods of numerical optimisation are largely based on the
+  method of gradient descent.
+
+  Suppose that a vector space over $\RR^{n}$ is given with a standard
+  inner product.
+
+  We will need two norms: a standard Euclidean norm
+  $\norm{x}_{p} = (\sum_{k=1}^{n}\abs{x_{k}}^{p})^{\frac{1}{p}}$, and
+  its limit, $\norm{x}_{\infty} = \max_{k=\ol{1,n}}\abs{x_{k}}$.
+
+  Note that $\ipr{x}{y} \leq \norm{x}_{p}\norm{y}_{q}$, where
+  $p, q\in\RR$ such that $\frac{1}{p}+ \frac{1}{q} = 1$. Such norms
+  $\norm{\*}_{p}$ and $\norm{\*}_{q}$ are called \textit{dual} norms.
+  Denote a norm dual to the given $\norm{\*}$ as $\norm{\*}_{*}$.
+
+  We define a function as \textit{convex}, if for all
+  $y, x \in \RR^{n}$ we have
+  
+  \begin{equation*}
+    f(x) + \ipr{\nabla f(x)}{y-x}\leq f(y),
+  \end{equation*}
+
+  where $\nabla$ is a \textit{subgradient} operator, which is a
+  specialisation of the gradient
+  $(\frac{\delta}{\delta x_{1}}f, \dots, \frac{\delta}{\delta
+    x_{n}}f)$ to convex functions.
+
+  \subsection{Gradient Descent}
+
+  We will look at the functions $f$ such that, for $x, y$ arising in
+  the iteration, the smoothness condition
+  $\norm{\nabla f(y) - \nabla f(X)}_{*} \leq M_{\nu}\norm{y-x}^{\nu}$
+  is satisfied, where $\nu \in [0, 1]$ and $M_{\nu}$ is a constant
+  dependent on $\nu$. For example, when $\nu = 1$, $M_{\nu} = L$, the
+  Lipschitz constant.
+
+  We can show that such functions also satisfy
+  $f(y) \leq f(x) + \ipr{\nabla f(x)}{y-x} +
+  \frac{M_{\nu}}{1+\nu}\norm{y-x}^{\nu + 1}$.
+
+  The principal idea of the gradient descent is as follows.
+
+  Suppose that
+  $x^{k+1} = \argmin_{x}\set{f(x^{k}) + \ipr{\nabla f(x^{k})}{x-x^{k}}
+    + \frac{L}{2}\norm{x-x^{k}}_{2}^{2}} $, where $x^{k}$ is the
+  vector after the iteration $k$.
+
+  Note that $0 = \nabla f(x^{k}) + L(x-x^{k})$, which means that
+  $x^{k+1} = x^{k} - \frac{1}{L}\nabla f(x^{k})$.
+
+  This is the main property of the gradient descent. First of all, it
+  is convex and its gradient is Lipschitz, which means that we can use
+  both of the results noted above.
+
+  The choice of $L$ is important for the efficiency of the gradient
+  descent.
+
+  \subsection{Non-Convex Cases}
+
+  The main problem of the non-convex case has to do with falling into
+  the local, rather than global minimum.
+
+  To counteract this problem, we check the \textit{stopping criterion}:
+
+  
+  \begin{equation*}
+    \norm{\nabla f(x^{N})}_{2 }\leq \epsilon
+  \end{equation*}
+
+
+  It can be shown that the gradient descent guarantees that we find
+  the solution satisfying the stopping criterion in
+  $N \leq \frac{2L \delta f}{\epsilon}$.
+
+  \subsection{Finding a Global Minimum}
+
+  Approximation of the global extremum is a much more daunting task.
+  Unfortunately, we can show that the number steps required is
+  $N\sim \frac{1}{\epsilon^{2}}$.
+
+  \subsection{Convex Case}
+
+  We can look at so-called $\mu$-superconvex functions, such that
+  $f(y) \geq f(x) + \ipr{\nabla f(x)}{y} + \frac{\mu}{2}
+  \norm{y-x}^{2}_{2}$.
+
+\end{document}

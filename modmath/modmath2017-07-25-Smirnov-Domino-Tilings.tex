@@ -1,0 +1,151 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{Smirnov}{1}{Domino Tilings}}
+  \usepackage{lineno}
+  % ----------------------------------------------------------------------
+  % Page setup
+  % ----------------------------------------------------------------------
+
+  \pagenumbering{gobble}
+
+  % ----------------------------------------------------------------------
+  % Custom commands
+  % ----------------------------------------------------------------------
+
+  % alignment
+
+  \newcommand*{\LongestHence}{$\Rightarrow$}% function name
+  \newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+  \newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+  \newcommand*{\LongestText}{\defi}%
+
+  \newlength{\LargestHenceSize}%
+  \newlength{\LargestNameSize}%
+  \newlength{\LargestValueSize}%
+  \newlength{\LargestTextSize}%
+
+  \settowidth{\LargestHenceSize}{\LongestHence}%
+  \settowidth{\LargestNameSize}{\LongestName}%
+  \settowidth{\LargestValueSize}{\LongestValue}%
+  \settowidth{\LargestTextSize}{\LongestText}%
+
+  % Choose alignment of the various elements here: [r], [l] or [c]
+
+  \newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+  \newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+  \newcommand{\lr}[1]{line~\lineref{#1}}
+
+  % ----------------------------------------------------------------------
+  % Launch!
+  % ----------------------------------------------------------------------
+
+  \begin{document}
+
+  \section{Domino Tilings}
+
+  \subsection{Introduction}
+
+  There are several key questions we may ask about domino tilings:
+  \begin{itemize}
+  \item Does a tiling exist?
+  \item How many tilings are there?
+  \item How does a random tiling look like?
+  \end{itemize}
+
+  There are 4 types of domino parts, depending on the colour
+  configuration a part would have if the shape was coloured like a
+  chessboard. Shape of the base element significantly affects the
+  patterns emerging with the increasing number of copies. For example,
+  some tilings possess regions of \textit{freezing}, where only one
+  colour is predominant.
+
+  A domino tiling can be represented as a covering of a corresponding
+  dual graph with dimers.
+
+  \begin{theorem}[Kusteleyn, Temperdey-Fisher (1961)]
+    The number of tiling of a rectangle $n$ by $m$ is
+    
+    \begin{equation*}
+      \sqrt{\prod_{i=1}^{m}\prod_{k=1}^{n}2(\cos \frac{\pi i}{m+1} + i
+        \cos \frac{\pi k}{n+1})}.
+    \end{equation*}
+  \end{theorem}
+  \begin{proof}
+    \hfill The number of tilings is $\sqrt{\perm A}$, where $A$ is the
+    adjacency matrix for a dual graph and $\perm$ is a permanent,
+    which can be calculated similarly to a determinant, but without
+    any considerations for the sign of the terms.
+
+    The formula for the number of tesselations can be obtained as
+    follows.
+
+    Take, for instance, two tiled squares, and put one over the other.
+    Traverse the combined squares by following their patterns
+    depending on the corresponding chessboard colouring until you
+    return to the initial position, which yields a cycle.
+
+    \begin{lemma}
+      Any tesselation can be obtained from the other by applying one
+      transformation, which depends on the shape of a base unit.
+    \end{lemma}
+
+
+    We can add signs to the terms in $A$ to obtain a new matrix $K$
+    such that $\perm A = \abs{\det K}$.
+
+    The following method of building $K$ is due to R.Kenyon(2000).
+    Assign $i$ to all the vertical edges and $1$ to the horizontal.
+    The other way would include a chessboard-like assignment of signs
+    to the edges.
+
+    Note that $\det K = \prod^{nm}\lambda_{i}$.
+
+    % Assume $\nu = 2\cos \frac{\pi x}{m+1}$ and $f_{x}$
+
+    \begin{exercise}
+
+      Continue the proof.
+
+    \end{exercise}
+    
+  \end{proof}
+  \begin{theorem}[Kuperberg et al]
+    The number of tilings of an aztec diamond with a side of size $n$
+    is $2^{\frac{n(n+1)}{2}}$.
+  \end{theorem}
+
+  \begin{definition}
+
+    Take a rectangle, a choose two internal squares denoted as $x$ and
+    $y$. Then a \textit{coupling function} $C(x, y) =K^{-1}_{x, y}$.
+  \end{definition}
+  \begin{note*}
+    $C(x, y)$ corresponds to the number of tesselations with a sign.
+    For instance, $C(x, x+1)$ is the number of domino tilings with $x, x+1$ as entries.
+  \end{note*}
+
+  Thus we obtain
+  $\sum_{\alpha = \pm 1, \pm i} \alpha C(x, y+\alpha) = \begin{cases}
+    0, x\neq y\\
+    1, x=y
+  \end{cases}$.
+
+  There exists an operator $D$ such that $D C(x, x) = D C(x, y) = 0$.
+
+  \subsection{Measuring Order}
+
+  One of the methods to predict the pattern is to compute the average
+  height function. See, for example, Cohn, Kenyon and Propp for an in-depth
+  study.
+  
+\end{document}

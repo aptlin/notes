@@ -1,0 +1,242 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{Kalinin}{3}{Sandpile Model and Divisors in Graphs}}
+  \usepackage{lineno}
+  % ----------------------------------------------------------------------
+  % Page setup
+  % ----------------------------------------------------------------------
+
+  \pagenumbering{gobble}
+
+  % ----------------------------------------------------------------------
+  % Custom commands
+  % ----------------------------------------------------------------------
+
+  % alignment
+
+  \newcommand*{\LongestHence}{$\Rightarrow$}% function name
+  \newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+  \newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+  \newcommand*{\LongestText}{\defi}%
+
+  \newlength{\LargestHenceSize}%
+  \newlength{\LargestNameSize}%
+  \newlength{\LargestValueSize}%
+  \newlength{\LargestTextSize}%
+
+  \settowidth{\LargestHenceSize}{\LongestHence}%
+  \settowidth{\LargestNameSize}{\LongestName}%
+  \settowidth{\LargestValueSize}{\LongestValue}%
+  \settowidth{\LargestTextSize}{\LongestText}%
+
+  % Choose alignment of the various elements here: [r], [l] or [c]
+
+  \newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+  \newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+  \newcommand{\lr}[1]{line~\lineref{#1}}
+
+  % ----------------------------------------------------------------------
+  % Launch!
+  % ----------------------------------------------------------------------
+
+  \begin{document}
+
+  \section{Sandpile Model and Divisors in Graphs}
+
+  \subsection{Revision}
+
+  We have seen the concepts of topplings, relaxations, revertible
+  states and forbidden configurations. We have also stidued the
+  Riemann-Roch theorem, waves, $\Delta F$, the sandpile group and its
+  unit.
+
+  \subsection{}
+  % No note needed in the notes for the  previous lecture.
+
+  \begin{exercise}
+
+    Suppose that $\phi = (3 + \psi)^{0}$. Then for all $\lambda$ there
+    exists $\psi \geq 0$ such that $(\lambda + \psi)^{0} = \phi$.
+
+  \end{exercise}
+
+  \begin{soln}
+    \hfill
+
+    Note that
+    $\lambda \to \lambda^{0} \to 3 \to 3+ \psi \to (3+\psi)^{0}$.
+    Thus, $\phi = (\lambda + (3-\lambda^{0})+\psi)^{0}$.
+  \end{soln}
+
+  \begin{exercise}
+
+    Find $\Delta F$ for $F(i, j) = i(i+1) + j(j+1)$.
+
+  \end{exercise}
+
+  \begin{soln}
+    \hfill
+
+    Note that $\Delta(i(i+1)) = -4(i+1)i+2(i+1)i +(i-1)i +(i+1)(i+2)$,
+    which means that $\Delta(i(i+1)) = -4i +2i -i +3i + 2 = 2$.
+
+    Therefore, $\Delta F = 4$.
+    
+  \end{soln}
+
+  Now we prove that the sandpile group \textit{is} a group.
+
+  There are three ways to look at this problem.
+
+  Consider an integer lattice, and choose two linearly independent vectors.
+
+  We say that $(i, j) \sim (i', j')$ if
+  $(i-i', j-j') = k_{1}v_{1} + k_{2}v_{2}$ for $k_{1}, k_{2} \in \ZZ$.
+
+  Let $\phi$ and $\phi'$ be two states in the form
+  $\Gamma \setminus \delta\Gamma \to \ZZ$. We say that
+  $\phi \sim \phi'$ if $\phi - \phi' = \Delta F$, where $F$ is in the
+  form $F:\Gamma \to \ZZ$. In other words, $\phi$ and $\phi'$ are
+  equivalent if there is a sequence of topplings and antitopplings
+  transforming $\phi$ into $\phi'$.
+
+  Let $N$ be the number of vertices in
+  $\Gamma \setminus \delta\Gamma$, and consider
+  $\ZZ^{n} / \ZZ\< v_{1}v_{2}\dots v_{N}\>$, where $\ZZ^{n}$ is a set
+  all states. Note that $\ZZ^{n} / \ZZ\< v_{1},v_{2},\dots, v_{N}\>$ is a
+  group.
+
+  \begin{lemma}
+    Each equivalence class has exactly one revertible state.
+  \end{lemma}
+  \begin{note*}
+    In this way, the set of equivalence classes is in one-to-one
+    correspondence with the set of revertible states of the group.
+  \end{note*}
+
+  \begin{proof}
+    \hfill
+
+    Consider $\Delta F$, where $F \equiv -1$. Suppose that $\Gamma$ is
+    rectangluar. Then $\Delta F$ is such that there are $2$'s at the
+    vertices of a rectangular, and $1$'s at the other border
+    positions. The rest is filled with $0$'s. This state is called the
+    \textit{Kreitz unity} and denoted as $\beta$. Each equivalence
+    class has more than or equal to 1 revertible state. Let $\phi$ be arbitrary,
+    then $(\phi + k\beta)^{0}$ is revertible, where $k$ is some big
+    natural number.
+
+    \begin{exercise}
+
+      Approximate $k$.
+
+    \end{exercise}
+
+    Now we prove that each equivalence class has less than or equal to
+    1 state.
+
+    Let $\phi_{1}$ and $\phi_{2}$ be revertible.
+
+    Let $D = \set{v \in \Gamma; F(v) = \min F}$.
+
+    Then $D$ is a forbidden configuration for $\phi_{2}$.
+
+    Suppose that $\min F = 0$. Choose a corner in $D$. Then
+    $3 \leq \phi_{1}(v) \leq \phi_{2}(v) + 2$. Then
+    $\phi_{2}(v) \leq 1$.
+
+    We, however, need to account for the case when the region defined
+    by $D$ is not compleely inside $\Gamma\setminus\delta\Gamma$.
+  \end{proof}
+  \begin{note*}
+    $\Delta F \sim \< 0 \>$. Thus, $\< 0 \> = \phi + \Delta 1$.
+  \end{note*}
+
+  \begin{exercise}
+
+    If two states are equivalent, there exists another state from
+    which the first two states receive sand.
+
+  \end{exercise}
+
+  \subsection{Group Unity Element}
+
+  We canq prove that the sandpile group unity element $E$ is
+  $(\<8\> - \<8\>^{0})^{0}$.
+
+  \begin{theorem}
+    Consider a rectangle $n$ by $m$ such that $m > 10 n$. Then there
+    is a stripe of 2s in the middle, with the distance from the left
+    and range margin less than or equal to $n$.
+  \end{theorem}
+
+  \begin{proof}
+    \hfill
+
+    Consider $((n^{2} + n)\beta = \phi)$.
+
+    \begin{lemma}
+      $\phi^{0} = E$.
+    \end{lemma}
+
+    \begin{proof}
+      \hfill
+
+      $\phi^{0} \sim E$, and thus we only need to show that
+      $\phi^{0} \geq \< 2 \>$, which means that $\phi^{0}$ is
+      revertible.
+      \begin{exercise}
+
+        Show that $\< 2 \>$ is revertible.
+
+      \end{exercise}
+      \begin{exercise}
+
+        If $\phi \geq \psi$ and $\psi$ is revertible, then $\psi^{0}$
+        is revertible.
+
+      \end{exercise}
+
+      \begin{exercise}
+
+        $\phi$ is revertible if and only if
+        $(\phi+ \beta)^{0} = \phi$, where $\beta$ is the Kreitz unity.
+        (Hint: if $(\phi + \beta)^{0} \neq \phi$, then there exists a
+        forbidden state.)
+
+      \end{exercise}
+
+      Let $F(i, k) = (n-k)^{2}k + (n-k)$. It is easy to check that
+      $\phi + \Delta F$ is in the form with a stripe of twos in the
+      middle, which means that $\Delta F = 2$ almost everywhere.
+
+      Define a map $G$ as follows for $k > [n \sqrt{2}]$:.
+      
+      \begin{equation*}
+        G(k, i) = \frac{([n \sqrt{2} -k])([n \sqrt{2}] - k -9)}{2} = 0,
+      \end{equation*}
+
+      \begin{exercise}
+
+        Continue the proof by using $G$ on a rectangle with a stripe of
+        twos in the middle.
+
+      \end{exercise}      
+    \end{proof}
+
+  \end{proof}
+
+  
+  
+\end{document}
+

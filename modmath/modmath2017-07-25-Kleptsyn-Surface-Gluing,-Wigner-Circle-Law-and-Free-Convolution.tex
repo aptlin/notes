@@ -1,0 +1,129 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{Kleptsyn}{2}{Surface Gluing, Wigner's Circle Law and Free Convolutions }}
+  \usepackage{lineno}
+  % ----------------------------------------------------------------------
+  % Page setup
+  % ----------------------------------------------------------------------
+
+  \pagenumbering{gobble}
+
+  % ----------------------------------------------------------------------
+  % Custom commands
+  % ----------------------------------------------------------------------
+
+  % alignment
+
+  \newcommand*{\LongestHence}{$\Rightarrow$}% function name
+  \newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+  \newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+  \newcommand*{\LongestText}{\defi}%
+
+  \newlength{\LargestHenceSize}%
+  \newlength{\LargestNameSize}%
+  \newlength{\LargestValueSize}%
+  \newlength{\LargestTextSize}%
+
+  \settowidth{\LargestHenceSize}{\LongestHence}%
+  \settowidth{\LargestNameSize}{\LongestName}%
+  \settowidth{\LargestValueSize}{\LongestValue}%
+  \settowidth{\LargestTextSize}{\LongestText}%
+
+  % Choose alignment of the various elements here: [r], [l] or [c]
+
+  \newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+  \newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+  \newcommand{\lr}[1]{line~\lineref{#1}}
+
+  % ----------------------------------------------------------------------
+  % Launch!
+  % ----------------------------------------------------------------------
+
+  \begin{document}
+
+  \section{Surface Gluing, Wigner's Circle Law and Free Convolutions }
+  
+  \subsection{Revision}
+
+  \begin{definition}
+    $k$th moment of a random variable $X$ is $m_{k} = \EE(X^{k})$.
+  \end{definition}
+
+  \begin{definition}
+    The \textit{Laplace transform of a function} $\rho$ is a function
+    $\Phi(t) = \int_{\RR}e^{tx}\rho(x)\dif x = \EE(e^{tX})$.
+  \end{definition}
+
+  \begin{note*}
+    $\Phi(0) = 1$.
+  \end{note*}
+
+  What happens if we differentiate $\Phi$?
+  \begin{align}
+    \frac{\dif }{\dif t}\Phi &= \frac{\dif }{\dif t}\int_{-\infty}^{\infty}e^{tx}\rho(x) \dif x\\
+                             &= \int_{-\infty}^{\infty} \frac{\dif }{\dif t}e^{tx}\rho(x)\dif x\\
+                             &= \int_{-\infty}^{\infty}x e^{tx}\rho(x) \dif x\\
+                             &= \EE(Xe^{tX}).
+  \end{align}  
+
+
+  Therefore, $(\frac{\dif }{\dif t})^{n}\Phi(t) = \EE(X^{n}e^{tX})$,
+  which means that
+  $(\frac{\dif }{\dif t})^{k}|_{t=0}\Phi(t) = \EE(X^{k}) = m_{k}$.
+
+  Now,
+  \begin{align}
+    \int_{-\infty}^{\infty}e^{tx}\rho(x) \dif x &= \frac{1}{\sqrt{2\pi }}\int_{-\infty}^{\infty}e^{tx}e^{- \frac{x^{2}}{2}}\dif x\\
+                                                &= \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} e^{-\frac{1}{2}(x-t)^{2}}\dif (x-t) \* e^{\frac{t^{2}}{2}}\\
+                                                &= e^{\frac{t^{2}}{2}}.
+  \end{align}
+
+  Therefore,
+  $\Phi(t) = e^{\frac{t^{2}}{2}} = 1 + \frac{t^{2}}{2} +
+  \frac{(\frac{t^{2}}{2})^{2}}{2!} + \dots$, and hence $m_{2} = 1$.
+  Similarly, by looking at the Taylor series for $\Phi(t)$, we obtain
+  that $m_{4} = 3$. In general,
+  $m_{2k} = (\frac{\dif }{\dif
+    t})^{2k}[\frac{(\frac{t^{2}}{2})^{k}}{k!}]$.
+
+  It is worthwhile to note that
+  $(\frac{\dif }{\dif t})^{2k}|_{t = 0}(e^{\frac{t^{2}}{2}})$ is the
+  number of unique ways to pair up $2k$ numbers into $k$ pairs, which
+  can be deduced to be $ \frac{(2k)!}{k!2^{k}}$, and thus
+  $m_{2k} = \frac{(2k)!}{k!2^{k}}$.
+
+  \begin{theorem}
+    Let $X_{1}, \dots, X_{2k}$ be random variables forming a Gaussian
+    vector with the mean 0. Then 
+    \begin{equation*}
+      \EE(X_{1}\dots X_{2k}) = \sum_{\text{the number of ways to pair up $2k$ elements into $k$ pairs $(j_{i}, j'_{i})$}} \prod_{i=1}^{u}\EE(X_{j_{i}}X_{j'_{i}}).
+    \end{equation*}
+
+  \end{theorem}
+
+  \begin{theorem}[Wigner Semicircle Law]
+
+    Eigenvalues of random matrices fall into a compact semicircle
+    region, provided a matrix is big enough.
+
+  \end{theorem}
+
+  Now, let $f:S_{1}^{N} \to \RR$, such that $Lip(f) \leq C$, if
+  $\abs{f(x)- f(y)} < C\abs{x-y}$ for all $x$ and $y$ in $S_{1}^{N}$.
+  \begin{theorem}[Concentration of Measure]
+    If $f$ is dependent on many independent variables in a Lipschitz
+    way, then $f$ is essentially constant.
+  \end{theorem}
+
+  
+\end{document}
