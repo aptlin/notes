@@ -1,0 +1,122 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{Kalinin}{4}{Sandpile Model and Divisors in Graphs IV}}
+
+  \usepackage{lineno}
+  % ----------------------------------------------------------------------
+  % Page setup
+  % ----------------------------------------------------------------------
+
+  \pagenumbering{gobble}
+
+  % ----------------------------------------------------------------------
+  % Custom commands
+  % ----------------------------------------------------------------------
+
+  % alignment
+
+  \newcommand*{\LongestHence}{$\Rightarrow$}% function name
+  \newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+  \newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+  \newcommand*{\LongestText}{\defi}%
+
+  \newlength{\LargestHenceSize}%
+  \newlength{\LargestNameSize}%
+  \newlength{\LargestValueSize}%
+  \newlength{\LargestTextSize}%
+
+  \settowidth{\LargestHenceSize}{\LongestHence}%
+  \settowidth{\LargestNameSize}{\LongestName}%
+  \settowidth{\LargestValueSize}{\LongestValue}%
+  \settowidth{\LargestTextSize}{\LongestText}%
+
+  % Choose alignment of the various elements here: [r], [l] or [c]
+
+  \newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+  \newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+  \newcommand{\lr}[1]{line~\lineref{#1}}
+
+  % ----------------------------------------------------------------------
+  % Launch!
+  % ----------------------------------------------------------------------
+
+  \begin{document}
+
+  \section{Sandpile Model and Divisors in Graphs IV}
+
+  \subsection{Revision}
+
+  Last time we contsructed the Kreitz element $\beta$.
+
+  We also wanted to show that $\phi$ is revertible if and only if
+  $(\phi + \beta)^{0} = \phi$. For the direction to the right, note
+  that $(\phi + \beta)^{0}$ is also revertible. Since we know that
+  each equivalence class has only one revertible state, then we know
+  that $(\phi+\beta)^{0} = \phi + 0 = \phi$. In the other direction,
+  we just need to notice that $(\phi + k \beta)^{0} = \phi$ for
+  sufficiently big $k$.
+
+  The other exercise from the last time was to compute the unity for a
+  $n$ by $m$ rectangle such that $m >> n$. Let
+  $\phi = (n^{2} + n)\beta$. Applying $\Delta F$, where
+  $F(i, k) = (n-k)^{2} + (n-k)$ to $\phi$ until we get $\psi$ such
+  that the middle stripe is filled with $2$'s. Now, let
+  $G(i, k) = \frac{([\sqrt{2}n] -i)([\sqrt{2}n] - i - 9)}{2}$, for
+  $i < [\sqrt{2}n]$, and $G = 0$ otherwise. Applying $\Delta G$ after
+  $\Delta F$, the middle stripe shrinks.
+
+  \subsection{Concentrating Sand in a Point}
+
+  Suppose that we have $n$ grains in one point, so that
+  $\phi = n \delta_{0, 0}$.
+
+  We can show that the convex hull of all the points with the non-zero
+  number of grains lies inside a circle of radius $\sqrt{n}$.
+
+  Note that $\phi^{0} = \phi + \Delta F$, where $F$ is the minimal
+  function, and $\Delta F(0, 0) \leq 3-n$, and
+  $0 \leq \Delta F(i, j) \leq 3$.
+
+  \begin{lemma}
+    $F$ decreases in the directions $(2, 0), (0, 2)$ and $(1, -1)$.
+  \end{lemma}
+
+  \begin{exercise}
+
+    Suppose $\phi$ has been obtained as a result of relaxation such
+    that in each vertex of $D$ there was a toppling. Then
+    $\sum_{v\in D}\phi(v)$ is less than or equal to the number of
+    inner edges in $D$.
+
+  \end{exercise}
+
+  \subsection{Rescalings}
+
+  Assume that $\phi_{n}^{0}= (nS_{(0,0)})^{0}$ is contained inside
+  $\Gamma_{n} = \set{\frac{i}{\sqrt{n}}, \frac{j}{\sqrt{n}}, i, j \in
+    \ZZ}$. Therefore, all $\phi_{n}^{0}$ are contained in the square
+  with the vertices $(1, -1), (1, 1), (-1, 1), (-1, -1)$. Thus, all
+  $\frac{F_{n}}{n}$ are inside the same square.
+
+  \subsection{Drawing 1D pictures}
+
+  Suppose that there exist two limits. Therefore, there exist
+  $F_{2}'' > k > F_{1}''$, which means that there exists
+  $G(x, y) = [ax^{2} + bxy + c y^{2} + dx + ey + w]$, with $G'' = k$,
+  $0 \leq D \leq 3$.
+
+  The interesting fact is that we can use Appolonius carpet of kissing
+  circles to find $G$.
+
+  
+\end{document}

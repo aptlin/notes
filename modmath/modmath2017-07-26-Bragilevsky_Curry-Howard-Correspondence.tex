@@ -1,0 +1,154 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{Bragilevsky}{2}{Curry-Howard Correspondence}}
+  \usepackage{lineno}
+  % ----------------------------------------------------------------------
+  % Page setup
+  % ----------------------------------------------------------------------
+
+  \pagenumbering{gobble}
+
+  % ----------------------------------------------------------------------
+  % Custom commands
+  % ----------------------------------------------------------------------
+
+  % alignment
+
+  \newcommand*{\LongestHence}{$\Rightarrow$}% function name
+  \newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+  \newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+  \newcommand*{\LongestText}{\defi}%
+
+  \newlength{\LargestHenceSize}%
+  \newlength{\LargestNameSize}%
+  \newlength{\LargestValueSize}%
+  \newlength{\LargestTextSize}%
+
+  \settowidth{\LargestHenceSize}{\LongestHence}%
+  \settowidth{\LargestNameSize}{\LongestName}%
+  \settowidth{\LargestValueSize}{\LongestValue}%
+  \settowidth{\LargestTextSize}{\LongestText}%
+
+  % Choose alignment of the various elements here: [r], [l] or [c]
+
+  \newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+  \newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+  \newcommand{\lr}[1]{line~\lineref{#1}}
+
+  % ----------------------------------------------------------------------
+  % Launch!
+  % ----------------------------------------------------------------------
+
+  \begin{document}
+
+  \section{Curry-Howard Correspondence}
+
+  \subsection{Introduction}
+
+  \begin{definition}
+    Let $x_{1}, x_{2}, \dots$ be some variables. We say that any variable
+    $x_{i}$ is a $\lambda$-term. Moreover, if $M$ and $N$ are
+    $\lambda$-terms, then an application $(MN)$ is also a
+    $\lambda$-term. If $P$ is a $\lambda$-term and $x$ is a variable,
+    then an abstraction $(\lambda x.P)$ is also a $\lambda$-term.
+
+  \end{definition}
+
+  \begin{note*}
+    $(\lambda x.x)$ can be interpreted as an identity function, while
+    $(\lambda x.y)$ -- as a constant function. 
+  \end{note*}
+  \begin{note*}
+    We assume left-associativity of application, and
+    right-associativity of abstraction. Thus,
+    $(\lambda x.(\lambda y.(xy)))z$ can be rewritten
+    as $(\lambda x.\lambda y.xy)z$.
+  \end{note*}
+
+  We are going to differentiate between the use of variables in
+  abstractions and applications. In a sense, abstractions
+  \textit{bind} variables, while variables in applications are
+  \textit{free}. Nevertheless, abstractions may contain free
+  variables.
+
+  Furthermore, we can talk about equivalence of $\lambda$-terms. For
+  example, $(\lambda x. x)$ and $(\lambda t.t)$ both represent the
+  identity function. In this case, we denote the equivalence as
+  $(\lambda x. x) \equiv (\lambda t . t)$.
+
+  It is worthwhile to denote the set of free variables of
+  $\lambda$-term $M$ as $FV(M)$.
+
+  % Suppose that $f(x) = x^{2}+x^{5}$, so that $$
+
+  We denote a substitution as $[N/x]P$, where
+  $P$ is a $\lambda$-term.
+  
+
+  \begin{align}
+    [N / x] x &= (N)\\
+    [N / x] y &= y\\
+    [N / x](MP) &=  ([N/x]M)([N/x]P)\\
+    [N /x](\lambda x.P) &= (\lambda x. P)\\
+    [N / x](\lambda y. P) &=  \lambda y.[ N/x ]P, \text{ if $y \not \in FV(N)$}\\
+    [N / x](\lambda y. P) &= \lambda z.[N / x][z / y]P, \text{ if $y \in FV(N), z \not \in FV(NP)$}
+  \end{align}
+
+  Let the application in the form $(\lambda x. M)N$ be called a
+  \textit{redex}. We define a computation, intuitively understood as
+  $(\lambda x.x)t \underset{\beta}{\to} t$, as
+  $(\lambda x. M)N \underset{\beta}{\to} [N / x]M$.
+
+  \begin{example}
+
+    $(\lambda x. x(xy))N \underset{\beta}{\to} [N/x](x(xy)) = (N)$
+
+  \end{example}
+
+  We define a $\lambda-$term as $N$, if $FV(N) = \emptyset$.
+
+  If we substitute an abstraction, $\lambda$'s are omitted.
+
+  \begin{theorem}[Church-Rosser(?)]
+    If in the process of reduction we have chosen different order of
+    reducing terms, there exists a unique $\lambda$-term which can be
+    obtained as a final result of all the reductions.
+  \end{theorem}
+
+  Let $true$ denote $\lambda x. \lambda y. x$, and let $false$ denote
+  $\lambda x. \lambda y. y$. We also introduce an operator
+  $if\ C\ then\ E_{1}\ else\ E_{2} = CE_{1}E_{2}$. Thus, for example,
+  \begin{align}
+    true E_{1} E_{2} &= (\lambda x.\lambda y.x)\\
+                     &= [E_{1} / x](\lambda y.x) E_{2}\\
+                     &= (\lambda y. E_{1})E_{2}\\
+                     & E_{1}.
+  \end{align}
+
+  Now, let $not C = if\ C\ then\ false \ else \ true = C\ false \ true
+  $, and let introduce one of the simplest data structures, a pair:
+
+  
+  \begin{equation*}
+    (E_{1}, E_{2}) = \lambda z.z E_{1}E_{2}.
+  \end{equation*}
+
+  Now, it is worthwhile to note the concept of the Church numerals:
+
+  \begin{align}
+    \ol{0} &= \lambda x.\lambda y. y\\
+    \ol{1} &= \lambda x. \lambda y. xy\\
+    \ol{2} &=\lambda x. \lambda y. x(xy)
+  \end{align}
+    
+\end{document}

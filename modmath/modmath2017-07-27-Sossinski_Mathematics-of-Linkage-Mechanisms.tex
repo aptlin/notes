@@ -1,0 +1,127 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{Sossinski}{1}{Mathematics of Linkage Mechanisms}}
+  \usepackage{lineno}
+  % ----------------------------------------------------------------------
+  % Page setup
+  % ----------------------------------------------------------------------
+
+  \pagenumbering{gobble}
+
+  % ----------------------------------------------------------------------
+  % Custom commands
+  % ----------------------------------------------------------------------
+
+  % alignment
+
+  \newcommand*{\LongestHence}{$\Rightarrow$}% function name
+  \newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+  \newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+  \newcommand*{\LongestText}{\defi}%
+
+  \newlength{\LargestHenceSize}%
+  \newlength{\LargestNameSize}%
+  \newlength{\LargestValueSize}%
+  \newlength{\LargestTextSize}%
+
+  \settowidth{\LargestHenceSize}{\LongestHence}%
+  \settowidth{\LargestNameSize}{\LongestName}%
+  \settowidth{\LargestValueSize}{\LongestValue}%
+  \settowidth{\LargestTextSize}{\LongestText}%
+
+  % Choose alignment of the various elements here: [r], [l] or [c]
+
+  \newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+  \newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+  \newcommand{\lr}[1]{line~\lineref{#1}}
+
+  % ----------------------------------------------------------------------
+  % Launch!
+  % ----------------------------------------------------------------------
+
+  \begin{document}
+
+  \section{Mathematics of Flat Linkage Mechanisms}
+
+  \subsection{Introduction}
+
+  Suppose that a linkage mechanism $ABCDEF$ is given, with each
+  linkage having a known length. Some hinges are fixed and some are
+  allowed to move. Suppose that $A$ and $E$ are fixed, and have
+  coordinates $(0, 0)$ and $(1, 0)$ respectively, while moving points
+  $B, C, D$ and $F$ have coordinates $(x_{1},
+  y_{1})$,$(x_{2}, y_{2})$, $(x_{3}, y_{3})$ and $(x_{4}, y_{4})$.
+  
+  The configuration space of a linkage mechanism can be defined as a
+  topological space, with a standard euclidean metric. Since the links
+  between each hinge are straight lines, we can easily write the
+  equations describing the relations between $\set{x_{i}}$ and
+  $\set{y_{i}}$.
+
+  \begin{problem*}[Direct Problem]
+    \hfill
+
+    What can we say about classes of configuration spaces from classes
+    of linkage mechanisms up to homeomorphisms?
+  \end{problem*}
+
+  \begin{problem*}[Inverse Problem]
+    \hfill
+
+    Given a class of configuration spaces, what can we say about the
+    corresponding class of linkage mechanisms?
+
+  \end{problem*}
+
+  \begin{theorem}[Thurston]
+    There exists a flat linkage mechanism such that its configuration
+    space is your signature.
+  \end{theorem}
+  \begin{definition}
+    $L$ is a linkage mechanism in a general position if
+    $\epsilon_{1}l_{1}+\epsilon_{2}l_{2}+\dots + \epsilon_{n}l_{n}
+    \neq 0$ for all $\epsilon_{i} \in \set{-1, 1}$.
+  \end{definition}
+
+  \begin{definition}
+    For polyhedral linkage mechanisms in a general position, defined
+    by a set $\set{l_{1}, l_{2}, \dots, l_{n}}$ of lengths
+  \end{definition}
+  \begin{exercise}
+
+    The configuration space $Conf L$ is unique up to the order of
+    linkages.
+
+  \end{exercise}
+
+  \begin{theorem}
+    For all $g$ there exists $L_{g}$ such that $Conf L = M_{g}^{2}$,
+    where $M_{g}$ is a manifold of genus $g$.
+  \end{theorem}
+
+  \begin{theorem}
+    For all $n$-dimensional smooth oriented manifolds $M^{n}$ there
+    exists $L_{M}$ such that $Conf L_{M} = \sqcup^{k} M^{n}$, where
+    $k$ is some finite positive integer.
+  \end{theorem}
+
+  \begin{theorem}
+    For all algebraic varieties $X$ in $\RR^{n}$ there exists $L_{X}$
+    there exists $Conf L_{X} = \sqcup ^{k} X$, where $k$ is some
+    finite positive integer.
+  \end{theorem}
+
+
+
+
+  \end{document}

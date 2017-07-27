@@ -1,0 +1,91 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{Gasnikov}{2}{Introduction to Gradient Descent}}
+  \usepackage{lineno}
+  % ----------------------------------------------------------------------
+  % Page setup
+  % ----------------------------------------------------------------------
+
+  \pagenumbering{gobble}
+
+  % ----------------------------------------------------------------------
+  % Custom commands
+  % ----------------------------------------------------------------------
+
+  % alignment
+
+  \newcommand*{\LongestHence}{$\Rightarrow$}% function name
+  \newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+  \newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+  \newcommand*{\LongestText}{\defi}%
+
+  \newlength{\LargestHenceSize}%
+  \newlength{\LargestNameSize}%
+  \newlength{\LargestValueSize}%
+  \newlength{\LargestTextSize}%
+
+  \settowidth{\LargestHenceSize}{\LongestHence}%
+  \settowidth{\LargestNameSize}{\LongestName}%
+  \settowidth{\LargestValueSize}{\LongestValue}%
+  \settowidth{\LargestTextSize}{\LongestText}%
+
+  % Choose alignment of the various elements here: [r], [l] or [c]
+
+  \newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+  \newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+  \newcommand{\lr}[1]{line~\lineref{#1}}
+
+  % ----------------------------------------------------------------------
+  % Launch!
+  % ----------------------------------------------------------------------
+
+  \begin{document}
+
+  \section{Introduction to Gradient Descent II}
+
+  \subsection{Old Methods of Convex Optimisation}
+  
+  Assume that a convex function $F$ is given, with the property that
+  $F(x^{N}) - F_{0} \leq \epsilon$, where $N$ is the number of
+  required iterations, corresponding to the number of steps required
+  for the computation of $\partial F(x)$ or separation between the
+  hyperplane and point $Q$, and suppose that a compact set generated
+  by $F$ is defined.
+
+  The problem is that finding the centre of mass is a computationally
+  expensive operation. However, Lee Y.-Y., Sidford A., and Wong
+  S.C-W.(2015) have shown that not everything is lost, and this method
+  can still be promising.
+
+  \subsection{Gradient Descent}
+
+  We have already seen that the method of gradient descent is defined
+  by the equation $x^{k+1} = x^{k} - h \nabla f(x^{k})$.
+
+  Assuming that $F(x^{k}) - F_{0} \leq \epsilon$, naive dimension
+  analysis shows that $h = c \frac{\epsilon}{M^{2}}$.
+
+  Gradient descent is not the go-to method for problems requiring
+  precision or if the dimensionality is low.
+    
+  \subsection{Key Words}
+  \begin{itemize}
+  \item Lyapunov function
+  \item Grunbaum-Kruger Theorem
+  \item Restarts
+  \item Tikhonov regularisation
+  \end{itemize}
+  
+
+  
+\end{document}
