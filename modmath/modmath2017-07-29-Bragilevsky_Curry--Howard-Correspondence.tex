@@ -1,0 +1,78 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{Bragilevsky}{4}{Curry-Howard Correspondence}}
+
+% ----------------------------------------------------------------------
+% Page Setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom Commands
+% ----------------------------------------------------------------------
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Curry-Howard Correspondence IV}
+
+Curry-Howard has a much deeper meaning than just the correspondence
+between two logical systems.
+
+Brouwer was mistaken in his belief that the model of classical logic
+cannot be embedded into the constructive setting.
+
+\subsection{$\lambda_{\mu}$-Calculus}
+
+Let $V$ be a set of variables, let $A$ denote a set of all addresses,
+and suppose tat $\Phi$ is a set of types (formulae). We also introduce
+two operations: $\to$, $\bot$.
+
+Let $x\in V$ and $a\in A$, and suppose a new context is defined as
+$M \defeq x | (MM) | (\lambda x:\sigma.M) | (\mu a: !!\not \sigma. M) |
+([a]M)$.
+
+We can understand an address as a channel device through which
+information can be transmitted. This operation is akin to exceptional
+procedures in programming languages.
+
+Now, we introduce two rules:
+
+\begin{itemize}
+\item $\Gamma, a: \not \sigma \vdash M: \bot$
+\item $\Gamma \vdash (\mu a : \not \sigma. M):\sigma$
+\end{itemize}
+
+and
+
+\begin{itemize}
+\item $\Gamma, a : \not \sigma \vdash M:\sigma$
+\item $\Gamma, a : \not \sigma \vdash [a]M: \not \sigma$
+\end{itemize}
+
+For example, the Pierce tautology (?) can be written as a $\lambda$-term as follows:
+
+\begin{equation*}
+\lambda x: (p\to q)\to p.\mu a : \not p.[a](x (\lambda z:p.\mu b: \not q. [a]z))
+\end{equation*}
+
+This is one of the examples how classical and intuitionistic logic can
+be put into correspondence.
+
+\subsection{$\lambda$-Cube}
+
+We can draw a range of related logical systems, with the logical model
+and model of computation represented as a pair, in a figure to obtain a cube.
+
+
+\end{document}

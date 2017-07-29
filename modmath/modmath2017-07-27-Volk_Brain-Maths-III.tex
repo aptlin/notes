@@ -1,0 +1,152 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{Volk}{3}{Brain Maths}}
+  \usepackage{lineno}
+  % ----------------------------------------------------------------------
+  % Page setup
+  % ----------------------------------------------------------------------
+
+  \pagenumbering{gobble}
+
+  % ----------------------------------------------------------------------
+  % Custom commands
+  % ----------------------------------------------------------------------
+
+  % alignment
+
+  \newcommand*{\LongestHence}{$\Rightarrow$}% function name
+  \newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+  \newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+  \newcommand*{\LongestText}{\defi}%
+
+  \newlength{\LargestHenceSize}%
+  \newlength{\LargestNameSize}%
+  \newlength{\LargestValueSize}%
+  \newlength{\LargestTextSize}%
+
+  \settowidth{\LargestHenceSize}{\LongestHence}%
+  \settowidth{\LargestNameSize}{\LongestName}%
+  \settowidth{\LargestValueSize}{\LongestValue}%
+  \settowidth{\LargestTextSize}{\LongestText}%
+
+  % Choose alignment of the various elements here: [r], [l] or [c]
+
+  \newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+  \newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+  \newcommand{\lr}[1]{line~\lineref{#1}}
+
+  % ----------------------------------------------------------------------
+  % Launch!
+  % ----------------------------------------------------------------------
+
+  \begin{document}
+
+  \section{Brain Maths III}
+
+  \subsection{Revision}
+
+  Some neurons persist in a sleeping state until they are acted upon
+  by electric signals or chemicals. This can be represented by
+  stationary points of vector fields in $\RR^{n}$, which can also be
+  perturbed until they fall back into the stable state.
+
+  Some neurons can also turn into an excited state, when they give off
+  spikes periodically or quasiperiodically. This behaviour, in turn,
+  can be modelled by closed trajectories, called \textit{attracting
+    cycles} in the parameter space, which are resistant to
+  perturbations.
+
+  We will study how stable states can turn into attracting cycles.
+
+  \subsection{}
+
+  Informally, a vector field $\dot{x} = f(x)$, where $f(x)$ is a
+  multidimensional function, is called structurally stable if there
+  exists $\epsilon > 0$ such that for all $g$ with
+  $d_{C'}(f, g) < \epsilon$ the behaviour of $f$ and $g$ is similar.
+
+  \subsection{Smooth Classification}
+
+  We say that $f\sim g$ if there exists a diffeomorphism
+  $h: \RR^{n} \to \RR^{n}$ such that $gh(x) = (Dh)_{x}(f(x))$.
+
+  \begin{example}
+
+    Suppose that $\dim = 1$, and let $f(0) = 0$ and $h(0) = 0$, which
+    means that $g(0) = 0$. If $h$ is a diffeomorphism, we thus have
+    $Df(0) = Dg(0)$. Now, if $f = h(x)$, then
+    $g(y) = \frac{\partial h(x)}{\partial x} \* f(x) = \frac{\partial
+    }{\partial}h(h^{-1}y)\*f(h^{-1}(y))$. Thus,
+    $\frac{\partial g(0)}{\partial y} = \frac{\partial h(0)}{\partial
+      x} \* \frac{\partial f(0)}{\partial x}\* \frac{\partial
+      h^{-1}(0)}{\partial y}$, and hence
+    $\frac{\partial g(0)}{\partial y} = \frac{\partial f(0)}{\partial
+      x}$.
+
+  \end{example}
+
+  \subsection{Topological Classification}
+
+  Let $h$ be a homeomorphism. For all $x$ and time $t$, we want the
+  flux to be in the form $\Phi_{t}^{g}(h(x)) = h(\Phi^{f}_{t}(x))$.
+  Note that $\Phi_{t}$ is smooth.
+
+  Now, there exists $x\in \RR^{n}$ and $T > 0$ such that
+  $\Phi_{T}^{f}(x) = x$. From the condition above, we also have
+  $\Phi_{T}^{g}(h(x)) = h(x)$.
+
+  \subsection{Orbital Topological Equivalence}
+
+  If there exists a homeomorphism transforming oriented trajectories
+  of $f$ into the oriented trajectories of $g$, then we can classify
+  our vector fields up to orbital topological equivalence.
+
+  \begin{example}
+
+    Let $\dim = 1$. For $\epsilon > 0$, if $\norm{f- g} < \epsilon$
+    and $\norm{f' - g '} < \epsilon$, then $d_{C'}(f, g) < \epsilon$.
+
+  \end{example}
+
+  \begin{theorem}
+    Suppose $\dot{x} = f(x)$ is given. It is structurally stable, if
+    \begin{itemize}
+    \item all stationary points are isolated
+    \item for all stationary points we have $f'(p) \neq 0$.
+    \end{itemize}
+  \end{theorem}
+
+  \begin{note*}
+    Note that structurally stable vector fields form an open set in
+    the space of all real vector spaces.
+  \end{note*}
+
+  \subsection{Bifurcations}
+
+  Let $f_{\alpha}$ be a family of vector fields dependent on the
+  parameter $\alpha$, where $\alpha \in (- \alpha_{0}, \alpha_{0})$.
+  We say that $\alpha$ is \textit{regular}, if $f_{\alpha}$ is structurally
+  stable. Moreover, we say that $\alpha$ is a \textit{bifurcation point}, if
+  $f_{\alpha}$ is not structurally stable.
+
+  \begin{theorem}
+    For $\dim = 1$, a typical family of vector fields $f_{\alpha}$ has
+    only a saddle-knot bifurcation point.
+  \end{theorem}
+
+  The two-dimensional case is more complex.
+
+  % If our vector space $f(p) \neq 0$, then it can be shown that it is
+  % smoothly equivalent to a 
+  
+\end{document}

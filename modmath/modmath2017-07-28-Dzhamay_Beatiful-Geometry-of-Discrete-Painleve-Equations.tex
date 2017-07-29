@@ -1,0 +1,108 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{Dzhamay}{5}{Geometry of Discrete Painleve Equations}}
+  \usepackage{lineno}
+  % ----------------------------------------------------------------------
+  % Page setup
+  % ----------------------------------------------------------------------
+
+  \pagenumbering{gobble}
+
+  % ----------------------------------------------------------------------
+  % Custom commands
+  % ----------------------------------------------------------------------
+
+  % alignment
+
+  \newcommand*{\LongestHence}{$\Rightarrow$}% function name
+  \newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+  \newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+  \newcommand*{\LongestText}{\defi}%
+
+  \newlength{\LargestHenceSize}%
+  \newlength{\LargestNameSize}%
+  \newlength{\LargestValueSize}%
+  \newlength{\LargestTextSize}%
+
+  \settowidth{\LargestHenceSize}{\LongestHence}%
+  \settowidth{\LargestNameSize}{\LongestName}%
+  \settowidth{\LargestValueSize}{\LongestValue}%
+  \settowidth{\LargestTextSize}{\LongestText}%
+
+  % Choose alignment of the various elements here: [r], [l] or [c]
+
+  \newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+  \newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+  \newcommand{\lr}[1]{line~\lineref{#1}}
+
+  % ----------------------------------------------------------------------
+  % Launch!
+  % ----------------------------------------------------------------------
+
+  \begin{document}
+
+  \section{Geometry of Discrete Painleve Equations}
+
+  \subsection{Introduction}
+
+  \subsubsection{What is a Painleve equation?}
+
+  The classic eqample is $\frac{\dif^{2}y }{\dif t^{2}} = 6y^{2} + 1$.
+
+  The key property of Painleve equations is nonlinearity. Moreover,
+  their general solution is free of movable critical points, which
+  means that it is independent of any constants of integration.
+
+  % The surprising fact is that Painleve .
+
+  \subsubsection{Why should we study them?}
+
+  The original motivation of Painleve et al was to find new nonlinear
+  special functions. Examples of special functions, like the
+  exponential or trigonometric functions arising from solutions of the
+  first- and second-order differential equations, are well-known.
+
+  There are six Painleve equations, which have parameters, and
+  equations from different classes can be transformed into each other
+  by degeneration of parameters.
+
+  In turn, \textit{discrete} Painleve equations are second-order non-autonomous
+  nonlinear recurrence relations.
+
+  It is difficult to determine whether a given recurrence relation is
+  a discrete Painleve equation. One of the best ways to approach the
+  problem uses tools of algebraic geometry developed by Sakai.
+
+  \begin{note*}
+    There is a notion of entropy in discrete Painleve equations.
+  \end{note*}
+
+  Discrete Painleve equations have a much richer classification
+  scheme. For example, each equation has a corresponding pair of orthogonal
+  sublattices.
+
+  \begin{note*}
+
+    Discrete Painleve equations have applications in the study of the
+    longest increasing subsequences in permutations. 
+
+  \end{note*}
+
+  Solutions of Painleve equations are called \textit{Painleve
+    transcendents}, which are purely nonlinear special functions.
+
+  We can also approach the study of Painleve equations through geometry,
+  which was actively developed by Okamoto in 1970-1980s.
+
+    
+\end{document}

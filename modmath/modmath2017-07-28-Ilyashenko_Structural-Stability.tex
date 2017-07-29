@@ -1,0 +1,176 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{Ilyashenko}{1}{Structural Stability}}
+  \usepackage{lineno}
+  % ----------------------------------------------------------------------
+  % Page setup
+  % ----------------------------------------------------------------------
+
+  \pagenumbering{gobble}
+
+  % ----------------------------------------------------------------------
+  % Custom commands
+  % ----------------------------------------------------------------------
+
+  % alignment
+
+  \newcommand*{\LongestHence}{$\Rightarrow$}% function name
+  \newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+  \newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+  \newcommand*{\LongestText}{\defi}%
+
+  \newlength{\LargestHenceSize}%
+  \newlength{\LargestNameSize}%
+  \newlength{\LargestValueSize}%
+  \newlength{\LargestTextSize}%
+
+  \settowidth{\LargestHenceSize}{\LongestHence}%
+  \settowidth{\LargestNameSize}{\LongestName}%
+  \settowidth{\LargestValueSize}{\LongestValue}%
+  \settowidth{\LargestTextSize}{\LongestText}%
+
+  % Choose alignment of the various elements here: [r], [l] or [c]
+
+  \newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+  \newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+  \newcommand{\lr}[1]{line~\lineref{#1}}
+
+  % ----------------------------------------------------------------------
+  % Launch!
+  % ----------------------------------------------------------------------
+
+  \begin{document}
+
+  \section{Structural Stability}
+
+  \subsection{Introduction}
+
+  Suppose that a differential equation $\dot{x} = v(x)$ is given,
+  where $x\in \RR^{n}$. A solution of this equation is a vector
+  function $\phi: I \to \RR^{n}$ such that
+  $\dot{\phi(t)} = v(\phi(t))$. This is an analytic description.
+
+  Now, consider $\Omega \su \RR^{n}$, a vector field on a real
+  manifold. Imagine putting a toy boat on this manifold. The boat
+  would move according to the analytic solution we have discussed
+  above. The path according to which the boat moves is called an
+  \textit{orbit}, which is a phase curve $\img \phi$.
+
+  \subsection{Stationary Points and Limit Cycles}
+
+  Orbits of any differential equation can be classified into three
+  types: topologically equivalent to a point, circle or a line.
+
+  \begin{definition}
+    If $v(a) = 0$, we say that $a$ is a stationary point.
+  \end{definition}
+
+  In turn, closed orbits may contain other closed orbits.
+
+  \begin{definition}
+    An isolated closed orbit is called a \textit{limit cycle}.
+  \end{definition}
+
+  \begin{example}
+
+    Consider a plane with polar coordinates, and suppose that
+    $\dot{\phi} = 1$ and $\dot{r} = r(1-r)$. In this way, all the
+    boats move from $0$ to $1$ and from the point at infinity to one.
+
+    There is also a limit cycle corresponding to a circle with the
+    radius $1$.
+
+  \end{example}
+
+  A vector field is called \textit{typical}, if a small perturbation
+  of vector field does not destroy the key properties of a vector
+  field. Now, let's consider stationary points and limit cycles of a
+  \textit{typical} vector field.
+
+  Stationary points in $\RR^{2}$ come in a wide variety. For example,
+  a saddle point is, informally, a repelling stationary point, unless
+  the boat moves straight to its center. There are also knots, for
+  which a phase diagram looks like a plot for a point charge, and
+  foci, which is spiral.
+
+  \begin{theorem}
+    Open, everywhere dense set in $Vect^{1}(S^{2})$ consists of vector
+    fields with a finite number of foci.
+  \end{theorem}
+
+  What is the asymptotic behaviour of other trajectories?
+
+  Trajectories of a vector field with a finite number of stationary
+  points on a two-dimensional sphere asymptotically approach either a
+  stationary point, a cycle or a polycycle. A polycycle is a
+  polyhedron made of separatrices, which can make up a complex
+  picture.
+
+  \begin{theorem}
+    Trajectories of a vector field from an open, everywhere dense set
+    in $Vect^{1}(S^{2})$ can revolve around either stationary points
+    or limit cycles, if there is only a finite number of special
+    points or cycles.
+  \end{theorem}
+
+  Smale have significantly advanced the study of differential
+  equations on manifolds, proving that the previous theorem holds for
+  all vector fields in $Vect^{k}(M^{n})$, where $M$ is compact and $n$
+  arbitrary.
+
+  \subsection{Smale Horseshoe}
+
+  Suppose a unit square is given, which we divide into 5 equal parts,
+  both in the horizontal and vertical direction. Colour the second and
+  fourth rectangles thus obtained. The Smale horseshoe map $f$ then
+  transforms the horizontal rectangles into the vertical, and the
+  vertical rectangles into the horizontal. At first sight, this map
+  does not immediately seem to be useful, but Smale's idea have
+  revolutionised the study of dynamic systems.
+
+  \subsection{Symbolic Dynamics}
+
+  Let $\Lambda = \set{p; f^{n}p \text{ is defined for all $n \in \ZZ$}}$.
+
+  \begin{definition}
+    A destiny for a point $p\in \Lambda$ is
+    $\omega = \dots \omega_{-n}\dots \omega_{0}\dots \omega_{n}\dots$
+    such that $\omega_{n} = j $ if and only if $f^{n}(p)\in D_{j}$.
+  \end{definition}
+
+  \begin{theorem}
+    \label{t3}
+    Each sequence of 0 and 1 is realisable as a unique destiny of some
+    point.
+  \end{theorem}
+
+  Let $p\in \Lambda$ and $\omega = \omega(p)$. What is $\omega(f(p))$?
+  If $\sigma_{w}$ is a shift of $\omega$ to the left once, then the
+  answer is $\sigma_{w} \omega$. As a result, $f$ has a countable number
+  of periodic orbits.
+
+  \begin{note*}
+    Suppose that a point $p$ is periodic. Then her destiny is a
+    periodic sequence.
+
+    Now, let $\omega$ be a periodic sequence. Then by Theorem \ref{t3}
+    we know that there exists $p\in \Lambda$ such that
+    $\omega = \omega(p)$, which means that $p$ is also periodic.
+
+    Now, assume that the period of $\omega$ is $n$. Then
+    $\sigma^{n}\omega = \omega$. But we know that
+    $\omega(f^{n}p) = \sigma^{n}\omega = \omega = \omega^{p}$, and thus
+    $p = f^{n}(p)$.
+  \end{note*}
+  
+\end{document}

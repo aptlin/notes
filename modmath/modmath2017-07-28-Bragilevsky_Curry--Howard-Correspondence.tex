@@ -1,0 +1,211 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{Bragilevsky}{3}{Curry-Howard Correspondence}}
+  \usepackage{lineno}
+  % ----------------------------------------------------------------------
+  % Page setup
+  % ----------------------------------------------------------------------
+
+  \pagenumbering{gobble}
+
+  % ----------------------------------------------------------------------
+  % Custom commands
+  % ----------------------------------------------------------------------
+
+  % alignment
+
+  \newcommand*{\LongestHence}{$\Rightarrow$}% function name
+  \newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+  \newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+  \newcommand*{\LongestText}{\defi}%
+
+  \newlength{\LargestHenceSize}%
+  \newlength{\LargestNameSize}%
+  \newlength{\LargestValueSize}%
+  \newlength{\LargestTextSize}%
+
+  \settowidth{\LargestHenceSize}{\LongestHence}%
+  \settowidth{\LargestNameSize}{\LongestName}%
+  \settowidth{\LargestValueSize}{\LongestValue}%
+  \settowidth{\LargestTextSize}{\LongestText}%
+
+  % Choose alignment of the various elements here: [r], [l] or [c]
+
+  \newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+  \newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+  \newcommand{\lr}[1]{line~\lineref{#1}}
+
+  % ----------------------------------------------------------------------
+  % Launch!
+  % ----------------------------------------------------------------------
+
+  \begin{document}
+
+  \section{Curry-Howard Correspondence III}
+
+  \subsection{Introduction}
+
+  How can we formalise the notion of a proof? For example, we can say
+  that $\Gamma \vdash M: \phi$, where $\Gamma$ is the context, $M$ is
+  a proof and $\phi$ is some statement. Now we can denote an inference path as follows:
+
+  \begin{itemize}
+  \item $\Gamma \vdash M: \phi \to \psi$, $\Gamma \vdash N:\phi$
+  \item $\Gamma \vdash (MN): \psi$
+  \end{itemize}
+
+  We can also write our presuppositions before the proof and the
+  statement, thus identifying explicitly elements of the context.
+
+  We can also parametrise our proofs with the language of abstractions:
+
+  \begin{itemize}
+  \item $\Gamma, x: \phi \vdash M:\psi$
+  \item $\Gamma \vdash (\lambda x: \phi. M):\phi \to \psi$
+  \end{itemize}
+
+  \subsection{Types}
+
+  Let $\Phi(\to)$ denote the implicative fragment of intuitionistic
+  $\lambda$-calculus. Call them \textit{simple types}.
+
+  Let $\Gamma = \set{x_{1}:\tau_{1}, \dots, x_{n}:\tau_{n}}$,
+  where $x_{i}$ are variables and $\tau_{i}$ are simple types, be our
+  context. Let $\range(\Gamma)$ be the set of all types.
+
+  Now, let $M$ be a $\lambda$-term. If $M$ is of type $\tau$, we write
+  $\Gamma\vdash M: \tau$.
+
+  If we know from the context that $x$ has a type $\tau$, we
+  write $\Gamma, x: \tau \vdash x:\tau$. Denote this rule as \textit{Var}.
+
+  We also introduce the \textit{Abs} rule:
+
+  \begin{itemize}
+  \item $\Gamma, x:\tau \vdash M:\sigma$
+  \item $\Gamma\vdash (\lambda x.M):\tau \to \sigma$
+  \end{itemize}
+
+  Similarly, we give a rule for application:
+
+  \begin{itemize}
+  \item $\Gamma \vdash M:\tau \to \sigma$, $\Gamma \vdash N:\tau$
+  \item $\Gamma \vdash (MN):\sigma$
+  \end{itemize}
+
+  \begin{example}
+
+    Given the context $t:\tau_{1}, s:\tau_{2}$, we write
+    $t:\tau_{1}, s:\tau_{2} \vdash (\lambda x.t)s:\tau_{1}$.
+
+  \end{example}
+
+  \begin{example}
+
+    We can also write the following deduction:
+
+    \begin{itemize}
+    \item $t:\tau_{1}, s:\tau_{2} \vdash t:\tau_{1}$
+    \item
+      $t:\tau_{1}, s:\tau_{2} \vdash (\lambda x.t):\tau_{2}\to
+      \tau_{1}$ , $t:\tau_{1}, s:\tau_{2} \vdash s:\tau_{2}$ 
+    \item $t:\tau_{1}, s:\tau_{2} \vdash (\lambda x. t)s:\tau_{1}$
+    \end{itemize}
+
+  \end{example}
+
+  Simple typed $\lambda$-calculus is denoted as $\lambda_{\to}$. In
+  our case, we have constructed $\lambda_{\to}$ in the interpretation
+  of Curry.
+
+  A similar construction $\lambda_{\to}$ was developed by Church.
+
+  Now, consider a spreading combinator
+  $S = \lambda x. \lambda y. \lambda z. xz(yz)$. Having made it typed,
+  we can write it as
+  
+  \begin{equation*}
+    \lambda x: p \to q \to r. \lambda y: p\to q. \lambda z: p.
+    xz(yz):(p\to q \to r) \to (p\to q) \to p \to r.
+  \end{equation*}
+
+  If some $\lambda$-term $M$ is typed and $\beta$-convertible, then
+  the type is conserved.
+
+  \subsection{Curry-Howard Correspondence}
+
+  \begin{theorem}
+    \hfill
+    \begin{itemize}
+    \item If $\Gamma\vdash M:\phi:\phi$ in $\lambda_{\to}$, then
+      $\Gamma\vdash \phi$ in the implicative fragment of the
+      intuitionistic $\lambda$-calculus.
+    \item If $\Delta \vdash \phi$, then there exists a term and a
+      context $\Gamma$ such that
+      $\range(\Gamma) = \Delta:F\vdash M:\phi$.
+    
+    \end{itemize}
+  \end{theorem}
+
+  \subsection{Extensions}
+
+  For a pair of $\lambda$-terms, we can define another $\lambda$-term
+  with a combined type:
+
+  \begin{equation*}
+    \< M, N \> : \sigma \times \tau
+  \end{equation*}
+
+  Thus, $\pi_{1}(\< M, N \>) \to_{\beta} M$ and
+  $\pi_{2}(\<M, N\>) \to_{\beta} N$. We can write:
+
+  \begin{itemize}
+  \item $\Gamma \vdash M:\sigma$, $\Gamma \vdash N:\tau$
+  \item $\Gamma \vdash \<M, N \>: \sigma \times \tau$
+  \end{itemize}
+
+  Moreover,
+
+  \begin{itemize}
+  \item $\Gamma \vdash M: \sigma \times \tau$
+  \item $\Gamma \vdash \pi_{1}(M):\sigma$.
+  \end{itemize}
+
+  How can we assign a type to a disjunction?
+
+  We can define constructors:
+
+  \begin{align}
+    \iota_{1}^{\sigma \Or \tau}(M): \sigma \Or \tau\\
+    \iota_{2}^{\sigma \Or \tau}(N): \sigma \Or \tau
+  \end{align}
+
+  To decide what to do with a $\lambda$-term, we can define a decision
+  rule in the form
+  
+  \begin{equation*}
+    \text{case}\ M\ \text{of}\ [x]P\ \text{or}\ [y]Q
+  \end{equation*}
+
+  Thus, for example, for the disjunctive $\lambda$-term we can write
+
+  \begin{equation*}
+    \text{case}\ \iota_{1}^{\sigma\Or \tau}(M)\ \text{of} \ [x]P\
+    \text{or}\ [y]Q \to_{\beta} [M/x]P 
+  \end{equation*}
+
+  For further information, see \textit{Lectures on Curry-Howard
+    Isomorphism}.
+  
+
+\end{document}

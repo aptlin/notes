@@ -1,0 +1,119 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{Raskin}{1}{Probabilistic Proofs of Existence}}
+  \usepackage{lineno}
+  % ----------------------------------------------------------------------
+  % Page setup
+  % ----------------------------------------------------------------------
+
+  \pagenumbering{gobble}
+
+  % ----------------------------------------------------------------------
+  % Custom commands
+  % ----------------------------------------------------------------------
+
+  % alignment
+
+  \newcommand*{\LongestHence}{$\Rightarrow$}% function name
+  \newcommand*{\LongestName}{$f_o(-x)+f_e(-x)$}% function name
+  \newcommand*{\LongestValue}{$(-a)x +(-a)(-y)$}% function value
+  \newcommand*{\LongestText}{\defi}%
+
+  \newlength{\LargestHenceSize}%
+  \newlength{\LargestNameSize}%
+  \newlength{\LargestValueSize}%
+  \newlength{\LargestTextSize}%
+
+  \settowidth{\LargestHenceSize}{\LongestHence}%
+  \settowidth{\LargestNameSize}{\LongestName}%
+  \settowidth{\LargestValueSize}{\LongestValue}%
+  \settowidth{\LargestTextSize}{\LongestText}%
+
+  % Choose alignment of the various elements here: [r], [l] or [c]
+
+  \newcommand*{\mbh}[1]{{\makebox[\LargestHenceSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbn}[1]{{\makebox[\LargestNameSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbv}[1]{\ensuremath{\makebox[\LargestValueSize][r]{\ensuremath{#1}}}}%
+  \newcommand*{\mbt}[1]{\makebox[\LargestTextSize][l]{#1}}%
+
+  \newcommand{\R}[1]{\label{#1}\linelabel{#1}}
+  \newcommand{\lr}[1]{line~\lineref{#1}}
+
+  % ----------------------------------------------------------------------
+  % Launch!
+  % ----------------------------------------------------------------------
+
+  \begin{document}
+
+  \section{Probabilistic Proofs of Existence}
+
+  \subsection{Introduction}
+
+  Constructions can have different nature.
+
+  Sometimes explicit construction of mathematical objects is very
+  challenging. In these cases, we can construct an approximating
+  object, which may not have all the \textit{good} properties we want, but
+  which at least lacks all the \textit{bad} ones we want to avoid.
+
+  \subsection{Introduction to the Ramsey Theory}
+
+  Suppose that a complete graph is given with $n$ edges. Let's choose
+  a subgraph with $k$ nodes and colour its nodes red or blue. If we
+  choose a subgraph randomly, then the probability that it is coloured
+  is $2^{\frac{k(k-1)}{2}}2$. If we look at the total probability,
+  without any regard for which subgraph we choose, we get
+  $\cv{n;k}2^{1- \frac{k(k-1)}{2}}$. The upper bound is thus
+  $n^{k}2^{1- \frac{k(k-1)}{2}}$. Can we do better?
+
+  \subsection{Markov's Inequality}
+
+  Suppose that a random variable $X$ is given. We define the expected
+  value of $X$ as $\EE(X) = \sum x_{i}\Pr(x_{i})$.
+
+  \begin{theorem}[Markov's Inequality]
+    Suppose $X \geq 0$. Then $\Pr(X \geq a) \leq \frac{\EE(X)}{a}$.
+  \end{theorem}
+
+    Why does it hold? It is easier to see if we substitute $X$ for $Y$,
+  where $Y \leq X$, and $Y = \begin{cases}
+      0, X < a\\
+      a, X \geq a
+    \end{cases}$.
+
+    We define variance as $\Var(X) = \EE(X-\EE(X))^{2} = \sigma^{2}$.
+      
+  \begin{theorem}[Chebyshev's Inequality]
+    
+    \begin{equation*}
+      \Pr\left(\frac{\abs{X-\EE(X)}}{\sigma} \geq a\right) \leq \frac{1}{a^{2}},
+    \end{equation*}
+
+  \end{theorem}
+
+  \begin{theorem}[Chernov's Inequality]
+    Suppose that $X_{1}, \dots, X_{n}$ are independent random
+    variables such that $X_{1}, \dots, X_{n} \in \set{0, 1}$. Let
+    $X = \sum_{j} X_{j}$, and take $\delta > 0$. Then
+    \begin{equation*}
+      \Pr(X > (1+\delta) \EE(X)) \leq e^{\frac{-\delta \log(1+\delta)\EE(X)}{2}}
+    \end{equation*}
+
+  \end{theorem}
+
+  \subsection{Error-Correcting Codes}
+
+  Suppose that we code an $n$-bit word with $m$ bits which is
+  transmitted via a channel introducing $d$ errors.
+
+  Note that in this case
+  $\sum_{j=0}^{d}\cv{m;j} \geq \cv{m;d} \geq \frac{(m-d)^{d}}{d!}$,
+  and thus we can write $2^{n}\frac{(m-d)^{d}}{d!} \leq 2^{m}$.
+
+\end{document}

@@ -1,0 +1,103 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{Raskin}{2}{Probabilistic Proofs of Existence}}
+
+% ----------------------------------------------------------------------
+% Page Setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom Commands
+% ----------------------------------------------------------------------
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Probabilistic Proofs of Existence II}
+
+\subsection{Lov\'asz Local Lemma}
+
+Suppose there is a list of unfortunate events happening with some
+probability, which we will say less than some $p$. Represent them in a
+graph, drawing edges between the dependent events. Suppose that each
+node in this dependency graph has a degree less than or equal to $d$.
+We can show that, if either $4pd \leq 1$ or $ep(d+1) \leq 1$ is
+satisfied, then there is a positive probability that no unfortunate
+events has happened. In the context of our previous discussion of
+randomly constructed objects, in this case we would obtain that our
+object does not have properties we wanted to avoid.
+\begin{example}
+
+  Suppose we have $n$ colours and a circle with $100n$ marked points,
+  and we want to colour the points in such a way that there are 100
+  points painted in each colour, and the whole palette is spread over
+  the circle, so that no two points of the same colour are
+  neighbouring.
+
+  Choose a pair of points at random. There is a $\frac{1}{10000}$
+  probability that there is a local problem at these points. Now, by
+  looking at the pairs of nodes which share at least 1 colour, we have
+  $d = 400$ (connect two dots of the same colour, of which there are
+  100, and count the pairs to which these points belong, of which
+  there are 4), which, by direct plugging into the formula, satisfies
+  the condition of the Lov\'asz lemma.
+
+\end{example}
+
+\begin{exercise}
+
+  Suppose that we have a circular table and $n$ guests, some of whom
+  are quarrelling. How likely are we to position our guests in such a
+  way that the distance between the quarrelling guests is maximised,
+  provided we position them randomly?
+
+\end{exercise}
+
+\begin{example}
+
+  Suppose that we write lines of sequences, of length $n$ on $n$th
+  line, such that for each line there is no programme which can
+  compress a sequence up to $\frac{n}{2}$ bits.
+
+  There are $2^{n}$ sequences in total, and $2^{\frac{n}{2}}$
+  compressed sequences, if their length is $\frac{n}{2}$ or less. Then
+  the probability of getting a line described above is
+  $2^{-\frac{n}{2}}$, which is very small.
+
+  
+\end{example}
+\begin{example}[Expanders]
+
+Suppose that a graph $V$ and its subgraph $V'$ are given such that
+$\abs{V'} < \frac{\abs{V}}{2}$. There are edges inside a subgraph and
+borderline edges of a subgraph connected to the nodes in a graph which
+are in the complement of the subgraph. Denote these borderline edges
+as $\partial V$.
+
+Suppose that the maximal degree of an edge in $V$ is less than or
+equal to $1000$, and $\abs{\partial V} \geq 10 \abs{V'}$.
+
+By the Chernov inequality, we thus obtain an approximation
+
+\begin{equation*}
+  \sum_{j= 901}C_{\abs{V}-1}\left(\frac{100}{\abs{V}}\right)\left(1-\frac{100}{\abs{M}}\right),
+\end{equation*}
+
+which is quite small. 
+
+\end{example}
+
+
+
+\end{document}
