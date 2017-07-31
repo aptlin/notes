@@ -1,0 +1,127 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{Volk}{4}{Brain Maths}}
+
+% ----------------------------------------------------------------------
+% Page Setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom Commands
+% ----------------------------------------------------------------------
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Brain Maths IV}
+
+\subsection{Revision}
+
+Let $\dot{x} = f(x)$ for $x\in \RR^{2}$ be such that $f(0)$,
+$Df(0) = \begin{pmatrix}
+  \* & \*\\
+  \* & \*
+\end{pmatrix}$, and $\Spec Df = \set{\lambda_{1}, \lambda_{2}}$.
+
+If $\lambda_{1}, \lambda_{2} < 0$, then the equilibrium points of $f$
+are stable knots.
+
+If $\lambda_{1} < 0 < \lambda_{2}$, then the equilibrium points are
+saddles.
+
+If the eigenvalues are complex conjugates of each other with the
+nonzero imaginary parts, then the equilibrium points of $f$ are foci.
+
+\begin{theorem}[Grobman-Hartman]
+
+  If an equilibrium point is hyperbolic (i.e., $\Re (\lambda_{i}) \neq 0$),
+  then, locally, $f$ is topologically dual to $Df$.
+
+\end{theorem}
+
+As a consequence, a vector field in the neighbourhood of a hyperbolic
+equilibrium point is stable.
+
+Thus, if we also have that $d_{C}(f, g) < \epsilon$, then
+$f \sim Df \sim Dg \sim g$.
+
+\subsection{Hadamard-Perron Theorem}
+
+\begin{theorem}
+  Suppose that $Df(0)$ is a saddle point.
+
+  Then there exist unique $w^{s}$ and $w^{u}$ such that for all
+  $x\in w^{s}$ we have $f^{n}(x) \to 0$ as $n\to +\infty$ and
+  $w^{u}\to 0$ as $n\to -\infty$.
+
+\end{theorem}
+
+\begin{theorem}
+  Stable equilibrium of a typical 1-parametric family $f_{\alpha}$ can
+  degenerate in either of two cases:
+
+  \begin{itemize}
+  \item $\lambda_{1} = 0$, $\lambda_{2} \neq 0$
+    In this case, we obtain a saddle-knot bifurcation.
+  \item $\lambda_{1, 2} = \pm iw$, $w \neq 0$
+    This is an Andronov-Hopf bifurcation.
+  \end{itemize}
+\end{theorem}
+
+Now, if $\alpha = 0$ and one of the eigenvalues is also equal to 0,
+then another theorem applies:
+
+\begin{theorem}[Central Manifold Theorem]
+  There exists $W^{c} \in C^{0}$ and unique $W^{s}, W^{u}$ such that
+  $T_{0}W^{i} = E^{i}$, where $i\in \set{s, u, c}$.
+\end{theorem}
+
+\subsection{Reduction Principle}
+
+It is worthwhile to note that we can make up a system which is
+topologically equivalent to our saddle-knot:
+
+
+\begin{equation*}
+  \begin{cases}
+    \dot{x} = f_{\alpha}(x)\\
+    \dot{\alpha} = 0
+  \end{cases} \sim
+  \begin{cases}
+    \dot{x_{1}} = v_{\alpha}(x)\\
+    \dot{x_{2}} = x_{2}\\
+    \dot{x_{3}} = - x_{3}
+  \end{cases},
+\end{equation*}
+
+where $x_{2}$ and $x_{3}$ are called \textit{saddle extensions}. This
+allows us to classify our equilibrium points and predict how stable
+they are.
+
+\subsection{Attractive Cycles}
+
+Cycles can degenerate due to bifurcations (eg homoclinic orbits of
+saddle-knots can form). The way by which the cycle is tranformed
+depends on the nature of the eigenvalues of $Df$.
+
+If the parameter of bifurcation changes, for example, for neurons, if
+the current increases, then a cycle can form at a particular
+frequency. For example, a phenomenon of \textit{ghost attractors} can
+arise, which usually means that a cycle is very slow..
+
+The classification into integrators and resonators originates exactly
+from the differences in the way attractor cycles behave under
+bifurcations.
+
+\end{document}

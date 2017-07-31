@@ -1,0 +1,188 @@
+% -*- coding: utf-8; -*-
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+\documentclass[11pt]{scrartcl}
+\usepackage[fancy, beaue, pset, anon]{masty}
+\pSet{\nt{Kleptsyn}{1}{Dynamic Systems and Bifurcations}}
+
+% ----------------------------------------------------------------------
+% Page Setup
+% ----------------------------------------------------------------------
+
+\pagenumbering{gobble}
+
+% ----------------------------------------------------------------------
+% Custom Commands
+% ----------------------------------------------------------------------
+
+% ----------------------------------------------------------------------
+% Launch!
+% ----------------------------------------------------------------------
+
+\begin{document}
+
+\section{Dynamical Systems and Bifurcations}
+
+\subsection{Introduction}
+
+Suppose that $(X, f)$ is given, where $X$ is a manifold and $f$ is a
+mapping from $X$ to $X$. Usually we also say that $f$ is continuous,
+and $X$ is compact. $(X, f)$ defines a \textit{dynamical system}.
+
+If $f$ is $C^{k}$-smooth, then a dynamical system is $C^{k}$-\textit{smooth}.
+
+If $f$ is invertible and $f^{-1}$ is continuous, then $(X, f)$ is an
+\textit{invertible} dynamical system.
+
+\subsection{Examples}
+\begin{example}
+
+  When a link between differential equations and dynamical systems was
+  realised, a problem of Laplacian determinism came to the attention,
+  which led to the study of order and chaos.
+
+  We can imagine a circle as a glued interval from $0$ to $1$, or,
+  equivalently, as $\RR / \ZZ$.
+
+  Take $f(x) = 2x \mod 1$. If we know the initial point with an error
+  of $10^{-30}$, after every step the error is doubled. Therefore,
+  after 100 iterations, we cannot say anything certain about the
+  position of our dot. This is an example of \textit{dynamical chaos},
+  or \textit{trajectory divergence}. The same behaviour is seen, for
+  example, in weather forecasts, since we cannot measure temperature
+  and pressure everywhere all the time.
+
+  There are, however, examples with more regular behaviour. Take, for
+  instance, $R_{\alpha}: X \mapsto X + \alpha \mod 1$, with
+  $\alpha \not\in \QQ$.
+
+\end{example}
+
+\begin{definition}
+  A sequence
+  $x_{0}, x_{1} = f(x_{0}), \dots, x_{n} = f^{n}(x_{0}), \dots$ is
+  called a \textit{trajectory} of a point $x_{0}$.
+\end{definition}
+
+\begin{definition}
+  A point $x$ is called \textit{periodic}, if there exists $n$ such
+  that $f^{n}(x) = x$.
+\end{definition}
+
+\begin{theorem}
+  If $\alpha \not \in \QQ$, then for all $x_{0} \in S^{1}$ the
+  trajectory of $x_{0}$ under the action of $R_{\alpha}$ is dense
+  everywhere.
+\end{theorem}
+
+\begin{definition}
+  A periodic point $x$ of period $1$, $f(x) = x$, is called a fixed
+  point.
+\end{definition}
+
+\begin{definition}
+  For $\dim = 1$, a multiplicative fixed point is a fixed point such that $f'(x_{0}) = \lambda$.
+\end{definition}
+
+This means that $f(x) - x_{0} \approx (x-x_{0})$, so that
+$\abs{\lambda} < 1$ is an \textit{attracting point}, and if
+$\abs{\lambda} > 1$, then $x_{0}$ is \textit{repelling}.
+
+\subsection{Revertible Chaos}
+
+Take $A = \begin{pmatrix}
+  2 & 1\\
+  1 & 1
+\end{pmatrix}$. Note that $\sqrt{A} = \begin{pmatrix}
+  1 & 1\\
+  1 & 0
+\end{pmatrix}$ maps $\cv{x;y}$ to $\cv{x+ y;x}$.
+
+Since a Fibonacci sequence is asymptotically geometric with the golden
+ratio as the multiplicative factor, then in the long term a standard
+plane with the Descartes coordinate system, then the slope of the
+horizontal axes coincides with $\phi$. Notice that the inverse maps
+$\cv{u;v}$ to $\cv{v;u-v}$.
+
+Take a two-dimensional torus on $\Pi^{2} = \RR^{2} / \ZZ^{2}$, and map
+the trajectories defined by the aforementioned $f$. Then due to the
+topology of a torus chaos would emerge, and its development is easy to
+track.
+
+\subsection{Complex Dynamicals}
+
+Suppose that we are given $f: \CC P^{1} \to \CC P^{1}$.
+
+Assume further that $f$ is a polynomial.
+
+Let $K_{f} = \set{z; f^{n}(z)\not \to \infty}$.
+
+Notice that in a projective space the point at infinity is attracting
+with respect to $f$. We can simplify the study of dynamicals in a
+projective space by making a substitution $ z = \frac{1}{w}$:
+
+\begin{align}
+  \frac{1}{f(\frac{1}{w})} &= \frac{1}{(\frac{1}{w})^{n} + a_{n-1}(\frac{1}{w})^{n-1} + \dots}\\
+                           &= \frac{w^{n}}{1+ a_{n-1}w + a_{n-2}w^{2}+\dots}.
+\end{align}
+
+For example, $f(z) = z^{2}$ is mapped to a disc.
+
+\begin{definition}
+  A Julia set of a polynomial $f$ is $J_{f} = \partial K_{f}$.
+\end{definition}
+
+\begin{note*}
+  Julia sets are often fractals.
+\end{note*}
+
+\subsection{}
+
+\begin{definition}
+  Let $f$ be a rational function, $f: \CC P^{1} \to \CC P^{1}$. 
+
+
+\begin{note*}
+  Rational functions are \textit{good} mappings of a Riemann sphere to itself.
+\end{note*}
+
+Consider a torus $E$ in $\CC / \Lambda$,where
+$\Lambda = \ZZ \oplus i \ZZ$, and take a mapping $f: E \to E$ such
+that $z \mapsto 2z \mod \Lambda$.
+
+Let's make a sphere out of our torus:
+$E /_{(z\sim -z)} \simeq \CC P^{1}$. Define a map
+$p: E \to \CC P^{1}$, which is also known as Weirstra\ss\ $p$-function,
+$p(z) = \frac{1}{z^{2}} + \sum_{\gamma \in \Lambda \ \set{0}} \left(
+  \frac{1}{(z-\gamma)^{2}} - \frac{1}{\gamma^{2}}\right)$.
+
+\end{definition}
+
+This map defines an exciting example of a dynamical system, which
+plays a key role in the Latt\`es construction.
+
+\subsection{Bifurcations}
+
+\begin{definition}
+  A \textit{bifurcation} is a rapid change in the qualitative
+  behaviour of a dynamical system.
+\end{definition}
+
+Define $f_{\epsilon} = x + x^{2} + \epsilon$. Fixed points of
+$f_{\epsilon}$ are thus at $x = \pm \sqrt{-\epsilon}$. Note that, for
+example, if $\epsilon$ is less than 0, then $-\sqrt{\epsilon}$ is
+attracting, and $\sqrt{\epsilon}$ is repelling. This is an example of
+a saddle-knot bifurcation.
+
+If the mapping is perturbed, we can study what happens with fixed
+points. For example, a fixed point can degenerate into an orbit with a
+period $2$. On the other hand, the stability interval can eventually
+narrow down to a point at which a small perturbation pushes the
+trajectory to drastic instability. This is, for instance, what happens
+in the \textit{Andronov-Hopf} regime.
+
+
+\end{document}
